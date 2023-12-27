@@ -3,19 +3,31 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@crestron/ch5-crcomlib": "^0.0.4",
+    "@crestron/ch5-utilities": "^0.1.52",
+    "@crestron/ch5-webxpanel": "^2.6.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "bootstrap": "^5.3.2",
+    "patch-package": "^8.0.0",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.9.2",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
+    "react-router-dom": "^6.21.1",
+    "react-scripts": "^3.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:archive": "ch5-cli archive -p touch-panel -P samplesource=ch5-react -d build -o dist",
+    "deploy": "ch5-cli deploy -p -H 129.105.110.238 -t web dist/touch-panel-app.ch5z",
+    "build:onestep": "npm run build && npm run build:archive",
+    "build:deploy": "npm run build:onestep && npm run deploy",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "patch-package"
   },
   "eslintConfig": {
     "extends": [
