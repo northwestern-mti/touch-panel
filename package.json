@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@crestron/ch5-crcomlib": "^0.0.4",
+    "@crestron/ch5-crcomlib": "^2.5.0",
     "@crestron/ch5-utilities": "^0.1.52",
     "@crestron/ch5-webxpanel": "^2.6.1",
     "@testing-library/jest-dom": "^5.17.0",
