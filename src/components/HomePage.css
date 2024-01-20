@@ -1,0 +1,8 @@
+.HomePage{
+    display:flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.mainContent{
+    flex: 1;
+}

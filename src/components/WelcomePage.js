@@ -1,4 +1,4 @@
-import logo from "./Northwestern_purple.svg"
+import logo from "./Icons/Northwestern_purple.svg"
 import Header from './Header';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';

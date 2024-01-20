@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Header.css'
-import logo from "./Northwestern_WHITE.svg"
+import logo from "./Icons/Northwestern_WHITE.svg"
 function Header(){
     const [classRoom, setClassRoom] = useState("");
     useEffect(() =>{
@@ -8,14 +8,13 @@ function Header(){
     }, [])
     
     return(
-        <div className='py-0 pb-0 px-5 bg-primary text-white'>
-            <div className="container">
-                <div className="row align-items-center">
+        <div className='py-0 pb-0 px-5 bg-primary text-white row align-items-center'>
+            
                     <div className="col-md-3 mx-auto pl-1">
                         <img
                             src={logo}
                             alt="Northwestern Logo"
-                            className='img-fluid white-text'/>
+                            className='img-fluid'/>
                     </div>
                     <div className="col-md-4">
                         <h4>{classRoom}</h4>
@@ -36,11 +35,10 @@ function Header(){
                         </div>
                     </div>
                     <div className="rounded-circle col-md-1 bg-info help-button d-flex align-items-center justify-content-center">
-                        <p className="m-0">?Help</p>
+                        <p >? Help</p>
                     </div>
 
-                </div>
-            </div>
+              
         </div>
     );
 
