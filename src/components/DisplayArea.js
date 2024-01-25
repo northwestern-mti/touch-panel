@@ -26,23 +26,23 @@ function DisplayArea({sourceSelected, displayJoin}) {
     let message;
     switch(sourceSelected) {
         case 'PC':
-            message = <h5 className='h6'>Please use the keyboard and mouse to start</h5>;
+            message = <h5 className='h6'>Please use the keyboard and mouse to start.</h5>;
             break;
         case 'Laptop':
-            message = <h5 className='h6'>Connect your device to start presenting</h5>;
+            message = <h5 className='h6'>Connect your device to start presenting.</h5>;
             break;
         case 'Wireless':
             message = <div>
                 <h5 className='h6'>Enter the address below into your browser and follow the instructions
                     to present wirelessly.
                 </h5>
-                <p>{ipAdd}</p>
+                <p className='text-info'>{ipAdd}</p>
             </div>;
             break;
         case 'ConfCall':
             message = <div>
-                <h5 className='h6'>Select the button below to dial your number</h5>
-                <Button className="btn btn-info">Conference Call</Button>
+                <h5 className='h6'>Select the button below to dial your number.</h5>
+                <Button className="btn btn-info control">Conference Call</Button>
             </div>;
             break;
         case 'DocCam':
@@ -54,19 +54,19 @@ function DisplayArea({sourceSelected, displayJoin}) {
             break;
         case 'BluRay':
             message = <div>
-                <h5 className='h6'>Your Blu-Ray content is being displayed</h5>
-                <Button className='btn btn-info'>Blu-Ray Controls</Button>
+                <h5 className='h6'>Your Blu-Ray content is being displayed.</h5>
+                <Button className=' btn-info rounded-0'>Blu-Ray Controls</Button>
             </div>;
             break;
         default:
-            message = <div></div>
+            message = <h5 className='h6'>Select a source to the left to present.</h5>
     }
     return(
-        <div className='DisplayArea d-flex flex-column'>
-            <div className='bg-success'>
+        <div className='d-flex flex-column'>
+            <div className='bg-success '>
                 <h5 className='h6 py-4'>Display one is On</h5>
             </div>
-            <div className='inputInfo pt-3 flex-1'>
+            <div className='inputInfo pt-3 flex-grow-1 '>
                 {message}
             </div>
             

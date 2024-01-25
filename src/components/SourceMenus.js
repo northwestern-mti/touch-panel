@@ -57,7 +57,7 @@ const SourceMenus = () => {
     }    
 
     return (
-    <div className="row">
+    <div className="row w-100">
         <div className='display1 col-5 ' onClick={()=>toggleDisplay('18')}>
             <div className='row border-bottom border-dark border-right-0'
                 onClick={() => handleSourceSelected('200', 'PC')}>

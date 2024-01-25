@@ -1,4 +1,6 @@
-
+.control{
+    border-radius: 20% !important;
+}
 .icon-mute{
     background-color: #dee2e6 !important;
 }

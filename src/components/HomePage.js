@@ -10,9 +10,9 @@ function HomePage(){
 
 
     return(
-        <div className='HomePage'>
+        <div className='HomePage d-flex flex-column w-100'>
             <Header/>
-            <div className='mainContent col-6 pl-0'>
+            <div className='mainContent'>
                 <SourceMenus className=''/>
             </div>
             <div className="">
