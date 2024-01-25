@@ -8,20 +8,20 @@ function Header(){
     }, [])
     
     return(
-        <div className='py-0 pb-0 px-5 bg-primary text-white row align-items-center'>
+        <div className='pb-0 px-5 bg-primary text-white row align-items-center'>
             
-                    <div className="col-md-3 mx-auto pl-1">
+                    <div className="col-md-3 pl-0">
                         <img
                             src={logo}
                             alt="Northwestern Logo"
                             className='img-fluid'/>
                     </div>
-                    <div className="col-md-4">
-                        <h4>{classRoom}</h4>
+                    <div className="col-md-3 align-items-center">
+                        <h5 className='h6 mb-0'>{classRoom}Room ABCD</h5>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-4 ">
                         <div className="row">
-                            <div className="col-md-12">
+                            <div className="col-md-12 mb-0">
                                 <ch5-datetime 
                                     displaytype="date" 
                                     styleForDate="MMMM d, yyyy">
@@ -35,7 +35,11 @@ function Header(){
                         </div>
                     </div>
                     <div className="rounded-circle col-md-1 bg-info help-button d-flex align-items-center justify-content-center">
-                        <p >? Help</p>
+                        <div className='row helpButton'>
+                            <h6 className='col-md-12 mb-0'>?</h6>
+                            <h6 className='col-md-12 mb-0'>Help</h6>
+                        </div>
+                        
                     </div>
 
               
