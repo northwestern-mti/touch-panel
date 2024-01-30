@@ -4317,8 +4317,8 @@ a.close.disabled {
   outline: 0; }
 
 .modal-dialog {
-  position: relative;
-  width: auto;
+  position: fixed;
+  width: 90%;
   margin: 0.5rem;
   pointer-events: none; }
   .modal.fade .modal-dialog {
@@ -4430,8 +4430,9 @@ a.close.disabled {
 
 @media (min-width: 576px) {
   .modal-dialog {
-    max-width: 500px;
-    margin: 1.75rem auto; }
+    max-width: 80%;
+    height: 90%;
+    margin: 3rem 7rem; }
   .modal-dialog-scrollable {
     max-height: calc(100% - 3.5rem); }
     .modal-dialog-scrollable .modal-content {

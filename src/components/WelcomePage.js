@@ -16,7 +16,7 @@ function WelcomePage() {
 
 
   return (
-    <div className="WelcomePage" >
+    <div className="WelcomePage w-100" >
         <Header/>
         <div className="container py-5" onClick={handleClick}>
             <div className="row">

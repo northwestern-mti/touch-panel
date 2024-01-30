@@ -5,17 +5,18 @@ import X from './Icons/x.svg'
 
 const CustomModal = ({ show, onHide, title, children }) => {
   return (
-    <Modal show={show} onHide={onHide} centered>
-      <Modal.Header className="bg-secondary w-80">
+    
+    <Modal show={show} onHide={onHide} centered >
+      <Modal.Header className="bg-secondary" >
         <div className="d-flex justify-content-between w-100 align-items-center">
-          <Button variant="link" onClick={onHide} className="btn-close text-white rounded-pill">
+          <Button variant="link" onClick={onHide} className="btn-close text-white">
                 <img
                     src={BackArrow}
                     alt='Back arrow'
                     className='img-fluid' />
           </Button>
           <Modal.Title className="text-center ">{title}</Modal.Title>
-          <Button variant="link" onClick={onHide} className="btn-close text-white rounded-pill">
+          <Button variant="link" onClick={onHide} className="btn-close text-white ">
                 <img
                     src={X}
                     alt='X'
@@ -23,7 +24,7 @@ const CustomModal = ({ show, onHide, title, children }) => {
           </Button>
         </div>
       </Modal.Header>
-      <Modal.Body className=''>
+      <Modal.Body className='modal-xl' style={{ width: '100%', height: '100%', overflow: 'auto' }}>
         {/* Your modal content goes here */}
         {children}
       </Modal.Body>
