@@ -9,7 +9,7 @@ import Camera2 from './Icons/camera2.svg';
 import Lamp from './Icons/lightbulb-fill.svg';
 import Zoom from "./Icons/zoom-in.svg"
 
-function DisplayArea({sourceSelected, displayJoin}) {
+function DisplayArea({sourceSelected, displayJoin, side}) {
     const [ipAdd, setIpAdd] = useState('');
     const [isMuted, setIsMuted] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
@@ -36,7 +36,7 @@ function DisplayArea({sourceSelected, displayJoin}) {
             break;
         case 'Wireless':
             message = <div>
-                <h5 className='h6'>Enter the address below into your browser and follow the instructions
+                <h5 className='h7'>Enter the address below into your browser and follow the instructions
                     to present wirelessly.
                 </h5>
                 <p className='text-info'>{(ipAdd == "") ? "123.210.123.210" : ipAdd}</p>
@@ -80,21 +80,24 @@ function DisplayArea({sourceSelected, displayJoin}) {
         case 'BluRay':
             message = <div>
                 <h5 className='h6'>Your Blu-Ray content is being displayed.</h5>
-                <Button className=' btn-info rounded-pill'>Blu-Ray Controls</Button>
+                <Button className=' btn-info rounded-pill'>
+                    <h6>Blu-Ray Controls</h6></Button>
             </div>;
             break;
         default:
-            message = <h5 className='h6'>Select a source to the left to present.</h5>
+            message = <h5 className='h6'>Select a source to the {side} to present.</h5>
     }
     return(
         <div className='d-flex align-items-end flex-column mb-3 h-100'>
-            {(sourceSelected == '') ? 
-                <div className='bg-dark text-white p-2'>
-                    <h5 className='h6 py-4'>Display one is Off</h5>
-                </div> : 
-                <div className={isMuted ? 'bg-warning p-2' : 'bg-success p-2'}>
-                    <h5 className={isMuted ? 'h7 py-4 mb-0' : 'h6 py-4'}>{isMuted ? 'Display One is Muted' : 'Display One is On'}</h5>
-                </div>}
+            <div className='w-100'>
+                {(sourceSelected == '') ? 
+                    <div className='bg-dark text-white w-100'>
+                        <h5 className='h6 py-4'>Display one is Off</h5>
+                    </div> : 
+                    <div className={isMuted ? 'bg-warning p-2' : 'bg-success p-2'}>
+                        <h5 className={isMuted ? 'h7 py-4 mb-0' : 'h6 py-4'}>{isMuted ? 'Display One is Muted' : 'Display One is On'}</h5>
+                    </div>}
+            </div>
     
             <div className='inputInfo pt-3 p-2 ml-3'>
                 {message}

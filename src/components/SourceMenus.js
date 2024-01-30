@@ -58,7 +58,7 @@ const SourceMenus = () => {
 
     return (
     <div className="row">
-        <div className='display1 col-5 ' onClick={()=>toggleDisplay('18')}>
+        <div className='display1 col-3 ' onClick={()=>toggleDisplay('18')}>
             <div className='row border-bottom border-dark border-right-0'
                 onClick={() => handleSourceSelected('200', 'PC')}>
                 <div className='d-flex col  py-3'>
@@ -128,9 +128,86 @@ const SourceMenus = () => {
                 
             </div>
         </div>
-        <div className='col col-6 mt-0'>
-            <DisplayArea sourceSelected={source} displayJoin={'18'} />
+        <div className='col col-3 mt-0 border-right pl-0 pr-0'>
+            <DisplayArea sourceSelected={source} displayJoin={'18'} side='left' />
         </div>
+        <div className='col col-3 mt-0 pl-0 pr-0'>
+            <DisplayArea sourceSelected={source} displayJoin={'19'} side='right' />
+        </div>
+        <div className='display1 col-3 ' onClick={()=>toggleDisplay('18')}>
+            <div className='row border-bottom border-dark border-right-0'
+                onClick={() => handleSourceSelected('200', 'PC')}>
+                <div className={`select ${(source == 'PC') ? 'bg-primary' : ''}`}></div>
+                <div className='d-flex col  py-3'>
+                    <img
+                        src={PcIcon}
+                        alt='PC icon'
+                        className='img-fluid pl-2'/>
+                    <h5 className="h7 mb-0">Resident Computer</h5>
+                </div>
+                
+            </div>
+            <div className="row border-bottom border-dark border-right-0"
+                onClick={() => handleSourceSelected('201', 'Laptop')}>
+                <div className={`select ${(source == 'Laptop') ? 'bg-primary' : ''}`}></div>
+                <div className='d-flex col  py-3'>
+                    <img
+                        src={LaptopIcon}
+                        alt='Laptop icon'
+                        className='img-fluid pl-2'/>
+                    <h5 className="h7 mb-0">Laptop and Other Devices</h5>
+                </div> 
+            </div>
+            <div className="row border-bottom border-dark border-right-0"
+                onClick={() => handleSourceSelected('202', 'Wireless')}>
+                <div className={`select ${(source == 'Wireless') ? 'bg-primary' : ''}`}></div>
+                <div className='d-flex col  py-3'>
+                    <img
+                        src={WirelessIcon}
+                        alt='Wireless icon'
+                        className='img-fluid pl-2'/>
+                    <h5 className="h7 mb-0">Wireless with Solstice</h5>
+                </div>
+            </div>
+            <div className="row border-bottom border-dark border-right-0"
+                onClick={() => handleSourceSelected('205', 'ConfCall')}>
+                <div className={`select ${(source == 'ConfCall') ? 'bg-primary' : ''}`}></div> 
+                <div className='d-flex col  py-3'>
+                    <img
+                        src={TelephoneIcon}
+                        alt='Telephone icon'
+                        className='img-fluid pl-2'/>
+                    <h5 className="h7 mb-0">Conference Call</h5>
+                </div>  
+            </div>
+            <div className="row border-bottom border-dark border-right-0"
+                onClick={() => handleSourceSelected('204', 'DocCam')}>
+                <div className={`select ${(source == 'DocCam') ? 'bg-primary' : ''}`}></div>
+                <div className='d-flex col  py-3'>
+                    <img
+                        src={JournalIcon}
+                        alt='Journal icon'
+                        className='img-fluid pl-2'/>
+                    <h5 className="h7 mb-0">Document Camera</h5>
+                </div>
+                
+                
+            </div>
+            <div className="row border-bottom border-dark border-right-0"
+                onClick={() => handleSourceSelected('203', 'BluRay')}>
+                <div className={`select ${(source == 'BluRay') ? 'bg-primary' : ''}`}></div>
+                <div className='d-flex col  py-3'>
+                    <img
+                        src={DiscIcon}
+                        alt='Disc icon'
+                        className='img-fluid pl-2'/>
+                    <h5 className="h7 mb-0">Blu-Ray</h5>
+                </div>
+                
+                
+            </div>
+        </div>
+        
         
     </div>
   );
