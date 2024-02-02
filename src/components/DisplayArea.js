@@ -1,20 +1,27 @@
 import * as React from 'react';
 import { useState, useEffect } from "react";
-import { Button } from 'react-bootstrap';
+import { Button} from 'react-bootstrap';
+import CModal from './CModal';
 import CameraIcon from './Icons/camera-video.svg';
 import CameraOffIcon from './Icons/camera-video-off.svg';
 import GearIcon from './Icons/gear.svg';
 import GearHigh from './Icons/gear-activated.svg';
 import Camera2 from './Icons/camera2.svg';
 import Lamp from './Icons/lightbulb-fill.svg';
-import Zoom from "./Icons/zoom-in.svg"
+import Zoom from "./Icons/zoom-in.svg";
 
-function DisplayArea({sourceSelected, displayJoin, side}) {
+function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJpin, showFullScreenJoin,
+     annotationJoin, fullscreenJoin, powerOn, powerOff}) {
     const [ipAdd, setIpAdd] = useState('');
     const [isMuted, setIsMuted] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
+    const [powerSwitch, setPowerSwitch] = useState(true);
+    const [showAnnotation, setShowAnnotation] = useState(false)
+    const [showFullScreen, setShowFullScreen] = useState(false);
     useEffect(() => {
-        window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));    
+        window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));
+        window.CrComLib.subscribeState('b', `${showAnnotationJpin}`, value=> setShowAnnotation(value));
+        window.CrComLib.subscribeState('s', `${showFullScreenJoin}`, value=> setShowFullScreen(value)); 
     }, []);
     const toggleMute = (joinNumber) => {
         setIsMuted((prevIsMuted) => !(prevIsMuted));
@@ -24,6 +31,26 @@ function DisplayArea({sourceSelected, displayJoin, side}) {
         } else{
             window.CrComLib.publishEvent('b', `${joinNumber}`, true);
             console.log('display muted')
+        }
+    }
+    const handleShowDisplayModal = () => {
+        console.log("Showing Display Modal")
+        setIsClicked(true);
+  
+      }
+    const handleCloseDisplayModal = () => {
+        setIsClicked(false);
+    }
+    const togglePowerSwitch = () => {
+        setPowerSwitch(!powerSwitch)
+        if (!powerSwitch) {
+            window.CrComLib.publishEvent('b', `${powerOn}`, true);
+            window.CrComLib.publishEvent('b', `${powerOn}`, false);
+            console.log('Power On')
+        } else {
+            window.CrComLib.publishEvent('b', `${powerOff}`, true);
+            window.CrComLib.publishEvent('b', `${powerOff}`, false);
+            console.log('Power Off')
         }
     }
     let message;
@@ -56,14 +83,15 @@ function DisplayArea({sourceSelected, displayJoin, side}) {
                             src={Camera2}
                             alt='Camera Icon'
                             className='img-fluid'/>
-                        <h7 className ="mb-0">Autofocus</h7>
+                        <h6 className ="mb-0">Autofocus</h6>
                     </div>
                     <div className='row px-4'>
                         <img 
                             src={Lamp}
                             alt='Lightbulb Icon'
                             className='img-fluid'/>
-                        <h7 className=" mb-0">Lamp</h7>
+                        <h6 className=" mb-0">Lamp</h6>
+                        
                     </div>
                 </div>
                 
@@ -72,7 +100,8 @@ function DisplayArea({sourceSelected, displayJoin, side}) {
                         src={Zoom}
                         alt='Zoom-in Icon'
                         className='img-fluid'/>
-                    <h7>Zoom</h7>
+                    <h6>Zoom</h6>
+
                 </div>
 
             </div>;
@@ -95,7 +124,7 @@ function DisplayArea({sourceSelected, displayJoin, side}) {
                         <h5 className='h6 py-4'>Display one is Off</h5>
                     </div> : 
                     <div className={isMuted ? 'bg-warning p-2' : 'bg-success p-2'}>
-                        <h5 className={isMuted ? 'h7 py-4 mb-0' : 'h6 py-4'}>{isMuted ? 'Display One is Muted' : 'Display One is On'}</h5>
+                        <h5 className={isMuted ? 'h7 py-4 mb-3 ' : 'h6 py-4'}>{isMuted ? 'Display One is Muted' : 'Display One is On'}</h5>
                     </div>}
             </div>
     
@@ -128,7 +157,7 @@ function DisplayArea({sourceSelected, displayJoin, side}) {
                         <h5 className='h7 mb-0'>Mute Display</h5>
                     </div>}
                 
-                <div className='col' onClick={() => setIsClicked(true)}>
+                <div className='col' onClick={handleShowDisplayModal}>
                     {isClicked ? 
                         <div className='col-md-7 rounded-circle bg-info py-1 px-1 ml-4'>
                             <img 
@@ -146,6 +175,22 @@ function DisplayArea({sourceSelected, displayJoin, side}) {
                         </div>}
                     <h5 className='h7 mb-0'>Display Settings</h5> 
                 </div>
+                <CModal show={isClicked} onHide={handleCloseDisplayModal} title="Display Settings">
+                    <div className='col-10'>
+                        <h5>Power</h5>
+                        <div className='form-check form-switch'>
+                            <input 
+                                className='form-check-input'
+                                type='checkbox'
+                                role='switch'
+                                id="flexSwitchCheckChecked"
+                                checked={powerSwitch}
+                                onChange={togglePowerSwitch} 
+                                />
+                        </div>
+                        
+                    </div>
+                </CModal>
             </div>
         </div>
     )

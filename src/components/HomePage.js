@@ -11,8 +11,8 @@ function HomePage(){
 
     return(
         <div className='HomePage d-flex flex-column w-100'>
-            <Header className="m-0"/>
-            <div className='mainContent col-12'>
+            <Header className=""/>
+            <div className='mainContent '>
                 <SourceMenus className=''/>
             </div>
             <div className="">

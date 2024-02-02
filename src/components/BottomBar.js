@@ -94,7 +94,7 @@ const toggleCeilingMicMute = () => {
 }
   
   return (
-    <div className="BottomBar bg-secondary row py-2 w-100 ml-0">
+    <div className="BottomBar bg-secondary row py-3 w-100 ml-0">
         <div className="col border border-1 border-top-0 border-bottom-0 border-dark"
             onClick={handleShowPowerModal}>
             <h5 className='h7'>System Off</h5>
