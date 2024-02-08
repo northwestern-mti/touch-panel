@@ -14,7 +14,7 @@
   --gray-dark: #343a40;
   --primary: #654C94;
   --secondary: #E2DDEC;
-  --success: #58B947;
+  --success: hsl(111, 45%, 50%);
   --info: #007FA4;
   --warning: #FFC520;
   --danger: #EF553F;
@@ -2814,8 +2814,8 @@ input[type="button"].btn-block {
   opacity: 0; }
   .custom-control-input:checked ~ .custom-control-label::before {
     color: #fff;
-    border-color: #654C94;
-    background: #654C94 linear-gradient(180deg, #7c67a4, #654C94) repeat-x;
+    border-color: black;
+    background: #007FA4;
     box-shadow: none; }
   .custom-control-input:focus ~ .custom-control-label::before {
     box-shadow: inset 0 1px 1px rgba(52, 47, 46, 0.075), 0 0 0 0.2rem rgba(101, 76, 148, 0.25); }
@@ -2823,6 +2823,7 @@ input[type="button"].btn-block {
     border-color: #a896c9; }
   .custom-control-input:not(:disabled):active ~ .custom-control-label::before {
     color: #fff;
+    background: #c4b8db;
     background-color: #c4b8db;
     border-color: #c4b8db;
     box-shadow: none; }
@@ -2844,8 +2845,8 @@ input[type="button"].btn-block {
     height: 1rem;
     pointer-events: none;
     content: "";
-    background-color: #fff;
-    border: #adb5bd solid 1px;
+    background-color: #e9ecef;
+    
     box-shadow: inset 0 1px 1px rgba(52, 47, 46, 0.075); }
   .custom-control-label::after {
     position: absolute;
@@ -2855,7 +2856,8 @@ input[type="button"].btn-block {
     width: 1rem;
     height: 1rem;
     content: "";
-    background: no-repeat 50% / 50% 50%; }
+    background: no-repeat 50% / 50% 50%;
+      }
 
 .custom-checkbox .custom-control-label::before {
   border-radius: 0.25rem; }
@@ -2898,7 +2900,7 @@ input[type="button"].btn-block {
     left: calc(-2.25rem + 2px);
     width: calc(1rem - 4px);
     height: calc(1rem - 4px);
-    background-color: #adb5bd;
+    background-color: #e9ecef;
     border-radius: 0.5rem;
     transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
     @media (prefers-reduced-motion: reduce) {
@@ -2909,7 +2911,58 @@ input[type="button"].btn-block {
     transform: translateX(0.75rem); }
   .custom-switch .custom-control-input:disabled:checked ~ .custom-control-label::before {
     background-color: rgba(101, 76, 148, 0.5); }
-
+  .custom-switch.custom-switch-lg {
+    padding-bottom: 1rem;
+    padding-left: 2.25rem;
+    
+    & .custom-control-label {
+      padding-left: .75rem;
+      padding-top: 0.15rem;
+    
+        &::before {
+          border-radius: 2rem;
+          height: 3rem;
+          width: 7rem;
+        }
+    
+        &::after {
+          border-radius: 1rem;
+          height: calc(3rem - 4px);
+          width: calc(2.75rem - 4px);
+          background-color: white;
+          border-color: black;
+        }
+      }
+      
+      .custom-control-input:checked ~ .custom-control-label::after{
+      transform: translateX(4.05rem);
+      }
+    }
+    .custom-switch.custom-switch-xl {
+      padding-bottom: 1rem;
+      padding-left: 2.25rem;
+    
+      & .custom-control-label {
+        padding-left: 2rem;
+        padding-top: 0.5rem;
+      
+        &::before {
+          border-radius: 1rem;
+          height: 2rem;
+          width: 3.5rem;
+        }
+    
+        &::after {
+          border-radius: 2rem;
+          height: calc(2rem - 4px);
+          width: calc(2rem - 4px);
+        }
+      }
+      
+      .custom-control-input:checked ~ .custom-control-label::after {
+      transform: translateX(1.5rem);
+      }
+    }    
 .custom-select {
   display: inline-block;
   width: 100%;

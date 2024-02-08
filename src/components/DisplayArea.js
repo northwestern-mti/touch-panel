@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from "react";
 import { Button} from 'react-bootstrap';
+import Switch from 'react-bootstrap-switch';
 import CModal from './CModal';
 import CameraIcon from './Icons/camera-video.svg';
 import CameraOffIcon from './Icons/camera-video-off.svg';
@@ -9,18 +10,28 @@ import GearHigh from './Icons/gear-activated.svg';
 import Camera2 from './Icons/camera2.svg';
 import Lamp from './Icons/lightbulb-fill.svg';
 import Zoom from "./Icons/zoom-in.svg";
+import Pencil from "./Icons/pencil-fill.svg";
+import PencilWhite from "./Icons/pencil-fill-white.svg";
+import Fullscreen from './Icons/arrows-fullscreen.svg';
+import FullscreenWhite from './Icons/arrows-fullscreen-white.svg';
+import CameraIconFillWhite from './Icons/camera-video-fill-white.svg';
+import CameraOffFill from './Icons/camera-video-off-fill.svg';
+import UpArrow from './Icons/chevron-up.svg';
+import DownArrow from './Icons/chevron-down.svg';
 
-function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJpin, showFullScreenJoin,
-     annotationJoin, fullscreenJoin, powerOn, powerOff}) {
+function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, showFullScreenJoin,
+     annotationJoin, fullscreenJoin, powerOn, powerOff, upJoin, downJoin}) {
     const [ipAdd, setIpAdd] = useState('');
     const [isMuted, setIsMuted] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
     const [powerSwitch, setPowerSwitch] = useState(true);
-    const [showAnnotation, setShowAnnotation] = useState(false)
+    const [showAnnotation, setShowAnnotation] = useState(false);
     const [showFullScreen, setShowFullScreen] = useState(false);
+    const [annotationPressed, setAnnotationPressed] = useState(false);
+    const [fullscreenPressed, setFullscreenPressed] = useState(false);
     useEffect(() => {
         window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));
-        window.CrComLib.subscribeState('b', `${showAnnotationJpin}`, value=> setShowAnnotation(value));
+        window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
         window.CrComLib.subscribeState('s', `${showFullScreenJoin}`, value=> setShowFullScreen(value)); 
     }, []);
     const toggleMute = (joinNumber) => {
@@ -53,7 +64,40 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJpin, sho
             console.log('Power Off')
         }
     }
+    const handleAnnotationPressed = () => {
+        setAnnotationPressed(!annotationPressed)
+        if (!powerSwitch) {
+            window.CrComLib.publishEvent('b', `${annotationJoin}`, true);
+            window.CrComLib.publishEvent('b', `${annotationJoin}`, false);
+            console.log('Power On')
+        } else {
+            window.CrComLib.publishEvent('b', `${annotationJoin}`, true);
+            window.CrComLib.publishEvent('b', `${annotationJoin}`, false);
+            console.log('Power Off')
+        }
+    }
+    const handleFullscreenPressed = () => {
+        setFullscreenPressed(!fullscreenPressed)
+        if (!powerSwitch) {
+            window.CrComLib.publishEvent('b', `${fullscreenJoin}`, true);
+            window.CrComLib.publishEvent('b', `${fullscreenJoin}`, false);
+            console.log('Power On')
+        } else {
+            window.CrComLib.publishEvent('b', `${fullscreenJoin}`, true);
+            window.CrComLib.publishEvent('b', `${fullscreenJoin}`, false);
+            console.log('Power Off')
+        }
+    } 
     let message;
+    let displayNum;
+    switch (side) {
+        case 'left':
+            displayNum = "One"
+            break;
+        case 'right':
+            displayNum = "Two"
+            break;
+    } 
     switch(sourceSelected) {
         case 'PC':
             message = <h5 className='h6'>Please use the keyboard and mouse to start.</h5>;
@@ -176,17 +220,78 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJpin, sho
                     <h5 className='h7 mb-0'>Display Settings</h5> 
                 </div>
                 <CModal show={isClicked} onHide={handleCloseDisplayModal} title="Display Settings">
-                    <div className='col-10'>
-                        <h5>Power</h5>
-                        <div className='form-check form-switch'>
+                    <div className='d-flex flex-column justify-content-center'>
+                        <h5>Display {displayNum}</h5>
+                        
+                        <div className="custom-control custom-switch custom-switch-lg">
+                            
                             <input 
-                                className='form-check-input'
-                                type='checkbox'
-                                role='switch'
-                                id="flexSwitchCheckChecked"
+                                className="custom-control-input"
+                                type="checkbox"
+                                role="switch"
+                                id="powerSwitch"
                                 checked={powerSwitch}
-                                onChange={togglePowerSwitch} 
+                                onChange={togglePowerSwitch}
+                                style={{backgroundColor:powerSwitch ? '#007FA4' : '#e9ecef'}}
                                 />
+                            <label className="custom-control-label" htmlFor="powerSwitch">Power</label>
+                            
+                        </div>
+                        <div className=' row d-flex justify-content-center ml-4 pl-4 mt-3 mb-4 mx-auto'>
+                            <div className='col-4 d-flex flex-column'>
+                                <div className='col-5 rounded-circle  py-4 ml-5 '  onClick={handleAnnotationPressed}
+                                    style={{backgroundColor:annotationPressed ? '#007FA4' : '#dee2e6'}}>
+                                    <img
+                                        src={annotationPressed ? PencilWhite : Pencil}
+                                        alt='Pencil Icon'
+                                        className='img-fluid'/>
+                                </div>
+                                <h6 className='mr-5'>Annotate</h6>
+                            </div>
+                            <div className='col-4 d-flex flex-column'>
+                                <div className='col-5 rounded-circle py-4 ml-5'  onClick={handleFullscreenPressed}
+                                    style={{backgroundColor:fullscreenPressed ? '#007FA4' : '#dee2e6'}}>
+                                    <img
+                                        src={fullscreenPressed ? FullscreenWhite : Fullscreen}
+                                        alt='Pencil Icon'
+                                        className=''/>
+                                </div>
+                                <h6 className='mr-5'>Preview Fullscreen</h6>
+                            </div>
+                            <div className='col-4'>
+                                <div className='col-5 rounded-circle py-4  ml-5'  onClick={() => toggleMute(displayJoin)}
+                                    style={{backgroundColor:isMuted ? '#dee2e6' : '#007FA4'}}>
+                                    <img
+                                        src={isMuted ? CameraOffFill : CameraIconFillWhite}
+                                        alt='Camera Icon'
+                                        className='img-fluid'/>
+            
+                                </div>
+                                <h6 className='pr-3'>{isMuted ? 'Unmute Display' : "Mute Display"}</h6>
+                            </div>
+                        </div>
+                        <h5 className='mt-3 mb-2'>Screen Position</h5>
+                        <div className='row justify-content-center ml-4 pl-4 mt-4'>
+                            <div className='col-4 bg-info rounded-pill py-3 mr-4' onClick={() => {
+                                window.CrComLib.publishEvent('b', `${downJoin}`, true);
+                                window.CrComLib.publishEvent('b', `${downJoin}`, false);
+                                console.log('Screen downed')
+                            }}>
+                                <img 
+                                    src={DownArrow}
+                                    alt='Down Arrow'
+                                    className='img-fluid'/>
+                            </div>
+                            <div className='col-4 bg-info rounded-pill py-3 ml-4' onClick={() => {
+                                window.CrComLib.publishEvent('b', `${upJoin}`, true);
+                                window.CrComLib.publishEvent('b', `${upJoin}`, false);
+                                console.log('Screen upped')
+                            }}>
+                                <img 
+                                    src={UpArrow}
+                                    alt='Up Arrow'
+                                    className='img-fluid'/>
+                            </div>
                         </div>
                         
                     </div>

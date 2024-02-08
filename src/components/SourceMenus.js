@@ -13,8 +13,10 @@ import './SourceMenus.css';
 
 const SourceMenus = () => {
     const [selectedButton, setSelectedButton] = useState(false);
-    const [inputSelected, setInputSelected] = useState('');
-    const [source, setSource] = useState('');
+    const [inputSelected1, setInputSelected1] = useState('');
+    const [source1, setSource1] = useState('');
+    const [inputSelected2, setInputSelected2] = useState('');
+    const [source2, setSource2] = useState('');
     const [showDesktop, setShowDesktop] = useState(false);
     const [showLaptop, setShowLaptop] = useState(false);
     const [showWireless, setShowWireless] = useState(false);
@@ -30,19 +32,38 @@ const SourceMenus = () => {
         
     }, []);
 
-    const handleSourceSelected = (joinNumber,sourceId) => {
+    const handleSourceSelected1 = (joinNumber,sourceId) => {
         setSelectedButton(true);
-        if (joinNumber !== inputSelected) {
-            if (inputSelected === ''){
-                setInputSelected(`${joinNumber}`);
-                setSource(sourceId);
+        if (joinNumber !== inputSelected1) {
+            if (inputSelected1 === ''){
+                setInputSelected1(`${joinNumber}`);
+                setSource1(sourceId);
                 window.CrComLib.publishEvent('b', `${joinNumber}`, true);
                 window.CrComLib.publishEvent('b', `${joinNumber}`, false);
                 console.log("signal sent to join number:" + `${joinNumber}`)
             } else {
-                console.log('transfering signal from: ' +`${inputSelected}`+ ' to ' + `${joinNumber}` )
-                setInputSelected(`${joinNumber}`);
-                setSource(sourceId);
+                console.log('transfering signal from: ' +`${inputSelected1}`+ ' to ' + `${joinNumber}` )
+                setInputSelected1(`${joinNumber}`);
+                setSource1(sourceId);
+                window.CrComLib.publishEvent('b', `${joinNumber}`, true);
+                window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+                console.log("signal sent to join number:" + `${joinNumber}`)   
+            }
+        } 
+    }
+    const handleSourceSelected2 = (joinNumber,sourceId) => {
+        setSelectedButton(true);
+        if (joinNumber !== inputSelected2) {
+            if (inputSelected2 === ''){
+                setInputSelected2(`${joinNumber}`);
+                setSource2(sourceId);
+                window.CrComLib.publishEvent('b', `${joinNumber}`, true);
+                window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+                console.log("signal sent to join number:" + `${joinNumber}`)
+            } else {
+                console.log('transfering signal from: ' +`${inputSelected2}`+ ' to ' + `${joinNumber}` )
+                setInputSelected2(`${joinNumber}`);
+                setSource2(sourceId);
                 window.CrComLib.publishEvent('b', `${joinNumber}`, true);
                 window.CrComLib.publishEvent('b', `${joinNumber}`, false);
                 console.log("signal sent to join number:" + `${joinNumber}`)   
@@ -57,10 +78,10 @@ const SourceMenus = () => {
     }    
 
     return (
-    <div className="row">
+    <div className="row w-100 h-100">
         <div className='display1 col-3 ml-0' onClick={()=>toggleDisplay('18')}>
             <div className='row border-bottom border-dark border-right-0'
-                onClick={() => handleSourceSelected('200', 'PC')}>
+                onClick={() => handleSourceSelected1('200', 'PC')}>
                 <div className='d-flex col  py-4'>
                     <img
                         src={PcIcon}
@@ -68,10 +89,10 @@ const SourceMenus = () => {
                         className='img-fluid pl-2'/>
                     <h5 className="h7 mb-0">Resident Computer</h5>
                 </div>
-                <div className={`select ${(source == 'PC') ? 'bg-primary' : ''}`}></div>
+                <div className={`select ${(source1 == 'PC') ? 'bg-primary' : ''}`}></div>
             </div>
             <div className="row border-bottom border-dark border-right-0"
-                onClick={() => handleSourceSelected('201', 'Laptop')}>
+                onClick={() => handleSourceSelected1('201', 'Laptop')}>
                 <div className='d-flex col  py-4'>
                     <img
                         src={LaptopIcon}
@@ -79,10 +100,10 @@ const SourceMenus = () => {
                         className='img-fluid pl-2'/>
                     <h5 className="h7 mb-0">Laptop and Other Devices</h5>
                 </div>
-                <div className={`select ${(source == 'Laptop') ? 'bg-primary' : ''}`}></div> 
+                <div className={`select ${(source1 == 'Laptop') ? 'bg-primary' : ''}`}></div> 
             </div>
             <div className="row border-bottom border-dark border-right-0"
-                onClick={() => handleSourceSelected('202', 'Wireless')}>
+                onClick={() => handleSourceSelected1('202', 'Wireless')}>
                 <div className='d-flex col  py-4'>
                     <img
                         src={WirelessIcon}
@@ -90,10 +111,10 @@ const SourceMenus = () => {
                         className='img-fluid pl-2'/>
                     <h5 className="h7 mb-0">Wireless with Solstice</h5>
                 </div>
-                <div className={`select ${(source == 'Wireless') ? 'bg-primary' : ''}`}></div>
+                <div className={`select ${(source1 == 'Wireless') ? 'bg-primary' : ''}`}></div>
             </div>
             <div className="row border-bottom border-dark border-right-0"
-                onClick={() => handleSourceSelected('205', 'ConfCall')}>
+                onClick={() => handleSourceSelected1('205', 'ConfCall')}>
                 <div className='d-flex col  py-4'>
                     <img
                         src={TelephoneIcon}
@@ -101,10 +122,10 @@ const SourceMenus = () => {
                         className='img-fluid pl-2'/>
                     <h5 className="h7 mb-0">Conference Call</h5>
                 </div>
-                <div className={`select ${(source == 'ConfCall') ? 'bg-primary' : ''}`}></div>   
+                <div className={`select ${(source1 == 'ConfCall') ? 'bg-primary' : ''}`}></div>   
             </div>
             <div className="row border-bottom border-dark border-right-0"
-                onClick={() => handleSourceSelected('204', 'DocCam')}>
+                onClick={() => handleSourceSelected1('204', 'DocCam')}>
                 <div className='d-flex col  py-4'>
                     <img
                         src={JournalIcon}
@@ -112,11 +133,11 @@ const SourceMenus = () => {
                         className='img-fluid pl-2'/>
                     <h5 className="h7 mb-0">Document Camera</h5>
                 </div>
-                <div className={`select ${(source == 'DocCam') ? 'bg-primary' : ''}`}></div>
+                <div className={`select ${(source1 == 'DocCam') ? 'bg-primary' : ''}`}></div>
                 
             </div>
             <div className="row border-bottom-0 border-dark border-right-0"
-                onClick={() => handleSourceSelected('203', 'BluRay')}>
+                onClick={() => handleSourceSelected1('203', 'BluRay')}>
                 <div className='d-flex col  py-4'>
                     <img
                         src={DiscIcon}
@@ -124,20 +145,24 @@ const SourceMenus = () => {
                         className='img-fluid pl-2'/>
                     <h5 className="h7 mb-0">Blu-Ray</h5>
                 </div>
-                <div className={`select ${(source == 'BluRay') ? 'bg-primary' : ''}`}></div>
+                <div className={`select ${(source1 == 'BluRay') ? 'bg-primary' : ''}`}></div>
                 
             </div>
         </div>
         <div className='col col-3 mt-0 border-right border-dark  pr-0'>
-            <DisplayArea sourceSelected={source} displayJoin={'253'} side='left' />
+            <DisplayArea sourceSelected={source1} displayJoin={'253'} side='left'
+                showAnnotationJoin='42' showFullScreenJoin='44' annotationJoin='41' fullscreenJoin='43'
+                powerOff='251' powerOn='252' upJoin='256' downJoin='255'/>
         </div>
         <div className='col col-3 mt-0 pl-0 '>
-            <DisplayArea sourceSelected={source} displayJoin={'260'} side='right' />
+            <DisplayArea sourceSelected={source2} displayJoin={'260'} side='right' 
+                showAnnotationJoin='46' showFullScreenJoin='48' annotationJoin='45' fullscreenJoin='47'
+                powerOff='258' powerOn='259' upJoin='263' downJoin='262' />
         </div>
-        <div className='display2 col-3 mr-0' onClick={()=>toggleDisplay('18')}>
+        <div className='display2 col-3 ' onClick={()=>toggleDisplay('18')}>
             <div className='row border-bottom border-dark border-right-0'
-                onClick={() => handleSourceSelected('200', 'PC')}>
-                <div className={`select ${(source == 'PC') ? 'bg-primary' : ''}`}></div>
+                onClick={() => handleSourceSelected2('200', 'PC')}>
+                <div className={`select ${(source2 == 'PC') ? 'bg-primary' : ''}`}></div>
                 <div className='d-flex col  py-4 mr-0'>
                     <img
                         src={PcIcon}
@@ -148,8 +173,8 @@ const SourceMenus = () => {
                 
             </div>
             <div className="row border-bottom border-dark border-right-0"
-                onClick={() => handleSourceSelected('201', 'Laptop')}>
-                <div className={`select ${(source == 'Laptop') ? 'bg-primary' : ''}`}></div>
+                onClick={() => handleSourceSelected2('201', 'Laptop')}>
+                <div className={`select ${(source2 == 'Laptop') ? 'bg-primary' : ''}`}></div>
                 <div className='d-flex col  py-4 mr-0'>
                     <img
                         src={LaptopIcon}
@@ -159,8 +184,8 @@ const SourceMenus = () => {
                 </div> 
             </div>
             <div className="row border-bottom border-dark border-right-0"
-                onClick={() => handleSourceSelected('202', 'Wireless')}>
-                <div className={`select ${(source == 'Wireless') ? 'bg-primary' : ''}`}></div>
+                onClick={() => handleSourceSelected2('202', 'Wireless')}>
+                <div className={`select ${(source2 == 'Wireless') ? 'bg-primary' : ''}`}></div>
                 <div className='d-flex col  py-4 mr-0'>
                     <img
                         src={WirelessIcon}
@@ -170,8 +195,8 @@ const SourceMenus = () => {
                 </div>
             </div>
             <div className="row border-bottom border-dark border-right-0"
-                onClick={() => handleSourceSelected('205', 'ConfCall')}>
-                <div className={`select ${(source == 'ConfCall') ? 'bg-primary' : ''}`}></div> 
+                onClick={() => handleSourceSelected2('205', 'ConfCall')}>
+                <div className={`select ${(source2 == 'ConfCall') ? 'bg-primary' : ''}`}></div> 
                 <div className='d-flex col  py-4'>
                     <img
                         src={TelephoneIcon}
@@ -181,8 +206,8 @@ const SourceMenus = () => {
                 </div>  
             </div>
             <div className="row border-bottom border-dark border-right-0"
-                onClick={() => handleSourceSelected('204', 'DocCam')}>
-                <div className={`select ${(source == 'DocCam') ? 'bg-primary' : ''}`}></div>
+                onClick={() => handleSourceSelected2('204', 'DocCam')}>
+                <div className={`select ${(source2 == 'DocCam') ? 'bg-primary' : ''}`}></div>
                 <div className='d-flex col  py-4'>
                     <img
                         src={JournalIcon}
@@ -194,8 +219,8 @@ const SourceMenus = () => {
                 
             </div>
             <div className="row border-bottom-0 border-dark border-right-0"
-                onClick={() => handleSourceSelected('203', 'BluRay')}>
-                <div className={`select ${(source == 'BluRay') ? 'bg-primary' : ''}`}></div>
+                onClick={() => handleSourceSelected2('203', 'BluRay')}>
+                <div className={`select ${(source2 == 'BluRay') ? 'bg-primary' : ''}`}></div>
                 <div className='d-flex col  py-4'>
                     <img
                         src={DiscIcon}

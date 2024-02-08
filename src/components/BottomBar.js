@@ -129,7 +129,7 @@ const toggleCeilingMicMute = () => {
               className='img-fluid'/>
         </div>
         <CModal show={showVolumeModal} onHide={handleCloseVolumeModal} title='Presentation Volume'>
-          <div className='col-10 align-items-center ml-5 mt-4 pl-5 pt-4'>
+          <div className='col-10 align-items-center mx-auto pl-5 pt-4 mt-4'>
             <VolumeControl initialVolume={presentationVolume} plusJoin='22' minusJoin='21' isMuted={isPresentationMuted}/>
             <div onClick={togglePresentationMute} className='col-4 mx-auto pl-5'>
               <div className={`rounded-circle muteIcon   ${isPresentationMuted ? 'bg-info' : ''}`}
@@ -142,7 +142,7 @@ const toggleCeilingMicMute = () => {
               <h5 className={`row ${isPresentationMuted ? '' : 'ml-1'}`}>{isPresentationMuted ? 'Unmute' : 'Mute'}</h5>
             </div>
           </div>
-          <div className='bg-secondary row mx-auto col-8 mt-5 '>
+          <div className='bg-secondary row mx-auto col-8 mt-5  '>
             <h5 className='col-md-1 bg-info mt-5 mb-5 rounded-circle text-white'><em>i</em></h5>
             <h5 className='col mb-0'>Sound not playing? Be sure to select the correct audio on your device.</h5>
           </div>
@@ -157,9 +157,9 @@ const toggleCeilingMicMute = () => {
               alt='Microphone icon'
               className='img-fluid'/>
         </div>
-        <CModal show={showMicModal} onHide={handleCloseMicModal} title='Presentation Volume'>
-          <div className='col-10 align-items-center ml-5 mt-2 pl-5 p'>
-            <h5 className='col-3'>Microphones</h5>
+        <CModal show={showMicModal} onHide={handleCloseMicModal} title='Microphones'>
+          <div className='col-10 align-items-center ml-5 mt-2 pl-5 '>
+            <h5 className='col-3 mb-3'>Microphones</h5>
             <VolumeControl initialVolume={MicVolume} plusJoin='25' minusJoin='24' isMuted={isMicMuted}/>
             <div onClick={toggleMicMute} className='col-4 mx-auto pl-5'>
               <div className={`rounded-circle muteIcon   ${isMicMuted ? 'bg-info' : ''}`}

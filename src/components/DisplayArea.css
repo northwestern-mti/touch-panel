@@ -1,3 +1,24 @@
 .icon-mute{
     background-color: #dee2e6 !important;
 }
+
+.custom-switch.custom-switch-lg .custom-control-label {
+    padding-left: 3rem !important;
+    padding-bottom: 2rem !important;
+}
+
+.custom-switch.custom-switch-lg .custom-control-label::before {
+    height: 2rem !important;
+    width: calc(3rem + 0.75rem) !important;
+    border-radius: 4rem !important;
+}
+
+.custom-switch.custom-switch-lg .custom-control-label::after {
+    width: calc(2rem - 4px) !important;
+    height: calc(2rem - 4px) !important;
+    border-radius: calc(3rem - (2rem / 2)) !important;
+}
+
+.custom-switch.custom-switch-lg .custom-control-input:checked ~ .custom-control-label::after {
+    transform: translateX(calc(2rem - 0.25rem)) !important;
+}
