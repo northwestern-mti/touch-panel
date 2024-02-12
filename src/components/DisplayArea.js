@@ -387,61 +387,45 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             message = <h5 className='h6'>Select a source to the {side} to present.</h5>
     }
     return(
-        <div className='d-flex align-items-end flex-column mb-3 h-100'>
-            <div className='w-100'>
+        <div className='d-flex align-items-end flex-column mb-3'>
+            <div className='col-12 m-0 p-0'>
                 {(sourceSelected == '') ? 
-                    <div className='bg-dark text-white w-100'>
-                        <h5 className='h6 py-4'>Display {displayNum} is off</h5>
+                    <div className='bg-dark text-white p-4'>
+                        <h5 className='h6 m-0'>Display {displayNum} is off</h5>
                     </div> : 
-                    <div className={isMuted ? 'bg-warning p-2' : 'bg-success p-2'}>
-                        <h5 className={isMuted ? 'h7 py-4 mb-3 ' : 'h6 py-4'}>{isMuted ? `Display ${displayNum} is muted` : `Display ${displayNum} is on`}</h5>
+                    <div className={isMuted ? 'bg-warning p-4' : 'bg-success p-4'}>
+                        <h5 className={isMuted ? 'h7 m-0' : 'h6 m-0'}>{isMuted ? `Display ${displayNum} is muted` : `Display ${displayNum} is on`}</h5>
                     </div>}
             </div>
     
-            <div className='inputInfo pt-3 ml-3'>
+            <div className='inputMessageArea pt-3 ml-3'>
                 {message}
             </div>
-            
-            <div className='controls mt-auto p-2 mb-2 row'>
+
+
+            {/* icon row */}
+            <div className='d-flex col-12 justify-content-around pb-3'>
                 {isMuted ? 
-                    <div className='col align-items-center' onClick={() => toggleMute(displayJoin)}>
-                        <div className='col-md-7 rounded-circle bg-info icon py-1 px-1 ml-4' >
-                            <img 
-                                src={CameraOffIcon}
-                                alt='Camera Video Off Icon'
-                                className='img-fluid'
-                                color='white'
-                            />
+                    <div className='col-6 p-0' onClick={() => toggleMute(displayJoin)}>
+                        <div className='rounded-circle bg-info pb-3 mx-auto displayAreaRoundIcon' >
+                            <i class="bi bi-camera-video-off"></i>
                         </div>
                         <h5 className='h7 mb-0'>Unmute Display</h5>
                     </div> : 
-                    <div className='col' onClick={() => toggleMute(displayJoin)}>
-                        <div className='icon-mute col-md-7 rounded-circle  py-1 px-1 ml-4  ' style={{backgroundColor: '#dee2e6'}}>
-                            <img 
-                                src={CameraIcon}
-                                alt='Camera Video Icon'
-                                className='img-fluid'
-                                
-                            />
+                    <div className='col-6 p-0' onClick={() => toggleMute(displayJoin)}>
+                        <div className='rounded-circle pb-3 mx-auto displayAreaRoundIcon'>
+                            <i className="bi bi-camera-video"></i>
                         </div>
                         <h5 className='h7 mb-0'>Mute Display</h5>
                     </div>}
                 
-                <div className='col' onClick={handleShowDisplayModal}>
+                <div className='col-6 p-0' onClick={handleShowDisplayModal}>
                     {isClicked ? 
-                        <div className='col-md-7 rounded-circle bg-info py-1 px-1 ml-4'>
-                            <img 
-                                src={GearHigh}
-                                alt='Gear Icon Highlighted'
-                                className='img-fluid'   
-                            />
+                        <div className='rounded-circle bg-info pb-3 mx-auto displayAreaRoundIcon'>
+                           <i class="bi bi-gear-fill"></i>
                         </div> :
-                        <div className='col-md-7 bg-gray-300 rounded-circle py-1 px-1 ml-4 icon-mute ' style={{backgroundColor: '#dee2e6'}}>
-                            <img 
-                                src={GearIcon}
-                                alt='Gear Icon'
-                                className='img-fluid'   
-                            />
+                        <div className='rounded-circle pb-3 mx-auto displayAreaRoundIcon'>
+                            <i class="bi bi-gear-fill"></i>
                         </div>}
                     <h5 className='h7 mb-0'>Display Settings</h5> 
                 </div>
@@ -527,6 +511,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     </div>
                 </CModal>
             </div>
+
         </div>
     )
 }
