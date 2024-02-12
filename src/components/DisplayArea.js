@@ -178,16 +178,16 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             </div>;
             break;
         case 'DocCam':
-            message = <div className='d-flex flex-column '>
-                <div className='d-flex flex-column pb-2 pr-5'>
-                    <div className='d-flex flex-row col-9 pl-1'>
+            message = <div className='d-flex flex-column'>
+                <div className='mx-auto mb-5'>
+                    <div className='d-flex flex-row'>
                         <img 
                             src={Camera2}
                             alt='Camera Icon'
                             className='img-fluid pr-2'/>
-                        <h6 className ="mb-0">Autofocus</h6>
+                        <h6 className="mb-0">Autofocus</h6>
                     </div>
-                    <div className="custom-control custom-switch custom-switch-md pt-0 mt-0 col-9">
+                    <div className="col-9 custom-control custom-switch custom-switch-md pt-0 mt-0">
                         <input 
                             className="custom-control-input"
                             type="checkbox"
@@ -200,7 +200,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             <label className="custom-control-label" htmlFor="autoFocusSwitch"></label> 
                     </div>
                 </div>
-                <div className='d-flex flex-column pb-1'>
+                <div className='mx-auto mb-5'>
                     <div className='d-flex flex-row'>
                         <img 
                             src={Lamp}
@@ -208,7 +208,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             className='img-fluid pl-0 pr-2'/>
                             <h6 className=" mb-0">Lamp</h6>   
                     </div>
-                    <div className="custom-control custom-switch custom-switch-md pt-0 mt-0 pb-2 col-9 pl-1">
+                    <div className="col-9 custom-control custom-switch custom-switch-md pt-0 mt-0">
                         <input 
                             className="custom-control-input"
                             type="checkbox"
@@ -221,15 +221,15 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             <label className="custom-control-label" htmlFor="lampSwitch"></label> 
                     </div>
                 </div>
-                <div className='d-flex flex-column '>
-                    <div className='row  '>
+                <div className='mx-auto'>
+                    <div className='d-flex flex-row'>
                         <img 
                             src={Zoom}
                             alt='Zoom-in Icon'
                             className='img-fluid pr-2 pl-3'/>
                         <h6>Zoom</h6>
                     </div>
-                    <div className='col-6 d-flex bg-info rounded-pill justify-content-between'>
+                    <div className='d-flex bg-info rounded-pill justify-content-between'>
                         <div onClick={() => {
                             window.CrComLib.publishEvent('b', '83', true);
                             window.CrComLib.publishEvent('b', '83', false);
@@ -394,11 +394,11 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         <h5 className='h6'>Display {displayNum} is off</h5>
                     </div> : 
                     <div className={isMuted ? 'bg-warning p-4' : 'bg-success p-4'}>
-                        <h5 className={isMuted ? 'h7' : 'h6'}>{isMuted ? `Display ${displayNum} is muted` : `Display ${displayNum} is on`}</h5>
+                        <h5 className={isMuted ? 'h6' : 'h6'}>{isMuted ? `Display ${displayNum} is muted` : `Display ${displayNum} is on`}</h5>
                     </div>}
             </div>
     
-            <div className='inputMessageArea pt-5 ml-3'>
+            <div className='col-12 pt-5 inputMessageArea'>
                 {message}
             </div>
 
