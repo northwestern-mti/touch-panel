@@ -80,7 +80,7 @@ const SourceMenus = () => {
     }    
 
     return (
-    <div className="row w-100">
+    <div className="row w-100 m-0">
         <div className='d-flex flex-column align-items-stretch col-3 m-0 display1' onClick={()=>toggleDisplay('18')}>
             <div className='row flex-grow-1 border-bottom border-dark border-right-0'
                 onClick={() => handleSourceSelected1('200', 'PC')}>
