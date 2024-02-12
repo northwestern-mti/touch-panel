@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './bootstrap.css';
+import './custom.css';
 import './index.css'
 import App from './App';
 import {HashRouter as Router} from 'react-router-dom';
