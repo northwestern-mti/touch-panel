@@ -21,7 +21,7 @@ function Header(){
     
     
     return(
-        <div className='pb-0 px-4 bg-primary  row align-items-center w-100 ml-0'>
+        <div className='pb-0 px-4 bg-primary  row align-items-center w-100 m-0'>
             
                     <div className="col-md-4 pl-0">
                         <img

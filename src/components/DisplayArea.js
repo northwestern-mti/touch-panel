@@ -387,7 +387,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             message = <h5 className='h6'>Select a source to the {side} to present.</h5>
     }
     return(
-        <div className='d-flex align-items-end flex-column mb-3'>
+        <div className='d-flex align-items-end flex-column'>
             <div className='col-12 m-0 p-0'>
                 {(sourceSelected == '') ? 
                     <div className='bg-dark text-white p-4'>
@@ -398,7 +398,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     </div>}
             </div>
     
-            <div className='inputMessageArea pt-3 ml-3'>
+            <div className='inputMessageArea pt-5 ml-3'>
                 {message}
             </div>
 
