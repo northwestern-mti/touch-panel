@@ -165,7 +165,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             break;
         case 'Wireless':
             message = <div>
-                <h5 className='h7'>Enter the address below into your browser and follow the instructions
+                <h5 className='h6'>Enter the address below into your browser and follow the instructions
                     to present wirelessly.
                 </h5>
                 <p className='text-info'>{(ipAdd == "") ? "123.210.123.210" : ipAdd}</p>
