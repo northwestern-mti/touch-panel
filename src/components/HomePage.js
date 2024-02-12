@@ -15,9 +15,8 @@ function HomePage(){
             <div className='mainContent '>
                 <SourceMenus className=''/>
             </div>
-            <div className="">
-                <BottomBar />
-            </div>
+           
+            <BottomBar className='p-0'/>
         </div>
     )
 

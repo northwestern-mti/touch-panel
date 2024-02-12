@@ -149,17 +149,17 @@ const SourceMenus = () => {
                 
             </div>
         </div>
-        <div className='col col-3 mt-0 border-right border-dark  pr-0'>
+        <div className='col col-3 mt-0 border-right border-dark  pr-0 pl-0'>
             <DisplayArea sourceSelected={source1} displayJoin={'253'} side='left'
                 showAnnotationJoin='42' showFullScreenJoin='44' annotationJoin='41' fullscreenJoin='43'
                 powerOff='251' powerOn='252' upJoin='256' downJoin='255'/>
         </div>
-        <div className='col col-3 mt-0 pl-0 '>
+        <div className='col col-3 mt-0 pl-0 pr-0'>
             <DisplayArea sourceSelected={source2} displayJoin={'260'} side='right' 
                 showAnnotationJoin='46' showFullScreenJoin='48' annotationJoin='45' fullscreenJoin='47'
                 powerOff='258' powerOn='259' upJoin='263' downJoin='262' />
         </div>
-        <div className='display2 col-3 ' onClick={()=>toggleDisplay('18')}>
+        <div className='display2 col-3' onClick={()=>toggleDisplay('18')}>
             <div className='row border-bottom border-dark border-right-0'
                 onClick={() => handleSourceSelected2('200', 'PC')}>
                 <div className={`select ${(source2 == 'PC') ? 'bg-primary' : ''}`}></div>

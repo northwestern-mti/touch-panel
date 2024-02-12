@@ -17,6 +17,7 @@ function BottomBar () {
   const [showPowerModal, setShowPowerModal] = useState(false);
   const [showVolumeModal, setShowVolumeModal] = useState(false);
   const [showMicModal, setShowMicModal] = useState(false);
+  const [showCamModal, setShowCamModal] = useState(false);
   const [presentationVolume, setPresentationVolume] = useState(0);
   const [MicVolume, setMicVolume] = useState(0);
   const [isPresentationMuted, setIsPresentationMuted] = useState(false);
@@ -62,6 +63,15 @@ function BottomBar () {
   const handleCloseMicModal = () => {
     setShowMicModal(false);
   }
+  const handleShowCamModal = () => {
+    console.log("Showing Cam Modal")
+    setShowCamModal(true);
+    console.log(showVolumeModal);
+  }
+  const handleCloseCamModal = () => {
+    console.log("Closing Cam Modal")
+    setShowCamModal(false);
+  }
   const togglePresentationMute = () => {
     setIsPresentationMuted((prevIsPresentationMuted) => !(prevIsPresentationMuted));
     if (isPresentationMuted) {
@@ -94,8 +104,8 @@ const toggleCeilingMicMute = () => {
 }
   
   return (
-    <div className="BottomBar bg-secondary row py-3 w-100 ml-0">
-        <div className="col border border-1 border-top-0 border-bottom-0 border-dark"
+    <div className="BottomBar bg-secondary d-flex flex-row justify-content-center w-100 ">
+        <div className="col border border-1 border-top-0 border-bottom-0 border-dark py-1 "
             onClick={handleShowPowerModal}>
             <h5 className='h7'>System Off</h5>
             <img
@@ -189,13 +199,15 @@ const toggleCeilingMicMute = () => {
               
         </CModal>
 
-        <div className="col border border-1 border-top-0 border-bottom-0 border-dark">
+        <div className={`col border border-1 border-top-0 border-bottom-0 border-dark ${showCamModal ? 'bg-primary' : ''}`}
+          onClick={handleShowCamModal}>
             <h5 className='h7'>Camera Controls</h5>
             <img
               src={CameraLogo}
               alt='Camera icon'
               className='img-fluid'/>
         </div>
+        <CModal show={showCamModal} onHide={handleCloseCamModal} title="Camera Controls"></CModal>
         <div className="col border border-1 border-top-0 border-bottom-0 border-right-0 border-dark">
             <h5 className='h7 mb-0 ml-0'>Presentation Audio</h5>
             <h5 className='h7 mb-0 ml-0'>Microphones</h5>

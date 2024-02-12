@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { useState, useEffect } from "react";
-import { Button} from 'react-bootstrap';
+import { Button, Row, Col} from 'react-bootstrap';
 import Switch from 'react-bootstrap-switch';
 import CModal from './CModal';
 import CameraIcon from './Icons/camera-video.svg';
 import CameraOffIcon from './Icons/camera-video-off.svg';
-import GearIcon from './Icons/gear.svg';
+import GearIcon from './Icons/gear-fill.svg';
 import GearHigh from './Icons/gear-activated.svg';
 import Camera2 from './Icons/camera2.svg';
 import Lamp from './Icons/lightbulb-fill.svg';
@@ -18,13 +18,32 @@ import CameraIconFillWhite from './Icons/camera-video-fill-white.svg';
 import CameraOffFill from './Icons/camera-video-off-fill.svg';
 import UpArrow from './Icons/chevron-up.svg';
 import DownArrow from './Icons/chevron-down.svg';
+import MinusWhite from './Icons/dashWhite.svg';
+import PlusWhite from './Icons/plusWhite.svg';
+import Eject from './Icons/eject-fill.svg'
+import RewindEnd from './Icons/skip-backward-fill.svg';
+import Rewind from './Icons/rewind-fill.svg';
+import Play from './Icons/play-fill.svg';
+import Pause from './Icons/pause-fill.svg';
+import Stop from './Icons/stop-fill.svg';
+import FastForward from './Icons/fast-forward-fill.svg';
+import FastForwardEnd from './Icons/skip-forward-fill.svg';
+import House from './Icons/house-fill.svg';
+import Menu from './Icons/list.svg';
+import ReturnArrow from './Icons/arrow-left-short.svg';
+import InfoIcon from './Icons/info-circle-fill.svg';
+import Dpad from './Icons/dpad.svg'
 
 function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, showFullScreenJoin,
      annotationJoin, fullscreenJoin, powerOn, powerOff, upJoin, downJoin}) {
     const [ipAdd, setIpAdd] = useState('');
     const [isMuted, setIsMuted] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
+    const [bluRayClicked, setBluRayClicked] = useState(false);
+    const [blurayButton, setBluRayButton] = useState('');
     const [powerSwitch, setPowerSwitch] = useState(true);
+    const [lampSwitch, setLampSwitch] = useState(true);
+    const [autoFocusSwitch, setAutoFocusSwitch] = useState(true);
     const [showAnnotation, setShowAnnotation] = useState(false);
     const [showFullScreen, setShowFullScreen] = useState(false);
     const [annotationPressed, setAnnotationPressed] = useState(false);
@@ -47,10 +66,17 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const handleShowDisplayModal = () => {
         console.log("Showing Display Modal")
         setIsClicked(true);
-  
       }
     const handleCloseDisplayModal = () => {
         setIsClicked(false);
+    }
+    const handleShowBluRayModal = () => {
+        console.log("Showing BluRay Modal")
+        setBluRayClicked(true);
+    }
+    const handleCloseBluRayModal = () => {
+        console.log("Closing BluRay Modal")
+        setBluRayClicked(false);
     }
     const togglePowerSwitch = () => {
         setPowerSwitch(!powerSwitch)
@@ -64,6 +90,31 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             console.log('Power Off')
         }
     }
+    const toggleLampSwitch = () => {
+        setLampSwitch(!lampSwitch)
+        if (!lampSwitch) {
+            window.CrComLib.publishEvent('b', '85', true);
+            window.CrComLib.publishEvent('b', '85', false);
+            console.log('Lamp On')
+        } else {
+            window.CrComLib.publishEvent('b', '86', true);
+            window.CrComLib.publishEvent('b', '86', false);
+            console.log('Lamp Off')
+        }
+    }
+    const toggleAutoFocusSwitch = () => {
+        setAutoFocusSwitch(!autoFocusSwitch)
+        if (!autoFocusSwitch) {
+            window.CrComLib.publishEvent('b', '81', true);
+            window.CrComLib.publishEvent('b', '81', false);
+            console.log('AutoFocus On')
+        } else {
+            window.CrComLib.publishEvent('b', '82', true);
+            window.CrComLib.publishEvent('b', '82', false);
+            console.log('AutoFocus Off')
+        }
+    }
+
     const handleAnnotationPressed = () => {
         setAnnotationPressed(!annotationPressed)
         if (!powerSwitch) {
@@ -88,14 +139,21 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             console.log('Power Off')
         }
     } 
+    const blurayControl = (joinNumber, press) => {
+        setBluRayButton(press)
+        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
+        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        console.log(`${press} pressed`)
+        console.log(blurayButton)
+    }
     let message;
     let displayNum;
     switch (side) {
         case 'left':
-            displayNum = "One"
+            displayNum = "one"
             break;
         case 'right':
-            displayNum = "Two"
+            displayNum = "two"
             break;
     } 
     switch(sourceSelected) {
@@ -120,41 +178,209 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             </div>;
             break;
         case 'DocCam':
-            message = <div className=''>
-                <div className='row py-3'>
-                    <div className='row px-5'>
+            message = <div className='d-flex flex-column '>
+                <div className='d-flex flex-column pb-2 pr-5'>
+                    <div className='d-flex flex-row col-9 pl-1'>
                         <img 
                             src={Camera2}
                             alt='Camera Icon'
-                            className='img-fluid'/>
+                            className='img-fluid pr-2'/>
                         <h6 className ="mb-0">Autofocus</h6>
                     </div>
-                    <div className='row px-4'>
+                    <div className="custom-control custom-switch custom-switch-md pt-0 mt-0 col-9">
+                        <input 
+                            className="custom-control-input"
+                            type="checkbox"
+                            role="switch"
+                            id='autoFocusSwitch'
+                            checked={autoFocusSwitch}
+                            onChange={toggleAutoFocusSwitch}
+                            style={{backgroundColor:autoFocusSwitch ? '#007FA4' : '#e9ecef'}}
+                            />
+                            <label className="custom-control-label" htmlFor="autoFocusSwitch"></label> 
+                    </div>
+                </div>
+                <div className='d-flex flex-column pb-1'>
+                    <div className='d-flex flex-row'>
                         <img 
                             src={Lamp}
                             alt='Lightbulb Icon'
-                            className='img-fluid'/>
-                        <h6 className=" mb-0">Lamp</h6>
+                            className='img-fluid pl-0 pr-2'/>
+                            <h6 className=" mb-0">Lamp</h6>   
+                    </div>
+                    <div className="custom-control custom-switch custom-switch-md pt-0 mt-0 pb-2 col-9 pl-1">
+                        <input 
+                            className="custom-control-input"
+                            type="checkbox"
+                            role="switch"
+                            id='lampSwitch'
+                            checked={lampSwitch}
+                            onChange={toggleLampSwitch}
+                            style={{backgroundColor:lampSwitch ? '#007FA4' : '#e9ecef'}}
+                            />
+                            <label className="custom-control-label" htmlFor="lampSwitch"></label> 
+                    </div>
+                </div>
+                <div className='d-flex flex-column '>
+                    <div className='row  '>
+                        <img 
+                            src={Zoom}
+                            alt='Zoom-in Icon'
+                            className='img-fluid pr-2 pl-3'/>
+                        <h6>Zoom</h6>
+                    </div>
+                    <div className='col-6 d-flex bg-info rounded-pill justify-content-between'>
+                        <div onClick={() => {
+                            window.CrComLib.publishEvent('b', '83', true);
+                            window.CrComLib.publishEvent('b', '83', false);
+                            console.log('DocCam Zooming Out') 
+                        }}>
+                            <img 
+                                src={MinusWhite}
+                                alt='Minus Icon'
+                                className='img-fluid'/>
+                        </div>
+                        <div onClick={() => {
+                            window.CrComLib.publishEvent('b', '84', true);
+                            window.CrComLib.publishEvent('b', '84', false);
+                            console.log('DocCam Zooming In') 
+                        }}>
+                            <img 
+                                src={PlusWhite}
+                                alt='Plus Icon'
+                                className='img-fluid'/>
+                        </div>
                         
                     </div>
                 </div>
                 
-                <div className='row px-4 ml-3'>
-                    <img 
-                        src={Zoom}
-                        alt='Zoom-in Icon'
-                        className='img-fluid'/>
-                    <h6>Zoom</h6>
-
-                </div>
 
             </div>;
             break;
         case 'BluRay':
             message = <div>
                 <h5 className='h6'>Your Blu-Ray content is being displayed.</h5>
-                <Button className=' btn-info rounded-pill'>
+                <Button className=' btn-info rounded-pill' onClick={handleShowBluRayModal}>
                     <h6>Blu-Ray Controls</h6></Button>
+                <CModal show={bluRayClicked} onHide={handleCloseBluRayModal} title="BluRay Controls">
+                    {/* <ch5-dpad type='text' shape='circle' size='regular'>
+                        <ch5-dpad-button key="center"></ch5-dpad-button>
+                        <ch5-dpad-button key="up"></ch5-dpad-button>
+                        <ch5-dpad-button key="right"></ch5-dpad-button>
+                        <ch5-dpad-button key="left"></ch5-dpad-button>
+                        <ch5-dpad-button key="down"></ch5-dpad-button>
+                    </ch5-dpad> */}
+                    <div className='pb-5 pt-2'>
+                        <img 
+                            src={Dpad}
+                            alt='D-pad icon'
+                            className='img-fluid'/>
+                    </div>
+                    <div className='d-flex flex-row col-10 mx-auto pb-4 pt-2'>
+                        <div className='bg-white rounded-circle  mx-auto pt-2  shadow blurayControls border-black'
+                        style={{width:'80px', height:'80px', backgroundColor: (blurayButton === 'Eject') ? 'black': ''}}
+                        onClick={() => {blurayControl('59', 'Eject')}}>
+                            <img 
+                                src={Eject}
+                                alt='Eject Icon'
+                                className='img-fluid'/>
+                        </div>
+                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
+                            style={{width:'80px', height:'80px'}}
+                            onClick={() => blurayControl('57', 'Previous')}>
+                            <img 
+                                src={RewindEnd}
+                                alt='Skip Backward Icon'
+                                className='img-fluid'/>
+                        </div>
+                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
+                            style={{width:'80px', height:'80px'}}
+                            onClick={() => blurayControl('67', 'Rewind')}>
+                            <img 
+                                src={Rewind}
+                                alt='Rewind Icon'
+                                className='img-fluid'/>
+                        </div>
+                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
+                            style={{width:'80px', height:'80px'}}
+                            onClick={() => blurayControl('65', 'Pause')}>
+                            <img 
+                                src={Pause}
+                                alt='Pause Icon'
+                                className='img-fluid'/>
+                        </div>
+                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
+                            style={{width:'80px', height:'80px'}}
+                            onClick={() => blurayControl('64', 'Play')}>
+                            <img 
+                                src={Play}
+                                alt='Play Icon'
+                                className='img-fluid'/>
+                        </div>
+                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
+                            style={{width:'80px', height:'80px'}}
+                            onClick={() => blurayControl('66', 'Stop')}>
+                            <img 
+                                src={Stop}
+                                alt='Stop Icon'
+                                className='img-fluid'/>
+                        </div>
+                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
+                            style={{width:'80px', height:'80px'}}
+                            onClick={() => blurayControl('68', 'Fast Forward')}>
+                            <img 
+                                src={FastForward}
+                                alt='Fast Forward Icon'
+                                className='img-fluid'/>
+                        </div>
+                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
+                            style={{width:'80px', height:'80px'}}
+                            onClick={() => blurayControl('58', 'Next')}>
+                            <img 
+                                src={FastForwardEnd}
+                                alt='Skip Forward Icon'
+                                className='img-fluid'/>
+                        </div>
+                    </div>
+                    <div className='pt-4 mb-4'>
+                        <div className='d-flex flex-row py-2 '>
+                            <div className='col-3 bg-info mx-auto rounded-pill d-flex flex-row justify-content-center'
+                            onClick={() => blurayControl('60', 'Home')}>
+                                <img 
+                                    src={House}
+                                    alt='House Icon'
+                                    className='img-fluid pr-2'/>
+                                <h6 className='text-white'>Home</h6>
+                            </div>
+                            <div className='col-3 bg-info mx-auto rounded-pill d-flex flex-row justify-content-center'
+                            onClick={() => blurayControl('62', 'Menu')}>
+                                <img 
+                                    src={Menu}
+                                    alt='Menu Icon'
+                                    className='img-fluid pr-2'/>
+                                <h6 className='text-white'>Menu</h6>
+                            </div>                       
+                        </div>
+                        <div className='d-flex flex-row pt-3'>
+                            <div className='col-3 mx-auto bg-info rounded-pill d-flex flex-row justify-content-center'
+                            onClick={() => blurayControl('61', 'Info')}>
+                                <img 
+                                    src={InfoIcon}
+                                    alt='Info Icon'
+                                    className='img-fluid pr-2 '/>
+                                <h6 className='text-white pr-4'>Info</h6>
+                            </div>
+                            <div className='col-3 bg-info mx-auto rounded-pill d-flex flex-row justify-content-center'
+                            onClick={() => blurayControl('63', 'Return')}>
+                                <img 
+                                    src={ReturnArrow}
+                                    alt='Back Arrow Icon'
+                                    className='img-fluid pr-2 pl-2'/>
+                                <h6 className='text-white'>Return</h6>
+                            </div>                       
+                        </div>
+                    </div>
+                </CModal>
             </div>;
             break;
         default:
@@ -165,14 +391,14 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             <div className='w-100'>
                 {(sourceSelected == '') ? 
                     <div className='bg-dark text-white w-100'>
-                        <h5 className='h6 py-4'>Display one is Off</h5>
+                        <h5 className='h6 py-4'>Display {displayNum} is off</h5>
                     </div> : 
                     <div className={isMuted ? 'bg-warning p-2' : 'bg-success p-2'}>
-                        <h5 className={isMuted ? 'h7 py-4 mb-3 ' : 'h6 py-4'}>{isMuted ? 'Display One is Muted' : 'Display One is On'}</h5>
+                        <h5 className={isMuted ? 'h7 py-4 mb-3 ' : 'h6 py-4'}>{isMuted ? `Display ${displayNum} is muted` : `Display ${displayNum} is on`}</h5>
                     </div>}
             </div>
     
-            <div className='inputInfo pt-3 p-2 ml-3'>
+            <div className='inputInfo pt-3 ml-3'>
                 {message}
             </div>
             
@@ -221,23 +447,27 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 </div>
                 <CModal show={isClicked} onHide={handleCloseDisplayModal} title="Display Settings">
                     <div className='d-flex flex-column justify-content-center'>
-                        <h5>Display {displayNum}</h5>
+                        <h5 className='pb-2'>Display {displayNum}</h5>
+                        <Row className='col-4 mx-auto'>
+                            <Col className='mb-0 pt-3 pl-5'><h5>Power</h5></Col>
+                            <Col className='ml-0'>
+                                <div className="custom-control custom-switch custom-switch-lg">
+                                    <input 
+                                        className="custom-control-input"
+                                        type="checkbox"
+                                        role="switch"
+                                        id="powerSwitch"
+                                        checked={powerSwitch}
+                                        onChange={togglePowerSwitch}
+                                        style={{backgroundColor:powerSwitch ? '#007FA4' : '#e9ecef'}}
+                                        />
+                                    <label className="custom-control-label" htmlFor="powerSwitch"></label>
+                            
+                                </div>
+                            </Col>
+                        </Row>
                         
-                        <div className="custom-control custom-switch custom-switch-lg">
-                            
-                            <input 
-                                className="custom-control-input"
-                                type="checkbox"
-                                role="switch"
-                                id="powerSwitch"
-                                checked={powerSwitch}
-                                onChange={togglePowerSwitch}
-                                style={{backgroundColor:powerSwitch ? '#007FA4' : '#e9ecef'}}
-                                />
-                            <label className="custom-control-label" htmlFor="powerSwitch">Power</label>
-                            
-                        </div>
-                        <div className=' row d-flex justify-content-center ml-4 pl-4 mt-3 mb-4 mx-auto'>
+                        <div className=' row d-flex justify-content-center ml-4 pl-4 mt-4 mb-4 mx-auto'>
                             <div className='col-4 d-flex flex-column'>
                                 <div className='col-5 rounded-circle  py-4 ml-5 '  onClick={handleAnnotationPressed}
                                     style={{backgroundColor:annotationPressed ? '#007FA4' : '#dee2e6'}}>
