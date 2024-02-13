@@ -4,13 +4,19 @@ import { Button } from 'react-bootstrap';
 import PowerLogo from './Icons/power.svg';
 import VolumeLogo from './Icons/volume-up-fill.svg';
 import MicLogo from './Icons/mic-fill.svg';
-import CameraLogo from './Icons/camera-video-fill.svg'
-import './BottomBar.css'
+import CameraLogo from './Icons/camera-video-fill.svg';
+import CameraSmall from './Icons/camera-video-small.svg';
+import CameraSmallWhite from './Icons/camera-video-white.svg';
+import './BottomBar.css';
 import CustomModal from './CustomModal';
 import CModal from './CModal';
 import VolumeControl from './VolumeControl';
 import MicIcon from './Icons/mic-fill2.svg';
-import MicMuteIcon from './Icons/mic-mute-fill.svg'
+import MicMuteIcon from './Icons/mic-mute-fill.svg';
+import Dpad from './Icons/dpad-big.svg';
+import MinusWhite from './Icons/dashWhite.svg';
+import PlusWhite from './Icons/plusWhite.svg';
+import Zoom from "./Icons/zoom-in.svg";
 
 
 function BottomBar () {
@@ -18,6 +24,8 @@ function BottomBar () {
   const [showVolumeModal, setShowVolumeModal] = useState(false);
   const [showMicModal, setShowMicModal] = useState(false);
   const [showCamModal, setShowCamModal] = useState(false);
+  const [cameraSelected, setCameraSelected] = useState('');
+  const [showControls, setShowControls] = useState(false)
   const [presentationVolume, setPresentationVolume] = useState(0);
   const [MicVolume, setMicVolume] = useState(0);
   const [isPresentationMuted, setIsPresentationMuted] = useState(false);
@@ -82,6 +90,10 @@ function BottomBar () {
         console.log('program muted')
     }
 }
+const handleCameraClicked = (cameraNum) => {
+  setCameraSelected(cameraNum);
+  setShowControls(true);
+}
 const toggleMicMute = () => {
   setIsMicMuted((prevIsMicMuted) => !(prevIsMicMuted));
   if (isMicMuted) {
@@ -102,6 +114,15 @@ const toggleCeilingMicMute = () => {
       console.log('program muted')
   }
 }
+let camNum;
+switch (cameraSelected) {
+  case 'Camera1':
+      camNum = "One"
+      break;
+  case 'Camera2':
+      camNum = "Two"
+      break;
+} 
   
   return (
     <div className="BottomBar bg-secondary d-flex flex-row justify-content-center w-100 ">
@@ -207,11 +228,108 @@ const toggleCeilingMicMute = () => {
               alt='Camera icon'
               className='img-fluid'/>
         </div>
-        <CModal show={showCamModal} onHide={handleCloseCamModal} title="Camera Controls"></CModal>
+        <CModal show={showCamModal} onHide={handleCloseCamModal} title="Camera Controls">
+          <h5>Select Camera:</h5>
+          <div className='col-10 d-flex flex-row justify-content-between mx-auto py-4'>
+            <div className={`col-4 rounded-pill mx-auto d-flex flex-row justify-content-center py-2`}
+              style={{backgroundColor:(cameraSelected === 'Camera1') ? "#007FA4" : "#dee2e6"}}
+              onClick={() => handleCameraClicked('Camera1')}>
+              <img 
+                src={(cameraSelected === 'Camera1') ? CameraSmallWhite : CameraSmall}
+                alt='Camera Icon'
+                className=' img-fluid pr-2'/>
+                <h5 className={`h6 ${(cameraSelected === 'Camera1') ? 'text-white' : ''}`}>Camera 1</h5>
+            </div>
+            <div className={`col-4 rounded-pill mx-auto d-flex flex-row justify-content-center py-2`}
+              style={{backgroundColor:(cameraSelected === 'Camera2') ? "#007FA4" : "#dee2e6"}}
+              onClick={() => handleCameraClicked('Camera2')}>
+              <img 
+                src={(cameraSelected === 'Camera2') ? CameraSmallWhite : CameraSmall}
+                alt='Camera Icon'
+                className='img-fluid pr-2'/>
+                <h5 className={`h6 ${(cameraSelected === 'Camera2') ? 'text-white' : ''}`}>Camera 2</h5>
+            </div>
+          </div>
+          {showControls && (
+            <div className='pt-4'>
+              <h5 className='pb-3'>Camera {camNum}</h5>
+              <div className='d-flex flex-row justify-content-between'>
+                <div className='pt-5 pl-3'>
+                  <img 
+                    src={Dpad}
+                    alt='D-pad Icon'
+                    className='img-fluid'/>
+                </div>
+                <div className='d-flex flex-column pt-5 ml-5'>
+                    <div className='d-flex flex-row ml-3'>
+                      <img 
+                      
+                        src={Zoom}
+                        alt='Zoom-in Icon'
+                        className='img-fluid pr-2'/>
+                      <h6>Zoom</h6>
+                    </div>
+                    <div className='d-flex bg-info rounded-pill justify-content-between px-2'
+                    style={{width:'140px'}}>
+                      <div>
+                          <img 
+                              src={MinusWhite}
+                              alt='Minus Icon'
+                              className='img-fluid'/>
+                      </div>
+                      <div >
+                          <img 
+                              src={PlusWhite}
+                              alt='Plus Icon'
+                              className='img-fluid'/>
+                      </div>
+                    </div>
+                </div>
+                <div className='d-flex flex-column pl-0 pr-3'>
+                  <div className='d-flex flex-row py-3'>
+                    <Button className='btn btn-info rounded-pill mr-4 '>Preset 1</Button>
+                    <Button className='btn btn-info rounded-pill'>Preset 2</Button>
+                  </div>
+                  <div className='d-flex flex-row py-3'>
+                    <Button className='btn btn-info rounded-pill mr-4'>Preset 3</Button>
+                    <Button className='btn btn-info rounded-pill'>Preset 4</Button>
+                  </div>
+                  <div className='d-flex flex-row py-3'>
+                    <Button className='btn btn-info rounded-pill mr-4'>Preset 5</Button>
+                    <Button className='btn btn-info rounded-pill'>Preset 6</Button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          )}
+        </CModal>
         <div className="col border border-1 border-top-0 border-bottom-0 border-right-0 border-dark">
-            <h5 className='h7 mb-0 ml-0'>Presentation Audio</h5>
-            <h5 className='h7 mb-0 ml-0'>Microphones</h5>
-            <h5 className='h7 mb-0 ml-0'>Ceiling Mics</h5>
+          <div className=' d-flex flex-row justify-content-between'>
+            <h5 className='h8 mb-0 ml-0'>Presentation Audio</h5>
+            <div className={`d-flex flex-column pt-1 ${isPresentationMuted ? 'pl-1' : ''}`}>
+              <div className={`rounded-circle  ${isPresentationMuted ? 'bg-warning ml-4' : 'bg-success ml-2'}`}
+                style={{width:'10px', height: '10px'}}></div>
+              <h6 className={`h9 ${isPresentationMuted ? '' : 'pl-1'}`}>{isPresentationMuted ? "Muted" : 'On'}</h6>
+            </div>
+          </div>
+          <div className='d-flex flex-row justify-content-between'>
+            <h5 className='h8 mb-0 ml-0'>Microphones</h5>
+            <div className={`d-flex flex-column pt-1 ${isMicMuted ? 'pl-0' : ''}`}>
+              <div className={`rounded-circle  ${isMicMuted ? 'bg-warning ml-4' : 'bg-success ml-2'}`}
+                style={{width:'10px', height: '10px'}}></div>
+              <h6 className={`h9 ${isMicMuted? '' : 'pl-1'}`}>{isMicMuted ? "Muted" : 'On'}</h6>
+            </div>
+          </div>
+          <div className='d-flex flex-row justify-content-between '>
+            <h5 className='h8 mb-0 ml-0'>Ceiling Mics</h5>
+            <div className={`d-flex flex-column pt-1 ${isCeilingMicMuted ? 'pl-3' : ''}`}>
+              <div className={`rounded-circle  ${isCeilingMicMuted  ? 'bg-warning ml-4 ' : 'bg-success ml-2'}`}
+                style={{width:'10px', height: '10px'}}></div>
+              <h6 className={`h9 ${isCeilingMicMuted  ? '' : 'pl-1'}`}>{isCeilingMicMuted  ? "Muted" : 'On'}</h6>
+            </div>
+          </div>
+            
         </div>
      
       

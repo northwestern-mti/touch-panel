@@ -52,6 +52,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));
         window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
         window.CrComLib.subscribeState('s', `${showFullScreenJoin}`, value=> setShowFullScreen(value)); 
+        console.log(ipAdd)
     }, []);
     const toggleMute = (joinNumber) => {
         setIsMuted((prevIsMuted) => !(prevIsMuted));
@@ -229,7 +230,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             className='img-fluid pr-2 pl-3'/>
                         <h6>Zoom</h6>
                     </div>
-                    <div className='col-6 d-flex bg-info rounded-pill justify-content-between'>
+                    <div className='col-6 d-flex bg-info rounded-pill justify-content-between ml-5'>
                         <div onClick={() => {
                             window.CrComLib.publishEvent('b', '83', true);
                             window.CrComLib.publishEvent('b', '83', false);
@@ -391,7 +392,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             <div className='w-100'>
                 {(sourceSelected == '') ? 
                     <div className='bg-dark text-white w-100'>
-                        <h5 className='h6 py-4'>Display {displayNum} is off</h5>
+                        <h5 className='h6 pt-5 pb-4 mb-0'>Display {displayNum} is off</h5>
                     </div> : 
                     <div className={isMuted ? 'bg-warning p-2' : 'bg-success p-2'}>
                         <h5 className={isMuted ? 'h7 py-4 mb-3 ' : 'h6 py-4'}>{isMuted ? `Display ${displayNum} is muted` : `Display ${displayNum} is on`}</h5>
