@@ -80,80 +80,59 @@ const SourceMenus = () => {
     }    
 
     return (
-    <div className="row w-100 h-100">
-        <div className='display1 col-3 ml-0' onClick={()=>toggleDisplay('18')}>
-            {showDesktop && 
-            <div className='row border-bottom border-dark border-right-0'
-            onClick={() => handleSourceSelected1('200', 'PC')}>
-                <div className='d-flex col  py-4'>
-                    <img
-                        src={PcIcon}
-                        alt='PC icon'
-                        className='img-fluid pl-2'/>
-                    <h5 className="h7 mb-0">Resident Computer</h5>
+    <div className="row w-100">
+        <div className='d-flex flex-column align-items-stretch col-3 m-0 display1' onClick={()=>toggleDisplay('18')}>
+            <div className='row flex-grow-1 border-bottom border-dark border-right-0'
+                onClick={() => handleSourceSelected1('200', 'PC')}>
+                <div className='col pt-3'>
+                        <i className="bi bi-pc-display mr-2"></i> <h5 className="h7 d-inline">Resident Computer</h5>
                 </div>
                 <div className={`select ${(source1 == 'PC') ? 'bg-primary' : ''}`}></div>
-            </div>}
-            {showLaptop && 
-                <div className="row border-bottom border-dark border-right-0"
+            </div>
+            <div className="row flex-grow-1 border-bottom border-dark border-right-0"
                 onClick={() => handleSourceSelected1('201', 'Laptop')}>
-                    <div className='d-flex col  py-4'>
-                        <img
-                            src={LaptopIcon}
-                            alt='Laptop icon'
-                            className='img-fluid pl-2'/>
-                        <h5 className="h7 mb-0">Laptop and Other Devices</h5>
-                    </div>
-                    <div className={`select ${(source1 == 'Laptop') ? 'bg-primary' : ''}`}></div> 
-                </div>}
-            {showWireless && 
-                <div className="row border-bottom border-dark border-right-0"
+                <div className='col pt-3'>
+                        <i className="bi bi-laptop mr-2"></i> <h5 className="h7 d-inline">Laptop and Other Devices</h5>
+                </div>
+                <div className={`select ${(source1 == 'Laptop') ? 'bg-primary' : ''}`}></div> 
+            </div>
+            <div className="row flex-grow-1 border-bottom border-dark border-right-0"
                 onClick={() => handleSourceSelected1('202', 'Wireless')}>
-                    <div className='d-flex col  py-4'>
-                        <img
-                            src={WirelessIcon}
-                            alt='Wireless icon'
-                            className='img-fluid pl-2'/>
-                        <h5 className="h7 mb-0">Wireless with Solstice</h5>
-                    </div>
-                    <div className={`select ${(source1 == 'Wireless') ? 'bg-primary' : ''}`}></div>
-                </div>}
-            {showConfCall && 
-                <div className="row border-bottom border-dark border-right-0"
-                    onClick={() => handleSourceSelected1('205', 'ConfCall')}>
-                    <div className='d-flex col  py-4'>
-                        <img
-                            src={TelephoneIcon}
-                            alt='Telephone icon'
-                            className='img-fluid pl-2'/>
-                        <h5 className="h7 mb-0">Conference Call</h5>
-                    </div>
-                    <div className={`select ${(source1 == 'ConfCall') ? 'bg-primary' : ''}`}></div>   
-                </div>}
-            {showDocCam && 
-                <div className="row border-bottom border-dark border-right-0"
-                    onClick={() => handleSourceSelected1('204', 'DocCam')}>
-                    <div className='d-flex col  py-4'>
-                        <img
-                            src={JournalIcon}
-                            alt='Journal icon'
-                            className='img-fluid pl-2'/>
-                        <h5 className="h7 mb-0">Document Camera</h5>
-                    </div>
-                    <div className={`select ${(source1 == 'DocCam') ? 'bg-primary' : ''}`}></div>
-                </div>}
-            {showBluray && 
-                <div className="row border-bottom-0 border-dark border-right-0"
-                    onClick={() => handleSourceSelected1('203', 'BluRay')}>
-                    <div className='d-flex col  py-4'>
-                        <img
-                            src={DiscIcon}
-                            alt='Disc icon'
-                            className='img-fluid pl-2'/>
-                        <h5 className="h7 mb-0">Blu-Ray</h5>
-                    </div>
-                    <div className={`select ${(source1 == 'BluRay') ? 'bg-primary' : ''}`}></div>
-                </div>}  
+                <div className='col pt-3'>
+                    <img
+                        src={WirelessIcon}
+                        alt='Wireless icon'
+                        className='img-fluid'/>
+                    <h5 className="h7 d-inline ml-2">Wireless with Solstice</h5>
+                </div>
+                <div className={`select ${(source1 == 'Wireless') ? 'bg-primary' : ''}`}></div>
+            </div>
+            <div className="row flex-grow-1 border-bottom border-dark border-right-0"
+                onClick={() => handleSourceSelected1('205', 'ConfCall')}>
+                <div className='col pt-3'>
+                        <i className="bi bi-telephone mr-2"></i>   
+                    <h5 className="h7 d-inline">Conference Call</h5>
+                </div>
+                <div className={`select ${(source1 == 'ConfCall') ? 'bg-primary' : ''}`}></div>   
+            </div>
+            <div className="row flex-grow-1 border-bottom border-dark border-right-0"
+                onClick={() => handleSourceSelected1('204', 'DocCam')}>
+                <div className='col pt-3'>
+                        <i className="bi bi-journal-text mr-2"></i>   
+                    <h5 className="h7 d-inline">Document Camera</h5>
+                </div>
+                <div className={`select ${(source1 == 'DocCam') ? 'bg-primary' : ''}`}></div>
+                
+            </div>
+            <div className="row flex-grow-1 border-bottom-0 border-dark border-right-0"
+                onClick={() => handleSourceSelected1('203', 'BluRay')}>
+                <div className='col pt-3'>
+                        <i className="bi bi-disc mr-2"></i>   
+                    <h5 className="h7 d-inline">Blu-Ray</h5>
+                </div>
+                <div className={`select ${(source1 == 'BluRay') ? 'bg-primary' : ''}`}></div>
+                
+            </div>
         </div>
         <div className='col col-3 mt-0 border-right border-dark  pr-0 pl-0'>
             <DisplayArea sourceSelected={source1} displayJoin={'253'} side='left'
@@ -165,80 +144,63 @@ const SourceMenus = () => {
                 showAnnotationJoin='46' showFullScreenJoin='48' annotationJoin='45' fullscreenJoin='47'
                 powerOff='258' powerOn='259' upJoin='263' downJoin='262' />
         </div>
-        <div className='display2 col-3' onClick={()=>toggleDisplay('19')}>
-            {showDesktop && 
-                <div className='row border-bottom border-dark border-right-0'
-                    onClick={() => handleSourceSelected2('200', 'PC')}>
-                    <div className={`select ${(source2 == 'PC') ? 'bg-primary' : ''}`}></div>
-                    <div className='d-flex col  py-4 mr-0'>
-                        <img
-                            src={PcIcon}
-                            alt='PC icon'
-                            className='img-fluid'/>
-                        <h5 className="h7 mb-0">Resident Computer</h5>
-                    </div>
-                </div>}
-            {showLaptop && 
-                <div className="row border-bottom border-dark border-right-0"
-                    onClick={() => handleSourceSelected2('201', 'Laptop')}>
-                    <div className={`select ${(source2 == 'Laptop') ? 'bg-primary' : ''}`}></div>
-                    <div className='d-flex col  py-4 mr-0'>
-                        <img
-                            src={LaptopIcon}
-                            alt='Laptop icon'
-                            className='img-fluid'/>
-                        <h5 className="h7 mb-0">Laptop and Other Devices</h5>
-                    </div> 
-                </div>}
-            {showWireless && 
-                <div className="row border-bottom border-dark border-right-0"
-                    onClick={() => handleSourceSelected2('202', 'Wireless')}>
-                    <div className={`select ${(source2 == 'Wireless') ? 'bg-primary' : ''}`}></div>
-                    <div className='d-flex col  py-4 mr-0'>
-                        <img
-                            src={WirelessIcon}
-                            alt='Wireless icon'
-                            className='img-fluid'/>
-                        <h5 className="h7 mb-0">Wireless with Solstice</h5>
-                    </div>
-                </div>}
-            {showConfCall && 
-                <div className="row border-bottom border-dark border-right-0"
-                    onClick={() => handleSourceSelected2('205', 'ConfCall')}>
-                    <div className={`select ${(source2 == 'ConfCall') ? 'bg-primary' : ''}`}></div> 
-                    <div className='d-flex col  py-4'>
-                        <img
-                            src={TelephoneIcon}
-                            alt='Telephone icon'
-                            className='img-fluid '/>
-                        <h5 className="h7 mb-0">Conference Call</h5>
-                    </div>  
-                </div>}
-            {showDocCam && 
-                <div className="row border-bottom border-dark border-right-0"
-                    onClick={() => handleSourceSelected2('204', 'DocCam')}>
-                    <div className={`select ${(source2 == 'DocCam') ? 'bg-primary' : ''}`}></div>
-                    <div className='d-flex col  py-4'>
-                        <img
-                            src={JournalIcon}
-                            alt='Journal icon'
-                            className='img-fluid'/>
-                        <h5 className="h7 mb-0">Document Camera</h5>
-                    </div>
-                </div>}
-            {showBluray && 
-                <div className="row border-bottom-0 border-dark border-right-0"
-                    onClick={() => handleSourceSelected2('203', 'BluRay')}>
-                    <div className={`select ${(source2 == 'BluRay') ? 'bg-primary' : ''}`}></div>
-                    <div className='d-flex col  py-4'>
-                        <img
-                            src={DiscIcon}
-                            alt='Disc icon'
-                            className='img-fluid '/>
-                        <h5 className="h7 mb-0">Blu-Ray</h5>
-                    </div>
-                </div>}    
-            
+        <div className='d-flex flex-column align-items-stretch col-3 m-0 display2' onClick={()=>toggleDisplay('18')}>
+            <div className='row flex-grow-1 border-bottom border-dark border-right-0'
+                onClick={() => handleSourceSelected2('200', 'PC')}>
+                <div className={`select ${(source2 == 'PC') ? 'bg-primary' : ''}`}></div>
+                <div className='col pt-3'>
+                        <i className="bi bi-pc-display mr-2"></i>
+                    <h5 className="h7 d-inline">Resident Computer</h5>
+                </div>
+                
+            </div>
+            <div className="row flex-grow-1 border-bottom border-dark border-right-0"
+                onClick={() => handleSourceSelected2('201', 'Laptop')}>
+                <div className={`select ${(source2 == 'Laptop') ? 'bg-primary' : ''}`}></div>
+                <div className='col pt-3'>
+                        <i className="bi bi-laptop mr-2"></i>
+                    <h5 className="h7 d-inline">Laptop and Other Devices</h5>
+                </div> 
+            </div>
+            <div className="row flex-grow-1 border-bottom border-dark border-right-0"
+                onClick={() => handleSourceSelected2('202', 'Wireless')}>
+                <div className={`select ${(source2 == 'Wireless') ? 'bg-primary' : ''}`}></div>
+                <div className='col pt-3'>
+                    <img
+                        src={WirelessIcon}
+                        alt='Wireless icon'
+                        className='img-fluid'/>
+                    <h5 className="h7 d-inline ml-2">Wireless with Solstice</h5>
+                </div>
+            </div>
+            <div className="row flex-grow-1 border-bottom border-dark border-right-0"
+                onClick={() => handleSourceSelected2('205', 'ConfCall')}>
+                <div className={`select ${(source2 == 'ConfCall') ? 'bg-primary' : ''}`}></div> 
+                <div className='col pt-3'>
+                        <i className="bi bi-telephone mr-2"></i>
+                    <h5 className="h7 d-inline">Conference Call</h5>
+                </div>  
+            </div>
+            <div className="row flex-grow-1 border-bottom border-dark border-right-0"
+                onClick={() => handleSourceSelected2('204', 'DocCam')}>
+                <div className={`select ${(source2 == 'DocCam') ? 'bg-primary' : ''}`}></div>
+                <div className='col pt-3'>
+                <i className="bi bi-journal-text mr-2"></i>
+                    <h5 className="h7 d-inline">Document Camera</h5>
+                </div>
+                
+                
+            </div>
+            <div className="row flex-grow-1 border-bottom-0 border-dark border-right-0"
+                onClick={() => handleSourceSelected2('203', 'BluRay')}>
+                <div className={`select ${(source2 == 'BluRay') ? 'bg-primary' : ''}`}></div>
+                <div className='col pt-3'>
+                <i className="bi bi-disc mr-2"></i>
+                    <h5 className="h7 d-inline">Blu-Ray</h5>
+                </div>
+                
+                
+            </div>
         </div>
         
         

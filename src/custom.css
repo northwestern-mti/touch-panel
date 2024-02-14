@@ -1,3 +1,8 @@
+/* Source select menus */
+.display1 i, .display2 i {
+    font-size: 1.25em;
+}
+
 /* For input messages */
 
 .inputMessageArea {

@@ -392,10 +392,10 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             <div className='col-12 m-0 p-0'>
                 {(sourceSelected == '') ? 
                     <div className='bg-dark text-white p-4'>
-                        <h5 className='h6 m-0'>Display {displayNum} is off</h5>
+                        <h5 className='h6'>Display {displayNum} is off</h5>
                     </div> : 
                     <div className={isMuted ? 'bg-warning p-4' : 'bg-success p-4'}>
-                        <h5 className={isMuted ? 'h7 m-0' : 'h6 m-0'}>{isMuted ? `Display ${displayNum} is muted` : `Display ${displayNum} is on`}</h5>
+                        <h5 className={isMuted ? 'h7' : 'h6'}>{isMuted ? `Display ${displayNum} is muted` : `Display ${displayNum} is on`}</h5>
                     </div>}
             </div>
     
