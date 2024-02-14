@@ -408,7 +408,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             <div className='d-flex col-12 justify-content-around pb-3'>
                 {isMuted ? 
                     <div className='col-6 p-0' onClick={() => toggleMute(displayJoin)}>
-                        <div className='rounded-circle bg-info pb-3 mx-auto displayAreaRoundIcon' >
+                        <div className='rounded-circle bg-info pb-3 text-white mx-auto displayAreaRoundIcon' >
+
                             <i class="bi bi-camera-video-off"></i>
                         </div>
                         <h5 className='h7 mb-0'>Unmute Display</h5>
