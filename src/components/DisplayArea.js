@@ -52,6 +52,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));
         window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
         window.CrComLib.subscribeState('s', `${showFullScreenJoin}`, value=> setShowFullScreen(value)); 
+        console.log(ipAdd)
     }, []);
     const toggleMute = (joinNumber) => {
         setIsMuted((prevIsMuted) => !(prevIsMuted));
@@ -408,6 +409,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 {isMuted ? 
                     <div className='col-6 p-0' onClick={() => toggleMute(displayJoin)}>
                         <div className='rounded-circle bg-info pb-3 text-white mx-auto displayAreaRoundIcon' >
+
                             <i class="bi bi-camera-video-off"></i>
                         </div>
                         <h5 className='h7 mb-0'>Unmute Display</h5>

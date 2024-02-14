@@ -335,10 +335,21 @@ h6, .h6 {
       font-size: calc(1.325rem + 0.9vw) ; } }
 
 h7, .h7 {
-        font-size: 1.5rem; }
+  font-size: 1.5rem; }
   @media (max-width: 1200px) {
-    h6, .h6 {
+    h7, .h7 {
       font-size: calc(1.275rem + 0.3vw) ; } }
+h8, .h8 {
+  font-size: 1.25rem; }
+  @media (max-width: 1200px) {
+    h8, .h8 {
+      font-size: calc(1.225rem + 0.15vw) ; } }
+
+h9, .h9 {
+  font-size: 1rem; }
+  @media (max-width: 1200px) {
+    h9, .h9 {
+      font-size: calc(1.175rem + 0.05vw) ; } }
 
 .lead {
   font-size: 2.5rem;
@@ -2928,14 +2939,14 @@ input[type="button"].btn-block {
         &::after {
           border-radius: 1rem;
           height: calc(3rem - 4px);
-          width: calc(2.75rem - 4px);
+          width: calc(3rem - 4px);
           background-color: white;
           border-color: black;
         }
       }
       
       .custom-control-input:checked ~ .custom-control-label::after{
-      transform: translateX(4.05rem);
+      transform: translateX(4rem);
       }
     }
     .custom-switch.custom-switch-xl {

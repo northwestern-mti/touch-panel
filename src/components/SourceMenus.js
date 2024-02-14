@@ -22,6 +22,7 @@ const SourceMenus = () => {
     const [showWireless, setShowWireless] = useState(false);
     const [showBluray, setShowBluray] = useState(false);
     const [showDocCam, setShowDocCam] = useState(false);
+    const [showConfCall, setShowConfCall] = useState(false);
 
     useEffect(() => {
         window.CrComLib.subscribeState('b', '211', value=> setShowDesktop(value));
@@ -29,6 +30,7 @@ const SourceMenus = () => {
         window.CrComLib.subscribeState('b', '213', value=> setShowWireless(value));
         window.CrComLib.subscribeState('b', '214', value=> setShowBluray(value));
         window.CrComLib.subscribeState('b', '215', value=> setShowDocCam(value));
+        window.CrComLib.subscribeState('b', '217', value=> setShowConfCall(value));
         
     }, []);
 
