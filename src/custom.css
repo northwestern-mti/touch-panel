@@ -1,0 +1,21 @@
+/* Source select menus */
+.display1 i, .display2 i {
+    font-size: 1.25em;
+}
+
+/* For input messages */
+
+.inputMessageArea {
+    min-height: 50vh;
+}
+
+/* For round icons in display area */
+.displayAreaRoundIcon {
+    height: 2.75em;
+    width: 2.75em;
+    background-color: #dee2e6;
+}
+
+.displayAreaRoundIcon i {
+    font-size: 1.75em;
+}
