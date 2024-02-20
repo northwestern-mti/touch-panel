@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Opad.css'; // Import custom CSS for styling
 
-const OPad = (centerButton, upJoin, downJoin, leftJoin, rightJoin, centerJoin) => {
+const OPad = ({centerButton, upJoin, downJoin, leftJoin, rightJoin, centerJoin}) => {
   const sendSignal = (joinNumber, action) => {
     window.CrComLib.publishEvent('b', `${joinNumber}`, true);
     window.CrComLib.publishEvent('b', `${joinNumber}`, false);

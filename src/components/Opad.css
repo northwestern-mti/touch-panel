@@ -4,6 +4,7 @@
   width: 200px;
   height: 200px;
   border-radius:50%;
+  border: 1px solid  black;
   overflow:hidden;
   &:after {
     content: '';
@@ -58,6 +59,9 @@
       transform: translate(-50%, -50%) rotate(-45deg);
       transition: all .25s;
     }
+    &:active{
+        background-color: #dee2e6;
+    }
   }
   div.up {
     bottom: 50%;
@@ -80,6 +84,10 @@
     }
     &:active:after {
       border-bottom-color: #333;
+      
+    }
+    &:active{
+        background-color: #dee2e6;
     }
   }
   
@@ -105,6 +113,9 @@
     &:active:after {
       border-top-color: #333;
     }
+    &:active{
+        background-color: #dee2e6;
+    }
   } 
   
   div.left {
@@ -128,6 +139,9 @@
     }
     &:active:after {
       border-right-color:black;
+    }
+    &:active{
+        background-color: #dee2e6;
     }
   }  
   
@@ -153,6 +167,9 @@
     &:active:after {
       border-left-color: #333;
     }
+    &:active{
+        background-color: #dee2e6;
+    }
   } 
   div.center-button {
     position: absolute;
@@ -164,34 +181,6 @@
     background-color: black;
     border-radius: 50%;
     z-index: 2;
-    &:before {
-        content: '';
-        position: absolute;
-        width: 60%;
-        height: 60%;
-        top: 50%;
-        left: 50%;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        transition: all 0.25s;
-        cursor: pointer;
-        display: none;
-    }
-
-    &:after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 0;
-        border-radius: 5px;
-        border-style: solid;
-        transform: translate(-50%, -50%) rotate(-45deg);
-        transition: all 0.25s;
-    }
-    &:active:after {
-        border-left-color: #333;
-        }
-  } 
-  div:hover:after { left: 50%; top: 50%; }  
+} 
+   
 }
