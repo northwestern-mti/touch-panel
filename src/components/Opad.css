@@ -1,0 +1,197 @@
+.o-pad {
+  position: relative;
+  background:white;
+  width: 200px;
+  height: 200px;
+  border-radius:50%;
+  overflow:hidden;
+  &:after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    width: 20%;
+    height: 20%;
+    top: 50%;
+    left: 50%;
+    background: #ddd;
+    border-radius: 50%;   
+    border: 1px solid black;
+    transform: translate(-50%, -50%);
+    display: none;
+    transition: all .25s;
+    cursor: pointer;
+  }
+  &:hover:after {
+    width: 30%;
+    height: 30%;
+  }
+  div {
+    display:block;
+    position: absolute;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+    width: 50%;
+    height: 50%;
+    text-align: center;  
+    transform: rotate(45deg);
+    border: 1px solid black;
+    &:before {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 60%;
+      top: 50%;
+      left: 50%;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;   
+      transform: translate(-50%, -50%);
+      transition: all .25s;
+      cursor: pointer;
+      display: none;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-radius: 5px;
+      border-style: solid;    
+      transform: translate(-50%, -50%) rotate(-45deg);
+      transition: all .25s;
+    }
+  }
+  div.up {
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, -20%) rotate(45deg);
+    border-top-left-radius: 50%;
+    z-index:1;
+    &:hover {
+      background: linear-gradient(315deg, rgba(255,255,255,0) 15%, rgba(255,255,255,.4) 100%);
+    }
+    &:before {
+      left: 57%;
+      top: 57%;
+    }
+    &:after {
+      left: 53%;
+      top: 53%;
+      border-width: 0 13px 19px 13px;
+      border-color: transparent transparent black transparent;
+    }
+    &:active:after {
+      border-bottom-color: #333;
+    }
+  }
+  
+  div.down {
+    top: 50%;
+    left: 50%;    
+    transform: translate(-50%, 20%) rotate(45deg);
+    border-bottom-right-radius: 50%;
+    z-index:1;
+    &:hover {
+      background: linear-gradient(135deg, rgba(255,255,255,0) 15%, rgba(255,255,255,.4) 100%);
+    }
+    &:before {
+      left: 43%;
+      top: 43%;
+    }
+    &:after {
+      left: 47%;
+      top: 47%;
+      border-width: 19px 13px 0px 13px;
+      border-color: black transparent transparent transparent;
+    }
+    &:active:after {
+      border-top-color: #333;
+    }
+  } 
+  
+  div.left {
+    top: 50%;
+    right: 50%;    
+    transform: translate(-20%, -50%) rotate(45deg);
+    border-bottom-left-radius: 50%;
+    border: none;
+    &:hover {
+      background: linear-gradient(225deg, rgba(255,255,255,0) 15%, rgba(255,255,255,.4) 100%);
+    }
+    &:before {
+      left: 57%;
+      top: 43%;
+    }
+    &:after {
+      left: 53%;
+      top: 47%;
+      border-width: 13px 19px 13px 0;
+      border-color: transparent black transparent transparent;
+    }
+    &:active:after {
+      border-right-color:black;
+    }
+  }  
+  
+  div.right {
+    top: 50%;
+    left: 50%;    
+    transform: translate(20%, -50%) rotate(45deg);  
+    border-top-right-radius: 50%;
+    border: none;
+    &:hover {
+      background: linear-gradient(45deg, rgba(255,255,255,0) 15%, rgba(255,255,255,.4) 100%);
+    }
+    &:before {
+      left: 43%;
+      top: 57%;
+    }
+    &:after {
+      left: 47%;
+      top: 53%;
+      border-width: 13px 0 13px 19px;
+      border-color: transparent transparent transparent black;
+    }    
+    &:active:after {
+      border-left-color: #333;
+    }
+  } 
+  div.center-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    border-radius: 50%;
+    z-index: 2;
+    &:before {
+        content: '';
+        position: absolute;
+        width: 60%;
+        height: 60%;
+        top: 50%;
+        left: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.25s;
+        cursor: pointer;
+        display: none;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-radius: 5px;
+        border-style: solid;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        transition: all 0.25s;
+    }
+    &:active:after {
+        border-left-color: #333;
+        }
+  } 
+  div:hover:after { left: 50%; top: 50%; }  
+}
