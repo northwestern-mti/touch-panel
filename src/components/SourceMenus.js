@@ -1,12 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-import { Button } from 'react-bootstrap';
-import PcIcon from './Icons/pc-display.svg';
-import LaptopIcon from './Icons/laptop.svg';
 import WirelessIcon from './Icons/Wireless with Solstice Icon.svg';
-import TelephoneIcon from './Icons/telephone.svg';
-import JournalIcon from './Icons/journal-text.svg';
-import DiscIcon from './Icons/disc.svg';
 import DisplayArea from './DisplayArea';
 import './SourceMenus.css';
 
