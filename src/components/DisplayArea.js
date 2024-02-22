@@ -1,12 +1,8 @@
 import * as React from 'react';
 import { useState, useEffect } from "react";
 import { Button, Row, Col} from 'react-bootstrap';
-import Switch from 'react-bootstrap-switch';
 import CModal from './CModal';
-import CameraIcon from './Icons/camera-video.svg';
-import CameraOffIcon from './Icons/camera-video-off.svg';
-import GearIcon from './Icons/gear-fill.svg';
-import GearHigh from './Icons/gear-activated.svg';
+import Opad from './Opad';
 import Camera2 from './Icons/camera2.svg';
 import Lamp from './Icons/lightbulb-fill.svg';
 import Zoom from "./Icons/zoom-in.svg";
@@ -52,7 +48,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));
         window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
         window.CrComLib.subscribeState('s', `${showFullScreenJoin}`, value=> setShowFullScreen(value)); 
-        console.log(ipAdd)
+        
     }, []);
     const toggleMute = (joinNumber) => {
         setIsMuted((prevIsMuted) => !(prevIsMuted));
@@ -264,18 +260,10 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 <Button className=' btn-info rounded-pill' onClick={handleShowBluRayModal}>
                     <h6>Blu-Ray Controls</h6></Button>
                 <CModal show={bluRayClicked} onHide={handleCloseBluRayModal} title="BluRay Controls">
-                    {/* <ch5-dpad type='text' shape='circle' size='regular'>
-                        <ch5-dpad-button key="center"></ch5-dpad-button>
-                        <ch5-dpad-button key="up"></ch5-dpad-button>
-                        <ch5-dpad-button key="right"></ch5-dpad-button>
-                        <ch5-dpad-button key="left"></ch5-dpad-button>
-                        <ch5-dpad-button key="down"></ch5-dpad-button>
-                    </ch5-dpad> */}
-                    <div className='pb-5 pt-2'>
-                        <img 
-                            src={Dpad}
-                            alt='D-pad icon'
-                            className='img-fluid'/>
+                    
+                    <div className='col-3 mx-auto pb-5 pt-2'>
+                        <Opad centerButton={true} upJoin='271' downJoin='273' 
+                            leftJoin='274' rightJoin='272' centerJoin='275'/>
                     </div>
                     <div className='d-flex flex-row col-10 mx-auto pb-4 pt-2'>
                         <div className='bg-white rounded-circle  mx-auto pt-2  shadow blurayControls border-black'

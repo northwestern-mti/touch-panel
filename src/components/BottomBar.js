@@ -8,8 +8,8 @@ import CameraLogo from './Icons/camera-video-fill.svg';
 import CameraSmall from './Icons/camera-video-small.svg';
 import CameraSmallWhite from './Icons/camera-video-white.svg';
 import './BottomBar.css';
-import CustomModal from './CustomModal';
 import CModal from './CModal';
+import Opad from './Opad';
 import VolumeControl from './VolumeControl';
 import MicIcon from './Icons/mic-fill2.svg';
 import MicMuteIcon from './Icons/mic-mute-fill.svg';
@@ -93,6 +93,9 @@ function BottomBar () {
 const handleCameraClicked = (cameraNum) => {
   setCameraSelected(cameraNum);
   setShowControls(true);
+  window.CrComLib.publishEvent('n', '42', true);
+  window.CrComLib.publishEvent('n', '42', false);
+
 }
 const toggleMicMute = () => {
   setIsMicMuted((prevIsMicMuted) => !(prevIsMicMuted));
@@ -113,6 +116,11 @@ const toggleCeilingMicMute = () => {
       window.CrComLib.publishEvent('b', '111', true);
       console.log('program muted')
   }
+}
+const sendSignal= (joinNumber, action) => {
+  window.CrComLib.publishEvent('b', `${joinNumber}`, true);
+  window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+  console.log(`${action} pressed`);
 }
 let camNum;
 switch (cameraSelected) {
@@ -254,11 +262,8 @@ switch (cameraSelected) {
             <div className='pt-4'>
               <h5 className='pb-3'>Camera {camNum}</h5>
               <div className='d-flex flex-row justify-content-between'>
-                <div className='pt-5 pl-3'>
-                  <img 
-                    src={Dpad}
-                    alt='D-pad Icon'
-                    className='img-fluid'/>
+                <div className='pt-4 pl-4'>
+                  <Opad upJoin='241' downJoin='242' leftJoin='243' rightJoin='244'/>
                 </div>
                 <div className='d-flex flex-column pt-5 ml-5'>
                     <div className='d-flex flex-row ml-3'>
@@ -271,13 +276,13 @@ switch (cameraSelected) {
                     </div>
                     <div className='d-flex bg-info rounded-pill justify-content-between px-2'
                     style={{width:'140px'}}>
-                      <div>
+                      <div onClick={() => sendSignal('74', 'Zoom Out')}>
                           <img 
                               src={MinusWhite}
                               alt='Minus Icon'
                               className='img-fluid'/>
                       </div>
-                      <div >
+                      <div onClick={() => sendSignal('75', 'Zoom In')}>
                           <img 
                               src={PlusWhite}
                               alt='Plus Icon'
