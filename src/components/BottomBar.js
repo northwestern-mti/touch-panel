@@ -159,7 +159,7 @@ switch (cameraSelected) {
         {/* Audio Statuses */}
         <div className="col h-100 border-end border-dark pt-1 pt-xl-4 px-1">
           <div className="d-flex justify-content-between mb-xl-1">
-            <div className="col-9 font-size-0 font-size-1-xl fw-bold">Presentation Audio</div>
+            <div className="col-9 font-size-0 font-size-1-xl m-0 p-0">Presentation Audio</div>
             <div className="col-1 font-size-1-xl">
               <div
                 className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isPresentationMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
@@ -168,7 +168,7 @@ switch (cameraSelected) {
             </div>
           </div>
           <div className="d-flex justify-content-between mb-xl-1">
-            <div class="col-6 font-size-0 font-size-1-xl fw-bold">
+            <div class="col-6 font-size-0 font-size-1-xl p-0 m-0">
               Microphones
             </div>
             <div className="col-1 font-size-1-xl">
@@ -179,7 +179,7 @@ switch (cameraSelected) {
             </div>
           </div>
           <div className="d-flex justify-content-between mb-xl-1">
-            <div className="col-6 font-size-0 font-size-1-xl fw-bold">
+            <div className="col-6 font-size-0 font-size-1-xl p-0 m-0">
               Ceiling Mics
             </div>
             <div className="col-1 font-size-1-xl">
@@ -335,38 +335,7 @@ switch (cameraSelected) {
               </div>
             </div>
           )}
-        </CModal>
-        {/* Old */}
-        {/* <div className="col border border-1 border-top-0 border-bottom-0 border-right-0 border-dark">
-          <div className=' d-flex flex-row justify-content-between'>
-            <h5 className='h8 mb-0 ml-0'>Presentation Audio</h5>
-            <div className={`d-flex flex-column pt-1 ${isPresentationMuted ? 'pl-1' : ''}`}>
-              <div className={`rounded-circle  ${isPresentationMuted ? 'bg-warning ml-4' : 'bg-success ml-2'}`}
-                style={{width:'10px', height: '10px'}}></div>
-              <h6 className={`h9 ${isPresentationMuted ? '' : 'pl-1'}`}>{isPresentationMuted ? "Muted" : 'On'}</h6>
-            </div>
-          </div>
-          <div className='d-flex flex-row justify-content-between'>
-            <h5 className='h8 mb-0 ml-0'>Microphones</h5>
-            <div className={`d-flex flex-column pt-1 ${isMicMuted ? 'pl-0' : ''}`}>
-              <div className={`rounded-circle  ${isMicMuted ? 'bg-warning ml-4' : 'bg-success ml-2'}`}
-                style={{width:'10px', height: '10px'}}></div>
-              <h6 className={`h9 ${isMicMuted? '' : 'pl-1'}`}>{isMicMuted ? "Muted" : 'On'}</h6>
-            </div>
-          </div>
-          <div className='d-flex flex-row justify-content-between '>
-            <h5 className='h8 mb-0 ml-0'>Ceiling Mics</h5>
-            <div className={`d-flex flex-column pt-1 ${isCeilingMicMuted ? 'pl-3' : ''}`}>
-              <div className={`rounded-circle  ${isCeilingMicMuted  ? 'bg-warning ml-4 ' : 'bg-success ml-2'}`}
-                style={{width:'10px', height: '10px'}}></div>
-              <h6 className={`h9 ${isCeilingMicMuted  ? '' : 'pl-1'}`}>{isCeilingMicMuted  ? "Muted" : 'On'}</h6>
-            </div>
-          </div>
-        </div> */}
-        {/* /Old */}
-     
-      
-      
+        </CModal>      
     </div>
   );
 };

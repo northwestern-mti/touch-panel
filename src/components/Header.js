@@ -33,8 +33,8 @@ function Header(){
                     <div className="col-3 text-center">
                         <span>{(classRoom == "") ? 'Room ABCD' : classRoom}</span>
                     </div>
-                    <div className="col-3 text-center">
-                                <span>
+                    <div className="col-4 text-center">
+                                <span className="d-block mb-2">
                                     <ch5-datetime 
                                         displaytype="date" 
                                         styleForDate="MMMM d, yyyy">
