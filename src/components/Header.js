@@ -52,13 +52,6 @@ function Header(){
                         <i className="d-inline-block bi bi-question-lg mx-auto"></i>
                     </button>
                     </div>
-                    {/* <div className="rounded-circle  bg-info help-button ml-1" onClick={handleShowHelpModal}>
-                        <div className='row helpButton text-white'>
-                            <h6 className='h7 col-md-12 mb-0'>?</h6>
-                            <h6 className='h7 col-md-12 mb-0'>Help</h6>
-                        </div>
-                        
-                    </div> */}
                     <div>
                     <CModal show={showHelpModal} onHide={handleCloseHelpModal} title='Help' className="justify-content-center">
                         <div className='content col-10 align-items-center ml-5 pl-5 pt-5'>

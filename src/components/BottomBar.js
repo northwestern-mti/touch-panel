@@ -133,16 +133,67 @@ switch (cameraSelected) {
 } 
   
   return (
-    <div className="BottomBar bg-secondary d-flex flex-row justify-content-center w-100 ">
-        <div className="col border border-1 border-top-0 border-bottom-0 border-dark py-1 "
-            onClick={handleShowPowerModal}>
-            <h5 className='h7'>System Off</h5>
-            <img
-              src={PowerLogo}
-              alt='Power icon'
-              size={32}
-              className='icon'/>
+
+    <div className="row w-100 position-absolute bottom-0 p-0 m-0 footerRow">
+      <div className="col-12 d-flex flex-row align-items-center text-dark p-0 m-0" style={{ backgroundColor: 'var(--secondary)' }}>
+        <button type="button"
+          className="col h-100 border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowPowerModal}>
+          <i className="d-block bi bi-power mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
+          <span className="d-block">System Off</span>
+        </button>
+        <button type="button"
+          className="col h-100 border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowVolumeModal}>
+          <i className="d-block bi bi-volume-up-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
+          <span className="d-block">Presentation Volume</span>
+        </button>
+        <button type="button"
+          className="col h-100 border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowMicModal}>
+          <i className="d-block bi bi-mic-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
+          <span className="d-block">Microphones</span>
+        </button>
+        <button type="button"
+          className="col h-100 border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowCamModal}>
+          <i className="d-block bi bi-camera-video-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
+          <span className="d-block">Camera Controls</span>
+        </button>
+        {/* Audio Statuses */}
+        <div className="col h-100 border-end border-dark pt-1 pt-xl-4 px-1">
+          <div className="d-flex justify-content-between mb-xl-1">
+            <div className="col-9 font-size-0 font-size-1-xl fw-bold">Presentation Audio</div>
+            <div className="col-1 font-size-1-xl">
+              <div
+                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isPresentationMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
+              </div>
+              <div className={`font-size-0 font-size-1-xl ${isPresentationMuted ? '' : ''}`}>{isPresentationMuted ? "Muted" : 'On'}</div>
+            </div>
+          </div>
+          <div className="d-flex justify-content-between mb-xl-1">
+            <div class="col-6 font-size-0 font-size-1-xl fw-bold">
+              Microphones
+            </div>
+            <div className="col-1 font-size-1-xl">
+              <div
+                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
+              </div>
+              <div className={`font-size-0 font-size-1-xl ${isMicMuted ? '' : ''}`}>{isMicMuted ? "Muted" : 'On'}</div>
+            </div>
+          </div>
+          <div className="d-flex justify-content-between mb-xl-1">
+            <div className="col-6 font-size-0 font-size-1-xl fw-bold">
+              Ceiling Mics
+            </div>
+            <div className="col-1 font-size-1-xl">
+              <div
+                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isCeilingMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
+              </div>
+              <div className={`font-size-0 font-size-1-xl ${isPresentationMuted ? '' : ''}`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
+            </div>
+          </div>
         </div>
+        {/* /Audio Statuses */}
+      </div>
+      {/* /Row */}
+
         <div className=''>
             <CModal show={showPowerModal} onHide={handleClosePowerModal} title='System Off?'>
                 <div className='col-10 align-items-center ml-5 mt -5 pl-5 pt-5'>
@@ -156,17 +207,9 @@ switch (cameraSelected) {
                     </Button>
                 </div>
                 </div>
-                
             </CModal>
         </div>
-        <div className={`col border border-1 border-top-0 border-bottom-0 border-dark ${showVolumeModal ? 'bg-primary' : ''}`}
-          onClick={handleShowVolumeModal}>
-            <h5 className='h7 '>Presentation Volume</h5>
-            <img
-              src={VolumeLogo}
-              alt='Volume fill icon'
-              className='img-fluid'/>
-        </div>
+
         <CModal show={showVolumeModal} onHide={handleCloseVolumeModal} title='Presentation Volume'>
           <div className='col-10 align-items-center mx-auto pl-5 pt-4 mt-4'>
             <VolumeControl initialVolume={presentationVolume} plusJoin='22' minusJoin='21' isMuted={isPresentationMuted}/>
@@ -188,14 +231,6 @@ switch (cameraSelected) {
               
         </CModal>
 
-        <div className={`col border border-1 border-top-0 border-bottom-0 border-dark ${showMicModal ? 'bg-primary' : ''}`}
-          onClick={handleShowMicModal}>
-            <h5 className='h7 '>Microphones</h5>
-            <img
-              src={MicLogo}
-              alt='Microphone icon'
-              className='img-fluid'/>
-        </div>
         <CModal show={showMicModal} onHide={handleCloseMicModal} title='Microphones'>
           <div className='col-10 align-items-center ml-5 mt-2 pl-5 '>
             <h5 className='col-3 mb-3'>Microphones</h5>
@@ -228,14 +263,6 @@ switch (cameraSelected) {
               
         </CModal>
 
-        <div className={`col border border-1 border-top-0 border-bottom-0 border-dark ${showCamModal ? 'bg-primary' : ''}`}
-          onClick={handleShowCamModal}>
-            <h5 className='h7'>Camera Controls</h5>
-            <img
-              src={CameraLogo}
-              alt='Camera icon'
-              className='img-fluid'/>
-        </div>
         <CModal show={showCamModal} onHide={handleCloseCamModal} title="Camera Controls">
           <h5>Select Camera:</h5>
           <div className='col-10 d-flex flex-row justify-content-between mx-auto py-4'>
@@ -309,7 +336,8 @@ switch (cameraSelected) {
             </div>
           )}
         </CModal>
-        <div className="col border border-1 border-top-0 border-bottom-0 border-right-0 border-dark">
+        {/* Old */}
+        {/* <div className="col border border-1 border-top-0 border-bottom-0 border-right-0 border-dark">
           <div className=' d-flex flex-row justify-content-between'>
             <h5 className='h8 mb-0 ml-0'>Presentation Audio</h5>
             <div className={`d-flex flex-column pt-1 ${isPresentationMuted ? 'pl-1' : ''}`}>
@@ -334,8 +362,8 @@ switch (cameraSelected) {
               <h6 className={`h9 ${isCeilingMicMuted  ? '' : 'pl-1'}`}>{isCeilingMicMuted  ? "Muted" : 'On'}</h6>
             </div>
           </div>
-            
-        </div>
+        </div> */}
+        {/* /Old */}
      
       
       
