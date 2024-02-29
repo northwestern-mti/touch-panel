@@ -88,7 +88,7 @@ const SourceMenus = () => {
             <button type="button"
                 className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source1 == 'Wireless') ? 'sourceSelectActiveLeft' : ''}`} onClick={() => handleSourceSelected1('202', 'Wireless')}>
                 <img className="containter-fluid me-1" src={WirelessIcon} alt='Wireless icon'
-                style={{width:'var(--font-size-4'}}></img> Wireless with Solstice
+                style={{width:'var(--font-size-3'}}></img> Wireless with Solstice
             </button>
             <button type="button"
                 className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source1 == 'ConfCall') ? 'sourceSelectActiveLeft' : ''}`} onClick={() => handleSourceSelected1('205', 'ConfCall')}>
@@ -131,7 +131,7 @@ const SourceMenus = () => {
             <button type="button"
                 className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source2 == 'Wireless') ? 'sourceSelectActiveRight' : ''}`} onClick={() => handleSourceSelected2('202', 'Wireless')}>
                 <img className="containter-fluid me-1" src={WirelessIcon} alt='Wireless icon'
-                style={{width:'var(--font-size-4'}}></img> Wireless with Solstice
+                style={{width:'var(--font-size-3'}}></img> Wireless with Solstice
             </button>
             <button type="button"
                 className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source2 == 'ConfCall') ? 'sourceSelectActiveRight' : ''}`} onClick={() => handleSourceSelected2('205', 'ConfCall')}>
