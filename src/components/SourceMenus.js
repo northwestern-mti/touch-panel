@@ -105,12 +105,10 @@ const SourceMenus = () => {
         </div>
         
         {/* Display Area Left */}
-        <div className="col border-end border-dark p-0 m-0 newclass">
-        {/* <div className='col col-3 mt-0 border-right border-dark  pr-0 pl-0'> */}
+        <div className="col border-end border-dark p-0 m-0">
             <DisplayArea sourceSelected={source1} displayJoin={'253'} side='left'
                 showAnnotationJoin='42' showFullScreenJoin='44' annotationJoin='41' fullscreenJoin='43'
                 powerOff='251' powerOn='252' upJoin='256' downJoin='255'/>
-        {/* </div> */}
         </div>
 
          {/* Display Area Right */}
