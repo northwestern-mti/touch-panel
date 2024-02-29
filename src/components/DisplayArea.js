@@ -377,13 +377,13 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             message = <p>Select a source to the {side} to present.</p>
     }
     return(
-        <div className=''>
-            <div className="row align-items-center m-0 sourceStatus">
+        <div>
+            <div className="row m-0">
                 {(sourceSelected == '') ? 
-                    <div className='col bg-dark text-white text-center font-size-3 font-size-4-xl p-2 p-xl-3'>
+                    <div className='col bg-dark text-white text-center font-size-3 font-size-4-xl pt-3 pt-xl-4 sourceStatus'>
                         <p>Display {displayNum} is off</p>
                     </div> : 
-                    <div className={`col text-center font-size-3 font-size-4-xl p-2 p-xl-3 ${(isMuted ? 'bg-warning' : 'bg-success')}`}>
+                    <div className={`col text-center font-size-3 font-size-4-xl p-2 p-xl-3 sourceStatus ${(isMuted ? 'bg-warning' : 'bg-success')}`}>
                         <p>{isMuted ? `Display ${displayNum} is muted.` : `Display ${displayNum} is on.`}</p>
                     </div>}
             </div>
@@ -395,7 +395,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             </div>
 
             {/* Button Row */}
-            <div className="row align-items-center m-0 font-size-2 font-size-3-xl">
+            <div className="row align-items-center m-0 font-size-2 font-size-3-xl contentAreaButtonRow">
                 {isMuted ?
                     <div className="col-6 p-0 text-center">
                         <button type="button"

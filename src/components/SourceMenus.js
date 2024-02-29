@@ -105,7 +105,7 @@ const SourceMenus = () => {
         </div>
         
         {/* Display Area Left */}
-        <div className="col border-end border-dark p-0 m-0">
+        <div className="col d-flex flex-column border-end border-dark p-0 m-0 align-items-start">
             <DisplayArea sourceSelected={source1} displayJoin={'253'} side='left'
                 showAnnotationJoin='42' showFullScreenJoin='44' annotationJoin='41' fullscreenJoin='43'
                 powerOff='251' powerOn='252' upJoin='256' downJoin='255'/>
@@ -129,7 +129,7 @@ const SourceMenus = () => {
                 <i className="bi bi-laptop me-1"></i> Laptop and Other Sources
             </button>
             <button type="button"
-                className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source1 == 'Wireless') ? 'sourceSelectActiveRight' : ''}`} onClick={() => handleSourceSelected2('202', 'Wireless')}>
+                className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source2 == 'Wireless') ? 'sourceSelectActiveRight' : ''}`} onClick={() => handleSourceSelected2('202', 'Wireless')}>
                 <img className="containter-fluid me-1" src={WirelessIcon} alt='Wireless icon'
                 style={{width:'var(--font-size-4'}}></img> Wireless with Solstice
             </button>

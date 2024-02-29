@@ -110,15 +110,15 @@ body {
 }
 
 .contentArea {
-    height: 50%;
+    height: 35vh;
 }
 
 .sourceStatus {
-    height: 20%;
+    height: 11vh;
 }
 
 .contentAreaButtonRow {
-    height: 30%;
+    height: 20vh;
 }
 
 .circleIcon {
