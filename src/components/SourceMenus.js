@@ -74,7 +74,7 @@ const SourceMenus = () => {
     }    
 
     return (
-        <div className="col-12 d-flex flex-row text-bg-light px-0 bodyContainer">
+        <div className="col-12 d-flex flex-row text-bg-light px-0 bodyContainer anotherTestClass">
         {/* Source Select Menu Left */}
         <div className="col-2 d-flex flex-column text-start p-0 sourceSelectMenu" onClick={()=>toggleDisplay('18')}>
             <button type="button"
