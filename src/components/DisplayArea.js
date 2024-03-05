@@ -155,25 +155,24 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     } 
     switch(sourceSelected) {
         case 'PC':
-            message = <p>Please use the keyboard and mouse to start.</p>;
+            message = <h5 className='h6'>Please use the keyboard and mouse to start.</h5>;
             break;
         case 'Laptop':
-            message = <p>Connect your device to start presenting.</p>;
+            message = <h5 className='h6'>Connect your device to start presenting.</h5>;
             break;
         case 'Wireless':
-            message = <span>
-                <p>Enter the address below into your browser and follow the instructions
+            message = <div>
+                <h5 className='h6'>Enter the address below into your browser and follow the instructions
                     to present wirelessly.
-                </p>
+                </h5>
                 <p className='text-info'>{(ipAdd == "") ? "123.210.123.210" : ipAdd}</p>
-                </span>
-            ;
+            </div>;
             break;
         case 'ConfCall':
-            message = <span>
-                <p>Select the button below to dial your number.</p>
+            message = <div>
+                <h5 className='h6'>Select the button below to dial your number.</h5>
                 <Button className="btn btn-info rounded-pill">Conference Call</Button>
-            </span>;
+            </div>;
             break;
         case 'DocCam':
             message = <div className='d-flex flex-column'>
@@ -257,7 +256,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             break;
         case 'BluRay':
             message = <div>
-                <p className='h6'>Your Blu-Ray content is being displayed.</p>
+                <h5 className='h6'>Your Blu-Ray content is being displayed.</h5>
                 <Button className=' btn-info rounded-pill' onClick={handleShowBluRayModal}>
                     <h6>Blu-Ray Controls</h6></Button>
                 <CModal show={bluRayClicked} onHide={handleCloseBluRayModal} title="BluRay Controls">
@@ -374,64 +373,52 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             </div>;
             break;
         default:
-            message = <p>Select a source to the {side} to present.</p>
+            message = <h5 className='h6'>Select a source to the {side} to present.</h5>
     }
     return(
-        <div>
-            <div className="row m-0">
+        <div className='d-flex align-items-end flex-column'>
+            <div className='col-12 m-0 p-0'>
                 {(sourceSelected == '') ? 
-                    <div className='col bg-dark text-white text-center font-size-3 font-size-4-xl pt-3 pt-xl-4 sourceStatus'>
-                        <p>Display {displayNum} is off</p>
+                    <div className='bg-dark text-white p-4'>
+                        <h5 className='h6'>Display {displayNum} is off</h5>
                     </div> : 
-                    <div className={`col text-center font-size-3 font-size-4-xl p-2 p-xl-3 sourceStatus ${(isMuted ? 'bg-warning' : 'bg-success')}`}>
-                        <p>{isMuted ? `Display ${displayNum} is muted.` : `Display ${displayNum} is on.`}</p>
+                    <div className={isMuted ? 'bg-warning p-4' : 'bg-success p-4'}>
+                        <h5 className={isMuted ? 'h6' : 'h6'}>{isMuted ? `Display ${displayNum} is muted` : `Display ${displayNum} is on`}</h5>
                     </div>}
             </div>
-
-            <div className="row p-0 m-0">
-                <div className="col text-center font-size-3 font-size-4-xl py-3 contentArea">
+    
+            <div className='col-12 pt-5 inputMessageArea'>
                 {message}
-                </div>
             </div>
 
-            {/* Button Row */}
-            <div className="row align-items-center m-0 font-size-2 font-size-3-xl contentAreaButtonRow">
-                {isMuted ?
-                    <div className="col-6 p-0 text-center">
-                        <button type="button"
-                            className="d-flex align-items-center border-0 rounded-circle text-center text-white mx-auto mb-2 circleIcon"
-                            style={{ backgroundColor: 'var(--cyan)' }} data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
-                            <i
-                                className="d-inline-block bi bi-camera-video-off font-size-4 font-size-5-xl mx-auto"></i>
-                        </button>
-                        <div className="font-size-2 font-size-3-xl">Unmute Display</div>
-                    </div> :
-                    <div className="col-6 p-0 text-center">
-                        <button type="button"
-                            className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 circleIcon"
-                            style={{ backgroundColor: '#D5D5D5' }} data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
-                            <i className="d-inline-block bi bi-camera-video-fill font-size-4 font-size-5-xl mx-auto"></i>
-                        </button>
-                        <div className="font-size-2 font-size-3-xl">Mute Display</div>
+
+            {/* icon row */}
+            <div className='d-flex col-12 justify-content-around pb-3'>
+                {isMuted ? 
+                    <div className='col-6 p-0' onClick={() => toggleMute(displayJoin)}>
+                        <div className='rounded-circle bg-info pb-3 text-white mx-auto displayAreaRoundIcon' >
+
+                            <i class="bi bi-camera-video-off"></i>
+                        </div>
+                        <h5 className='h7 mb-0'>Unmute Display</h5>
+                    </div> : 
+                    <div className='col-6 p-0' onClick={() => toggleMute(displayJoin)}>
+                        <div className='rounded-circle pb-3 mx-auto displayAreaRoundIcon'>
+                            <i className="bi bi-camera-video"></i>
+                        </div>
+                        <h5 className='h7 mb-0'>Mute Display</h5>
                     </div>}
-                    <div className='col-6 p-0'>
+                
+                <div className='col-6 p-0' onClick={handleShowDisplayModal}>
                     {isClicked ? 
-                          <button type="button"
-                          className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 circleIcon"
-                          style={{ backgroundColor: 'var(--cyan)'}} onClick={handleShowDisplayModal}>
-                          <i class="d-inline-block bi bi-gear-fill font-size-4 font-size-5-xl mx-auto"></i>
-                      </button> :
-                        <button type="button"
-                        className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 circleIcon"
-                        style={{ backgroundColor: '#D5D5D5'}} onClick={handleShowDisplayModal}>
-                        <i class="d-inline-block bi bi-gear-fill font-size-4 font-size-5-xl mx-auto"></i>
-                    </button>}
-                    <div className='font-size-2 font-size-3-xl'>Display Settings</div> 
+                        <div className='rounded-circle bg-info pb-3 mx-auto displayAreaRoundIcon'>
+                           <i class="bi bi-gear-fill"></i>
+                        </div> :
+                        <div className='rounded-circle pb-3 mx-auto displayAreaRoundIcon'>
+                            <i class="bi bi-gear-fill"></i>
+                        </div>}
+                    <h5 className='h7 mb-0'>Display Settings</h5> 
                 </div>
-            </div>
-
-            {/* Display Serttings Modal */}
-            <div>
                 <CModal show={isClicked} onHide={handleCloseDisplayModal} title="Display Settings">
                     <div className='d-flex flex-column justify-content-center'>
                         <h5 className='pb-2'>Display {displayNum}</h5>
@@ -514,6 +501,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     </div>
                 </CModal>
             </div>
+
         </div>
     )
 }
