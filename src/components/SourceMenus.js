@@ -119,7 +119,7 @@ const SourceMenus = () => {
         </div>
 
         {/* Source Select Menu Right */}
-        <div className="col-2 d-flex flex-column text-start p-0 sourceSelectMenu" onClick={()=>toggleDisplay('18')}>
+        <div className="col-2 d-flex flex-column text-start p-0 sourceSelectMenu" onClick={()=>toggleDisplay('19')}>
             <button type="button"
                 className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source2 == 'PC') ? 'sourceSelectActiveRight' : ''}`} onClick={() => handleSourceSelected2('200', 'PC')}>
                 <i className="bi bi-pc-display me-1"></i> Resident Computer
