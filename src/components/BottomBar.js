@@ -33,6 +33,11 @@ function BottomBar () {
   const [selectedPreset, setSelectedPreset] = useState(null);
   const [newPresetName, setNewPresetName] = useState('');
   const [camNames, setCamNames] = useState([]);
+  const [tempCamName, setTempCamName] = useState('');
+  // const [cam1, setCam1] = useState('');
+  // const [cam2, setCam2] = useState('');
+  // const [cam3, setCam3] = useState('');
+  // const [cam4, setCam4] = useState('');
   const [camRenameMode, setCamRenameMode] = useState(false);
   const [selectedCamera, setSelectedCamera] = useState(null);
   const [newCamName, setNewCamName] = useState('');
@@ -44,12 +49,38 @@ function BottomBar () {
     window.CrComLib.subscribeState('n', '2', value=> setMicVolume(value));
     window.CrComLib.subscribeState('n', '41', value=> setNumCameras(value));
     window.CrComLib.subscribeState('n', '46', value=> setNumOfPresets(value));
+    // window.CrComLib.subscribeState('s', '91', value=> setCam1(value));
+    // window.CrComLib.subscribeState('s', '92', value=> setCam2(value));
+    // window.CrComLib.subscribeState('s', '93', value=> setCam3(value));
+    // window.CrComLib.subscribeState('s', '94', value=> setCam4(value));
+
     setPresetNames(Array(numOfPresets).fill('').map((_, index) => `Preset ${index + 1}`));
-    setCamNames(Array(numCameras).fill('').map((_, index) => `Camera ${index + 1}`));
+    // setCamNames(Array(numCameras).fill('').map((_, index) => `Camera ${index + 1}`));
+    let newCamNames
+    newCamNames = Array(numCameras).fill('').map((_, index) => 
+    {
+        return window.CrComLib.subscribeState('s', `${index + 91}`, value => {
+          console.log(`value is: ${value}`)
+          setTempCamName(value)
+          console.log(`temp Cam name  is ${tempCamName}`);
+        }
+          );
+    })
+    console.log(`newCamNames is ${newCamNames}`)
+    // setCamNames(Array(numCameras).fill('').map((_, index) => 
+    // {
+    //     return window.CrComLib.subscribeState('s', `${index + 91}`, value => {
+    //       console.log(`value is: ${value}`)
+    //       setTempCamName(value)
+    //       console.log(`temp Cam name  is ${tempCamName}`);
+    //     }
+    //       );
+    // }));
     console.log(`number of cameras is ${numCameras}`)
     console.log(camNames)
-    console.log(numOfPresets)
-  }, [])
+    console.log(`number of presets is ${numOfPresets}`)
+    
+  }, [numCameras, numOfPresets, tempCamName])
 
   const programShutOff = () => {
     handleClosePowerModal()
@@ -433,7 +464,7 @@ switch (cameraSelected) {
                             presetNumber <= numOfPresets && (
                               <Col key={presetNumber}  className="" style={{width: '12rem'}}>
                                 <Button
-                                  className='btn btn-info rounded-pill mr-4'
+                                  className='btn btn-info rounded-pill mr-4 border-0'
                                   style={{height: '3.5rem', fontSize: '1.5rem'}}
                                   onClick={() => handlePresetClicked(presetNumber)}
                                   onMouseDown={() => {
