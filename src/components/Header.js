@@ -56,7 +56,7 @@ function Header(){
                     <CModal show={showHelpModal} onHide={handleCloseHelpModal} title='Help' className="justify-content-center">
                         <div className='content col-10 align-items-center ml-5 pl-5 pt-5'>
                             <h5 className='align-items-center'>Please use the number below to call our support team for assistance</h5>
-                            <h5 className='text-info'>847-555-555</h5>
+                            <h5 className='text-info'>847-467-7666</h5>
                             <h5>You are currently in room:</h5>
                             <h5 className='text-info'>{(classRoom == "") ? 'Room ABCD' : classRoom}</h5>
                         </div>
