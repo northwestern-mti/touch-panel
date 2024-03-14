@@ -48,8 +48,10 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));
         window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
         window.CrComLib.subscribeState('s', `${showFullScreenJoin}`, value=> setShowFullScreen(value)); 
+        window.CrComLib.subscribeState('b', `${displayJoin}`, value=> setIsMuted(value));
+        console.log('state of display is :', isMuted)
         
-    }, []);
+    }, [isMuted]);
     const toggleMute = (joinNumber) => {
         setIsMuted((prevIsMuted) => !(prevIsMuted));
         if (isMuted) {
