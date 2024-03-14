@@ -316,7 +316,7 @@ switch (cameraSelected) {
 
         <CModal show={showVolumeModal} onHide={handleCloseVolumeModal} title='Presentation Volume'>
           <div className='col-10 align-items-center mx-auto pl-5 pt-4 mt-4'>
-            <VolumeControl initialVolume={presentationVolume} plusJoin='22' minusJoin='21' isMuted={isPresentationMuted}/>
+            <VolumeControl initialVolume={presentationVolume} plusJoin='22' minusJoin='21' isMuted={isPresentationMuted} volumeJoin='1'/>
             <div onClick={togglePresentationMute} className='col-4 mx-auto pl-5'>
               <div className={`rounded-circle muteIcon   ${isPresentationMuted ? 'bg-info' : ''}`}
                 style={{backgroundColor: '#e9ecef', width:'90px', height:'90px'}}>
