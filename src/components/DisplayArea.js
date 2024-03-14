@@ -48,10 +48,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));
         window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
         window.CrComLib.subscribeState('s', `${showFullScreenJoin}`, value=> setShowFullScreen(value)); 
-        window.CrComLib.subscribeState('b', `${displayJoin}`, value=> setIsMuted(value));
-        console.log('state of display is :', isMuted)
         
-    }, [isMuted]);
+    }, []);
     const toggleMute = (joinNumber) => {
         setIsMuted((prevIsMuted) => !(prevIsMuted));
         if (isMuted) {
@@ -381,7 +379,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     return(
         <div>
             <div className="row m-0">
-                {(sourceSelected === 0) ? 
+                {(sourceSelected == 0) ? 
                     <div className='col bg-dark text-white text-center font-size-3 font-size-4-xl pt-3 pt-xl-4 sourceStatus'>
                         <p>Display {displayNum} is off</p>
                     </div> : 
