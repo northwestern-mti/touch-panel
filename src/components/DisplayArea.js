@@ -51,7 +51,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         window.CrComLib.subscribeState('b', `${displayJoin}`, value=> setIsMuted(value));
         console.log('the state of isMuted', isMuted)
         
-    }, [isMuted]);
+    }, []);
     const toggleMute = (joinNumber) => {
         setIsMuted((prevIsMuted) => !(prevIsMuted));
         window.CrComLib.publishEvent('b', `${joinNumber}`, true);
