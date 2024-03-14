@@ -127,7 +127,7 @@ function BottomBar () {
     }
 }
 const handleCameraClicked = (cameraName, cameraNum) => {
-  setCameraSelected(cameraName);
+  setCameraSelected(cameraNum);
   setShowControls(true);
   window.CrComLib.publishEvent('n', '42', cameraNum);
   console.log(`${cameraName} clicked` )
@@ -419,7 +419,7 @@ switch (cameraSelected) {
           </Modal>
           {showControls && (
             <div className='pt-4'>
-              <h5 className='pb-3'>Camera {camNum}</h5>
+              <h5 className='pb-3'>{camNames[cameraSelected- 1]}</h5>
               <div className='d-flex flex-row justify-content-between'>
                 <div className='pt-4 pl-4'>
                   <Opad upJoin='241' downJoin='242' leftJoin='243' rightJoin='244'/>
