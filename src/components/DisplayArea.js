@@ -379,7 +379,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     return(
         <div>
             <div className="row m-0">
-                {(sourceSelected == '') ? 
+                {(sourceSelected === 0) ? 
                     <div className='col bg-dark text-white text-center font-size-3 font-size-4-xl pt-3 pt-xl-4 sourceStatus'>
                         <p>Display {displayNum} is off</p>
                     </div> : 
