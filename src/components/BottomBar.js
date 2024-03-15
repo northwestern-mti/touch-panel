@@ -33,6 +33,8 @@ function BottomBar () {
   const [selectedPreset, setSelectedPreset] = useState(null);
   const [newPresetName, setNewPresetName] = useState('');
   const [camNames, setCamNames] = useState([]);
+  const [tempCamName, setTempCamName] = useState('');
+  const [tempPresetName, setTempPresetName] = useState('');
   const [camRenameMode, setCamRenameMode] = useState(false);
   const [selectedCamera, setSelectedCamera] = useState(null);
   const [newCamName, setNewCamName] = useState('');
@@ -44,12 +46,35 @@ function BottomBar () {
     window.CrComLib.subscribeState('n', '2', value=> setMicVolume(value));
     window.CrComLib.subscribeState('n', '41', value=> setNumCameras(value));
     window.CrComLib.subscribeState('n', '46', value=> setNumOfPresets(value));
-    setPresetNames(Array(numOfPresets).fill('').map((_, index) => `Preset ${index + 1}`));
-    setCamNames(Array(numCameras).fill('').map((_, index) => `Camera ${index + 1}`));
-    console.log(`number of cameras is ${numCameras}`)
-    console.log(camNames)
-    console.log(numOfPresets)
-  }, [])
+
+    setPresetNames(Array(numOfPresets).fill('').map((_, index) =>{
+      let value;
+      window.CrComLib.subscribeState('s', `${index + 101}`, incomingValue => {
+        value = incomingValue;
+        console.log(`value is: ${value}`)
+        setTempPresetName(value)
+        console.log(`temp preset name is ${tempPresetName}`);
+      });
+      return value;
+    }));
+    
+    setCamNames(Array(numCameras).fill('').map((_, index) =>
+    {
+      let value;
+      window.CrComLib.subscribeState('s', `${index + 91}`, incomingValue => {
+        value = incomingValue;
+        console.log(`value is: ${value}`)
+        setTempCamName(value)
+        console.log(`temp Cam name is ${tempCamName}`);
+      });
+      return value;
+    }));
+    console.log(`number of cameras is ${numCameras}`);
+    console.log(`number of presets is ${numOfPresets}`);
+    console.log(`cameras array is ${camNames}`);
+    console.log(`presets array is ${presetNames}`);
+    
+  }, [numCameras, numOfPresets, tempCamName, tempPresetName])
 
   const programShutOff = () => {
     handleClosePowerModal()
@@ -101,11 +126,11 @@ function BottomBar () {
         console.log('program muted')
     }
 }
-const handleCameraClicked = (cameraName, cameraNum) => {
-  setCameraSelected(cameraName);
+const handleCameraClicked = (cameraNum) => {
+  setCameraSelected(cameraNum);
   setShowControls(true);
   window.CrComLib.publishEvent('n', '42', cameraNum);
-  console.log(`${cameraName} clicked` )
+  console.log(`${camNames[cameraNum - 1]}clicked` )
 }
 const handlePresetClicked = (presetNum) => {
   window.CrComLib.publishEvent('n', '47', presetNum);
@@ -198,18 +223,6 @@ const handleCancelCamRename = () => {
 const handleNewCamNameChange = (event) => {
   setNewCamName(event.target.value);
 };
-let camNum;
-switch (cameraSelected) {
-  case 'Camera1':
-      camNum = "One"
-      break;
-  case 'Camera2':
-      camNum = "Two"
-      break;
-  case 'Camera3':
-    camNum = "Three"
-    break;
-} 
   
   return (
 
@@ -291,7 +304,7 @@ switch (cameraSelected) {
 
         <CModal show={showVolumeModal} onHide={handleCloseVolumeModal} title='Presentation Volume'>
           <div className='col-10 align-items-center mx-auto pl-5 pt-4 mt-4'>
-            <VolumeControl initialVolume={presentationVolume} plusJoin='22' minusJoin='21' isMuted={isPresentationMuted}/>
+            <VolumeControl initialVolume={presentationVolume} plusJoin='22' minusJoin='21' isMuted={isPresentationMuted} volumeJoin='1'/>
             <div onClick={togglePresentationMute} className='col-4 mx-auto pl-5'>
               <div className={`rounded-circle muteIcon   ${isPresentationMuted ? 'bg-info' : ''}`}
                 style={{backgroundColor: '#e9ecef', width:'90px', height:'90px'}}>
@@ -344,15 +357,14 @@ switch (cameraSelected) {
 
         <CModal show={showCamModal} onHide={handleCloseCamModal} title="Camera Controls">
           <h5>Select Camera:</h5>
-          <div className='col-10 d-flex flex-row justify-content-between mx-auto py-4'>
+          <div className='col-12 d-flex flex-row justify-content-between mx-auto py-4'>
           {Array.from({length:numCameras}, (_, index) => {
               const camNumber = index + 1
-              const camName = `Camera${index + 1}`;
               return(
-                <div key={camName} 
-                className={`col-4 rounded-pill mx-auto d-flex flex-row justify-content-center py-2`}
-                style={{backgroundColor:(cameraSelected === camName) ? "#007FA4" : "#dee2e6"}}
-                onClick={() => handleCameraClicked(camName, index +1)}
+                <div key={camNumber} 
+                className={`col-4 rounded-pill d-flex flex-row justify-content-center py-2 mr-2`}
+                style={{backgroundColor:(cameraSelected === camNumber) ? "#007FA4" : "#dee2e6"}}
+                onClick={() => handleCameraClicked(index +1)}
                 onMouseDown={() => {
                   holdTimeoutRef.current = setTimeout(() => handleCamLongPress(camNumber), 500);
                 }}
@@ -363,10 +375,10 @@ switch (cameraSelected) {
                 onTouchEnd={() => clearTimeout(holdTimeoutRef.current)}
                 onMouseLeave={() => clearTimeout(holdTimeoutRef.current)}>
                 <img 
-                  src={(cameraSelected === camName) ? CameraSmallWhite : CameraSmall}
+                  src={(cameraSelected === camNumber) ? CameraSmallWhite : CameraSmall}
                   alt='Camera Icon'
                   className=' img-fluid pr-2'/>
-                  <h5 className={`h6 ${(cameraSelected === camName) ? 'text-white' : ''}`}>{camNames[camNumber - 1]}</h5>
+                  <h5 className={`h6 ${(cameraSelected === camNumber) ? 'text-white' : ''}`}>{camNames[camNumber - 1]}</h5>
                 </div>)
             })}
           </div>
@@ -394,7 +406,7 @@ switch (cameraSelected) {
           </Modal>
           {showControls && (
             <div className='pt-4'>
-              <h5 className='pb-3'>Camera {camNum}</h5>
+              <h5 className='pb-3'>{camNames[cameraSelected- 1]}</h5>
               <div className='d-flex flex-row justify-content-between'>
                 <div className='pt-4 pl-4'>
                   <Opad upJoin='241' downJoin='242' leftJoin='243' rightJoin='244'/>
@@ -433,7 +445,7 @@ switch (cameraSelected) {
                             presetNumber <= numOfPresets && (
                               <Col key={presetNumber}  className="" style={{width: '12rem'}}>
                                 <Button
-                                  className='btn btn-info rounded-pill mr-4'
+                                  className='btn btn-info rounded-pill mr-4 border-0'
                                   style={{height: '3.5rem', fontSize: '1.5rem'}}
                                   onClick={() => handlePresetClicked(presetNumber)}
                                   onMouseDown={() => {
