@@ -249,7 +249,7 @@ const handleNewCamNameChange = (event) => {
           <span className="d-block">Camera Controls</span>
         </button>
         {/* Audio Statuses */}
-        <div className="col h-100 border-end border-dark pt-1 pt-xl-4 px-1">
+        <div className="col h-100 border-0 pt-1 pt-xl-4 px-1">
           <div className="d-flex justify-content-between mb-xl-1">
             <div className="col-9 font-size-0 font-size-1-xl m-0 p-0">Presentation Audio</div>
             <div className="col-1 font-size-1-xl">

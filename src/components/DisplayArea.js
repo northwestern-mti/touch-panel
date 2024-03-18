@@ -400,7 +400,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     <div className="col-6 p-0 text-center">
                         <button type="button"
                             className="d-flex align-items-center border-0 rounded-circle text-center text-white mx-auto mb-2 circleIcon"
-                            style={{ backgroundColor: 'var(--cyan)' }} data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
+                            style={{ backgroundColor: 'var(--bs-info)' }} data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
                             <i
                                 className="d-inline-block bi bi-camera-video-off font-size-4 font-size-5-xl mx-auto"></i>
                         </button>
