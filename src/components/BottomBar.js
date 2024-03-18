@@ -227,7 +227,7 @@ const handleNewCamNameChange = (event) => {
   return (
 
     <div className="row w-100 position-absolute bottom-0 p-0 m-0 footerRow">
-      <div className="col-12 d-flex flex-row align-items-center text-dark p-0 m-0" style={{ backgroundColor: 'var(--secondary)' }}>
+      <div className="col-12 d-flex flex-row align-items-center text-dark p-0 m-0" style={{ backgroundColor: 'var(--bs-secondary)' }}>
         <button type="button"
           className="col h-100 border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowPowerModal}>
           <i className="d-block bi bi-power mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>

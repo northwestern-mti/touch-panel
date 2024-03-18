@@ -21,29 +21,7 @@
 }
 
 :root {
-    --blue: #007bff !important;
-    --indigo: #6610f2 !important;
-    --purple: #654C94 !important;
-    --pink: #e83e8c !important;
-    --red: #EF553F !important;
-    --orange: #fd7e14 !important;
-    --yellow: #FFC520 !important;
-    --green: #58B947 !important;
-    --teal: #20c997 !important;
-    --cyan: #007FA4 !important;
-    --white: #fff !important;
-    --gray: #6c757d !important;
-    --gray-dark: #343a40 !important;
-    --primary: #654C94 !important;
-    --secondary: #E2DDEC !important;
-    --success: #58B947 !important;
-    --info: #007FA4 !important;
-    --warning: #FFC520 !important;
-    --danger: #EF553F !important;
-    --light: #f8f9fa !important;
-    --dark: #343a40 !important;
-    --font-family-sans-serif: "Roboto Flex", sans-serif;
-    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+/* Custom Responsive Font Sizes */
     /* size 0 xs */
     --font-size-0: clamp(0.64rem, -0.01vw + 0.64rem, 0.63rem);
     /* size 1 small */

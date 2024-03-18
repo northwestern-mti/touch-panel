@@ -22,7 +22,7 @@ function Header(){
     
     return(
         <div className='row p-0 m-0 headerRow'>
-            <div className="col-12 d-flex flex-row justify-content-evenly align-items-center  font-size-3 font-size-4-xl p-0" style={{ backgroundColor: 'var(--primary)' }}>
+            <div className="col-12 d-flex flex-row justify-content-evenly align-items-center  font-size-3 font-size-4-xl p-0" style={{ backgroundColor: 'var(--bs-primary)' }}>
                     <div className="col-3">
                         <img
                             src={logo}
