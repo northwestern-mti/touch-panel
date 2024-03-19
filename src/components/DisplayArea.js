@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from "react";
 import { Button, Row, Col} from 'react-bootstrap';
+import Modal from 'react-bootstrap/Modal';
 import CModal from './CModal';
 import Opad from './Opad';
 import Camera2 from './Icons/camera2.svg';
@@ -44,6 +45,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [showFullScreen, setShowFullScreen] = useState(false);
     const [annotationPressed, setAnnotationPressed] = useState(false);
     const [fullscreenPressed, setFullscreenPressed] = useState(false);
+    const [fullscreen, setFullscreen] = useState(true);
     useEffect(() => {
         window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));
         window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
@@ -147,10 +149,10 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     let displayNum;
     switch (side) {
         case 'left':
-            displayNum = "one"
+            displayNum = "One"
             break;
         case 'right':
-            displayNum = "two"
+            displayNum = "Two"
             break;
     } 
     switch(sourceSelected) {
@@ -418,7 +420,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     {isClicked ? 
                           <button type="button"
                           className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 circleIcon"
-                          style={{ backgroundColor: 'var(--cyan)'}} onClick={handleShowDisplayModal}>
+                          style={{ backgroundColor: 'var(--cyan)'}} data-bs-toggle="modal" data-bs-target="#displaySettingsModal">
                           <i class="d-inline-block bi bi-gear-fill font-size-4 font-size-5-xl mx-auto"></i>
                       </button> :
                         <button type="button"
@@ -430,90 +432,93 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 </div>
             </div>
 
-            {/* Display Serttings Modal */}
-            <div>
-                <CModal show={isClicked} onHide={handleCloseDisplayModal} title="Display Settings">
-                    <div className='d-flex flex-column justify-content-center'>
-                        <h5 className='pb-2'>Display {displayNum}</h5>
-                        <Row className='col-4 mx-auto'>
-                            <Col className='mb-0 pt-3 pl-5'><h5>Power</h5></Col>
-                            <Col className='ml-0'>
-                                <div className="custom-control custom-switch custom-switch-lg">
-                                    <input 
-                                        className="custom-control-input"
+            {/* Display Settings Modal */}
+            <Modal show={isClicked} fullscreen={fullscreen} onHide={handleCloseDisplayModal}>
+                <Modal.Header closeButton className="pb-0">
+                    <Modal.Title>
+                        <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
+                            onClick={handleCloseDisplayModal}><i class="bi bi-arrow-left"></i></button>Display Settings</h1>
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="font-size-2 font-size-3-xl">
+                <div className='container-fluid text-center'>
+                        <h2 className='font-size-5 font-size-6-xl my-1 my-xl-2'>Display {displayNum}</h2>
+                        {/* Power Button */}
+                        <div className="row my-4 my-xl-5">
+                            <div className="col text-center mx-auto">
+                                <div className="form-switch p-0">
+                                    <input
+                                        className="form-check-input m-0 mb-4 border-0 largeSwitch"
                                         type="checkbox"
                                         role="switch"
                                         id="powerSwitch"
                                         checked={powerSwitch}
                                         onChange={togglePowerSwitch}
-                                        style={{backgroundColor:powerSwitch ? '#007FA4' : '#e9ecef'}}
-                                        />
-                                    <label className="custom-control-label" htmlFor="powerSwitch"></label>
-                            
+                                        style={{ backgroundColor: powerSwitch ? '#007FA4' : '#e9ecef' }}
+                                    />
+                                    <label className="d-block form-check-label font-size-3 font-size-4-xl"
+                                        htmlfor="powerSwitch">Power</label>
                                 </div>
-                            </Col>
-                        </Row>
-                        
-                        <div className=' row d-flex justify-content-center ml-4 pl-4 mt-4 mb-4 mx-auto'>
-                            <div className='col-4 d-flex flex-column'>
-                                <div className='col-5 rounded-circle  py-4 ml-5 '  onClick={handleAnnotationPressed}
-                                    style={{backgroundColor:annotationPressed ? '#007FA4' : '#dee2e6'}}>
-                                    <img
-                                        src={annotationPressed ? PencilWhite : Pencil}
-                                        alt='Pencil Icon'
-                                        className='img-fluid'/>
-                                </div>
-                                <h6 className='mr-5'>Annotate</h6>
-                            </div>
-                            <div className='col-4 d-flex flex-column'>
-                                <div className='col-5 rounded-circle py-4 ml-5'  onClick={handleFullscreenPressed}
-                                    style={{backgroundColor:fullscreenPressed ? '#007FA4' : '#dee2e6'}}>
-                                    <img
-                                        src={fullscreenPressed ? FullscreenWhite : Fullscreen}
-                                        alt='Pencil Icon'
-                                        className=''/>
-                                </div>
-                                <h6 className='mr-5'>Preview Fullscreen</h6>
-                            </div>
-                            <div className='col-4'>
-                                <div className='col-5 rounded-circle py-4  ml-5'  onClick={() => toggleMute(displayJoin)}
-                                    style={{backgroundColor:isMuted ? '#dee2e6' : '#007FA4'}}>
-                                    <img
-                                        src={isMuted ? CameraOffFill : CameraIconFillWhite}
-                                        alt='Camera Icon'
-                                        className='img-fluid'/>
-            
-                                </div>
-                                <h6 className='pr-3'>{isMuted ? 'Unmute Display' : "Mute Display"}</h6>
                             </div>
                         </div>
-                        <h5 className='mt-3 mb-2'>Screen Position</h5>
-                        <div className='row justify-content-center ml-4 pl-4 mt-4'>
-                            <div className='col-4 bg-info rounded-pill py-3 mr-4' onClick={() => {
-                                window.CrComLib.publishEvent('b', `${downJoin}`, true);
-                                window.CrComLib.publishEvent('b', `${downJoin}`, false);
-                                console.log('Screen downed')
-                            }}>
-                                <img 
-                                    src={DownArrow}
-                                    alt='Down Arrow'
-                                    className='img-fluid'/>
+                        {/* /Power Button */}
+                        {/* Options */}
+                        <div className="row justify-content-around mb-4 mb-xl-5">
+                            <div className="col-4">
+                                <button type="button"
+                                    className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${annotationPressed ? 'text-white' : 'text-dark'}`}
+                                    style={{backgroundColor:annotationPressed ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={handleAnnotationPressed}>
+                                    <i className="d-inline-block bi bi-pencil-fill font-size-4 font-size-5-xl mx-auto"></i>
+                                </button>
+                                <div className="font-size-3 font-size-4-xl">Annotate</div>
                             </div>
-                            <div className='col-4 bg-info rounded-pill py-3 ml-4' onClick={() => {
-                                window.CrComLib.publishEvent('b', `${upJoin}`, true);
-                                window.CrComLib.publishEvent('b', `${upJoin}`, false);
-                                console.log('Screen upped')
-                            }}>
-                                <img 
-                                    src={UpArrow}
-                                    alt='Up Arrow'
-                                    className='img-fluid'/>
+                            <div className="col-4">
+                                 <button type="button"
+                                    className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${fullscreenPressed ? 'text-white' : 'text-dark'}`}
+                                    style={{backgroundColor:fullscreenPressed ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={handleFullscreenPressed}>
+                                    <i className="d-inline-block bi bi-arrows-fullscreen font-size-4 font-size-5-xl mx-auto"></i>
+                                </button>
+                                <div className="font-size-3 font-size-4-xl">Preview Fullscreen</div>
+                            </div>
+                            <div class="col-4">
+                                <button type="button"
+                                    className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${isMuted ? 'text-white' : 'text-dark'}`}
+                                    style={{backgroundColor:isMuted ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={() => toggleMute(displayJoin)}>
+                                    <i className={`d-inline-block bi ${isMuted ? 'bi-camera-video-off-fill' : 'bi-camera-video-fill'}  font-size-4 font-size-5-xl mx-auto`}></i>
+                                </button>
+                                <div class="font-size-3 font-size-4-xl">Mute Display</div>
+                            </div>
+
+                        </div>
+                     {/* /Options */}
+                     {/* Screen Position Buttons */}
+                        <div className="row">
+                            <div className="col text-center">
+                                <div className="my-3 my-xl-5">
+                                    {/* Down Button */}
+                                    <button type="button"
+                                        className="btn col-4 bg-info border-0 rounded-pill py-2 me-3 text-white fw-bold font-size-3" onClick={() => {
+                                            window.CrComLib.publishEvent('b', `${downJoin}`, true);
+                                            window.CrComLib.publishEvent('b', `${downJoin}`, false);
+                                            console.log('Screen downed')
+                                        }}><i
+                                            className="d-inline-block bi bi-chevron-down font-size-4 font-size-5-xl mx-auto"></i></button>
+                                    {/* Up Button */}
+                                    <button type="button"
+                                        className="btn col-4 bg-info border-0 rounded-pill py-2 text-white fw-bold font-size-3"><i
+                                            className="d-inline-block bi bi-chevron-up font-size-4 font-size-5-xl mx-auto" onClick={() => {
+                                                window.CrComLib.publishEvent('b', `${upJoin}`, true);
+                                                window.CrComLib.publishEvent('b', `${upJoin}`, false);
+                                                console.log('Screen upped')
+                                            }}></i></button>
+                                </div>
+                                <span class="d-inline-block font-size-3 font-size-4-xl">Screen Position</span>
                             </div>
                         </div>
-                        
+                        {/* /Screen Position Buttons */}
                     </div>
-                </CModal>
-            </div>
+                </Modal.Body>
+            </Modal> 
         </div>
     )
 }
