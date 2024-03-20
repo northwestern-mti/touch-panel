@@ -262,7 +262,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 <p>Your Blu-Ray content is being displayed.</p>
                 <button className='btn btn-info rounded-pill border-0 mt-3 font-size-3 font-size-4-xl' onClick={handleShowBluRayModal}>
                     Blu-Ray Controls</button>
-
+                
+                {/* BluRay Modal */}
                 <Modal show={bluRayClicked} onHide={handleCloseBluRayModal} fullscreen={fullscreen}>
                 <Modal.Header closeButton className="pb-0">
                     <Modal.Title>
@@ -334,120 +335,6 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         </div>
                     </Modal.Body>
             </Modal> 
-
-                {/* OLD BLURAY MODAL     */}
-                {/* <CModal show={bluRayClicked} onHide={handleCloseBluRayModal} title="BluRay Controls">
-                    
-                    <div className='col-3 mx-auto pb-5 pt-2'>
-                        <Opad centerButton={true} upJoin='271' downJoin='273' 
-                            leftJoin='274' rightJoin='272' centerJoin='275'/>
-                    </div>
-                    <div className='d-flex flex-row col-10 mx-auto pb-4 pt-2'>
-                        <div className='bg-white rounded-circle  mx-auto pt-2  shadow blurayControls border-black'
-                        style={{width:'80px', height:'80px', backgroundColor: (blurayButton === 'Eject') ? 'black': ''}}
-                        onClick={() => {blurayControl('59', 'Eject')}}>
-                            <img 
-                                src={Eject}
-                                alt='Eject Icon'
-                                className='img-fluid'/>
-                        </div>
-                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
-                            style={{width:'80px', height:'80px'}}
-                            onClick={() => blurayControl('57', 'Previous')}>
-                            <img 
-                                src={RewindEnd}
-                                alt='Skip Backward Icon'
-                                className='img-fluid'/>
-                        </div>
-                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
-                            style={{width:'80px', height:'80px'}}
-                            onClick={() => blurayControl('67', 'Rewind')}>
-                            <img 
-                                src={Rewind}
-                                alt='Rewind Icon'
-                                className='img-fluid'/>
-                        </div>
-                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
-                            style={{width:'80px', height:'80px'}}
-                            onClick={() => blurayControl('65', 'Pause')}>
-                            <img 
-                                src={Pause}
-                                alt='Pause Icon'
-                                className='img-fluid'/>
-                        </div>
-                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
-                            style={{width:'80px', height:'80px'}}
-                            onClick={() => blurayControl('64', 'Play')}>
-                            <img 
-                                src={Play}
-                                alt='Play Icon'
-                                className='img-fluid'/>
-                        </div>
-                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
-                            style={{width:'80px', height:'80px'}}
-                            onClick={() => blurayControl('66', 'Stop')}>
-                            <img 
-                                src={Stop}
-                                alt='Stop Icon'
-                                className='img-fluid'/>
-                        </div>
-                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
-                            style={{width:'80px', height:'80px'}}
-                            onClick={() => blurayControl('68', 'Fast Forward')}>
-                            <img 
-                                src={FastForward}
-                                alt='Fast Forward Icon'
-                                className='img-fluid'/>
-                        </div>
-                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
-                            style={{width:'80px', height:'80px'}}
-                            onClick={() => blurayControl('58', 'Next')}>
-                            <img 
-                                src={FastForwardEnd}
-                                alt='Skip Forward Icon'
-                                className='img-fluid'/>
-                        </div>
-                    </div>
-                    <div className='pt-4 mb-4'>
-                        <div className='d-flex flex-row py-2 '>
-                            <div className='col-3 bg-info mx-auto rounded-pill d-flex flex-row justify-content-center'
-                            onClick={() => blurayControl('60', 'Home')}>
-                                <img 
-                                    src={House}
-                                    alt='House Icon'
-                                    className='img-fluid pr-2'/>
-                                <h6 className='text-white'>Home</h6>
-                            </div>
-                            <div className='col-3 bg-info mx-auto rounded-pill d-flex flex-row justify-content-center'
-                            onClick={() => blurayControl('62', 'Menu')}>
-                                <img 
-                                    src={Menu}
-                                    alt='Menu Icon'
-                                    className='img-fluid pr-2'/>
-                                <h6 className='text-white'>Menu</h6>
-                            </div>                       
-                        </div>
-                        <div className='d-flex flex-row pt-3'>
-                            <div className='col-3 mx-auto bg-info rounded-pill d-flex flex-row justify-content-center'
-                            onClick={() => blurayControl('61', 'Info')}>
-                                <img 
-                                    src={InfoIcon}
-                                    alt='Info Icon'
-                                    className='img-fluid pr-2 '/>
-                                <h6 className='text-white pr-4'>Info</h6>
-                            </div>
-                            <div className='col-3 bg-info mx-auto rounded-pill d-flex flex-row justify-content-center'
-                            onClick={() => blurayControl('63', 'Return')}>
-                                <img 
-                                    src={ReturnArrow}
-                                    alt='Back Arrow Icon'
-                                    className='img-fluid pr-2 pl-2'/>
-                                <h6 className='text-white'>Return</h6>
-                            </div>                       
-                        </div>
-                    </div>
-                </CModal> */}
-                {/* /OLD BLURAY MODAL     */}
             </div>;
             break;
         default:
