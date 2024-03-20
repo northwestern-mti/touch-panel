@@ -296,9 +296,9 @@ const handleNewCamNameChange = (event) => {
                 onClick={handleClosePowerModal}><i class="bi bi-arrow-left"></i></button>System Off?</h1>
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body className="font-size-4 font-size-3-xl p-0">
+          <Modal.Body className="font-size-4 font-size-5-xl p-0">
             <div className='container-fluid text-center p-5'>
-              <p>Are you sure you want to shut down the system?</p>
+              <div className="mb-xl-5">Are you sure you want to shut down the system?</div>
               <div className='d-flex justify-content-center mt-5'>
                 <button className='btn btn-gray-600 col-4 rounded-pill px-5 cancelButton text-white mx-3' onClick={handleClosePowerModal}>
                   Cancel
@@ -312,26 +312,44 @@ const handleNewCamNameChange = (event) => {
         </Modal>
         </div>
 
-        <CModal show={showVolumeModal} onHide={handleCloseVolumeModal} title='Presentation Volume'>
-          <div className='col-10 align-items-center mx-auto pl-5 pt-4 mt-4'>
-            <VolumeControl initialVolume={presentationVolume} plusJoin='22' minusJoin='21' isMuted={isPresentationMuted} volumeJoin='1'/>
-            <div onClick={togglePresentationMute} className='col-4 mx-auto pl-5'>
-              <div className={`rounded-circle muteIcon   ${isPresentationMuted ? 'bg-info' : ''}`}
-                style={{backgroundColor: '#e9ecef', width:'90px', height:'90px'}}>
-                <img 
-                  src={isPresentationMuted ? MicMuteIcon : MicIcon}
-                  alt={isPresentationMuted ? 'Microphone Mute icon' : 'Microphone Icon' }
-                  className='img-fluid mt-3'/>
+        {/* Presentation Volume Modal */}
+      <Modal show={showVolumeModal} onHide={handleCloseVolumeModal} fullscreen={fullscreen}>
+        <Modal.Header closeButton className="pb-0">
+          <Modal.Title>
+            <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
+              onClick={handleCloseVolumeModal}><i class="bi bi-arrow-left"></i></button>Presentation Volume</h1>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="font-size-4 font-size-3-xl p-0">
+          <div className='container-fluid text-center pt-3'>
+            <VolumeControl classNam="mx-auto" initialVolume={presentationVolume} plusJoin='22' minusJoin='21' isMuted={isPresentationMuted} volumeJoin='1' />
+            <div class="col-12 text-center mb-4">
+              <button type="button"
+                className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isPresentationMuted ? 'bg-info' : ''}`}
+                style={{ backgroundColor: '#D5D5D5'}}
+                onClick={togglePresentationMute}>
+                <i
+                className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPresentationMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
+                ></i>
+              </button>
+              <div className='font-size-3 font-size-4-xl'>{isPresentationMuted ? 'Unmute' : 'Mute'}</div>
+            </div>
+
+            <div className="row">
+              <div className="col-8 d-flex justify-content-start bg-secondary py-3 px-5 mx-auto">
+                <div className="col-1">
+                  <i
+                    className={`d-block bi bi-info-circle-fill text-info font-size-4 font-size-5-xl`}
+                  ></i>
+                </div>
+                <div className="col-11 font-size-3 font-size-4-xl">
+                  Sound not playing? Be sure to select the correct audio on your device.
+                </div>
               </div>
-              <h5 className={`row ${isPresentationMuted ? '' : 'ml-1'}`}>{isPresentationMuted ? 'Unmute' : 'Mute'}</h5>
             </div>
           </div>
-          <div className='bg-secondary row mx-auto col-8 mt-5  '>
-            <h5 className='col-md-1 bg-info mt-5 mb-5 rounded-circle text-white'><em>i</em></h5>
-            <h5 className='col mb-0'>Sound not playing? Be sure to select the correct audio on your device.</h5>
-          </div>
-              
-        </CModal>
+        </Modal.Body>
+      </Modal>
 
         <CModal show={showMicModal} onHide={handleCloseMicModal} title='Microphones'>
           <div className='col-10 align-items-center ml-5 mt-2 pl-5 '>
