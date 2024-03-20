@@ -40,6 +40,7 @@ function BottomBar () {
   const [newCamName, setNewCamName] = useState('');
   const holdTimeoutRef = useRef(null);
   const navigate = useNavigate();
+  const [fullscreen, setFullscreen] = useState(true);
 
   useEffect(() => {
     window.CrComLib.subscribeState('n', '1', value=> setPresentationVolume(value));
@@ -286,20 +287,29 @@ const handleNewCamNameChange = (event) => {
       </div>
       {/* /Row */}
 
-        <div className=''>
-            <CModal show={showPowerModal} onHide={handleClosePowerModal} title='System Off?'>
-                <div className='col-10 align-items-center ml-5 mt -5 pl-5 pt-5'>
-                  <h5>Are you sure you want to shut down the system?</h5>
-                  <div className='d-flex col-10 pt-5 pl-6 ml-5 justify-content-between'>
-                    <div className='btn btn-gray-600 rounded-pill px-5 cancelButton text-white ' onClick={handleClosePowerModal}>
-                      <h6 className='px-3'> Cancel</h6>
-                    </div>
-                    <Button className='btn btn-info rounded-pill px-5' onClick={programShutOff}>
-                      <h6 className='px-5'>Yes</h6>
-                    </Button>
-                </div>
-                </div>
-            </CModal>
+        <div>
+        {/* System Off Modal */}
+        <Modal show={showPowerModal} onHide={handleClosePowerModal} fullscreen={fullscreen}>
+          <Modal.Header closeButton className="pb-0">
+            <Modal.Title>
+              <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
+                onClick={handleClosePowerModal}><i class="bi bi-arrow-left"></i></button>System Off?</h1>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="font-size-4 font-size-3-xl p-0">
+            <div className='container-fluid text-center p-5'>
+              <p>Are you sure you want to shut down the system?</p>
+              <div className='d-flex justify-content-center mt-5'>
+                <button className='btn btn-gray-600 col-4 rounded-pill px-5 cancelButton text-white mx-3' onClick={handleClosePowerModal}>
+                  Cancel
+                </button>
+                <button className='btn btn-info col-4 rounded-pill px-5 mx-3' onClick={programShutOff}>
+                  Yes
+                </button>
+              </div>
+            </div>
+          </Modal.Body>
+        </Modal>
         </div>
 
         <CModal show={showVolumeModal} onHide={handleCloseVolumeModal} title='Presentation Volume'>
