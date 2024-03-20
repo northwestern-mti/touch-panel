@@ -2,34 +2,12 @@ import * as React from 'react';
 import { useState, useEffect } from "react";
 import { Button, Row, Col} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-import CModal from './CModal';
 import Opad from './Opad';
 import Camera2 from './Icons/camera2.svg';
 import Lamp from './Icons/lightbulb-fill.svg';
 import Zoom from "./Icons/zoom-in.svg";
-import Pencil from "./Icons/pencil-fill.svg";
-import PencilWhite from "./Icons/pencil-fill-white.svg";
-import Fullscreen from './Icons/arrows-fullscreen.svg';
-import FullscreenWhite from './Icons/arrows-fullscreen-white.svg';
-import CameraIconFillWhite from './Icons/camera-video-fill-white.svg';
-import CameraOffFill from './Icons/camera-video-off-fill.svg';
-import UpArrow from './Icons/chevron-up.svg';
-import DownArrow from './Icons/chevron-down.svg';
 import MinusWhite from './Icons/dashWhite.svg';
 import PlusWhite from './Icons/plusWhite.svg';
-import Eject from './Icons/eject-fill.svg'
-import RewindEnd from './Icons/skip-backward-fill.svg';
-import Rewind from './Icons/rewind-fill.svg';
-import Play from './Icons/play-fill.svg';
-import Pause from './Icons/pause-fill.svg';
-import Stop from './Icons/stop-fill.svg';
-import FastForward from './Icons/fast-forward-fill.svg';
-import FastForwardEnd from './Icons/skip-forward-fill.svg';
-import House from './Icons/house-fill.svg';
-import Menu from './Icons/list.svg';
-import ReturnArrow from './Icons/arrow-left-short.svg';
-import InfoIcon from './Icons/info-circle-fill.svg';
-import Dpad from './Icons/dpad.svg'
 
 function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, showFullScreenJoin,
      annotationJoin, fullscreenJoin, powerOn, powerOff, upJoin, downJoin}) {
@@ -331,7 +309,6 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     Return</button>
                             </div>
                             {/* /Menu Buttons Group */}
-                            
                         </div>
                     </Modal.Body>
             </Modal> 
