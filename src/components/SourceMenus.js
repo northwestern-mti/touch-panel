@@ -26,7 +26,7 @@ const SourceMenus = () => {
         window.CrComLib.subscribeState('b', '215', value=> setShowDocCam(value));
         window.CrComLib.subscribeState('b', '217', value=> setShowConfCall(value));
         window.CrComLib.subscribeState('n', '51', value => setSource1(value));
-        window.CrComLib.subscribeState('n', '52', value => setSource1(value));
+        window.CrComLib.subscribeState('n', '52', value => setSource2(value));
         
     }, []);
 

@@ -47,7 +47,9 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     useEffect(() => {
         window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));
         window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
-        window.CrComLib.subscribeState('s', `${showFullScreenJoin}`, value=> setShowFullScreen(value)); 
+        window.CrComLib.subscribeState('b', `${showFullScreenJoin}`, value=> setShowFullScreen(value)); 
+        window.CrComLib.subscribeState('b', `${displayJoin}`, value=> setIsMuted(value));
+        console.log('the state of isMuted', isMuted)
         
     }, []);
     const toggleMute = (joinNumber) => {
@@ -154,13 +156,13 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             break;
     } 
     switch(sourceSelected) {
-        case 'PC':
+        case 1:
             message = <p>Please use the keyboard and mouse to start.</p>;
             break;
-        case 'Laptop':
+        case 2:
             message = <p>Connect your device to start presenting.</p>;
             break;
-        case 'Wireless':
+        case 3:
             message = <span>
                 <p>Enter the address below into your browser and follow the instructions
                     to present wirelessly.
@@ -169,13 +171,13 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 </span>
             ;
             break;
-        case 'ConfCall':
+        case 6:
             message = <span>
                 <p>Select the button below to dial your number.</p>
                 <Button className="btn btn-info rounded-pill">Conference Call</Button>
             </span>;
             break;
-        case 'DocCam':
+        case 5:
             message = <div className='d-flex flex-column'>
                 <div className='mx-auto mb-5'>
                     <div className='d-flex flex-row'>
@@ -255,7 +257,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
 
             </div>;
             break;
-        case 'BluRay':
+        case 4:
             message = <div>
                 <p className='h6'>Your Blu-Ray content is being displayed.</p>
                 <Button className=' btn-info rounded-pill' onClick={handleShowBluRayModal}>

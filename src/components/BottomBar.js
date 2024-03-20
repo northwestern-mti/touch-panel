@@ -20,7 +20,8 @@ function BottomBar () {
   const [showMicModal, setShowMicModal] = useState(false);
   const [showCamModal, setShowCamModal] = useState(false);
   const [cameraSelected, setCameraSelected] = useState('');
-  const [showControls, setShowControls] = useState(false)
+  const [showControls, setShowControls] = useState(false);
+  const [hasCeilingMics, setHasCeilingMics] = useState(false);
   const [presentationVolume, setPresentationVolume] = useState(0);
   const [MicVolume, setMicVolume] = useState(0);
   const [isPresentationMuted, setIsPresentationMuted] = useState(false);
@@ -46,6 +47,10 @@ function BottomBar () {
     window.CrComLib.subscribeState('n', '2', value=> setMicVolume(value));
     window.CrComLib.subscribeState('n', '41', value=> setNumCameras(value));
     window.CrComLib.subscribeState('n', '46', value=> setNumOfPresets(value));
+    window.CrComLib.subscribeState('b', '20', value => setIsPresentationMuted(value));
+    window.CrComLib.subscribeState('b', '23', value => setIsMicMuted(value));
+    window.CrComLib.subscribeState('b', '111', value => setIsCeilingMicMuted(value));
+    window.CrComLib.subscribeState('b', '112', value => setHasCeilingMics(value));
 
     setPresetNames(Array(numOfPresets).fill('').map((_, index) =>{
       let value;
@@ -290,7 +295,7 @@ switch (cameraSelected) {
               <div
                 className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isCeilingMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
               </div>
-              <div className={`font-size-0 font-size-1-xl ${isPresentationMuted ? '' : ''}`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
+              <div className={`font-size-0 font-size-1-xl`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
             </div>
           </div>
         </div>
