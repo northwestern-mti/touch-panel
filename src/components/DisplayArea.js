@@ -259,10 +259,84 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             break;
         case 'BluRay':
             message = <div>
-                <p className='h6'>Your Blu-Ray content is being displayed.</p>
-                <Button className=' btn-info rounded-pill' onClick={handleShowBluRayModal}>
-                    <h6>Blu-Ray Controls</h6></Button>
-                <CModal show={bluRayClicked} onHide={handleCloseBluRayModal} title="BluRay Controls">
+                <p>Your Blu-Ray content is being displayed.</p>
+                <button className='btn btn-info rounded-pill border-0 mt-3 font-size-3 font-size-4-xl' onClick={handleShowBluRayModal}>
+                    Blu-Ray Controls</button>
+
+                <Modal show={bluRayClicked} onHide={handleCloseBluRayModal} fullscreen={fullscreen}>
+                <Modal.Header closeButton className="pb-0">
+                    <Modal.Title>
+                        <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
+                            onClick={handleCloseBluRayModal}><i class="bi bi-arrow-left"></i></button>Blu-Ray Controls</h1>
+                    </Modal.Title>
+                </Modal.Header>
+                    <Modal.Body className="font-size-2 font-size-3-xl p-0">
+                        <div className='container-fluid text-center'>
+                            {/* Opad Control */}
+                            <div className='col-3 mx-auto pt-2 mb-3 mb-xl-5'>
+                                <Opad centerButton={true} upJoin='271' downJoin='273'
+                                    leftJoin='274' rightJoin='272' centerJoin='275' />
+                            </div>
+                            {/* Media Buttons Row */}
+                            <div className='d-flex flex-row mx-auto my-2 mb-2 mb-xl-5'>
+                                <div className='position-relative bg-white rounded-circle mx-auto pt-2 shadow blurayControls'
+                                    style={{ backgroundColor: (blurayButton === 'Eject') ? 'black' : '' }}
+                                    onClick={() => { blurayControl('59', 'Eject') }}>
+                                        <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-eject-fill font-size-5 font-size-5-xl mx-auto"></i>
+                                </div>
+                                <div className='position-relative bg-white rounded-circle  mx-auto shadow pt-2 blurayControls'
+                                    onClick={() => blurayControl('57', 'Previous')}>
+                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-skip-backward-fill font-size-5 font-size-5-xl mx-auto"></i>
+                                </div>
+                                <div className='position-relative bg-white rounded-circle mx-auto shadow pt-2 blurayControls'
+                                    onClick={() => blurayControl('67', 'Rewind')}>
+                                    <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-rewind-fill font-size-5 font-size-5-xl mx-auto"></i>
+                                </div>
+                                <div className='position-relative bg-white rounded-circle mx-auto shadow pt-2 blurayControls'
+                                    onClick={() => blurayControl('65', 'Pause')}>
+                                    <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-pause-fill font-size-5 font-size-5-xl mx-auto"></i>
+                                </div>
+                                <div className='position-relative bg-white rounded-circle  mx-auto shadow pt-2 blurayControls'
+                                    onClick={() => blurayControl('64', 'Play')}>
+                                    <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-play-fill font-size-5 font-size-5-xl mx-auto"></i>
+                                </div>
+                                <div className='position-relative bg-white rounded-circle  mx-auto shadow pt-2 blurayControls'
+                                    onClick={() => blurayControl('66', 'Stop')}>
+                                    <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-stop-fill font-size-5 font-size-5-xl mx-auto"></i>
+                                </div>
+                                <div className='position-relative bg-white rounded-circle  mx-auto shadow pt-2 blurayControls'
+                                    onClick={() => blurayControl('68', 'Fast Forward')}>
+                                    <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-fast-forward-fill font-size-5 font-size-5-xl mx-auto"></i>
+                                </div>
+                                <div className='position-relative bg-white rounded-circle  mx-auto shadow pt-2 blurayControls'
+                                    onClick={() => blurayControl('58', 'Next')}>
+                                    <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-skip-forward-fill font-size-5 font-size-5-xl mx-auto"></i>
+                                </div>
+                            </div>
+                            {/* /Media Buttons Row */}
+                            {/* Menu Buttons Group */}
+                            <div className='d-flex flex-row flex-wrap justify-content-center'>
+                                <button className='btn btn-info col-4 rounded-pill border-0 my-3 mx-3 font-size-3 font-size-4-xl' onClick={() => blurayControl('60', 'Home')}>
+                                    <i className="d-inline-block bi bi-house-fill me-1"></i>
+                                    Home</button>
+                                <button className='btn btn-info col-4 rounded-pill border-0 my-3 mx-3 font-size-3 font-size-4-xl' onClick={() => blurayControl('62', 'Menu')}>
+                                    <i className="d-inline-block bi bi-list me-1"></i>
+                                    Menu</button>
+                                <button className='btn btn-info col-4 rounded-pill border-0 my-3 mx-3 font-size-3 font-size-4-xl' onClick={() => blurayControl('61', 'Info')}>
+                                    <i className="d-inline-block bi bi-info-circle-fill me-1"></i>
+                                    Info</button>
+                                <button className='btn btn-info col-4 rounded-pill border-0 my-3 mx-3 font-size-3 font-size-4-xl' onClick={() => blurayControl('63', 'Return')}>
+                                    <i className="d-inline-block bi bi-arrow-left me-1"></i>
+                                    Return</button>
+                            </div>
+                            {/* /Menu Buttons Group */}
+                            
+                        </div>
+                    </Modal.Body>
+            </Modal> 
+
+                {/* OLD BLURAY MODAL     */}
+                {/* <CModal show={bluRayClicked} onHide={handleCloseBluRayModal} title="BluRay Controls">
                     
                     <div className='col-3 mx-auto pb-5 pt-2'>
                         <Opad centerButton={true} upJoin='271' downJoin='273' 
@@ -372,7 +446,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             </div>                       
                         </div>
                     </div>
-                </CModal>
+                </CModal> */}
+                {/* /OLD BLURAY MODAL     */}
             </div>;
             break;
         default:

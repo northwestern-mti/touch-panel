@@ -134,6 +134,12 @@ body {
     border-color: var(--cyan);
 }
 
+/* BluRay Media Buttons */
+.blurayControls {
+    width: 4.25em;
+    height: 4.25em;
+}
+
 /* Media Queries */
 
 /* XXL Breakpoint */
