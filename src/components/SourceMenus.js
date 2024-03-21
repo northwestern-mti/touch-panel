@@ -100,7 +100,7 @@ const SourceMenus = () => {
             </button>
             <button type="button"
                 className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source1 == 'BluRay') ? 'sourceSelectActiveLeft' : ''}`} onClick={() => handleSourceSelected1('203', 'BluRay')}>
-                <i className="bi bi-disc me-1"></i> BluRay
+                <i className="bi bi-disc me-1"></i> Blu-Ray
             </button>
         </div>
         
@@ -143,7 +143,7 @@ const SourceMenus = () => {
             </button>
             <button type="button"
                 className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source2 == 'BluRay') ? 'sourceSelectActiveRight' : ''}`} onClick={() => handleSourceSelected2('433', 'BluRay')}>
-                <i className="bi bi-disc me-1"></i> BluRay
+                <i className="bi bi-disc me-1"></i> Blu-Ray
             </button>
         </div>
         </div>

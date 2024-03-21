@@ -157,84 +157,58 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             </span>;
             break;
         case 'DocCam':
-            message = <div className='d-flex flex-column'>
-                <div className='mx-auto mb-5'>
-                    <div className='d-flex flex-row'>
-                        <img 
-                            src={Camera2}
-                            alt='Camera Icon'
-                            className='img-fluid pr-2'/>
-                        <h6 className="mb-0">Autofocus</h6>
-                    </div>
-                    <div className="col-9 custom-control custom-switch custom-switch-md pt-0 mt-0">
-                        <input 
-                            className="custom-control-input"
+            message = <span>
+                {/* /Document Camera settings */}
+                <div className="col d-flex flex-row flex-wrap justify-content-around text-center font-size-3 font-size-4-xl py-3">
+                    <div className="col-6 p-0 mb-3 mb-xl-5">
+                        <div className="form-switch p-0">
+                            <input className="form-check-input border-0 m-0 mb-3 mediumSwitch" 
                             type="checkbox"
                             role="switch"
                             id='autoFocusSwitch'
                             checked={autoFocusSwitch}
                             onChange={toggleAutoFocusSwitch}
-                            style={{backgroundColor:autoFocusSwitch ? '#007FA4' : '#e9ecef'}}
+                            style={{backgroundColor:autoFocusSwitch ? 'var(--bs-info)' : 'var(--bs-gray-300'}}
                             />
-                            <label className="custom-control-label" htmlFor="autoFocusSwitch"></label> 
+                                <label className="d-block form-check-label font-size-2 font-size-4-xl"
+                                    htmlFor="autoFocusSwitch"><i className="bi bi-camera"></i> Autofocus</label>
+                        </div>
                     </div>
-                </div>
-                <div className='mx-auto mb-5'>
-                    <div className='d-flex flex-row'>
-                        <img 
-                            src={Lamp}
-                            alt='Lightbulb Icon'
-                            className='img-fluid pl-0 pr-2'/>
-                            <h6 className=" mb-0">Lamp</h6>   
-                    </div>
-                    <div className="col-9 custom-control custom-switch custom-switch-md pt-0 mt-0">
-                        <input 
-                            className="custom-control-input"
+                    <div className="col-6 p-0 mb-3 mb-xl-5">
+                        <div className="form-switch p-0">
+                            <input className="form-check-input border-0 m-0 mb-3 mediumSwitch" 
                             type="checkbox"
                             role="switch"
                             id='lampSwitch'
                             checked={lampSwitch}
                             onChange={toggleLampSwitch}
-                            style={{backgroundColor:lampSwitch ? '#007FA4' : '#e9ecef'}}
+                            style={{backgroundColor:lampSwitch ? 'var(--bs-info)' : 'var(--bs-gray-300)'}}
                             />
-                            <label className="custom-control-label" htmlFor="lampSwitch"></label> 
+                                <label className="d-block form-check-label font-size-2 font-size-4-xl"
+                                    htmlFor="lampSwitch"><i className="bi bi-lightbulb-fill"></i> Lamp</label>
+                        </div>
                     </div>
-                </div>
-                <div className='mx-auto'>
-                    <div className='d-flex flex-row'>
-                        <img 
-                            src={Zoom}
-                            alt='Zoom-in Icon'
-                            className='img-fluid pr-2 pl-3'/>
-                        <h6>Zoom</h6>
-                    </div>
-                    <div className='d-flex bg-info rounded-pill justify-content-between'>
-                        <div onClick={() => {
+                    {/* Zoom buttons */}
+                    <div className="col-12 mb-2">
+                        <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                            <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-4-xl" onClick={() => {
                             window.CrComLib.publishEvent('b', '83', true);
                             window.CrComLib.publishEvent('b', '83', false);
                             console.log('DocCam Zooming Out') 
-                        }}>
-                            <img 
-                                src={MinusWhite}
-                                alt='Minus Icon'
-                                className='img-fluid'/>
-                        </div>
-                        <div onClick={() => {
+                        }}><i className="bi bi-dash-circle-fill"></i></button>
+                            <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-4-xl" onClick={() => {
                             window.CrComLib.publishEvent('b', '84', true);
                             window.CrComLib.publishEvent('b', '84', false);
                             console.log('DocCam Zooming In') 
-                        }}>
-                            <img 
-                                src={PlusWhite}
-                                alt='Plus Icon'
-                                className='img-fluid'/>
+                        }}><i className="bi bi-plus-circle-fill"></i></button>
                         </div>
-                        
+                        <label className="d-block font-size-2 font-size-4-xl"
+                            for="Zoom buttons"><i className="bi bi-zoom-in"></i> Zoom</label>
                     </div>
+                    {/* /Zoom buttons */}
                 </div>
-                
-
-            </div>;
+                {/* /Document Camera settings */}
+            </span>;
             break;
         case 'BluRay':
             message = <div>
@@ -247,7 +221,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 <Modal.Header closeButton className="pb-0">
                     <Modal.Title>
                         <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
-                            onClick={handleCloseBluRayModal}><i class="bi bi-arrow-left"></i></button>Blu-Ray Controls</h1>
+                            onClick={handleCloseBluRayModal}><i className="bi bi-arrow-left"></i></button>Blu-Ray Controls</h1>
                     </Modal.Title>
                 </Modal.Header>
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
@@ -319,11 +293,11 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             message = <p>Select a source to the {side} to present.</p>
     }
     return(
-        <div>
+        <div className="col-12">
             <div className="row m-0">
                 {(sourceSelected == '') ? 
                     <div className='col bg-dark text-white text-center font-size-3 font-size-4-xl pt-3 pt-xl-4 sourceStatus'>
-                        <p>Display {displayNum} is off</p>
+                        <p>Display {displayNum} is off.</p>
                     </div> : 
                     <div className={`col text-center font-size-3 font-size-4-xl p-2 p-xl-3 sourceStatus ${(isMuted ? 'bg-warning' : 'bg-success')}`}>
                         <p>{isMuted ? `Display ${displayNum} is muted.` : `Display ${displayNum} is on.`}</p>
@@ -361,12 +335,12 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                           <button type="button"
                           className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 circleIcon"
                           style={{ backgroundColor: 'var(--cyan)'}} data-bs-toggle="modal" data-bs-target="#displaySettingsModal">
-                          <i class="d-inline-block bi bi-gear-fill font-size-4 font-size-5-xl mx-auto"></i>
+                          <i className="d-inline-block bi bi-gear-fill font-size-4 font-size-5-xl mx-auto"></i>
                       </button> :
                         <button type="button"
                         className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 circleIcon"
                         style={{ backgroundColor: '#D5D5D5'}} onClick={handleShowDisplayModal}>
-                        <i class="d-inline-block bi bi-gear-fill font-size-4 font-size-5-xl mx-auto"></i>
+                        <i className="d-inline-block bi bi-gear-fill font-size-4 font-size-5-xl mx-auto"></i>
                     </button>}
                     <div className='font-size-2 font-size-3-xl'>Display Settings</div> 
                 </div>
@@ -377,7 +351,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 <Modal.Header closeButton className="pb-0">
                     <Modal.Title>
                         <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
-                            onClick={handleCloseDisplayModal}><i class="bi bi-arrow-left"></i></button>Display Settings</h1>
+                            onClick={handleCloseDisplayModal}><i className="bi bi-arrow-left"></i></button>Display Settings</h1>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="font-size-2 font-size-3-xl p-0 pt-xl-3"> 
@@ -420,13 +394,13 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 </button>
                                 <div className="font-size-3 font-size-4-xl">Preview Fullscreen</div>
                             </div>
-                            <div class="col-4">
+                            <div className="col-4">
                                 <button type="button"
                                     className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${isMuted ? 'text-white' : 'text-dark'}`}
                                     style={{backgroundColor:isMuted ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={() => toggleMute(displayJoin)}>
                                     <i className={`d-inline-block bi ${isMuted ? 'bi-camera-video-off-fill' : 'bi-camera-video-fill'}  font-size-4 font-size-5-xl mx-auto`}></i>
                                 </button>
-                                <div class="font-size-3 font-size-4-xl">Mute Display</div>
+                                <div className="font-size-3 font-size-4-xl">Mute Display</div>
                             </div>
 
                         </div>
@@ -452,7 +426,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                                 console.log('Screen upped')
                                             }}></i></button>
                                 </div>
-                                <span class="d-inline-block font-size-3 font-size-4-xl">Screen Position</span>
+                                <span className="d-inline-block font-size-3 font-size-4-xl">Screen Position</span>
                             </div>
                         </div>
                         {/* /Screen Position Buttons */}
