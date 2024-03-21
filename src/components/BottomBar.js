@@ -322,7 +322,9 @@ const handleNewCamNameChange = (event) => {
         </Modal.Header>
         <Modal.Body className="font-size-4 font-size-3-xl p-0">
           <div className='container-fluid text-center pt-3'>
+            <div className="my-2 my-xl-5">
             <VolumeControl classNam="mx-auto" initialVolume={presentationVolume} plusJoin='22' minusJoin='21' isMuted={isPresentationMuted} volumeJoin='1' />
+            </div>
             <div class="col-12 text-center mb-4">
               <button type="button"
                 className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isPresentationMuted ? 'bg-info' : ''}`}
@@ -351,37 +353,44 @@ const handleNewCamNameChange = (event) => {
         </Modal.Body>
       </Modal>
 
-        <CModal show={showMicModal} onHide={handleCloseMicModal} title='Microphones'>
-          <div className='col-10 align-items-center ml-5 mt-2 pl-5 '>
-            <h5 className='col-3 mb-3'>Microphones</h5>
-            <VolumeControl initialVolume={MicVolume} plusJoin='25' minusJoin='24' isMuted={isMicMuted}/>
-            <div onClick={toggleMicMute} className='col-4 mx-auto pl-5'>
-              <div className={`rounded-circle muteIcon   ${isMicMuted ? 'bg-info' : ''}`}
-                style={{backgroundColor: '#e9ecef', width:'90px', height:'90px'}}>
-                <img 
-                  src={isMicMuted ? MicMuteIcon : MicIcon}
-                  alt={isMicMuted ? 'Microphone Mute icon' : 'Microphone Icon' }
-                  className='img-fluid mt-3'/>
-              </div>
-              <h5 className={`row ${isMicMuted ? '' : 'ml-1'}`}>{isMicMuted ? 'Unmute' : 'Mute'}</h5>
+      {/* Microphone Modal */}
+      <Modal show={showMicModal} onHide={handleCloseMicModal} fullscreen={fullscreen}>
+        <Modal.Header closeButton className="pb-0">
+          <Modal.Title>
+            <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
+              onClick={handleCloseMicModal}><i class="bi bi-arrow-left"></i></button>Microphones</h1>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="font-size-4 font-size-3-xl p-0">
+          <div className='container-fluid text-center pt-1'>
+            <div className="my-3 my-xl-5 mt-4">
+            <VolumeControl initialVolume={MicVolume} plusJoin='25' minusJoin='24' isMuted={isMicMuted} />
             </div>
-            <div>
-              <h5 className='col-4'>Ceiling Mics</h5>
-              <div onClick={toggleCeilingMicMute} className='col-4 mx-auto pl-5'>
-                <div className={`rounded-circle muteIcon   ${isCeilingMicMuted ? 'bg-info' : ''}`}
-                  style={{backgroundColor: '#e9ecef', width:'90px', height:'90px'}}>
-                  <img 
-                    src={isCeilingMicMuted ? MicMuteIcon : MicIcon}
-                    alt={isCeilingMicMuted ? 'Microphone Mute icon' : 'Microphone Icon' }
-                    className='img-fluid mt-3'/>
-                </div>
-                <h5 className={`row ${isCeilingMicMuted ? '' : 'ml-1'}`}>{isCeilingMicMuted ? 'Unmute' : 'Mute'}</h5>
-              </div>
-              
+            <div className="col-12 text-center mb-3 mb-xl-5">
+              <button type="button"
+                className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isMicMuted ? 'bg-info' : ''}`}
+                style={{ backgroundColor: '#D5D5D5' }}
+                onClick={toggleMicMute}>
+                <i
+                  className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
+                ></i>
+              </button>
+              <div className='font-size-3 font-size-4-xl'>{isMicMuted ? 'Unmute Microphones' : 'Mute Microphones'}</div>
+            </div>
+            <div className="col-12 text-center">
+              <button type="button"
+                className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isCeilingMicMuted ? 'bg-info' : ''}`}
+                style={{ backgroundColor: '#D5D5D5' }}
+                onClick={toggleCeilingMicMute}>
+                <i
+                  className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isCeilingMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
+                ></i>
+              </button>
+              <div className='font-size-3 font-size-4-xl'>{isCeilingMicMuted ? 'Unmute Ceiling Mics' : 'Mute Ceiling Mics'}</div>
             </div>
           </div>
-              
-        </CModal>
+        </Modal.Body>
+      </Modal>
 
         <CModal show={showCamModal} onHide={handleCloseCamModal} title="Camera Controls">
           <h5>Select Camera:</h5>
