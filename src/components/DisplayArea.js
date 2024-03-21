@@ -152,7 +152,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         case 'ConfCall':
             message = <span>
                 <p>Select the button below to dial your number.</p>
-                <Button className="btn btn-info rounded-pill">Conference Call</Button>
+                <button className='btn btn-info rounded-pill border-0 mt-3 font-size-3 font-size-4-xl'>
+                    Conference Call</button>
             </span>;
             break;
         case 'DocCam':
