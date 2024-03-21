@@ -36,6 +36,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [isMuted, setIsMuted] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
     const [bluRayClicked, setBluRayClicked] = useState(false);
+    const [confCallClicked, setConfCallClicked] = useState(false);
     const [blurayButton, setBluRayButton] = useState('');
     const [powerSwitch, setPowerSwitch] = useState(true);
     const [lampSwitch, setLampSwitch] = useState(true);
@@ -74,6 +75,14 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const handleCloseBluRayModal = () => {
         console.log("Closing BluRay Modal")
         setBluRayClicked(false);
+    }
+    const handleShowConfCallModal = () => {
+        console.log("Showing ConfCall Modal")
+        setConfCallClicked(true);
+    }
+    const handleCloseConfCallModal = () => {
+        console.log("Closing ConfCall Modal")
+        setConfCallClicked(false);
     }
     const togglePowerSwitch = () => {
         setPowerSwitch(!powerSwitch)
@@ -172,7 +181,14 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         case 'ConfCall':
             message = <span>
                 <p>Select the button below to dial your number.</p>
-                <Button className="btn btn-info rounded-pill">Conference Call</Button>
+                <Button className="btn btn-info rounded-pill" onClick={handleShowConfCallModal}>Conference Call </Button>
+                <CModal show={confCallClicked} onHide={handleCloseConfCallModal} title="Conference Call">
+                    <ch5-keypad 
+                        showExtraButton="true" 
+                        type="primary" 
+                        shape="circle">
+                    </ch5-keypad>
+                </CModal>
             </span>;
             break;
         case 'DocCam':
