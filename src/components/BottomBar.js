@@ -250,36 +250,36 @@ const handleNewCamNameChange = (event) => {
           <span className="d-block">Camera Controls</span>
         </button>
         {/* Audio Statuses */}
-        <div className="col h-100 border-0 pt-1 pt-xl-4 px-1">
+        <div className="col h-100 border-0 pt-1 pt-xl-3 px-1">
           <div className="d-flex justify-content-start mb-xl-2">
-            <div className="col-9 font-size-0 font-size-1-xl m-0 p-0">Presentation Audio</div>
-            <div className="col-3 text-center font-size-1-xl">
+            <div className="col-9 font-size-0 font-size-2-xl m-0 p-0">Presentation Audio</div>
+            <div className="col-3 text-center">
               <div
                 className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isPresentationMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
               </div>
-              <div className={`font-size-0 font-size-1-xl ${isPresentationMuted ? '' : ''}`}>{isPresentationMuted ? "Muted" : 'On'}</div>
+              <div className={`font-size-0 font-size-2-xl ${isPresentationMuted ? '' : ''}`}>{isPresentationMuted ? "Muted" : 'On'}</div>
             </div>
           </div>
-          <div className="d-flex justify-content-start mb-xl-1">
-            <div class="col-9 font-size-0 font-size-1-xl p-0 m-0">
+          <div className="d-flex justify-content-start mb-xl-2">
+            <div class="col-9 font-size-0 font-size-2-xl p-0 m-0">
               Microphones
             </div>
-            <div className="col-3 text-center font-size-1-xl">
+            <div className="col-3 text-center">
               <div
                 className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
               </div>
-              <div className={`font-size-0 font-size-1-xl ${isMicMuted ? '' : ''}`}>{isMicMuted ? "Muted" : 'On'}</div>
+              <div className={`font-size-0 font-size-2-xl ${isMicMuted ? '' : ''}`}>{isMicMuted ? "Muted" : 'On'}</div>
             </div>
           </div>
-          <div className="d-flex justify-content-start mb-xl-1">
-            <div className="col-9 font-size-0 font-size-1-xl p-0 m-0">
+          <div className="d-flex justify-content-start mb-xl-2">
+            <div className="col-9 font-size-0 font-size-2-xl p-0 m-0">
               Ceiling Mics
             </div>
-            <div className="col-3 text-center font-size-1-xl">
+            <div className="col-3 text-center">
               <div
                 className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isCeilingMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
               </div>
-              <div className={`font-size-0 font-size-1-xl ${isPresentationMuted ? '' : ''}`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
+              <div className={`font-size-0 font-size-2-xl ${isPresentationMuted ? '' : ''}`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
             </div>
           </div>
         </div>
@@ -392,7 +392,7 @@ const handleNewCamNameChange = (event) => {
         </Modal.Body>
       </Modal>
 
-      {/* Camera Controls Modal */}
+      {/* NEW Camera Controls Modal */}
       {/* <Modal show={showCamModal} onHide={handleCloseCamModal} fullscreen={fullscreen}>
         <Modal.Header closeButton className="pb-0">
           <Modal.Title>
