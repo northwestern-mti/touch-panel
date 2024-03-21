@@ -123,13 +123,15 @@ function BottomBar () {
   }
   const togglePresentationMute = () => {
     setIsPresentationMuted((prevIsPresentationMuted) => !(prevIsPresentationMuted));
-    if (isPresentationMuted) {
-        window.CrComLib.publishEvent('b', '20', false);
-        console.log('program unmuted')
-    } else{
-        window.CrComLib.publishEvent('b', '20', true);
-        console.log('program muted')
-    }
+    window.CrComLib.publishEvent('b', '20', true);
+    window.CrComLib.publishEvent('b', '20', false);
+    // if (isPresentationMuted) {
+    //     window.CrComLib.publishEvent('b', '20', false);
+    //     console.log('program unmuted')
+    // } else{
+    //     window.CrComLib.publishEvent('b', '20', true);
+    //     console.log('program muted')
+    // }
 }
 const handleCameraClicked = (cameraName, cameraNum) => {
   setCameraSelected(cameraNum);
@@ -143,23 +145,27 @@ const handlePresetClicked = (presetNum) => {
 }
 const toggleMicMute = () => {
   setIsMicMuted((prevIsMicMuted) => !(prevIsMicMuted));
-  if (isMicMuted) {
-      window.CrComLib.publishEvent('b', '23', false);
-      console.log('program unmuted')
-  } else{
-      window.CrComLib.publishEvent('b', '23', true);
-      console.log('program muted')
-  }
+  window.CrComLib.publishEvent('b', '23', true);
+  window.CrComLib.publishEvent('b', '23', false);
+  // if (isMicMuted) {
+  //     window.CrComLib.publishEvent('b', '23', false);
+  //     console.log('program unmuted')
+  // } else{
+  //     window.CrComLib.publishEvent('b', '23', true);
+  //     console.log('program muted')
+  // }
 }
 const toggleCeilingMicMute = () => {
   setIsCeilingMicMuted((prevIsCeilingMicMuted) => !(prevIsCeilingMicMuted));
-  if (isCeilingMicMuted) {
-      window.CrComLib.publishEvent('b', '111', false);
-      console.log('program unmuted')
-  } else{
-      window.CrComLib.publishEvent('b', '111', true);
-      console.log('program muted')
-  }
+  window.CrComLib.publishEvent('b', '111', true);
+  window.CrComLib.publishEvent('b', '111', false);
+  // if (isCeilingMicMuted) {
+  //     window.CrComLib.publishEvent('b', '111', false);
+  //     console.log('program unmuted')
+  // } else{
+  //     window.CrComLib.publishEvent('b', '111', true);
+  //     console.log('program muted')
+  // }
 }
 const sendSignal= (joinNumber, action) => {
   window.CrComLib.publishEvent('b', `${joinNumber}`, true);

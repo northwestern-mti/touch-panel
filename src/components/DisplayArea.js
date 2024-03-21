@@ -54,13 +54,15 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     }, []);
     const toggleMute = (joinNumber) => {
         setIsMuted((prevIsMuted) => !(prevIsMuted));
-        if (isMuted) {
-            window.CrComLib.publishEvent('b', `${joinNumber}`, false);
-            console.log('display unmuted')
-        } else{
-            window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-            console.log('display muted')
-        }
+        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
+        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        // if (isMuted) {
+        //     window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        //     console.log('display unmuted')
+        // } else{
+        //     window.CrComLib.publishEvent('b', `${joinNumber}`, true);
+        //     console.log('display muted')
+        // }
     }
     const handleShowDisplayModal = () => {
         console.log("Showing Display Modal")
