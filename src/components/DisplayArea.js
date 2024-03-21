@@ -152,7 +152,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         case 'ConfCall':
             message = <span>
                 <p>Select the button below to dial your number.</p>
-                <button className='btn btn-info rounded-pill border-0 mt-3 font-size-3 font-size-4-xl'>
+                <button className='btn btn-info rounded-pill border-0 px-3 mt-3 font-size-3 font-size-4-xl'>
                     Conference Call</button>
             </span>;
             break;
@@ -239,7 +239,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         case 'BluRay':
             message = <div>
                 <p>Your Blu-Ray content is being displayed.</p>
-                <button className='btn btn-info rounded-pill border-0 mt-3 font-size-3 font-size-4-xl' onClick={handleShowBluRayModal}>
+                <button className='btn btn-info rounded-pill border-0 px-3 mt-3 font-size-3 font-size-4-xl' onClick={handleShowBluRayModal}>
                     Blu-Ray Controls</button>
                 
                 {/* BluRay Modal */}
