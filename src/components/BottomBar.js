@@ -7,8 +7,6 @@ import './BottomBar.css';
 import CModal from './CModal';
 import Opad from './Opad';
 import VolumeControl from './VolumeControl';
-import MicIcon from './Icons/mic-fill2.svg';
-import MicMuteIcon from './Icons/mic-mute-fill.svg';
 import MinusWhite from './Icons/dashWhite.svg';
 import PlusWhite from './Icons/plusWhite.svg';
 import Zoom from "./Icons/zoom-in.svg";

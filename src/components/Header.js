@@ -53,6 +53,22 @@ function Header(){
                     </button>
                     </div>
                     <div>
+
+                          {/* Help Modal */}
+      {/* <Modal show={showCamModal} onHide={handleCloseCamModal} fullscreen={fullscreen}>
+        <Modal.Header closeButton className="pb-0">
+          <Modal.Title>
+            <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
+              onClick={handleCloseCamModal}><i className="bi bi-arrow-left"></i></button>Camera Controls</h1>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="font-size-4 font-size-3-xl p-0">
+          <div className='container-fluid text-center'>
+
+
+          </div>
+        </Modal.Body>
+      </Modal> */}
                     <CModal show={showHelpModal} onHide={handleCloseHelpModal} title='Help' className="justify-content-center">
                         <div className='content col-10 align-items-center ml-5 pl-5 pt-5'>
                             <h5 className='align-items-center'>Please use the number below to call our support team for assistance</h5>
