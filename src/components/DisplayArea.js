@@ -379,7 +379,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             onClick={handleCloseDisplayModal}><i class="bi bi-arrow-left"></i></button>Display Settings</h1>
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body className="font-size-2 font-size-3-xl">
+                <Modal.Body className="font-size-2 font-size-3-xl p-0 pt-xl-3"> 
                 <div className='container-fluid text-center'>
                         <h2 className='font-size-5 font-size-6-xl my-1 my-xl-2'>Display {displayNum}</h2>
                         {/* Power Button */}

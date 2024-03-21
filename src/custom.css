@@ -111,7 +111,7 @@ body {
 }
 
 .sourceSelectMenu button {
-    line-height: var(--font-size-3)!important;
+    line-height: var(--font-size-2)!important;
     border-radius: 0;
 }
 
@@ -152,28 +152,39 @@ body {
 @media screen and (min-width: 1400px) {
 
     /* Custom Responsive Font Size Classes */
+    .font-size-0-xxl {
+        font-size: var(--font-size-0) !important;
+        line-height: var(--font-size-1)!important;
+    }
+
     .font-size-1-xxl {
         font-size: var(--font-size-1) !important;
+        line-height: var(--font-size-2)!important;
     }
 
     .font-size-2-xxl {
         font-size: var(--font-size-2) !important;
+        line-height: var(--font-size-3)!important;
     }
 
     .font-size-3-xxl {
         font-size: var(--font-size-3) !important;
+        line-height: var(--font-size-4)!important;
     }
 
     .font-size-4-xxl {
         font-size: var(--font-size-4) !important;
+        line-height: var(--font-size-5)!important;
     }
 
     .font-size-5-xxl {
         font-size: var(--font-size-5) !important;
+        line-height: var(--font-size-6)!important;
     }
 
     .font-size-6-xxl {
         font-size: var(--font-size-6) !important;
+        line-height: var(--font-size-7)!important;
     }
 
     .font-size-7-xxl {
@@ -185,8 +196,8 @@ body {
 @media screen and (min-width: 1200px) {
 
     body {
-        font-size: var(--fs-lg);
-        line-height: var(--fs-xl);
+        font-size: var(--font-size-4);
+        line-height: var(--font-size-5);
     }
 
     .circleIcon {
@@ -194,29 +205,44 @@ body {
         height: 100px;
     }
 
+    .sourceSelectMenu button {
+        line-height: var(--font-size-3)!important;
+    }
+
     /* Custom Responsive Font Size Classes */
+    .font-size-0-xl {
+        font-size: var(--font-size-0) !important;
+        line-height: var(--font-size-1)!important;
+    }
+    
     .font-size-1-xl {
         font-size: var(--font-size-1) !important;
+        line-height: var(--font-size-2)!important;
     }
 
     .font-size-2-xl {
         font-size: var(--font-size-2) !important;
+        line-height: var(--font-size-3)!important;
     }
 
     .font-size-3-xl {
         font-size: var(--font-size-3) !important;
+        line-height: var(--font-size-4)!important;
     }
 
     .font-size-4-xl {
         font-size: var(--font-size-4) !important;
+        line-height: var(--font-size-5)!important;
     }
 
     .font-size-5-xl {
         font-size: var(--font-size-5) !important;
+        line-height: var(--font-size-6)!important;
     }
 
     .font-size-6-xl {
         font-size: var(--font-size-6) !important;
+        line-height: var(--font-size-7)!important;
     }
 
     .font-size-7-xl {
@@ -228,28 +254,39 @@ body {
 @media screen and (min-width: 992px) {
 
     /* Custom Responsive Font Size Classes */
+    .font-size-0-lg {
+        font-size: var(--font-size-0) !important;
+        line-height: var(--font-size-1)!important;
+    }
+    
     .font-size-1-lg {
         font-size: var(--font-size-1) !important;
+        line-height: var(--font-size-2)!important;
     }
 
     .font-size-2-lg {
         font-size: var(--font-size-2) !important;
+        line-height: var(--font-size-3)!important;
     }
 
     .font-size-3-lg {
         font-size: var(--font-size-3) !important;
+        line-height: var(--font-size-4)!important;
     }
 
     .font-size-4-lg {
         font-size: var(--font-size-4) !important;
+        line-height: var(--font-size-5)!important;
     }
 
     .font-size-5-lg {
         font-size: var(--font-size-5) !important;
+        line-height: var(--font-size-6)!important;
     }
 
     .font-size-6-lg {
         font-size: var(--font-size-6) !important;
+        line-height: var(--font-size-7)!important;
     }
 
     .font-size-7-lg {
@@ -261,28 +298,39 @@ body {
 @media screen and (min-width: 768px) {
 
     /* Custom Responsive Font Size Classes */
+    .font-size-0-md {
+        font-size: var(--font-size-0) !important;
+        line-height: var(--font-size-1)!important;
+    }
+    
     .font-size-1-md {
         font-size: var(--font-size-1) !important;
+        line-height: var(--font-size-2)!important
     }
 
     .font-size-2-md {
         font-size: var(--font-size-2) !important;
+        line-height: var(--font-size-3)!important
     }
 
     .font-size-3-md {
         font-size: var(--font-size-3) !important;
+        line-height: var(--font-size-4)!important
     }
 
     .font-size-4-md {
         font-size: var(--font-size-4) !important;
+        line-height: var(--font-size-5)!important
     }
 
     .font-size-5-md {
         font-size: var(--font-size-5) !important;
+        line-height: var(--font-size-6)!important
     }
 
     .font-size-6-md {
         font-size: var(--font-size-6) !important;
+        line-height: var(--font-size-7)!important
     }
 
     .font-size-7-md {
@@ -293,28 +341,39 @@ body {
 /* Small Breakpoint */
 @media screen and (min-width: 576px) {
     /* Custom Responsive Font Size Classes */
+    .font-size-0-sm {
+        font-size: var(--font-size-0) !important;
+        line-height: var(--font-size-1)!important;
+    }
+    
     .font-size-1-sm {
         font-size: var(--font-size-1) !important;
+        line-height: var(--font-size-2)!important;
     }
 
     .font-size-2-sm {
         font-size: var(--font-size-2) !important;
+        line-height: var(--font-size-3)!important;
     }
 
     .font-size-3-sm {
         font-size: var(--font-size-3) !important;
+        line-height: var(--font-size-4)!important;
     }
 
     .font-size-4-sm {
         font-size: var(--font-size-4) !important;
+        line-height: var(--font-size-5)!important;
     }
 
     .font-size-5-sm {
         font-size: var(--font-size-5) !important;
+        line-height: var(--font-size-6)!important;
     }
 
     .font-size-6-sm {
         font-size: var(--font-size-6) !important;
+        line-height: var(--font-size-7)!important;
     }
 
     .font-size-7-sm {
