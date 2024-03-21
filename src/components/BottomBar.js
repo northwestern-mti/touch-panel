@@ -364,7 +364,7 @@ const handleNewCamNameChange = (event) => {
         <Modal.Body className="font-size-4 font-size-3-xl p-0">
           <div className='container-fluid text-center pt-1'>
             <div className="my-3 my-xl-5 mt-4">
-            <VolumeControl initialVolume={MicVolume} plusJoin='25' minusJoin='24' isMuted={isMicMuted} />
+              <VolumeControl initialVolume={MicVolume} plusJoin='25' minusJoin='24' isMuted={isMicMuted} />
             </div>
             <div className="col-12 text-center mb-3 mb-xl-5">
               <button type="button"
@@ -392,9 +392,26 @@ const handleNewCamNameChange = (event) => {
         </Modal.Body>
       </Modal>
 
+      {/* Camera Controls Modal */}
+      {/* <Modal show={showCamModal} onHide={handleCloseCamModal} fullscreen={fullscreen}>
+        <Modal.Header closeButton className="pb-0">
+          <Modal.Title>
+            <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
+              onClick={handleCloseCamModal}><i className="bi bi-arrow-left"></i></button>Camera Controls</h1>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="font-size-4 font-size-3-xl p-0">
+          <div className='container-fluid text-center'>
+
+
+          </div>
+        </Modal.Body>
+      </Modal> */}
+
         <CModal show={showCamModal} onHide={handleCloseCamModal} title="Camera Controls">
           <h5>Select Camera:</h5>
           <div className='col-12 d-flex flex-row justify-content-between mx-auto py-4'>
+            stuff here
           {Array.from({length:numCameras}, (_, index) => {
               const camNumber = index + 1
               return(
