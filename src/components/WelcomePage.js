@@ -1,7 +1,7 @@
 import logo from "./Icons/Northwestern_purple.svg"
 import Header from './Header';
-import React, { useState } from 'react';
-import { useNavigate, useState } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate} from 'react-router-dom';
 import './WelcomePage.css'
 
 function WelcomePage() {

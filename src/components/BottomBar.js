@@ -19,7 +19,7 @@ function BottomBar () {
   const [showVolumeModal, setShowVolumeModal] = useState(false);
   const [showMicModal, setShowMicModal] = useState(false);
   const [showCamModal, setShowCamModal] = useState(false);
-  const [cameraSelected, setCameraSelected] = useState('');
+  const [cameraSelected, setCameraSelected] = useState(0);
   const [showControls, setShowControls] = useState(false);
   const [hasCeilingMics, setHasCeilingMics] = useState(false);
   const [presentationVolume, setPresentationVolume] = useState(0);
@@ -47,6 +47,7 @@ function BottomBar () {
     window.CrComLib.subscribeState('n', '2', value=> setMicVolume(value));
     window.CrComLib.subscribeState('n', '41', value=> setNumCameras(value));
     window.CrComLib.subscribeState('n', '46', value=> setNumOfPresets(value));
+    window.CrComLib.subscribeState('n', '42', value=> setCameraSelected(value));
     window.CrComLib.subscribeState('b', '20', value => setIsPresentationMuted(value));
     window.CrComLib.subscribeState('b', '23', value => setIsMicMuted(value));
     window.CrComLib.subscribeState('b', '111', value => setIsCeilingMicMuted(value));
@@ -415,7 +416,7 @@ const handleNewCamNameChange = (event) => {
               </Button>
             </Modal.Footer>
           </Modal>
-          {showControls && (
+          {(cameraSelected !== 0) && (
             <div className='pt-4'>
               <h5 className='pb-3'>{camNames[cameraSelected- 1]}</h5>
               <div className='d-flex flex-row justify-content-between'>
