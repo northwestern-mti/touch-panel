@@ -116,11 +116,11 @@ body {
 }
 
 .sourceSelectActiveLeft {
-    border-right: .6em solid var(--purple) !important;
+    border-right: .6em solid var(--bs-primary) !important;
 }
 
 .sourceSelectActiveRight {
-    border-left: .6em solid var(--purple) !important;
+    border-left: .6em solid var(--bs-primary) !important;
 }
 
 .footerRow button, .modal-header, .modal-header button {
