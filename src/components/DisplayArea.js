@@ -311,9 +311,9 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             </div>
 
             {/* Button Row */}
-            <div className="row align-items-center m-0 font-size-2 font-size-3-xl contentAreaButtonRow">
+            <div className="row align-items-center m-0 text-center font-size-2 font-size-3-xl contentAreaButtonRow">
                 {isMuted ?
-                    <div className="col-6 p-0 text-center">
+                    <div className="col-6 p-0">
                         <button type="button"
                             className="d-flex align-items-center border-0 rounded-circle text-center text-white mx-auto mb-2 circleIcon"
                             style={{ backgroundColor: 'var(--bs-info)' }} data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
@@ -322,7 +322,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         </button>
                         <div className="font-size-2 font-size-3-xl">Unmute Display</div>
                     </div> :
-                    <div className="col-6 p-0 text-center">
+                    <div className="col-6 p-0">
                         <button type="button"
                             className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 circleIcon"
                             style={{ backgroundColor: '#D5D5D5' }} data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
