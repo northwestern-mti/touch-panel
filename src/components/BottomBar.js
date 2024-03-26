@@ -57,9 +57,9 @@ function BottomBar () {
       let value;
       window.CrComLib.subscribeState('s', `${index + 101}`, incomingValue => {
         value = incomingValue;
-        console.log(`value is: ${value}`)
+        // console.log(`value is: ${value}`)
         setTempPresetName(value)
-        console.log(`temp preset name is ${tempPresetName}`);
+        // console.log(`temp preset name is ${tempPresetName}`);
       });
       return value;
     }));
@@ -69,22 +69,22 @@ function BottomBar () {
       let value;
       window.CrComLib.subscribeState('s', `${index + 91}`, incomingValue => {
         value = incomingValue;
-        console.log(`value is: ${value}`)
+        // console.log(`value is: ${value}`)
         setTempCamName(value)
-        console.log(`temp Cam name is ${tempCamName}`);
+        // console.log(`temp Cam name is ${tempCamName}`);
       });
       return value;
     }));
-    console.log(`number of cameras is ${numCameras}`);
-    console.log(`number of presets is ${numOfPresets}`);
-    console.log(`cameras array is ${camNames}`);
-    console.log(`presets array is ${presetNames}`);
+    // console.log(`number of cameras is ${numCameras}`);
+    // console.log(`number of presets is ${numOfPresets}`);
+    // console.log(`cameras array is ${camNames}`);
+    // console.log(`presets array is ${presetNames}`);
     
   }, [numCameras, numOfPresets, tempCamName, tempPresetName])
 
   const programShutOff = () => {
     handleClosePowerModal()
-    navigate('/');
+    navigate('/WelcomePage');
     window.CrComLib.publishEvent('b', '30', true);
     window.CrComLib.publishEvent('b', '30', false);
     
@@ -126,13 +126,7 @@ function BottomBar () {
     setIsPresentationMuted((prevIsPresentationMuted) => !(prevIsPresentationMuted));
     window.CrComLib.publishEvent('b', '20', true);
     window.CrComLib.publishEvent('b', '20', false);
-    // if (isPresentationMuted) {
-    //     window.CrComLib.publishEvent('b', '20', false);
-    //     console.log('program unmuted')
-    // } else{
-    //     window.CrComLib.publishEvent('b', '20', true);
-    //     console.log('program muted')
-    // }
+    
 }
 const handleCameraClicked = (cameraNum) => {
   setCameraSelected(cameraNum);
@@ -148,25 +142,13 @@ const toggleMicMute = () => {
   setIsMicMuted((prevIsMicMuted) => !(prevIsMicMuted));
   window.CrComLib.publishEvent('b', '23', true);
   window.CrComLib.publishEvent('b', '23', false);
-  // if (isMicMuted) {
-  //     window.CrComLib.publishEvent('b', '23', false);
-  //     console.log('program unmuted')
-  // } else{
-  //     window.CrComLib.publishEvent('b', '23', true);
-  //     console.log('program muted')
-  // }
+  
 }
 const toggleCeilingMicMute = () => {
   setIsCeilingMicMuted((prevIsCeilingMicMuted) => !(prevIsCeilingMicMuted));
   window.CrComLib.publishEvent('b', '111', true);
   window.CrComLib.publishEvent('b', '111', false);
-  // if (isCeilingMicMuted) {
-  //     window.CrComLib.publishEvent('b', '111', false);
-  //     console.log('program unmuted')
-  // } else{
-  //     window.CrComLib.publishEvent('b', '111', true);
-  //     console.log('program muted')
-  // }
+  
 }
 const sendSignal= (joinNumber, action) => {
   window.CrComLib.publishEvent('b', `${joinNumber}`, true);

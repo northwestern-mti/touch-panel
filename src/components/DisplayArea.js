@@ -49,6 +49,10 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
         window.CrComLib.subscribeState('b', `${showFullScreenJoin}`, value=> setShowFullScreen(value)); 
         window.CrComLib.subscribeState('b', `${displayJoin}`, value=> setIsMuted(value));
+        window.CrComLib.subscribeState('b', `${powerOn}`, value=> setPowerSwitch(value));
+        window.CrComLib.subscribeState('b', `${annotationJoin}`, value=> setAnnotationPressed(value));
+        window.CrComLib.subscribeState('b', `${fullscreenJoin}`, value=> setFullscreenPressed(value));
+
         console.log('the state of isMuted', isMuted)
         
     }, []);
@@ -56,13 +60,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         setIsMuted((prevIsMuted) => !(prevIsMuted));
         window.CrComLib.publishEvent('b', `${joinNumber}`, true);
         window.CrComLib.publishEvent('b', `${joinNumber}`, false);
-        // if (isMuted) {
-        //     window.CrComLib.publishEvent('b', `${joinNumber}`, false);
-        //     console.log('display unmuted')
-        // } else{
-        //     window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-        //     console.log('display muted')
-        // }
+       
     }
     const handleShowDisplayModal = () => {
         console.log("Showing Display Modal")
@@ -118,27 +116,30 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
 
     const handleAnnotationPressed = () => {
         setAnnotationPressed(!annotationPressed)
-        if (!powerSwitch) {
-            window.CrComLib.publishEvent('b', `${annotationJoin}`, true);
-            window.CrComLib.publishEvent('b', `${annotationJoin}`, false);
-            console.log('Power On')
-        } else {
-            window.CrComLib.publishEvent('b', `${annotationJoin}`, true);
-            window.CrComLib.publishEvent('b', `${annotationJoin}`, false);
-            console.log('Power Off')
-        }
+        window.CrComLib.publishEvent('b', `${annotationJoin}`, true);
+        window.CrComLib.publishEvent('b', `${annotationJoin}`, false);
+        // if (!powerSwitch) {
+            
+        //     console.log('Power On')
+        // } else {
+        //     window.CrComLib.publishEvent('b', `${annotationJoin}`, true);
+        //     window.CrComLib.publishEvent('b', `${annotationJoin}`, false);
+        //     console.log('Power Off')
+        // }
     }
     const handleFullscreenPressed = () => {
-        setFullscreenPressed(!fullscreenPressed)
-        if (!powerSwitch) {
-            window.CrComLib.publishEvent('b', `${fullscreenJoin}`, true);
-            window.CrComLib.publishEvent('b', `${fullscreenJoin}`, false);
-            console.log('Power On')
-        } else {
-            window.CrComLib.publishEvent('b', `${fullscreenJoin}`, true);
-            window.CrComLib.publishEvent('b', `${fullscreenJoin}`, false);
-            console.log('Power Off')
-        }
+        setFullscreenPressed(!fullscreenPressed);
+        window.CrComLib.publishEvent('b', `${fullscreenJoin}`, true);
+        window.CrComLib.publishEvent('b', `${fullscreenJoin}`, false);
+        // if (!powerSwitch) {
+        //     window.CrComLib.publishEvent('b', `${fullscreenJoin}`, true);
+        //     window.CrComLib.publishEvent('b', `${fullscreenJoin}`, false);
+        //     console.log('Power On')
+        // } else {
+        //     window.CrComLib.publishEvent('b', `${fullscreenJoin}`, true);
+        //     window.CrComLib.publishEvent('b', `${fullscreenJoin}`, false);
+        //     console.log('Power Off')
+        // }
     } 
     const blurayControl = (joinNumber, press) => {
         setBluRayButton(press)
@@ -383,7 +384,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     return(
         <div>
             <div className="row m-0">
-                {(sourceSelected == 0) ? 
+                {(sourceSelected == 0 | !powerSwitch) ? 
                     <div className='col bg-dark text-white text-center font-size-3 font-size-4-xl pt-3 pt-xl-4 sourceStatus'>
                         <p>Display {displayNum} is off</p>
                     </div> : 
@@ -459,6 +460,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         </Row>
                         
                         <div className=' row d-flex justify-content-center ml-4 pl-4 mt-4 mb-4 mx-auto'>
+                            {showAnnotation && 
                             <div className='col-4 d-flex flex-column'>
                                 <div className='col-5 rounded-circle  py-4 ml-5 '  onClick={handleAnnotationPressed}
                                     style={{backgroundColor:annotationPressed ? '#007FA4' : '#dee2e6'}}>
@@ -468,7 +470,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                         className='img-fluid'/>
                                 </div>
                                 <h6 className='mr-5'>Annotate</h6>
-                            </div>
+                            </div>}
+                            {showFullScreen && 
                             <div className='col-4 d-flex flex-column'>
                                 <div className='col-5 rounded-circle py-4 ml-5'  onClick={handleFullscreenPressed}
                                     style={{backgroundColor:fullscreenPressed ? '#007FA4' : '#dee2e6'}}>
@@ -478,7 +481,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                         className=''/>
                                 </div>
                                 <h6 className='mr-5'>Preview Fullscreen</h6>
-                            </div>
+                            </div>}
                             <div className='col-4'>
                                 <div className='col-5 rounded-circle py-4  ml-5'  onClick={() => toggleMute(displayJoin)}
                                     style={{backgroundColor:isMuted ? '#dee2e6' : '#007FA4'}}>

@@ -1,16 +1,13 @@
 import logo from "./Icons/Northwestern_purple.svg"
 import Header from './Header';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate} from 'react-router-dom';
 import './WelcomePage.css'
 
 function WelcomePage() {
-  const [programStarted, setProgramStarted] = useState(false)
+  
   const navigate = useNavigate();
-  useEffect(() => {
-    window.CrComLib.subscribeState('b', '26', value=> setProgramStarted(value));
-    
-}, []);
+  
 
 
   const handleClick = () => {
