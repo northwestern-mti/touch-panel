@@ -580,7 +580,7 @@ const handleNewCamNameChange = (event) => {
               <div>
               {/* Camera Controls Row */}
               <div className="row align-items-center">
-                <h2 className="mb-4 mb-xl-4 font-size-4 font-size-5-xl">{camNames[cameraSelected - 1]}</h2>
+                <h2 className="text-center mb-4 mb-xl-4 font-size-4 font-size-5-xl">{camNames[cameraSelected - 1]}</h2>
                 <div className="col-3">
                 <Opad upJoin='241' downJoin='242' leftJoin='243' rightJoin='244'/>
                 </div>
@@ -598,12 +598,12 @@ const handleNewCamNameChange = (event) => {
                 </div>
                 <div className="col">
                 {Array.from({ length: Math.ceil(numOfPresets / 2) }).map((_, rowIndex) => (
-                      <Row key={rowIndex} className="justify-content-center mb-2">
+                      <Row key={rowIndex} className="justify-content-around">
                         {Array.from({ length: 2 }, (_, colIndex) => {
                           const presetNumber = rowIndex * 2 + colIndex + 1;
                           return (
                             presetNumber <= numOfPresets && (
-                              <Col key={presetNumber}>
+                              <Col key={presetNumber} className="col-3">
                                   <LinesEllipsis
                                   component='button'
                                   text={presetNames[presetNumber - 1]}
