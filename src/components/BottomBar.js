@@ -10,6 +10,7 @@ import VolumeControl from './VolumeControl';
 import MinusWhite from './Icons/dashWhite.svg';
 import PlusWhite from './Icons/plusWhite.svg';
 import Zoom from "./Icons/zoom-in.svg";
+import LinesEllipsis from 'react-lines-ellipsis';
 
 
 function BottomBar () {
@@ -391,25 +392,140 @@ const handleNewCamNameChange = (event) => {
       </Modal>
 
       {/* NEW Camera Controls Modal */}
-      {/* <Modal show={showCamModal} onHide={handleCloseCamModal} fullscreen={fullscreen}>
+      <Modal show={showCamModal} onHide={handleCloseCamModal} fullscreen={fullscreen}>
         <Modal.Header closeButton className="pb-0">
           <Modal.Title>
             <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
               onClick={handleCloseCamModal}><i className="bi bi-arrow-left"></i></button>Camera Controls</h1>
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body className="font-size-4 font-size-3-xl p-0">
+        <Modal.Body className="font-size-4 font-size-3-xl p-0 pt-xl-3">
           <div className='container-fluid text-center'>
+          <h2 className="mb-4 font-size-4 font-size-5-xl">Select Camera</h2>
+            <div class="col-12 d-flex flex-wrap justify-content-around">
+              <button className='btn col-3 bg-gray-300 rounded-pill border-0 px-2 mx-2 mb-4 mb-xl-5 font-size-3 font-size-4-xl'><i className="bi bi-camera-video-fill me-2"></i>
+                Camera 1</button>
+              <button className='btn col-3 bg-gray-300 rounded-pill border-0 px-2 mx-2 mb-4 mb-xl-5 font-size-3 font-size-4-xl'><i className="bi bi-camera-video-fill me-2"></i>
+                Camera 2</button>
+              <button className='btn col-3 bg-gray-300 rounded-pill border-0 px-2 mx-2 mb-4 mb-xl-5 font-size-3 font-size-4-xl'><i className="bi bi-camera-video-fill me-2"></i>
+                Camera 3</button>
+           
+            <div className="row align-items-center">
+            <h2 className="mb-4 mb-xl-4 font-size-4 font-size-5-xl">Camera One</h2>
+              <div className="col-3">
+              <Opad upJoin='241' downJoin='242' leftJoin='243' rightJoin='244'/>
+              </div>
+                <div className="col-2 text-center">
+                  <label className="d-block mb-2 font-size-3 font-size-4-xl"
+                    for="Zoom buttons"><i className="bi bi-zoom-in"></i> Zoom</label>
+                  <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                    <button type="button" className="btn btn-info border-0 rounded-start-pill p-3 px-4 ps-xl-5 text-white font-size-2 font-size-4-xl"><i className="bi bi-dash-circle-fill"></i></button>
+                    <button type="button" className="btn bg-info border-0 rounded-end-pill p-3 px-4 pe-xl-5 text-white font-size-2 font-size-4-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                  </div>
+                </div>
+              <div className="col">
+                <div className="d-flex flex-wrap justify-content-center">
+                <LinesEllipsis
+                        component='button'
+                        text='Preset 1'
+                        maxLine='2'
+                        ellipsis='...'
+                        trimRight
+                        basedOn='letters'
+                        className='btn btn-info rounded-pill border-0 py-2 px-3 me-2 mb-3 mb-xl-4 presetButton'
+                      />
+                <LinesEllipsis
+                        component='button'
+                        text='Preset with a shorter amount of text'
+                        maxLine='2'
+                        ellipsis='...'
+                        trimRight
+                        basedOn='letters'
+                        className='btn btn-info rounded-pill border-0 py-2 px-3 me-2 mb-3 mb-xl-4 presetButton'
+                      />
+                <LinesEllipsis
+                        component='button'
+                        text='Preset with a shorter amount of text'
+                        maxLine='2'
+                        ellipsis='...'
+                        trimRight
+                        basedOn='letters'
+                        className='btn btn-info rounded-pill border-0 py-2 px-3 me-2 mb-3 mb-xl-4 presetButton'
+                      />
+                <LinesEllipsis
+                        component='button'
+                        text='Preset with a shorter amount of text'
+                        maxLine='2'
+                        ellipsis='...'
+                        trimRight
+                        basedOn='letters'
+                        className='btn btn-info rounded-pill border-0 py-2 px-3 me-2 mb-3 mb-xl-4 presetButton'
+                      />
+                <LinesEllipsis
+                        component='button'
+                        text='Preset with a shorter amount of text'
+                        maxLine='2'
+                        ellipsis='...'
+                        trimRight
+                        basedOn='letters'
+                        className='btn btn-info rounded-pill border-0 py-2 px-3 me-2 mb-3 mb-xl-4 presetButton'
+                      />
 
+                    <LinesEllipsis
+                      component='button'
+                      text='Preset with a shorter amount of text'
+                      maxLine='2'
+                      ellipsis='...'
+                      trimRight
+                      basedOn='letters'
+                      className='btn btn-info rounded-pill border-0 py-2 px-3 me-1 mb-3 mb-xl-4 presetButton'
+                    />
 
+                    {Array.from({ length: Math.ceil(numOfPresets / 2) }).map((_, rowIndex) => (
+                      <Row key={rowIndex} className="justify-content-center mb-2" style={{height: '4rem'}}>
+                        {Array.from({ length: 2 }, (_, colIndex) => {
+                          const presetNumber = rowIndex * 2 + colIndex + 1;
+                          return (
+                            presetNumber <= numOfPresets && (
+                               <Col key={presetNumber} className="" style={{ width: '12rem' }}>
+                                <LinesEllipsis
+                                  component='button'
+                                  text={presetNames[presetNumber - 1]}
+                                  maxLine='2'
+                                  ellipsis='...'
+                                  trimRight
+                                  basedOn='letters'
+                                  className='btn btn-info rounded-pill border-0 py-2 px-3 me-1 mb-3 mb-xl-4 presetButton'
+                                  key={presetNumber}
+                                  onClick={() => handlePresetClicked(presetNumber)}
+                                  onMouseDown={() => {
+                                    holdTimeoutRef.current = setTimeout(() => handlePresetLongPress(presetNumber), 500);
+                                  }}
+                                  onMouseUp={() => clearTimeout(holdTimeoutRef.current)}
+                                  onMouseLeave={() => clearTimeout(holdTimeoutRef.current)}
+                                  onTouchStart={() => {
+                                    holdTimeoutRef.current = setTimeout(() => handlePresetLongPress(presetNumber), 500);
+                                  }}
+                                  onTouchEnd={() => clearTimeout(holdTimeoutRef.current)}
+                                />
+                                </Col>
+                            )
+                          );
+                        })}
+                      </Row>
+                    ))}
+                  </div>
+              </div>
+
+            </div>
+            </div>
           </div>
         </Modal.Body>
-      </Modal> */}
+      </Modal>
 
         <CModal show={showCamModal} onHide={handleCloseCamModal} title="Camera Controls">
           <h5>Select Camera:</h5>
           <div className='col-12 d-flex flex-row justify-content-between mx-auto py-4'>
-            stuff here
           {Array.from({length:numCameras}, (_, index) => {
               const camNumber = index + 1
               return(
@@ -496,9 +612,15 @@ const handleNewCamNameChange = (event) => {
                           return (
                             presetNumber <= numOfPresets && (
                               <Col key={presetNumber}  className="" style={{width: '12rem'}}>
-                                <Button
-                                  className='btn btn-info rounded-pill mr-4 border-0'
-                                  style={{height: '3.5rem', fontSize: '1.5rem'}}
+                                  <LinesEllipsis
+                                  component='button'
+                                  text={presetNames[presetNumber - 1]}
+                                  maxLine='2'
+                                  ellipsis='...'
+                                  trimRight
+                                  basedOn='letters'
+                                  className='btn btn-info rounded-pill border-0 py-2 px-3 me-1 mb-3 mb-xl-4 presetButton'
+                                  key={presetNumber}
                                   onClick={() => handlePresetClicked(presetNumber)}
                                   onMouseDown={() => {
                                     holdTimeoutRef.current = setTimeout(() => handlePresetLongPress(presetNumber), 500);
@@ -509,9 +631,7 @@ const handleNewCamNameChange = (event) => {
                                     holdTimeoutRef.current = setTimeout(() => handlePresetLongPress(presetNumber), 500);
                                   }}
                                   onTouchEnd={() => clearTimeout(holdTimeoutRef.current)}
-                                >
-                                  {presetNames[presetNumber - 1]}
-                                </Button>
+                                />
                               </Col>
                             )
                           );

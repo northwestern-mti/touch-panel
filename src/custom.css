@@ -146,6 +146,13 @@ body {
     height: 4.25em;
 }
 
+/* Camera Control Presets  */
+.presetButton {
+    width: 9em;
+    font-size: var(--font-size-2);
+    height:calc(var(--font-size-4)*2.25);
+}
+
 /* Media Queries */
 
 /* XXL Breakpoint */
@@ -208,6 +215,13 @@ body {
     .sourceSelectMenu button {
         line-height: var(--font-size-3)!important;
     }
+
+        /* Camera Control Presets  */
+        .presetButton {
+            font-size: var(--font-size-4);
+            line-height: var(--font-size-5);
+            height: calc(var(--font-size-5)*2.25);
+        }
 
     /* Custom Responsive Font Size Classes */
     .font-size-0-xl {
