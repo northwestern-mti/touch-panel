@@ -229,22 +229,22 @@ const handleNewCamNameChange = (event) => {
     <div className="row w-100 position-absolute bottom-0 p-0 m-0 footerRow">
       <div className="col-12 d-flex flex-row align-items-center text-dark p-0 m-0" style={{ backgroundColor: 'var(--bs-secondary)' }}>
         <button type="button"
-          className="col h-100 border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowPowerModal}>
+          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowPowerModal}>
           <i className="d-block bi bi-power mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
           <span className="d-block">System Off</span>
         </button>
         <button type="button"
-          className="col h-100 border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowVolumeModal}>
+          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowVolumeModal}>
           <i className="d-block bi bi-volume-up-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
           <span className="d-block">Presentation Volume</span>
         </button>
         <button type="button"
-          className="col h-100 border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowMicModal}>
+          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowMicModal}>
           <i className="d-block bi bi-mic-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
           <span className="d-block">Microphones</span>
         </button>
         <button type="button"
-          className="col h-100 border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowCamModal}>
+          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowCamModal}>
           <i className="d-block bi bi-camera-video-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
           <span className="d-block">Camera Controls</span>
         </button>
@@ -392,7 +392,7 @@ const handleNewCamNameChange = (event) => {
       </Modal>
 
       {/* NEW Camera Controls Modal */}
-      <Modal show={showCamModal} onHide={handleCloseCamModal} fullscreen={fullscreen}>
+      {/* <Modal show={showCamModal} onHide={handleCloseCamModal} fullscreen={fullscreen}>
         <Modal.Header closeButton className="pb-0">
           <Modal.Title>
             <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
@@ -521,35 +521,36 @@ const handleNewCamNameChange = (event) => {
             </div>
           </div>
         </Modal.Body>
-      </Modal>
-
+      </Modal> */}
+        
+        {/* Nelson's Modal */}
         <CModal show={showCamModal} onHide={handleCloseCamModal} title="Camera Controls">
-          <h5>Select Camera:</h5>
-          <div className='col-12 d-flex flex-row justify-content-between mx-auto py-4'>
-          {Array.from({length:numCameras}, (_, index) => {
+        <h2 className="text-center mb-4 font-size-4 font-size-5-xl">Select Camera</h2>
+        <div className='row'>
+          <div className="col-12 d-flex flex-wrap justify-content-around">
+            {Array.from({ length: numCameras }, (_, index) => {
               const camNumber = index + 1
-              return(
-                <div key={camNumber} 
-                className={`col-4 rounded-pill d-flex flex-row justify-content-center py-2 mr-2`}
-                style={{backgroundColor:(cameraSelected === camNumber) ? "#007FA4" : "#dee2e6"}}
-                onClick={() => handleCameraClicked(index +1)}
-                onMouseDown={() => {
-                  holdTimeoutRef.current = setTimeout(() => handleCamLongPress(camNumber), 500);
-                }}
-                onMouseUp={() => clearTimeout(holdTimeoutRef.current)}
-                onTouchStart={() => {
-                  holdTimeoutRef.current = setTimeout(() => handleCamLongPress(camNumber), 500);
-                }}
-                onTouchEnd={() => clearTimeout(holdTimeoutRef.current)}
-                onMouseLeave={() => clearTimeout(holdTimeoutRef.current)}>
-                <img 
-                  src={(cameraSelected === camNumber) ? CameraSmallWhite : CameraSmall}
-                  alt='Camera Icon'
-                  className=' img-fluid pr-2'/>
-                  <h5 className={`h6 ${(cameraSelected === camNumber) ? 'text-white' : ''}`}>{camNames[camNumber - 1]}</h5>
-                </div>)
+              return (
+                <button key={camNumber}
+                  className={`btn col-3 rounded-pill border-0 px-2 mx-2 mb-4 mb-xl-5 font-size-3 font-size-4-xl ${(cameraSelected === camNumber) ? 'btn-info' : 'bg-gray-300'}`}
+                  onClick={() => handleCameraClicked(index + 1)}
+                  onMouseDown={() => {
+                    holdTimeoutRef.current = setTimeout(() => handleCamLongPress(camNumber), 500);
+                  }}
+                  onMouseUp={() => clearTimeout(holdTimeoutRef.current)}
+                  onTouchStart={() => {
+                    holdTimeoutRef.current = setTimeout(() => handleCamLongPress(camNumber), 500);
+                  }}
+                  onTouchEnd={() => clearTimeout(holdTimeoutRef.current)}
+                  onMouseLeave={() => clearTimeout(holdTimeoutRef.current)}>
+                  <i className="bi bi-camera-video-fill me-2"></i>
+                  {camNames[camNumber - 1]}
+                </button>)
             })}
           </div>
+        </div>
+
+          {/* Camera Rename Modal */}
           <Modal show={camRenameMode} onHide={handleCancelCamRename} dialogClassName='rename-modal vh-40'>
             <Modal.Header closeButton>
               <Modal.Title>Camera Rename</Modal.Title>
@@ -572,46 +573,37 @@ const handleNewCamNameChange = (event) => {
               </Button>
             </Modal.Footer>
           </Modal>
+          {/* /Rename Modal */}
+
           {showControls && (
-            <div className='pt-4'>
-              <h5 className='pb-3'>{camNames[cameraSelected- 1]}</h5>
-              <div className='d-flex flex-row justify-content-between'>
-                <div className='pt-4 pl-4'>
-                  <Opad upJoin='241' downJoin='242' leftJoin='243' rightJoin='244'/>
+            <div>
+              <div>
+              {/* Camera Controls Row */}
+              <div className="row align-items-center">
+                <h2 className="mb-4 mb-xl-4 font-size-4 font-size-5-xl">{camNames[cameraSelected - 1]}</h2>
+                <div className="col-3">
+                <Opad upJoin='241' downJoin='242' leftJoin='243' rightJoin='244'/>
                 </div>
-                <div className='d-flex flex-column pt-5 ml-5'>
-                    <div className='d-flex flex-row ml-3'>
-                      <img 
-                      
-                        src={Zoom}
-                        alt='Zoom-in Icon'
-                        className='img-fluid pr-2'/>
-                      <h6>Zoom</h6>
-                    </div>
-                    <div className='d-flex bg-info rounded-pill justify-content-between px-2'
-                    style={{width:'140px'}}>
-                      <div onClick={() => sendSignal('74', 'Zoom Out')}>
-                          <img 
-                              src={MinusWhite}
-                              alt='Minus Icon'
-                              className='img-fluid'/>
-                      </div>
-                      <div onClick={() => sendSignal('75', 'Zoom In')}>
-                          <img 
-                              src={PlusWhite}
-                              alt='Plus Icon'
-                              className='img-fluid'/>
-                      </div>
-                    </div>
+                <div className="col-2 text-center">
+                  <label className="d-block mb-2 font-size-3 font-size-4-xl"
+                    for="Zoom buttons"><i className="bi bi-zoom-in"></i> Zoom</label>
+                  <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                    <button type="button" className="btn btn-info border-0 rounded-start-pill p-3 px-4 ps-xl-5 text-white font-size-2 font-size-4-xl" onClick={() => sendSignal('74', 'Zoom Out')}>
+                      <i className="bi bi-dash-circle-fill"></i>
+                    </button>
+                    <button type="button" className="btn bg-info border-0 rounded-end-pill p-3 px-4 pe-xl-5 text-white font-size-2 font-size-4-xl" onClick={() => sendSignal('75', 'Zoom In')}>
+                      <i className="bi bi-plus-circle-fill"></i>
+                    </button>
+                  </div>
                 </div>
-                <div className='d-flex flex-column pl-0 pr-3'>
-                  {Array.from({ length: Math.ceil(numOfPresets / 2) }).map((_, rowIndex) => (
-                      <Row key={rowIndex} className="justify-content-center mb-2" style={{height: '4rem'}}>
+                <div className="col">
+                {Array.from({ length: Math.ceil(numOfPresets / 2) }).map((_, rowIndex) => (
+                      <Row key={rowIndex} className="justify-content-center mb-2">
                         {Array.from({ length: 2 }, (_, colIndex) => {
                           const presetNumber = rowIndex * 2 + colIndex + 1;
                           return (
                             presetNumber <= numOfPresets && (
-                              <Col key={presetNumber}  className="" style={{width: '12rem'}}>
+                              <Col key={presetNumber}>
                                   <LinesEllipsis
                                   component='button'
                                   text={presetNames[presetNumber - 1]}
@@ -639,6 +631,8 @@ const handleNewCamNameChange = (event) => {
                       </Row>
                     ))}
                 </div>
+              </div>
+                {/* Preset Rename Modal */}
                 <Modal show={presetRenameMode} onHide={handleCancelPresetRename} dialogClassName='rename-modal vh-40'>
                   <Modal.Header closeButton>
                     <Modal.Title>Preset Rename</Modal.Title>
@@ -661,6 +655,7 @@ const handleNewCamNameChange = (event) => {
                     </Button>
                   </Modal.Footer>
                 </Modal>
+                {/* /Preset Rename Modal */}
               </div>
             </div>
           )}
