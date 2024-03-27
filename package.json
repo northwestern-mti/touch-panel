@@ -19,7 +19,9 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.3",
     "react-scripts": "^5.0.1",
+    "resolve-url-loader": "^5.0.0",
     "sass": "^1.72.0",
+    "sass-loader": "^14.1.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
