@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
 import './Header.css'
 import logo from "./Icons/Northwestern_WHITE.svg"
 import CModal from './CModal';
@@ -7,6 +8,7 @@ import CModal from './CModal';
 function Header(){
     const [classRoom, setClassRoom] = useState("");
     const [showHelpModal, setShowHelpModal] = useState(false);
+    const [fullscreen, setFullscreen] = useState(true);
     const handleShowHelpModal = () => {
         console.log("Showing Modal")
         setShowHelpModal(true);
@@ -22,7 +24,7 @@ function Header(){
     
     return(
         <div className='row p-0 m-0 headerRow'>
-            <div className="col-12 d-flex flex-row justify-content-evenly align-items-center  font-size-3 font-size-4-xl p-0" style={{ backgroundColor: 'var(--primary)' }}>
+            <div className="col-12 d-flex flex-row justify-content-evenly align-items-center  font-size-3 font-size-4-xl p-0" style={{ backgroundColor: 'var(--bs-primary)' }}>
                     <div className="col-3">
                         <img
                             src={logo}
@@ -52,16 +54,28 @@ function Header(){
                         <i className="d-inline-block bi bi-question-lg mx-auto"></i>
                     </button>
                     </div>
-                    <div>
-                    <CModal show={showHelpModal} onHide={handleCloseHelpModal} title='Help' className="justify-content-center">
-                        <div className='content col-10 align-items-center ml-5 pl-5 pt-5'>
-                            <h5 className='align-items-center'>Please use the number below to call our support team for assistance</h5>
-                            <h5 className='text-info'>847-467-7666</h5>
-                            <h5>You are currently in room:</h5>
-                            <h5 className='text-info'>{(classRoom == "") ? 'Room ABCD' : classRoom}</h5>
-                        </div>
-                        
-                    </CModal>
+                <div>
+
+                    {/* Help Modal */}
+                    <Modal show={showHelpModal} onHide={handleCloseHelpModal} fullscreen={fullscreen}>
+                        <Modal.Header closeButton className="pb-0">
+                            <Modal.Title>
+                                <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
+                                    onClick={handleCloseHelpModal}><i className="bi bi-arrow-left"></i></button>Help</h1>
+                            </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body className="font-size-4 font-size-5-xl p-5">
+                            <div className='container-fluid text-center'>
+                                    <p>Please use the number below to call our support team for assistance.</p>
+                                    <span className="d-block text-info fw-bold mt-5">7-ROOM</span>
+                                    <span className="d-block text-muted mb-5">(847-467-7666)</span>
+                                    <p>You are currently in room:</p>
+                                    <span className='text-info fw-bold'>
+                                    {(classRoom == "") ? 'Room ABCD' : classRoom}
+                                </span>
+                            </div>
+                        </Modal.Body>
+                    </Modal>
                     </div>
 
            </div>   

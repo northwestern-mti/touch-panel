@@ -1,34 +1,13 @@
 import * as React from 'react';
 import { useState, useEffect } from "react";
 import { Button, Row, Col} from 'react-bootstrap';
-import CModal from './CModal';
+import Modal from 'react-bootstrap/Modal';
 import Opad from './Opad';
 import Camera2 from './Icons/camera2.svg';
 import Lamp from './Icons/lightbulb-fill.svg';
 import Zoom from "./Icons/zoom-in.svg";
-import Pencil from "./Icons/pencil-fill.svg";
-import PencilWhite from "./Icons/pencil-fill-white.svg";
-import Fullscreen from './Icons/arrows-fullscreen.svg';
-import FullscreenWhite from './Icons/arrows-fullscreen-white.svg';
-import CameraIconFillWhite from './Icons/camera-video-fill-white.svg';
-import CameraOffFill from './Icons/camera-video-off-fill.svg';
-import UpArrow from './Icons/chevron-up.svg';
-import DownArrow from './Icons/chevron-down.svg';
 import MinusWhite from './Icons/dashWhite.svg';
 import PlusWhite from './Icons/plusWhite.svg';
-import Eject from './Icons/eject-fill.svg'
-import RewindEnd from './Icons/skip-backward-fill.svg';
-import Rewind from './Icons/rewind-fill.svg';
-import Play from './Icons/play-fill.svg';
-import Pause from './Icons/pause-fill.svg';
-import Stop from './Icons/stop-fill.svg';
-import FastForward from './Icons/fast-forward-fill.svg';
-import FastForwardEnd from './Icons/skip-forward-fill.svg';
-import House from './Icons/house-fill.svg';
-import Menu from './Icons/list.svg';
-import ReturnArrow from './Icons/arrow-left-short.svg';
-import InfoIcon from './Icons/info-circle-fill.svg';
-import Dpad from './Icons/dpad.svg'
 
 function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, showFullScreenJoin,
      annotationJoin, fullscreenJoin, powerOn, powerOff, upJoin, downJoin}) {
@@ -44,6 +23,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [showFullScreen, setShowFullScreen] = useState(false);
     const [annotationPressed, setAnnotationPressed] = useState(false);
     const [fullscreenPressed, setFullscreenPressed] = useState(false);
+    const [fullscreen, setFullscreen] = useState(true);
     useEffect(() => {
         window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));
         window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
@@ -147,10 +127,10 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     let displayNum;
     switch (side) {
         case 'left':
-            displayNum = "one"
+            displayNum = "One"
             break;
         case 'right':
-            displayNum = "two"
+            displayNum = "Two"
             break;
     } 
     switch(sourceSelected) {
@@ -172,216 +152,152 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         case 'ConfCall':
             message = <span>
                 <p>Select the button below to dial your number.</p>
-                <Button className="btn btn-info rounded-pill">Conference Call</Button>
+                <button className='btn btn-info rounded-pill border-0 px-3 mt-3 font-size-3 font-size-4-xl'>
+                    Conference Call</button>
             </span>;
             break;
         case 'DocCam':
-            message = <div className='d-flex flex-column'>
-                <div className='mx-auto mb-5'>
-                    <div className='d-flex flex-row'>
-                        <img 
-                            src={Camera2}
-                            alt='Camera Icon'
-                            className='img-fluid pr-2'/>
-                        <h6 className="mb-0">Autofocus</h6>
-                    </div>
-                    <div className="col-9 custom-control custom-switch custom-switch-md pt-0 mt-0">
-                        <input 
-                            className="custom-control-input"
+            message = <span>
+                {/* /Document Camera settings */}
+                <div className="col d-flex flex-row flex-wrap justify-content-around text-center font-size-3 font-size-4-xl py-3">
+                    <div className="col-6 p-0 mb-3 mb-xl-5">
+                        <div className="form-switch p-0">
+                            <input className="form-check-input border-0 m-0 mb-3 mediumSwitch" 
                             type="checkbox"
                             role="switch"
                             id='autoFocusSwitch'
                             checked={autoFocusSwitch}
                             onChange={toggleAutoFocusSwitch}
-                            style={{backgroundColor:autoFocusSwitch ? '#007FA4' : '#e9ecef'}}
+                            style={{backgroundColor:autoFocusSwitch ? 'var(--bs-info)' : 'var(--bs-gray-300'}}
                             />
-                            <label className="custom-control-label" htmlFor="autoFocusSwitch"></label> 
+                                <label className="d-block form-check-label font-size-2 font-size-4-xl"
+                                    htmlFor="autoFocusSwitch"><i className="bi bi-camera"></i> Autofocus</label>
+                        </div>
                     </div>
-                </div>
-                <div className='mx-auto mb-5'>
-                    <div className='d-flex flex-row'>
-                        <img 
-                            src={Lamp}
-                            alt='Lightbulb Icon'
-                            className='img-fluid pl-0 pr-2'/>
-                            <h6 className=" mb-0">Lamp</h6>   
-                    </div>
-                    <div className="col-9 custom-control custom-switch custom-switch-md pt-0 mt-0">
-                        <input 
-                            className="custom-control-input"
+                    <div className="col-6 p-0 mb-3 mb-xl-5">
+                        <div className="form-switch p-0">
+                            <input className="form-check-input border-0 m-0 mb-3 mediumSwitch" 
                             type="checkbox"
                             role="switch"
                             id='lampSwitch'
                             checked={lampSwitch}
                             onChange={toggleLampSwitch}
-                            style={{backgroundColor:lampSwitch ? '#007FA4' : '#e9ecef'}}
+                            style={{backgroundColor:lampSwitch ? 'var(--bs-info)' : 'var(--bs-gray-300)'}}
                             />
-                            <label className="custom-control-label" htmlFor="lampSwitch"></label> 
+                                <label className="d-block form-check-label font-size-2 font-size-4-xl"
+                                    htmlFor="lampSwitch"><i className="bi bi-lightbulb-fill"></i> Lamp</label>
+                        </div>
                     </div>
-                </div>
-                <div className='mx-auto'>
-                    <div className='d-flex flex-row'>
-                        <img 
-                            src={Zoom}
-                            alt='Zoom-in Icon'
-                            className='img-fluid pr-2 pl-3'/>
-                        <h6>Zoom</h6>
-                    </div>
-                    <div className='d-flex bg-info rounded-pill justify-content-between'>
-                        <div onClick={() => {
+                    {/* Zoom buttons */}
+                    <div className="col-12 mb-2">
+                        <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                            <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-4-xl" onClick={() => {
                             window.CrComLib.publishEvent('b', '83', true);
                             window.CrComLib.publishEvent('b', '83', false);
                             console.log('DocCam Zooming Out') 
-                        }}>
-                            <img 
-                                src={MinusWhite}
-                                alt='Minus Icon'
-                                className='img-fluid'/>
-                        </div>
-                        <div onClick={() => {
+                        }}><i className="bi bi-dash-circle-fill"></i></button>
+                            <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-4-xl" onClick={() => {
                             window.CrComLib.publishEvent('b', '84', true);
                             window.CrComLib.publishEvent('b', '84', false);
                             console.log('DocCam Zooming In') 
-                        }}>
-                            <img 
-                                src={PlusWhite}
-                                alt='Plus Icon'
-                                className='img-fluid'/>
+                        }}><i className="bi bi-plus-circle-fill"></i></button>
                         </div>
-                        
+                        <label className="d-block font-size-2 font-size-4-xl"
+                            for="Zoom buttons"><i className="bi bi-zoom-in"></i> Zoom</label>
                     </div>
+                    {/* /Zoom buttons */}
                 </div>
-                
-
-            </div>;
+                {/* /Document Camera settings */}
+            </span>;
             break;
         case 'BluRay':
             message = <div>
-                <p className='h6'>Your Blu-Ray content is being displayed.</p>
-                <Button className=' btn-info rounded-pill' onClick={handleShowBluRayModal}>
-                    <h6>Blu-Ray Controls</h6></Button>
-                <CModal show={bluRayClicked} onHide={handleCloseBluRayModal} title="BluRay Controls">
-                    
-                    <div className='col-3 mx-auto pb-5 pt-2'>
-                        <Opad centerButton={true} upJoin='271' downJoin='273' 
-                            leftJoin='274' rightJoin='272' centerJoin='275'/>
-                    </div>
-                    <div className='d-flex flex-row col-10 mx-auto pb-4 pt-2'>
-                        <div className='bg-white rounded-circle  mx-auto pt-2  shadow blurayControls border-black'
-                        style={{width:'80px', height:'80px', backgroundColor: (blurayButton === 'Eject') ? 'black': ''}}
-                        onClick={() => {blurayControl('59', 'Eject')}}>
-                            <img 
-                                src={Eject}
-                                alt='Eject Icon'
-                                className='img-fluid'/>
-                        </div>
-                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
-                            style={{width:'80px', height:'80px'}}
-                            onClick={() => blurayControl('57', 'Previous')}>
-                            <img 
-                                src={RewindEnd}
-                                alt='Skip Backward Icon'
-                                className='img-fluid'/>
-                        </div>
-                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
-                            style={{width:'80px', height:'80px'}}
-                            onClick={() => blurayControl('67', 'Rewind')}>
-                            <img 
-                                src={Rewind}
-                                alt='Rewind Icon'
-                                className='img-fluid'/>
-                        </div>
-                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
-                            style={{width:'80px', height:'80px'}}
-                            onClick={() => blurayControl('65', 'Pause')}>
-                            <img 
-                                src={Pause}
-                                alt='Pause Icon'
-                                className='img-fluid'/>
-                        </div>
-                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
-                            style={{width:'80px', height:'80px'}}
-                            onClick={() => blurayControl('64', 'Play')}>
-                            <img 
-                                src={Play}
-                                alt='Play Icon'
-                                className='img-fluid'/>
-                        </div>
-                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
-                            style={{width:'80px', height:'80px'}}
-                            onClick={() => blurayControl('66', 'Stop')}>
-                            <img 
-                                src={Stop}
-                                alt='Stop Icon'
-                                className='img-fluid'/>
-                        </div>
-                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
-                            style={{width:'80px', height:'80px'}}
-                            onClick={() => blurayControl('68', 'Fast Forward')}>
-                            <img 
-                                src={FastForward}
-                                alt='Fast Forward Icon'
-                                className='img-fluid'/>
-                        </div>
-                        <div className='bg-white rounded-circle  mx-auto shadow pt-2 border-black border-1'
-                            style={{width:'80px', height:'80px'}}
-                            onClick={() => blurayControl('58', 'Next')}>
-                            <img 
-                                src={FastForwardEnd}
-                                alt='Skip Forward Icon'
-                                className='img-fluid'/>
-                        </div>
-                    </div>
-                    <div className='pt-4 mb-4'>
-                        <div className='d-flex flex-row py-2 '>
-                            <div className='col-3 bg-info mx-auto rounded-pill d-flex flex-row justify-content-center'
-                            onClick={() => blurayControl('60', 'Home')}>
-                                <img 
-                                    src={House}
-                                    alt='House Icon'
-                                    className='img-fluid pr-2'/>
-                                <h6 className='text-white'>Home</h6>
+                <p>Your Blu-Ray content is being displayed.</p>
+                <button className='btn btn-info rounded-pill border-0 px-3 mt-3 font-size-3 font-size-4-xl' onClick={handleShowBluRayModal}>
+                    Blu-Ray Controls</button>
+                
+                {/* BluRay Modal */}
+                <Modal show={bluRayClicked} onHide={handleCloseBluRayModal} fullscreen={fullscreen}>
+                <Modal.Header closeButton className="pb-0">
+                    <Modal.Title>
+                        <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
+                            onClick={handleCloseBluRayModal}><i className="bi bi-arrow-left"></i></button>Blu-Ray Controls</h1>
+                    </Modal.Title>
+                </Modal.Header>
+                    <Modal.Body className="font-size-2 font-size-3-xl p-0">
+                        <div className='container-fluid text-center'>
+                            {/* Opad Control */}
+                            <div className='col-3 mx-auto pt-2 mb-3 mb-xl-5'>
+                                <Opad centerButton={true} upJoin='271' downJoin='273'
+                                    leftJoin='274' rightJoin='272' centerJoin='275' />
                             </div>
-                            <div className='col-3 bg-info mx-auto rounded-pill d-flex flex-row justify-content-center'
-                            onClick={() => blurayControl('62', 'Menu')}>
-                                <img 
-                                    src={Menu}
-                                    alt='Menu Icon'
-                                    className='img-fluid pr-2'/>
-                                <h6 className='text-white'>Menu</h6>
-                            </div>                       
-                        </div>
-                        <div className='d-flex flex-row pt-3'>
-                            <div className='col-3 mx-auto bg-info rounded-pill d-flex flex-row justify-content-center'
-                            onClick={() => blurayControl('61', 'Info')}>
-                                <img 
-                                    src={InfoIcon}
-                                    alt='Info Icon'
-                                    className='img-fluid pr-2 '/>
-                                <h6 className='text-white pr-4'>Info</h6>
+                            {/* Media Buttons Row */}
+                            <div className='d-flex flex-row mx-auto my-2 mb-2 mb-xl-5'>
+                                <div className='position-relative bg-white rounded-circle mx-auto pt-2 shadow blurayControls'
+                                    style={{ backgroundColor: (blurayButton === 'Eject') ? 'black' : '' }}
+                                    onClick={() => { blurayControl('59', 'Eject') }}>
+                                        <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-eject-fill font-size-5 font-size-5-xl mx-auto"></i>
+                                </div>
+                                <div className='position-relative bg-white rounded-circle  mx-auto shadow pt-2 blurayControls'
+                                    onClick={() => blurayControl('57', 'Previous')}>
+                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-skip-backward-fill font-size-5 font-size-5-xl mx-auto"></i>
+                                </div>
+                                <div className='position-relative bg-white rounded-circle mx-auto shadow pt-2 blurayControls'
+                                    onClick={() => blurayControl('67', 'Rewind')}>
+                                    <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-rewind-fill font-size-5 font-size-5-xl mx-auto"></i>
+                                </div>
+                                <div className='position-relative bg-white rounded-circle mx-auto shadow pt-2 blurayControls'
+                                    onClick={() => blurayControl('65', 'Pause')}>
+                                    <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-pause-fill font-size-5 font-size-5-xl mx-auto"></i>
+                                </div>
+                                <div className='position-relative bg-white rounded-circle  mx-auto shadow pt-2 blurayControls'
+                                    onClick={() => blurayControl('64', 'Play')}>
+                                    <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-play-fill font-size-5 font-size-5-xl mx-auto"></i>
+                                </div>
+                                <div className='position-relative bg-white rounded-circle  mx-auto shadow pt-2 blurayControls'
+                                    onClick={() => blurayControl('66', 'Stop')}>
+                                    <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-stop-fill font-size-5 font-size-5-xl mx-auto"></i>
+                                </div>
+                                <div className='position-relative bg-white rounded-circle  mx-auto shadow pt-2 blurayControls'
+                                    onClick={() => blurayControl('68', 'Fast Forward')}>
+                                    <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-fast-forward-fill font-size-5 font-size-5-xl mx-auto"></i>
+                                </div>
+                                <div className='position-relative bg-white rounded-circle  mx-auto shadow pt-2 blurayControls'
+                                    onClick={() => blurayControl('58', 'Next')}>
+                                    <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-skip-forward-fill font-size-5 font-size-5-xl mx-auto"></i>
+                                </div>
                             </div>
-                            <div className='col-3 bg-info mx-auto rounded-pill d-flex flex-row justify-content-center'
-                            onClick={() => blurayControl('63', 'Return')}>
-                                <img 
-                                    src={ReturnArrow}
-                                    alt='Back Arrow Icon'
-                                    className='img-fluid pr-2 pl-2'/>
-                                <h6 className='text-white'>Return</h6>
-                            </div>                       
+                            {/* /Media Buttons Row */}
+                            {/* Menu Buttons Group */}
+                            <div className='d-flex flex-row flex-wrap justify-content-center'>
+                                <button className='btn btn-info col-4 rounded-pill border-0 my-3 mx-3 font-size-3 font-size-4-xl' onClick={() => blurayControl('60', 'Home')}>
+                                    <i className="d-inline-block bi bi-house-fill me-1"></i>
+                                    Home</button>
+                                <button className='btn btn-info col-4 rounded-pill border-0 my-3 mx-3 font-size-3 font-size-4-xl' onClick={() => blurayControl('62', 'Menu')}>
+                                    <i className="d-inline-block bi bi-list me-1"></i>
+                                    Menu</button>
+                                <button className='btn btn-info col-4 rounded-pill border-0 my-3 mx-3 font-size-3 font-size-4-xl' onClick={() => blurayControl('61', 'Info')}>
+                                    <i className="d-inline-block bi bi-info-circle-fill me-1"></i>
+                                    Info</button>
+                                <button className='btn btn-info col-4 rounded-pill border-0 my-3 mx-3 font-size-3 font-size-4-xl' onClick={() => blurayControl('63', 'Return')}>
+                                    <i className="d-inline-block bi bi-arrow-left me-1"></i>
+                                    Return</button>
+                            </div>
+                            {/* /Menu Buttons Group */}
                         </div>
-                    </div>
-                </CModal>
+                    </Modal.Body>
+            </Modal> 
             </div>;
             break;
         default:
             message = <p>Select a source to the {side} to present.</p>
     }
     return(
-        <div>
+        <div className="col-12">
             <div className="row m-0">
                 {(sourceSelected == '') ? 
                     <div className='col bg-dark text-white text-center font-size-3 font-size-4-xl pt-3 pt-xl-4 sourceStatus'>
-                        <p>Display {displayNum} is off</p>
+                        <p>Display {displayNum} is off.</p>
                     </div> : 
                     <div className={`col text-center font-size-3 font-size-4-xl p-2 p-xl-3 sourceStatus ${(isMuted ? 'bg-warning' : 'bg-success')}`}>
                         <p>{isMuted ? `Display ${displayNum} is muted.` : `Display ${displayNum} is on.`}</p>
@@ -400,7 +316,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     <div className="col-6 p-0 text-center">
                         <button type="button"
                             className="d-flex align-items-center border-0 rounded-circle text-center text-white mx-auto mb-2 circleIcon"
-                            style={{ backgroundColor: 'var(--cyan)' }} data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
+                            style={{ backgroundColor: 'var(--bs-info)' }} data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
                             <i
                                 className="d-inline-block bi bi-camera-video-off font-size-4 font-size-5-xl mx-auto"></i>
                         </button>
@@ -418,102 +334,105 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     {isClicked ? 
                           <button type="button"
                           className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 circleIcon"
-                          style={{ backgroundColor: 'var(--cyan)'}} onClick={handleShowDisplayModal}>
-                          <i class="d-inline-block bi bi-gear-fill font-size-4 font-size-5-xl mx-auto"></i>
+                          style={{ backgroundColor: 'var(--cyan)'}} data-bs-toggle="modal" data-bs-target="#displaySettingsModal">
+                          <i className="d-inline-block bi bi-gear-fill font-size-4 font-size-5-xl mx-auto"></i>
                       </button> :
                         <button type="button"
                         className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 circleIcon"
                         style={{ backgroundColor: '#D5D5D5'}} onClick={handleShowDisplayModal}>
-                        <i class="d-inline-block bi bi-gear-fill font-size-4 font-size-5-xl mx-auto"></i>
+                        <i className="d-inline-block bi bi-gear-fill font-size-4 font-size-5-xl mx-auto"></i>
                     </button>}
                     <div className='font-size-2 font-size-3-xl'>Display Settings</div> 
                 </div>
             </div>
 
-            {/* Display Serttings Modal */}
-            <div>
-                <CModal show={isClicked} onHide={handleCloseDisplayModal} title="Display Settings">
-                    <div className='d-flex flex-column justify-content-center'>
-                        <h5 className='pb-2'>Display {displayNum}</h5>
-                        <Row className='col-4 mx-auto'>
-                            <Col className='mb-0 pt-3 pl-5'><h5>Power</h5></Col>
-                            <Col className='ml-0'>
-                                <div className="custom-control custom-switch custom-switch-lg">
-                                    <input 
-                                        className="custom-control-input"
+            {/* Display Settings Modal */}
+            <Modal show={isClicked} fullscreen={fullscreen} onHide={handleCloseDisplayModal}>
+                <Modal.Header closeButton className="pb-0">
+                    <Modal.Title>
+                        <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
+                            onClick={handleCloseDisplayModal}><i className="bi bi-arrow-left"></i></button>Display Settings</h1>
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="font-size-2 font-size-3-xl p-0 pt-xl-3"> 
+                <div className='container-fluid text-center'>
+                        <h2 className='font-size-5 font-size-6-xl my-1 my-xl-2'>Display {displayNum}</h2>
+                        {/* Power Button */}
+                        <div className="row my-4 my-xl-5">
+                            <div className="col text-center mx-auto">
+                                <div className="form-switch p-0">
+                                    <input
+                                        className="form-check-input m-0 mb-4 border-0 largeSwitch"
                                         type="checkbox"
                                         role="switch"
                                         id="powerSwitch"
                                         checked={powerSwitch}
                                         onChange={togglePowerSwitch}
-                                        style={{backgroundColor:powerSwitch ? '#007FA4' : '#e9ecef'}}
-                                        />
-                                    <label className="custom-control-label" htmlFor="powerSwitch"></label>
-                            
+                                        style={{ backgroundColor: powerSwitch ? '#007FA4' : '#e9ecef' }}
+                                    />
+                                    <label className="d-block form-check-label font-size-3 font-size-4-xl"
+                                        htmlfor="powerSwitch">Power</label>
                                 </div>
-                            </Col>
-                        </Row>
-                        
-                        <div className=' row d-flex justify-content-center ml-4 pl-4 mt-4 mb-4 mx-auto'>
-                            <div className='col-4 d-flex flex-column'>
-                                <div className='col-5 rounded-circle  py-4 ml-5 '  onClick={handleAnnotationPressed}
-                                    style={{backgroundColor:annotationPressed ? '#007FA4' : '#dee2e6'}}>
-                                    <img
-                                        src={annotationPressed ? PencilWhite : Pencil}
-                                        alt='Pencil Icon'
-                                        className='img-fluid'/>
-                                </div>
-                                <h6 className='mr-5'>Annotate</h6>
-                            </div>
-                            <div className='col-4 d-flex flex-column'>
-                                <div className='col-5 rounded-circle py-4 ml-5'  onClick={handleFullscreenPressed}
-                                    style={{backgroundColor:fullscreenPressed ? '#007FA4' : '#dee2e6'}}>
-                                    <img
-                                        src={fullscreenPressed ? FullscreenWhite : Fullscreen}
-                                        alt='Pencil Icon'
-                                        className=''/>
-                                </div>
-                                <h6 className='mr-5'>Preview Fullscreen</h6>
-                            </div>
-                            <div className='col-4'>
-                                <div className='col-5 rounded-circle py-4  ml-5'  onClick={() => toggleMute(displayJoin)}
-                                    style={{backgroundColor:isMuted ? '#dee2e6' : '#007FA4'}}>
-                                    <img
-                                        src={isMuted ? CameraOffFill : CameraIconFillWhite}
-                                        alt='Camera Icon'
-                                        className='img-fluid'/>
-            
-                                </div>
-                                <h6 className='pr-3'>{isMuted ? 'Unmute Display' : "Mute Display"}</h6>
                             </div>
                         </div>
-                        <h5 className='mt-3 mb-2'>Screen Position</h5>
-                        <div className='row justify-content-center ml-4 pl-4 mt-4'>
-                            <div className='col-4 bg-info rounded-pill py-3 mr-4' onClick={() => {
-                                window.CrComLib.publishEvent('b', `${downJoin}`, true);
-                                window.CrComLib.publishEvent('b', `${downJoin}`, false);
-                                console.log('Screen downed')
-                            }}>
-                                <img 
-                                    src={DownArrow}
-                                    alt='Down Arrow'
-                                    className='img-fluid'/>
+                        {/* /Power Button */}
+                        {/* Options */}
+                        <div className="row justify-content-around mb-4 mb-xl-5">
+                            <div className="col-4">
+                                <button type="button"
+                                    className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${annotationPressed ? 'text-white' : 'text-dark'}`}
+                                    style={{backgroundColor:annotationPressed ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={handleAnnotationPressed}>
+                                    <i className="d-inline-block bi bi-pencil-fill font-size-4 font-size-5-xl mx-auto"></i>
+                                </button>
+                                <div className="font-size-3 font-size-4-xl">Annotate</div>
                             </div>
-                            <div className='col-4 bg-info rounded-pill py-3 ml-4' onClick={() => {
-                                window.CrComLib.publishEvent('b', `${upJoin}`, true);
-                                window.CrComLib.publishEvent('b', `${upJoin}`, false);
-                                console.log('Screen upped')
-                            }}>
-                                <img 
-                                    src={UpArrow}
-                                    alt='Up Arrow'
-                                    className='img-fluid'/>
+                            <div className="col-4">
+                                 <button type="button"
+                                    className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${fullscreenPressed ? 'text-white' : 'text-dark'}`}
+                                    style={{backgroundColor:fullscreenPressed ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={handleFullscreenPressed}>
+                                    <i className="d-inline-block bi bi-arrows-fullscreen font-size-4 font-size-5-xl mx-auto"></i>
+                                </button>
+                                <div className="font-size-3 font-size-4-xl">Preview Fullscreen</div>
+                            </div>
+                            <div className="col-4">
+                                <button type="button"
+                                    className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${isMuted ? 'text-white' : 'text-dark'}`}
+                                    style={{backgroundColor:isMuted ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={() => toggleMute(displayJoin)}>
+                                    <i className={`d-inline-block bi ${isMuted ? 'bi-camera-video-off-fill' : 'bi-camera-video-fill'}  font-size-4 font-size-5-xl mx-auto`}></i>
+                                </button>
+                                <div className="font-size-3 font-size-4-xl">Mute Display</div>
+                            </div>
+
+                        </div>
+                     {/* /Options */}
+                     {/* Screen Position Buttons */}
+                        <div className="row">
+                            <div className="col text-center">
+                                <div className="my-3 my-xl-5">
+                                    {/* Down Button */}
+                                    <button type="button"
+                                        className="btn col-4 bg-info border-0 rounded-pill py-2 me-3 text-white fw-bold font-size-3" onClick={() => {
+                                            window.CrComLib.publishEvent('b', `${downJoin}`, true);
+                                            window.CrComLib.publishEvent('b', `${downJoin}`, false);
+                                            console.log('Screen downed')
+                                        }}><i
+                                            className="d-inline-block bi bi-chevron-down font-size-4 font-size-5-xl mx-auto"></i></button>
+                                    {/* Up Button */}
+                                    <button type="button"
+                                        className="btn col-4 bg-info border-0 rounded-pill py-2 text-white fw-bold font-size-3"><i
+                                            className="d-inline-block bi bi-chevron-up font-size-4 font-size-5-xl mx-auto" onClick={() => {
+                                                window.CrComLib.publishEvent('b', `${upJoin}`, true);
+                                                window.CrComLib.publishEvent('b', `${upJoin}`, false);
+                                                console.log('Screen upped')
+                                            }}></i></button>
+                                </div>
+                                <span className="d-inline-block font-size-3 font-size-4-xl">Screen Position</span>
                             </div>
                         </div>
-                        
+                        {/* /Screen Position Buttons */}
                     </div>
-                </CModal>
-            </div>
+                </Modal.Body>
+            </Modal> 
         </div>
     )
 }

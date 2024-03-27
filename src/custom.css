@@ -21,29 +21,7 @@
 }
 
 :root {
-    --blue: #007bff !important;
-    --indigo: #6610f2 !important;
-    --purple: #654C94 !important;
-    --pink: #e83e8c !important;
-    --red: #EF553F !important;
-    --orange: #fd7e14 !important;
-    --yellow: #FFC520 !important;
-    --green: #58B947 !important;
-    --teal: #20c997 !important;
-    --cyan: #007FA4 !important;
-    --white: #fff !important;
-    --gray: #6c757d !important;
-    --gray-dark: #343a40 !important;
-    --primary: #654C94 !important;
-    --secondary: #E2DDEC !important;
-    --success: #58B947 !important;
-    --info: #007FA4 !important;
-    --warning: #FFC520 !important;
-    --danger: #EF553F !important;
-    --light: #f8f9fa !important;
-    --dark: #343a40 !important;
-    --font-family-sans-serif: "Roboto Flex", sans-serif;
-    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+/* Custom Responsive Font Sizes */
     /* size 0 xs */
     --font-size-0: clamp(0.64rem, -0.01vw + 0.64rem, 0.63rem);
     /* size 1 small */
@@ -69,26 +47,32 @@
 
 .font-size-1 {
     font-size: var(--font-size-1) !important;
+    line-height: var(--font-size-2)!important;
 }
 
 .font-size-2 {
     font-size: var(--font-size-2) !important;
+    line-height: var(--font-size-3)!important;
 }
 
 .font-size-3 {
     font-size: var(--font-size-3) !important;
+    line-height: var(--font-size-4)!important;
 }
 
 .font-size-4 {
     font-size: var(--font-size-4) !important;
+    line-height: var(--font-size-5)!important;
 }
 
 .font-size-5 {
     font-size: var(--font-size-5) !important;
+    line-height: var(--font-size-6)!important;
 }
 
 .font-size-6 {
     font-size: var(--font-size-6) !important;
+    line-height: var(--font-size-7)!important;
 }
 
 .font-size-7 {
@@ -127,16 +111,16 @@ body {
 }
 
 .sourceSelectMenu button {
-    line-height: var(--font-size-3)!important;
+    line-height: var(--font-size-2)!important;
     border-radius: 0;
 }
 
 .sourceSelectActiveLeft {
-    border-right: .6em solid var(--purple) !important;
+    border-right: .6em solid var(--bs-primary) !important;
 }
 
 .sourceSelectActiveRight {
-    border-left: .6em solid var(--purple) !important;
+    border-left: .6em solid var(--bs-primary) !important;
 }
 
 .footerRow button, .modal-header, .modal-header button {
@@ -156,34 +140,51 @@ body {
     border-color: var(--cyan);
 }
 
+/* BluRay Media Buttons */
+.blurayControls {
+    width: 4.25em;
+    height: 4.25em;
+}
+
 /* Media Queries */
 
 /* XXL Breakpoint */
 @media screen and (min-width: 1400px) {
 
     /* Custom Responsive Font Size Classes */
+    .font-size-0-xxl {
+        font-size: var(--font-size-0) !important;
+        line-height: var(--font-size-1)!important;
+    }
+
     .font-size-1-xxl {
         font-size: var(--font-size-1) !important;
+        line-height: var(--font-size-2)!important;
     }
 
     .font-size-2-xxl {
         font-size: var(--font-size-2) !important;
+        line-height: var(--font-size-3)!important;
     }
 
     .font-size-3-xxl {
         font-size: var(--font-size-3) !important;
+        line-height: var(--font-size-4)!important;
     }
 
     .font-size-4-xxl {
         font-size: var(--font-size-4) !important;
+        line-height: var(--font-size-5)!important;
     }
 
     .font-size-5-xxl {
         font-size: var(--font-size-5) !important;
+        line-height: var(--font-size-6)!important;
     }
 
     .font-size-6-xxl {
         font-size: var(--font-size-6) !important;
+        line-height: var(--font-size-7)!important;
     }
 
     .font-size-7-xxl {
@@ -195,8 +196,8 @@ body {
 @media screen and (min-width: 1200px) {
 
     body {
-        font-size: var(--fs-lg);
-        line-height: var(--fs-xl);
+        font-size: var(--font-size-4);
+        line-height: var(--font-size-5);
     }
 
     .circleIcon {
@@ -204,29 +205,44 @@ body {
         height: 100px;
     }
 
+    .sourceSelectMenu button {
+        line-height: var(--font-size-3)!important;
+    }
+
     /* Custom Responsive Font Size Classes */
+    .font-size-0-xl {
+        font-size: var(--font-size-0) !important;
+        line-height: var(--font-size-1)!important;
+    }
+    
     .font-size-1-xl {
         font-size: var(--font-size-1) !important;
+        line-height: var(--font-size-2)!important;
     }
 
     .font-size-2-xl {
         font-size: var(--font-size-2) !important;
+        line-height: var(--font-size-3)!important;
     }
 
     .font-size-3-xl {
         font-size: var(--font-size-3) !important;
+        line-height: var(--font-size-4)!important;
     }
 
     .font-size-4-xl {
         font-size: var(--font-size-4) !important;
+        line-height: var(--font-size-5)!important;
     }
 
     .font-size-5-xl {
         font-size: var(--font-size-5) !important;
+        line-height: var(--font-size-6)!important;
     }
 
     .font-size-6-xl {
         font-size: var(--font-size-6) !important;
+        line-height: var(--font-size-7)!important;
     }
 
     .font-size-7-xl {
@@ -238,28 +254,39 @@ body {
 @media screen and (min-width: 992px) {
 
     /* Custom Responsive Font Size Classes */
+    .font-size-0-lg {
+        font-size: var(--font-size-0) !important;
+        line-height: var(--font-size-1)!important;
+    }
+    
     .font-size-1-lg {
         font-size: var(--font-size-1) !important;
+        line-height: var(--font-size-2)!important;
     }
 
     .font-size-2-lg {
         font-size: var(--font-size-2) !important;
+        line-height: var(--font-size-3)!important;
     }
 
     .font-size-3-lg {
         font-size: var(--font-size-3) !important;
+        line-height: var(--font-size-4)!important;
     }
 
     .font-size-4-lg {
         font-size: var(--font-size-4) !important;
+        line-height: var(--font-size-5)!important;
     }
 
     .font-size-5-lg {
         font-size: var(--font-size-5) !important;
+        line-height: var(--font-size-6)!important;
     }
 
     .font-size-6-lg {
         font-size: var(--font-size-6) !important;
+        line-height: var(--font-size-7)!important;
     }
 
     .font-size-7-lg {
@@ -271,28 +298,39 @@ body {
 @media screen and (min-width: 768px) {
 
     /* Custom Responsive Font Size Classes */
+    .font-size-0-md {
+        font-size: var(--font-size-0) !important;
+        line-height: var(--font-size-1)!important;
+    }
+    
     .font-size-1-md {
         font-size: var(--font-size-1) !important;
+        line-height: var(--font-size-2)!important
     }
 
     .font-size-2-md {
         font-size: var(--font-size-2) !important;
+        line-height: var(--font-size-3)!important
     }
 
     .font-size-3-md {
         font-size: var(--font-size-3) !important;
+        line-height: var(--font-size-4)!important
     }
 
     .font-size-4-md {
         font-size: var(--font-size-4) !important;
+        line-height: var(--font-size-5)!important
     }
 
     .font-size-5-md {
         font-size: var(--font-size-5) !important;
+        line-height: var(--font-size-6)!important
     }
 
     .font-size-6-md {
         font-size: var(--font-size-6) !important;
+        line-height: var(--font-size-7)!important
     }
 
     .font-size-7-md {
@@ -303,28 +341,39 @@ body {
 /* Small Breakpoint */
 @media screen and (min-width: 576px) {
     /* Custom Responsive Font Size Classes */
+    .font-size-0-sm {
+        font-size: var(--font-size-0) !important;
+        line-height: var(--font-size-1)!important;
+    }
+    
     .font-size-1-sm {
         font-size: var(--font-size-1) !important;
+        line-height: var(--font-size-2)!important;
     }
 
     .font-size-2-sm {
         font-size: var(--font-size-2) !important;
+        line-height: var(--font-size-3)!important;
     }
 
     .font-size-3-sm {
         font-size: var(--font-size-3) !important;
+        line-height: var(--font-size-4)!important;
     }
 
     .font-size-4-sm {
         font-size: var(--font-size-4) !important;
+        line-height: var(--font-size-5)!important;
     }
 
     .font-size-5-sm {
         font-size: var(--font-size-5) !important;
+        line-height: var(--font-size-6)!important;
     }
 
     .font-size-6-sm {
         font-size: var(--font-size-6) !important;
+        line-height: var(--font-size-7)!important;
     }
 
     .font-size-7-sm {

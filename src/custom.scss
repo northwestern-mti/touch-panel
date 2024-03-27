@@ -1,0 +1,24 @@
+// Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@100;300;400;700;900&display=swap');
+
+// Bootstrap Variable Overrides
+$font-size-base: 2rem;
+$enable-shadows: true;
+$enable-gradients: true;
+$enable-responsive-font-sizes: true;
+$purple: #654C94;
+$primary: $purple;
+$secondary: #E2DDEC;
+$font-family-sans-serif: "Roboto Flex", sans-serif;
+$grid-gutter-width: 32px;
+$black: #342F2E;
+$red: #EF553F;
+$yellow: #FFC520;
+$green: #58B947;
+$cyan: #007FA4;
+
+// Import Bootstrap
+@import '~bootstrap/scss/bootstrap.scss';
+
+// Import Bootstrap Icons
+@import '~bootstrap-icons/font/bootstrap-icons.scss'

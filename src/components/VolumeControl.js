@@ -61,7 +61,7 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
   };
 
   return (
-    <div className="volumeComponent">
+    <div className="volumeComponent justify-content-center">
         <div className="bg-info rounded-circle mr-3" onClick={handleDecreaseVolume}>
             <img
                 src={RemoveIcon}
