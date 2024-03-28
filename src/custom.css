@@ -19,3 +19,388 @@
 .displayAreaRoundIcon i {
     font-size: 1.75em;
 }
+
+:root {
+/* Custom Responsive Font Sizes */
+    /* size 0 xs */
+    --font-size-0: clamp(0.64rem, -0.01vw + 0.64rem, 0.63rem);
+    /* size 1 small */
+    --font-size-1: clamp(0.8rem, 0.08vw + 0.78rem, 0.84rem);
+    /* size 2 base */
+    --font-size-2: clamp(1rem, 0.23vw + 0.94rem, 1.13rem);
+    /* size 3 medium */
+    --font-size-3: clamp(1.25rem, 0.45vw + 1.14rem, 1.5rem);
+    /* size 4 large */
+    --font-size-4: clamp(1.56rem, 0.79vw + 1.36rem, 2rem);
+    /* size 5 xl */
+    --font-size-5: clamp(1.95rem, 1.29vw + 1.63rem, 2.66rem);
+    /* size 6 xxl */
+    --font-size-6: clamp(2.44rem, 2.02vw + 1.94rem, 3.55rem);
+    /* size 7 xxxl */
+    --font-size-7: clamp(3.05rem, 3.06vw + 2.29rem, 4.73rem);
+}
+/* Custom Responsive Font Size Classes (XS breakpoint) */
+.font-size-0 {
+    font-size: var(--font-size-0) !important;
+    line-height: var(--font-size-1)!important;
+}
+
+.font-size-1 {
+    font-size: var(--font-size-1) !important;
+    line-height: var(--font-size-2)!important;
+}
+
+.font-size-2 {
+    font-size: var(--font-size-2) !important;
+    line-height: var(--font-size-3)!important;
+}
+
+.font-size-3 {
+    font-size: var(--font-size-3) !important;
+    line-height: var(--font-size-4)!important;
+}
+
+.font-size-4 {
+    font-size: var(--font-size-4) !important;
+    line-height: var(--font-size-5)!important;
+}
+
+.font-size-5 {
+    font-size: var(--font-size-5) !important;
+    line-height: var(--font-size-6)!important;
+}
+
+.font-size-6 {
+    font-size: var(--font-size-6) !important;
+    line-height: var(--font-size-7)!important;
+}
+
+.font-size-7 {
+    font-size: var(--font-size-7) !important;
+}
+
+body {
+    font-size: var(--font-size-3)!important;
+    line-height: var(--font-size-3)!important;
+}
+
+.headerRow,
+.footerRow {
+    height: 17vh;
+}
+
+.bodyContainer {
+    height: 66vh;
+}
+
+.contentArea {
+    height: 35vh;
+}
+
+.sourceStatus {
+    height: 11vh;
+}
+
+.contentAreaButtonRow {
+    height: 20vh;
+}
+
+.circleIcon {
+    width: 65px;
+    height: 65px;
+}
+
+.sourceSelectMenu button {
+    line-height: var(--font-size-2)!important;
+    border-radius: 0;
+}
+
+.sourceSelectButtonLeft {
+    padding-right:.6em!important;
+}
+
+.sourceSelectActiveLeft {
+    border-right: .6em solid var(--bs-primary) !important;
+    padding-right:0!important;
+}
+
+.sourceSelectButtonRight {
+    padding-left:.6em!important;
+}
+
+.sourceSelectActiveRight {
+    border-left: .6em solid var(--bs-primary) !important;
+    padding-left:0!important;
+}
+
+.modal-header, .modal-header button {
+    background-color:#E2DDEC!important;
+}
+
+.mediumSwitch {
+    transform: scale(1.25);
+}
+
+.largeSwitch {
+    transform: scale(2.25);
+}
+
+.form-check-input:checked {
+    background-color: var(--cyan);
+    border-color: var(--cyan);
+}
+
+/* BluRay Media Buttons */
+.blurayControls {
+    width: 4.25em;
+    height: 4.25em;
+}
+
+/* Camera Control Presets  */
+.presetButton {
+    /* width: 18vw; */
+    font-size: var(--font-size-2);
+    height: calc(var(--font-size-4)*2.25);
+}
+
+/* Media Queries */
+
+/* XXL Breakpoint */
+@media screen and (min-width: 1400px) {
+
+    /* Custom Responsive Font Size Classes */
+    .font-size-0-xxl {
+        font-size: var(--font-size-0) !important;
+        line-height: var(--font-size-1)!important;
+    }
+
+    .font-size-1-xxl {
+        font-size: var(--font-size-1) !important;
+        line-height: var(--font-size-2)!important;
+    }
+
+    .font-size-2-xxl {
+        font-size: var(--font-size-2) !important;
+        line-height: var(--font-size-3)!important;
+    }
+
+    .font-size-3-xxl {
+        font-size: var(--font-size-3) !important;
+        line-height: var(--font-size-4)!important;
+    }
+
+    .font-size-4-xxl {
+        font-size: var(--font-size-4) !important;
+        line-height: var(--font-size-5)!important;
+    }
+
+    .font-size-5-xxl {
+        font-size: var(--font-size-5) !important;
+        line-height: var(--font-size-6)!important;
+    }
+
+    .font-size-6-xxl {
+        font-size: var(--font-size-6) !important;
+        line-height: var(--font-size-7)!important;
+    }
+
+    .font-size-7-xxl {
+        font-size: var(--font-size-7) !important;
+    }
+}
+
+/* XL Breakpoint */
+@media screen and (min-width: 1200px) {
+
+    body {
+        font-size: var(--font-size-4);
+        line-height: var(--font-size-5);
+    }
+
+    .circleIcon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .sourceSelectMenu button {
+        line-height: var(--font-size-3)!important;
+    }
+
+        /* Camera Control Presets  */
+        .presetButton {
+            font-size: var(--font-size-4);
+            line-height: var(--font-size-5);
+            height: calc(var(--font-size-5)*2.25);
+        }
+
+    /* Custom Responsive Font Size Classes */
+    .font-size-0-xl {
+        font-size: var(--font-size-0) !important;
+        line-height: var(--font-size-1)!important;
+    }
+    
+    .font-size-1-xl {
+        font-size: var(--font-size-1) !important;
+        line-height: var(--font-size-2)!important;
+    }
+
+    .font-size-2-xl {
+        font-size: var(--font-size-2) !important;
+        line-height: var(--font-size-3)!important;
+    }
+
+    .font-size-3-xl {
+        font-size: var(--font-size-3) !important;
+        line-height: var(--font-size-4)!important;
+    }
+
+    .font-size-4-xl {
+        font-size: var(--font-size-4) !important;
+        line-height: var(--font-size-5)!important;
+    }
+
+    .font-size-5-xl {
+        font-size: var(--font-size-5) !important;
+        line-height: var(--font-size-6)!important;
+    }
+
+    .font-size-6-xl {
+        font-size: var(--font-size-6) !important;
+        line-height: var(--font-size-7)!important;
+    }
+
+    .font-size-7-xl {
+        font-size: var(--font-size-7) !important;
+    }
+}
+
+/* Large Breakpoint */
+@media screen and (min-width: 992px) {
+
+    /* Custom Responsive Font Size Classes */
+    .font-size-0-lg {
+        font-size: var(--font-size-0) !important;
+        line-height: var(--font-size-1)!important;
+    }
+    
+    .font-size-1-lg {
+        font-size: var(--font-size-1) !important;
+        line-height: var(--font-size-2)!important;
+    }
+
+    .font-size-2-lg {
+        font-size: var(--font-size-2) !important;
+        line-height: var(--font-size-3)!important;
+    }
+
+    .font-size-3-lg {
+        font-size: var(--font-size-3) !important;
+        line-height: var(--font-size-4)!important;
+    }
+
+    .font-size-4-lg {
+        font-size: var(--font-size-4) !important;
+        line-height: var(--font-size-5)!important;
+    }
+
+    .font-size-5-lg {
+        font-size: var(--font-size-5) !important;
+        line-height: var(--font-size-6)!important;
+    }
+
+    .font-size-6-lg {
+        font-size: var(--font-size-6) !important;
+        line-height: var(--font-size-7)!important;
+    }
+
+    .font-size-7-lg {
+        font-size: var(--font-size-7) !important;
+    }
+}
+
+/* Medium Breakpoint */
+@media screen and (min-width: 768px) {
+
+    /* Custom Responsive Font Size Classes */
+    .font-size-0-md {
+        font-size: var(--font-size-0) !important;
+        line-height: var(--font-size-1)!important;
+    }
+    
+    .font-size-1-md {
+        font-size: var(--font-size-1) !important;
+        line-height: var(--font-size-2)!important
+    }
+
+    .font-size-2-md {
+        font-size: var(--font-size-2) !important;
+        line-height: var(--font-size-3)!important
+    }
+
+    .font-size-3-md {
+        font-size: var(--font-size-3) !important;
+        line-height: var(--font-size-4)!important
+    }
+
+    .font-size-4-md {
+        font-size: var(--font-size-4) !important;
+        line-height: var(--font-size-5)!important
+    }
+
+    .font-size-5-md {
+        font-size: var(--font-size-5) !important;
+        line-height: var(--font-size-6)!important
+    }
+
+    .font-size-6-md {
+        font-size: var(--font-size-6) !important;
+        line-height: var(--font-size-7)!important
+    }
+
+    .font-size-7-md {
+        font-size: var(--font-size-7) !important;
+    }
+}
+
+/* Small Breakpoint */
+@media screen and (min-width: 576px) {
+    /* Custom Responsive Font Size Classes */
+    .font-size-0-sm {
+        font-size: var(--font-size-0) !important;
+        line-height: var(--font-size-1)!important;
+    }
+    
+    .font-size-1-sm {
+        font-size: var(--font-size-1) !important;
+        line-height: var(--font-size-2)!important;
+    }
+
+    .font-size-2-sm {
+        font-size: var(--font-size-2) !important;
+        line-height: var(--font-size-3)!important;
+    }
+
+    .font-size-3-sm {
+        font-size: var(--font-size-3) !important;
+        line-height: var(--font-size-4)!important;
+    }
+
+    .font-size-4-sm {
+        font-size: var(--font-size-4) !important;
+        line-height: var(--font-size-5)!important;
+    }
+
+    .font-size-5-sm {
+        font-size: var(--font-size-5) !important;
+        line-height: var(--font-size-6)!important;
+    }
+
+    .font-size-6-sm {
+        font-size: var(--font-size-6) !important;
+        line-height: var(--font-size-7)!important;
+    }
+
+    .font-size-7-sm {
+        font-size: var(--font-size-7) !important;
+    }
+}

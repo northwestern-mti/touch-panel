@@ -1,0 +1,43 @@
+// Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@100;300;400;700;900&display=swap');
+
+// Bootstrap Variable Overrides
+$font-size-base: 2rem;
+$enable-shadows: true;
+$enable-gradients: true;
+$enable-responsive-font-sizes: true;
+$purple: #654C94;
+$primary: $purple;
+$secondary: #E2DDEC;
+$font-family-sans-serif: "Roboto Flex", sans-serif;
+$grid-gutter-width: 32px;
+$black: #342F2E;
+$red: #EF553F;
+$yellow: #FFC520;
+$green: #58B947;
+$cyan: #007FA4;
+
+// Import Bootstrap
+@import '~bootstrap/scss/bootstrap.scss';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+
+// Generate BG utility classes for all colors
+@each $color, $value in $colors {
+    .bg-#{$color} {
+        background-color: $value !important;
+    }
+}
+
+// Generate BG shades for all grays
+@each $key, $value in $grays {
+    .bg-gray-#{$key} {
+        background-color: $value !important;
+    }
+}
+
+// Import Bootstrap Icons
+@import '~bootstrap-icons/font/bootstrap-icons.scss'
