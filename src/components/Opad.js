@@ -10,7 +10,7 @@ const OPad = ({centerButton, upJoin, downJoin, leftJoin, rightJoin, centerJoin})
   };
 
   return (
-    <nav class="o-pad mx-auto">
+    <div class="o-pad mx-auto">
       <div class="up" onClick={() => sendSignal(upJoin, "Up")}>
         <i class="d-inline-block bi bi-caret-up-fill font-size-4 font-size-5-xl "></i>
       </div>
@@ -28,7 +28,7 @@ const OPad = ({centerButton, upJoin, downJoin, leftJoin, rightJoin, centerJoin})
         <div class="position-absolute center-button border-0" onClick={() => sendSignal(centerJoin, "Center")}>
           <i class="d-inline-block bi bi-circle-fill font-size-4 font-size-5-xl mx-auto"></i>
         </div>}
-    </nav>
+    </div>
   );
 };
 
