@@ -21,36 +21,43 @@ function Header(){
     
     
     return(
-        <div className='row p-0 m-0 headerRow'>
-            <div className="col-12 d-flex flex-row justify-content-evenly align-items-center text-white font-size-3 font-size-4-xl p-0" style={{ backgroundColor: 'var(--primary)' }}>
-                    <div className="col-3">
+        <div className='pb-0 px-4 bg-primary  row align-items-center w-100 m-0'>
+            
+                    <div className="col-md-4 pl-0">
                         <img
                             src={logo}
                             alt="Northwestern Logo"
-                            className='img-fluid'
-                            style={{width:'12em', height:'auto'}}/>
+                            className='img-fluid'/>
                     </div>
-                    <div className="col-3 text-center">
-                        <span>{(classRoom == "") ? 'Room ABCD' : classRoom}</span>
+                    <div className="col-md-3 align-items-center">
+                        <h5 className='h6 mb-0 text-white'>{(classRoom == "") ? 'Room ABCD' : classRoom}</h5>
                     </div>
-                    <div className="col-4 text-center">
-                                <span className="d-block mb-2">
+                    <div className="col-md-4 ">
+                        <div className="row text-white ">
+                            <div className="col-md-12 mb-0">
+                                <h5 className='h7 mb-0'>
                                     <ch5-datetime 
                                         displaytype="date" 
                                         styleForDate="MMMM d, yyyy">
                                     </ch5-datetime>
-                                </span>    
-                                <span className='d-inline-block'>
+                                </h5>    
+                            </div>
+                            <div className="col-md-12">
+                                <h5 className='h7 mb-0'>
                                     <ch5-datetime 
                                         displaytype="time">
                                     </ch5-datetime>
-                                </span>
+                                </h5>
+                                
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-2 text-white text-center">
-                    <button type="button"
-                        className="btn d-flex align-items-center rounded-circle mx-auto text-white font-size-4 font-size-5-xl circleIcon" style={{backgroundColor: '#007FA4'}} onClick={handleShowHelpModal}>
-                        <i className="d-inline-block bi bi-question-lg mx-auto"></i>
-                    </button>
+                    <div className="rounded-circle  bg-info help-button ml-1" onClick={handleShowHelpModal}>
+                        <div className='row helpButton text-white'>
+                            <h6 className='h7 col-md-12 mb-0'>?</h6>
+                            <h6 className='h7 col-md-12 mb-0'>Help</h6>
+                        </div>
+                        
                     </div>
                     <div>
                     <CModal show={showHelpModal} onHide={handleCloseHelpModal} title='Help' className="justify-content-center">
@@ -64,7 +71,7 @@ function Header(){
                     </CModal>
                     </div>
 
-           </div>   
+              
         </div>
     );
 
