@@ -115,12 +115,22 @@ body {
     border-radius: 0;
 }
 
+.sourceSelectButtonLeft {
+    padding-right:.6em!important;
+}
+
 .sourceSelectActiveLeft {
     border-right: .6em solid var(--bs-primary) !important;
+    padding-right:0!important;
+}
+
+.sourceSelectButtonRight {
+    padding-left:.6em!important;
 }
 
 .sourceSelectActiveRight {
     border-left: .6em solid var(--bs-primary) !important;
+    padding-left:0!important;
 }
 
 .modal-header, .modal-header button {
