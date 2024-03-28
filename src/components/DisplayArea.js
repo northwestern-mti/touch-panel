@@ -3,11 +3,6 @@ import { useState, useEffect } from "react";
 import { Button, Row, Col} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import Opad from './Opad';
-import Camera2 from './Icons/camera2.svg';
-import Lamp from './Icons/lightbulb-fill.svg';
-import Zoom from "./Icons/zoom-in.svg";
-import MinusWhite from './Icons/dashWhite.svg';
-import PlusWhite from './Icons/plusWhite.svg';
 
 function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, showFullScreenJoin,
      annotationJoin, fullscreenJoin, powerOn, powerOff, upJoin, downJoin}) {
