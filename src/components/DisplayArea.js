@@ -291,7 +291,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         <div className="col-12">
             <div className="row m-0">
                 {(sourceSelected == '') ? 
-                    <div className='col bg-dark text-white text-center font-size-3 font-size-4-xl pt-3 pt-xl-4 sourceStatus'>
+                    <div className='col bg-dark text-white text-center font-size-3 font-size-4-xl p-2 p-xl-3 sourceStatus'>
                         <p>Display {displayNum} is off.</p>
                     </div> : 
                     <div className={`col text-center font-size-3 font-size-4-xl p-2 p-xl-3 sourceStatus ${(isMuted ? 'bg-warning' : 'bg-success')}`}>
