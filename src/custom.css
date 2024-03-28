@@ -4,7 +4,6 @@
 }
 
 /* For input messages */
-
 .inputMessageArea {
     min-height: 50vh;
 }
@@ -18,6 +17,12 @@
 
 .displayAreaRoundIcon i {
     font-size: 1.75em;
+}
+
+/* Conference Call Dialpad */
+.dialpadButton {
+    height: 7.75vw;
+    width: 7.75vw;
 }
 
 :root {
