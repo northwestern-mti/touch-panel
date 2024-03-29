@@ -320,8 +320,7 @@ const handleNewCamNameChange = (event) => {
             </div>
             <div class="col-12 text-center mb-4">
               <button type="button"
-                className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isPresentationMuted ? 'bg-info' : ''}`}
-                style={{ backgroundColor: '#D5D5D5'}}
+                className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isPresentationMuted ? 'bg-info' : 'bg-gray-300'}`}
                 onClick={togglePresentationMute}>
                 <i
                 className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPresentationMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
