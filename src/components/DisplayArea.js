@@ -399,8 +399,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 {isMuted ?
                     <div className="col-6 p-0">
                         <button type="button"
-                            className="d-flex align-items-center border-0 rounded-circle text-center text-white mx-auto mb-2 circleIcon"
-                            style={{ backgroundColor: 'var(--bs-info)' }} data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
+                            className="d-flex align-items-center border-0 rounded-circle text-center text-white mx-auto mb-2 bg-info circleIcon"
+                             data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
                             <i
                                 className="d-inline-block bi bi-camera-video-off font-size-4 font-size-5-xl mx-auto"></i>
                         </button>
@@ -408,8 +408,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     </div> :
                     <div className="col-6 p-0">
                         <button type="button"
-                            className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 circleIcon"
-                            style={{ backgroundColor: '#D5D5D5' }} data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
+                            className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 bg-gray-300 circleIcon"
+                            data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
                             <i className="d-inline-block bi bi-camera-video-fill font-size-4 font-size-5-xl mx-auto"></i>
                         </button>
                         <div className="font-size-2 font-size-3-xl">Mute Display</div>
@@ -417,13 +417,13 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     <div className='col-6 p-0'>
                     {isClicked ? 
                           <button type="button"
-                          className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 circleIcon"
-                          style={{ backgroundColor: 'var(--cyan)'}} data-bs-toggle="modal" data-bs-target="#displaySettingsModal">
+                          className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 bg-info circleIcon"
+                            data-bs-toggle="modal" data-bs-target="#displaySettingsModal">
                           <i className="d-inline-block bi bi-gear-fill font-size-4 font-size-5-xl mx-auto"></i>
                       </button> :
                         <button type="button"
-                        className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 circleIcon"
-                        style={{ backgroundColor: '#D5D5D5'}} onClick={handleShowDisplayModal}>
+                        className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 bg-gray-300 circleIcon"
+                        onClick={handleShowDisplayModal}>
                         <i className="d-inline-block bi bi-gear-fill font-size-4 font-size-5-xl mx-auto"></i>
                     </button>}
                     <div className='font-size-2 font-size-3-xl'>Display Settings</div> 
