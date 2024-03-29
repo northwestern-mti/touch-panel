@@ -492,7 +492,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 <div className="my-3 my-xl-5">
                                     {/* Down Button */}
                                     <button type="button"
-                                        className="btn col-4 bg-info border-0 rounded-pill py-2 me-3 text-white fw-bold font-size-3" onClick={() => {
+                                        className="btn btn-info col-4 border-0 rounded-pill py-2 me-3 text-white fw-bold font-size-3" onClick={() => {
                                             window.CrComLib.publishEvent('b', `${downJoin}`, true);
                                             window.CrComLib.publishEvent('b', `${downJoin}`, false);
                                             console.log('Screen downed')
@@ -500,7 +500,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                             className="d-inline-block bi bi-chevron-down font-size-4 font-size-5-xl mx-auto"></i></button>
                                     {/* Up Button */}
                                     <button type="button"
-                                        className="btn col-4 bg-info border-0 rounded-pill py-2 text-white fw-bold font-size-3"><i
+                                        className="btn btn-info col-4 border-0 rounded-pill py-2 text-white fw-bold font-size-3"><i
                                             className="d-inline-block bi bi-chevron-up font-size-4 font-size-5-xl mx-auto" onClick={() => {
                                                 window.CrComLib.publishEvent('b', `${upJoin}`, true);
                                                 window.CrComLib.publishEvent('b', `${upJoin}`, false);
