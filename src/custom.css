@@ -163,8 +163,8 @@ body {
 
 /* BluRay Media Buttons */
 .blurayControls {
-    width: 4.25em;
-    height: 4.25em;
+    width: 10vw;
+    height: 10vw;
 }
 
 /* Camera Control Presets  */

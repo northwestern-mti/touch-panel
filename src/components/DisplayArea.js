@@ -298,7 +298,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 <button className='btn btn-info rounded-pill border-0 px-3 mt-3 font-size-3 font-size-4-xl' onClick={handleShowBluRayModal}>
                     Blu-Ray Controls</button>
                 
-                {/* BluRay Modal */}
+                {/* Blu-Ray Modal */}
                 <Modal show={bluRayClicked} onHide={handleCloseBluRayModal} fullscreen={fullscreen}>
                 <Modal.Header closeButton className="pb-0">
                     <Modal.Title>
@@ -315,39 +315,39 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             </div>
                             {/* Media Buttons Row */}
                             <div className='d-flex flex-row mx-auto my-2 mb-2 mb-xl-5'>
-                                <div className='position-relative bg-white rounded-circle mx-auto pt-2 shadow blurayControls'
-                                    style={{ backgroundColor: (blurayButton === 'Eject') ? 'black' : '' }}
+                                <button className='btn btn-white border border-1 position-relative rounded-circle mx-auto pt-2 blurayControls'
+                                    style={{backgroundColor: (blurayButton === 'Eject') ? 'black' : '' , color: (blurayButton === 'Eject') ? 'white' : '' }}
                                     onClick={() => { blurayControl('59', 'Eject') }}>
                                         <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-eject-fill font-size-5 font-size-5-xl mx-auto"></i>
-                                </div>
-                                <div className='position-relative bg-white rounded-circle  mx-auto shadow pt-2 blurayControls'
+                                </button>
+                                <button className='position-relative btn btn-white border border-1 rounded-circle  mx-auto pt-2 blurayControls'
                                     onClick={() => blurayControl('57', 'Previous')}>
                                      <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-skip-backward-fill font-size-5 font-size-5-xl mx-auto"></i>
-                                </div>
-                                <div className='position-relative bg-white rounded-circle mx-auto shadow pt-2 blurayControls'
+                                </button>
+                                <button className='position-relative btn btn-white border border-1 rounded-circle mx-auto pt-2 blurayControls'
                                     onClick={() => blurayControl('67', 'Rewind')}>
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-rewind-fill font-size-5 font-size-5-xl mx-auto"></i>
-                                </div>
-                                <div className='position-relative bg-white rounded-circle mx-auto shadow pt-2 blurayControls'
+                                </button>
+                                <button className='position-relative btn btn-white border border-1 rounded-circle mx-auto pt-2 blurayControls'
                                     onClick={() => blurayControl('65', 'Pause')}>
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-pause-fill font-size-5 font-size-5-xl mx-auto"></i>
-                                </div>
-                                <div className='position-relative bg-white rounded-circle  mx-auto shadow pt-2 blurayControls'
+                                </button>
+                                <button className='position-relative btn btn-white border border-1 rounded-circle  mx-auto pt-2 blurayControls'
                                     onClick={() => blurayControl('64', 'Play')}>
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-play-fill font-size-5 font-size-5-xl mx-auto"></i>
-                                </div>
-                                <div className='position-relative bg-white rounded-circle  mx-auto shadow pt-2 blurayControls'
+                                </button>
+                                <button className='position-relative btn btn-white border border-1 rounded-circle  mx-auto pt-2 blurayControls'
                                     onClick={() => blurayControl('66', 'Stop')}>
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-stop-fill font-size-5 font-size-5-xl mx-auto"></i>
-                                </div>
-                                <div className='position-relative bg-white rounded-circle  mx-auto shadow pt-2 blurayControls'
+                                </button>
+                                <button className='position-relative btn btn-white border border-1 rounded-circle  mx-auto pt-2 blurayControls'
                                     onClick={() => blurayControl('68', 'Fast Forward')}>
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-fast-forward-fill font-size-5 font-size-5-xl mx-auto"></i>
-                                </div>
-                                <div className='position-relative bg-white rounded-circle  mx-auto shadow pt-2 blurayControls'
+                                </button>
+                                <button className='position-relative btn btn-white border border-1 rounded-circle  mx-auto pt-2 blurayControls'
                                     onClick={() => blurayControl('58', 'Next')}>
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-skip-forward-fill font-size-5 font-size-5-xl mx-auto"></i>
-                                </div>
+                                </button>
                             </div>
                             {/* /Media Buttons Row */}
                             {/* Menu Buttons Group */}
