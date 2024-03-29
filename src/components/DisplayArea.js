@@ -252,7 +252,6 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             id='autoFocusSwitch'
                             checked={autoFocusSwitch}
                             onChange={toggleAutoFocusSwitch}
-                            style={{backgroundColor:autoFocusSwitch ? 'var(--bs-info)' : 'var(--bs-gray-300'}}
                             />
                                 <label className="d-block form-check-label font-size-2 font-size-4-xl"
                                     htmlFor="autoFocusSwitch"><i className="bi bi-camera"></i> Autofocus</label>
@@ -265,8 +264,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             role="switch"
                             id='lampSwitch'
                             checked={lampSwitch}
-                            onChange={toggleLampSwitch}
-                            style={{backgroundColor:lampSwitch ? 'var(--bs-info)' : 'var(--bs-gray-300)'}}
+                            onChange={toggleLampSwitch}                      
                             />
                                 <label className="d-block form-check-label font-size-2 font-size-4-xl"
                                     htmlFor="lampSwitch"><i className="bi bi-lightbulb-fill"></i> Lamp</label>
@@ -452,7 +450,6 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                         id="powerSwitch"
                                         checked={powerSwitch}
                                         onChange={togglePowerSwitch}
-                                        style={{ backgroundColor: powerSwitch ? '#007FA4' : '#e9ecef' }}
                                     />
                                     <label className="d-block form-check-label font-size-3 font-size-4-xl"
                                         htmlfor="powerSwitch">Power</label>
