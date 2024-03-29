@@ -4,13 +4,14 @@ import React from 'react';
 import { useNavigate} from 'react-router-dom';
 import './WelcomePage.css'
 
-function WelcomePage() {
+function WelcomePage({programStarted, setProgramStarted}) {
   
   const navigate = useNavigate();
   
 
 
   const handleClick = () => {
+    setProgramStarted(programStarted);
       window.CrComLib.publishEvent('b','1', true);
       window.CrComLib.publishEvent('b','1', false);
       console.log("Signal sent to processor");

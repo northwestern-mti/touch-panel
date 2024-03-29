@@ -58,12 +58,15 @@ function App() {
     console.log('system status', programStarted)
     
 }, [programStarted]);
+  const handleProgramStartedChange = (value) => {
+    setProgramStarted(value)
+  }
   return (
     <div className="App">
       <Routes>
-        <Route  index path="/WelcomePage" element={<WelcomePage/>}/>
-        <Route path="/HomePage" element={<HomePage/>}/>
-        <Route path="/" element={programStarted ? <Navigate to="/HomePage" /> : <Navigate to="/WelcomePage" />} />
+        <Route  index path="/WelcomePage" element={<WelcomePage programStarted={programStarted} setProgramStarted={handleProgramStartedChange}/>}/>
+        <Route path="/HomePage" element={<HomePage programStarted={programStarted} setProgramStarted={handleProgramStartedChange}/>}/>
+        <Route path="/" element={!programStarted ? <Navigate to="/HomePage" /> : <Navigate to="/WelcomePage" />} />
       </Routes>
     </div>
   );

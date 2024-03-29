@@ -14,7 +14,7 @@ import PlusWhite from './Icons/plusWhite.svg';
 import Zoom from "./Icons/zoom-in.svg";
 
 
-function BottomBar () {
+function BottomBar ({programStarted, setProgramStarted}) {
   const [showPowerModal, setShowPowerModal] = useState(false);
   const [showVolumeModal, setShowVolumeModal] = useState(false);
   const [showMicModal, setShowMicModal] = useState(false);
@@ -83,7 +83,8 @@ function BottomBar () {
   }, [numCameras, numOfPresets, tempCamName, tempPresetName])
 
   const programShutOff = () => {
-    handleClosePowerModal()
+    handleClosePowerModal();
+    setProgramStarted(!programStarted)
     navigate('/WelcomePage');
     window.CrComLib.publishEvent('b', '30', true);
     window.CrComLib.publishEvent('b', '30', false);
