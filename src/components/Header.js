@@ -33,7 +33,7 @@ function Header(){
                             style={{width:'12em', height:'auto'}}/>
                     </div>
                     <div className="col-3 text-center text-white">
-                        <span>{(classRoom == "") ? 'Room ABCD' : classRoom}</span>
+                        <span>{(classRoom == "") ? 'Room' : classRoom}</span>
                     </div>
                     <div className="col-4 text-center text-white">
                                 <span className="d-block mb-2">
@@ -71,7 +71,7 @@ function Header(){
                                     <span className="d-block text-muted mb-5">(847-467-7666)</span>
                                     <p>You are currently in room:</p>
                                     <span className='text-info fw-bold'>
-                                    {(classRoom == "") ? 'Room ABCD' : classRoom}
+                                    {(classRoom == "") ? 'Room' : classRoom}
                                 </span>
                             </div>
                         </Modal.Body>

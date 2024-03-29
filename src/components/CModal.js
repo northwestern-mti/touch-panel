@@ -36,7 +36,7 @@ const CModal = ({ show, onHide, title, children }) => {
             <Button variant="link" onClick={onHide} className="btn-close text-white border-0">
             </Button>
           </div>
-          <div className="modal-body text-black">
+          <div className="modal-body text-black p-0">
             {children}
           </div>
         </div>

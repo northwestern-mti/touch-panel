@@ -165,7 +165,7 @@ body {
 .presetButton {
     /* width: 18vw; */
     font-size: var(--font-size-2);
-    height: calc(var(--font-size-4)*2.25);
+    /* height: calc(var(--font-size-4)*2.25); */
 }
 
 /* Media Queries */
@@ -235,12 +235,12 @@ body {
         .presetButton {
             font-size: var(--font-size-4);
             line-height: var(--font-size-5);
-            height: calc(var(--font-size-5)*2.25);
+            /* height: calc(var(--font-size-5)*2.25); */
         }
 
     /* Custom Responsive Font Size Classes */
     .font-size-0-xl {
-        font-size: var(--font-size-0) !important;
+        font-size: var(--font-size-0)!important;
         line-height: var(--font-size-1)!important;
     }
     

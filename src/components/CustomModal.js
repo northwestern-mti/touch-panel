@@ -16,7 +16,7 @@ const CustomModal = ({ show, onHide, title, children }) => {
                     className='img-fluid' />
           </Button>
           <Modal.Title className="text-center ">{title}</Modal.Title>
-          <Button variant="link" onClick={onHide} className="btn-close text-white ">
+          <Button variant="link" onClick={onHide} className="btn-close text-white">
                 <img
                     src={X}
                     alt='X'
