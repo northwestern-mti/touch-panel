@@ -61,20 +61,20 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
   };
 
   return (
-    <div className="volumeComponent">
-        <div className="bg-info rounded-circle mr-3" onClick={handleDecreaseVolume}>
+    <div className="d-flex flex-row justify-content-center align-items-center">
+        <button className="bg-info border-0 rounded-circle me-2 volumeButton" onClick={handleDecreaseVolume}>
             <img
                 src={RemoveIcon}
                 alt="Minus Icon"
                 className="img-fluid"/>
-        </div>
-        <div className="squaresContainer mr-3">{renderSquares()}</div>
-        <div className="bg-info rounded-circle" onClick={handleIncreaseVolume}>
+        </button>
+        <div className="squaresContainer me-2">{renderSquares()}</div>
+        <button className="bg-info border-0 rounded-circle volumeButton" onClick={handleIncreaseVolume}>
             <img
                 src={AddIcon}
                 alt="Plus Icon"
                 className="img-fluid"/>
-        </div>
+        </button>
         
     </div>
   );

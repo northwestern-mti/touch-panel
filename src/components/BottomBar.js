@@ -1,17 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Row, Col, InputGroup, FormControl, Modal } from 'react-bootstrap'; 
-import CameraSmall from './Icons/camera-video-small.svg';
-import CameraSmallWhite from './Icons/camera-video-white.svg';
 import './BottomBar.css';
 import CModal from './CModal';
 import Opad from './Opad';
 import VolumeControl from './VolumeControl';
-import MicIcon from './Icons/mic-fill2.svg';
-import MicMuteIcon from './Icons/mic-mute-fill.svg';
-import MinusWhite from './Icons/dashWhite.svg';
-import PlusWhite from './Icons/plusWhite.svg';
-import Zoom from "./Icons/zoom-in.svg";
 
 
 function BottomBar ({programStarted, setProgramStarted}) {
@@ -41,6 +34,7 @@ function BottomBar ({programStarted, setProgramStarted}) {
   const [newCamName, setNewCamName] = useState('');
   const holdTimeoutRef = useRef(null);
   const navigate = useNavigate();
+  const [fullscreen, setFullscreen] = useState(true);
 
   useEffect(() => {
     window.CrComLib.subscribeState('n', '1', value=> setPresentationVolume(value));
@@ -129,6 +123,7 @@ function BottomBar ({programStarted, setProgramStarted}) {
     window.CrComLib.publishEvent('b', '20', false);
     
 }
+
 const handleCameraClicked = (cameraNum) => {
   setCameraSelected(cameraNum);
   setShowControls(true);
@@ -222,58 +217,58 @@ const handleNewCamNameChange = (event) => {
   return (
 
     <div className="row w-100 position-absolute bottom-0 p-0 m-0 footerRow">
-      <div className="col-12 d-flex flex-row align-items-center text-dark p-0 m-0" style={{ backgroundColor: 'var(--secondary)' }}>
+      <div className="col-12 d-flex flex-row align-items-center text-dark p-0 m-0" style={{ backgroundColor: 'var(--bs-secondary)' }}>
         <button type="button"
-          className="col h-100 border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowPowerModal}>
+          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowPowerModal}>
           <i className="d-block bi bi-power mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
           <span className="d-block">System Off</span>
         </button>
         <button type="button"
-          className="col h-100 border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowVolumeModal}>
+          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowVolumeModal}>
           <i className="d-block bi bi-volume-up-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
           <span className="d-block">Presentation Volume</span>
         </button>
         <button type="button"
-          className="col h-100 border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowMicModal}>
+          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowMicModal}>
           <i className="d-block bi bi-mic-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
           <span className="d-block">Microphones</span>
         </button>
         <button type="button"
-          className="col h-100 border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowCamModal}>
+          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowCamModal}>
           <i className="d-block bi bi-camera-video-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
           <span className="d-block">Camera Controls</span>
         </button>
         {/* Audio Statuses */}
-        <div className="col h-100 border-end border-dark pt-1 pt-xl-4 px-1">
-          <div className="d-flex justify-content-between mb-xl-1">
-            <div className="col-9 font-size-0 font-size-1-xl m-0 p-0">Presentation Audio</div>
-            <div className="col-1 font-size-1-xl">
+        <div className="col h-100 border-0 py-1 pt-xl-2 px-1">
+          <div className="d-flex justify-content-start mb-0">
+            <div className="col-9 font-size-0 font-size-2-xl m-0 p-0">Presentation Audio</div>
+            <div className="col-3 text-center">
               <div
                 className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isPresentationMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
               </div>
-              <div className={`font-size-0 font-size-1-xl ${isPresentationMuted ? '' : ''}`}>{isPresentationMuted ? "Muted" : 'On'}</div>
+              <div className={`font-size-0 font-size-2-xl ${isPresentationMuted ? '' : ''}`}>{isPresentationMuted ? "Muted" : 'On'}</div>
             </div>
           </div>
-          <div className="d-flex justify-content-between mb-xl-1">
-            <div class="col-6 font-size-0 font-size-1-xl p-0 m-0">
+          <div className="d-flex justify-content-start mb-0">
+            <div class="col-9 font-size-0 font-size-2-xl p-0 m-0">
               Microphones
             </div>
-            <div className="col-1 font-size-1-xl">
+            <div className="col-3 text-center">
               <div
                 className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
               </div>
-              <div className={`font-size-0 font-size-1-xl ${isMicMuted ? '' : ''}`}>{isMicMuted ? "Muted" : 'On'}</div>
+              <div className={`font-size-0 font-size-2-xl ${isMicMuted ? '' : ''}`}>{isMicMuted ? "Muted" : 'On'}</div>
             </div>
           </div>
-          <div className="d-flex justify-content-between mb-xl-1">
-            <div className="col-6 font-size-0 font-size-1-xl p-0 m-0">
+          <div className="d-flex justify-content-start mb-0">
+            <div className="col-9 font-size-0 font-size-2-xl p-0 m-0">
               Ceiling Mics
             </div>
-            <div className="col-1 font-size-1-xl">
+            <div className="col-3 text-center">
               <div
                 className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isCeilingMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
               </div>
-              <div className={`font-size-0 font-size-1-xl`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
+              <div className={`font-size-0 font-size-2-xl ${isPresentationMuted ? '' : ''}`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
             </div>
           </div>
         </div>
@@ -281,116 +276,166 @@ const handleNewCamNameChange = (event) => {
       </div>
       {/* /Row */}
 
-        <div className=''>
-            <CModal show={showPowerModal} onHide={handleClosePowerModal} title='System Off?'>
-                <div className='col-10 align-items-center ml-5 mt -5 pl-5 pt-5'>
-                  <h5>Are you sure you want to shut down the system?</h5>
-                  <div className='d-flex col-10 pt-5 pl-6 ml-5 justify-content-between'>
-                    <div className='btn btn-gray-600 rounded-pill px-5 cancelButton text-white ' onClick={handleClosePowerModal}>
-                      <h6 className='px-3'> Cancel</h6>
-                    </div>
-                    <Button className='btn btn-info rounded-pill px-5' onClick={programShutOff}>
-                      <h6 className='px-5'>Yes</h6>
-                    </Button>
-                </div>
-                </div>
-            </CModal>
+        <div>
+        {/* System Off Modal */}
+        <Modal show={showPowerModal} onHide={handleClosePowerModal} fullscreen={fullscreen}>
+          <Modal.Header className="pb-0">
+            <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+              <h1 className="font-size-5 font-size-6-xl">
+                <button type="button" className="border-0 text-dark"
+                  onClick={handleClosePowerModal}><i class="bi bi-arrow-left"></i></button>System Off?</h1>
+              <button type="button" className="border-0 text-muted"
+                onClick={handleClosePowerModal}><i class="bi bi-x-lg"></i></button>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="font-size-4 font-size-5-xl p-0">
+            <div className='container-fluid text-center p-5'>
+              <div className="mb-xl-5">Are you sure you want to shut down the system?</div>
+              <div className='d-flex justify-content-center mt-5'>
+                <button className='btn btn-gray-600 col-4 rounded-pill px-5 cancelButton text-white mx-3' onClick={handleClosePowerModal}>
+                  Cancel
+                </button>
+                <button className='btn btn-info col-4 rounded-pill px-5 mx-3' onClick={programShutOff}>
+                  Yes
+                </button>
+              </div>
+            </div>
+          </Modal.Body>
+        </Modal>
         </div>
 
-        <CModal show={showVolumeModal} onHide={handleCloseVolumeModal} title='Presentation Volume'>
-          <div className='col-10 align-items-center mx-auto pl-5 pt-4 mt-4'>
-            <VolumeControl initialVolume={presentationVolume} plusJoin='22' minusJoin='21' isMuted={isPresentationMuted} volumeJoin='1'/>
-            <div onClick={togglePresentationMute} className='col-4 mx-auto pl-5'>
-              <div className={`rounded-circle muteIcon   ${isPresentationMuted ? 'bg-info' : ''}`}
-                style={{backgroundColor: '#e9ecef', width:'90px', height:'90px'}}>
-                <img 
-                  src={isPresentationMuted ? MicMuteIcon : MicIcon}
-                  alt={isPresentationMuted ? 'Microphone Mute icon' : 'Microphone Icon' }
-                  className='img-fluid mt-3'/>
-              </div>
-              <h5 className={`row ${isPresentationMuted ? '' : 'ml-1'}`}>{isPresentationMuted ? 'Unmute' : 'Mute'}</h5>
+        {/* Presentation Volume Modal */}
+      <Modal show={showVolumeModal} onHide={handleCloseVolumeModal} fullscreen={fullscreen}>
+        <Modal.Header className="pb-0">
+          <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+            <h1 className="font-size-5 font-size-6-xl">
+              <button type="button" className="border-0 text-dark"
+              onClick={handleCloseVolumeModal}><i class="bi bi-arrow-left"></i></button>Presentation Volume</h1>
+            <button type="button" className="border-0 text-muted"
+              onClick={handleCloseVolumeModal}><i class="bi bi-x-lg"></i></button>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="font-size-4 font-size-3-xl p-0">
+          <div className='container-fluid text-center pt-3'>
+            <div className="my-2 my-xl-5">
+            <VolumeControl classNam="mx-auto" initialVolume={presentationVolume} plusJoin='22' minusJoin='21' isMuted={isPresentationMuted} volumeJoin='1' />
             </div>
-          </div>
-          <div className='bg-secondary row mx-auto col-8 mt-5  '>
-            <h5 className='col-md-1 bg-info mt-5 mb-5 rounded-circle text-white'><em>i</em></h5>
-            <h5 className='col mb-0'>Sound not playing? Be sure to select the correct audio on your device.</h5>
-          </div>
-              
-        </CModal>
+            <div class="col-12 text-center mb-4">
+              <button type="button"
+                className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isPresentationMuted ? 'bg-info' : 'bg-gray-300'}`}
+                onClick={togglePresentationMute}>
+                <i
+                className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPresentationMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
+                ></i>
+              </button>
+              <div className='font-size-3 font-size-4-xl'>{isPresentationMuted ? 'Unmute' : 'Mute'}</div>
+            </div>
 
-        <CModal show={showMicModal} onHide={handleCloseMicModal} title='Microphones'>
-          <div className='col-10 align-items-center ml-5 mt-2 pl-5 '>
-            <h5 className='col-3 mb-3'>Microphones</h5>
-            <VolumeControl initialVolume={MicVolume} plusJoin='25' minusJoin='24' isMuted={isMicMuted}/>
-            <div onClick={toggleMicMute} className='col-4 mx-auto pl-5'>
-              <div className={`rounded-circle muteIcon   ${isMicMuted ? 'bg-info' : ''}`}
-                style={{backgroundColor: '#e9ecef', width:'90px', height:'90px'}}>
-                <img 
-                  src={isMicMuted ? MicMuteIcon : MicIcon}
-                  alt={isMicMuted ? 'Microphone Mute icon' : 'Microphone Icon' }
-                  className='img-fluid mt-3'/>
-              </div>
-              <h5 className={`row ${isMicMuted ? '' : 'ml-1'}`}>{isMicMuted ? 'Unmute' : 'Mute'}</h5>
-            </div>
-            {hasCeilingMics && 
-              <div>
-                <h5 className='col-4'>Ceiling Mics</h5>
-                <div onClick={toggleCeilingMicMute} className='col-4 mx-auto pl-5'>
-                  <div className={`rounded-circle muteIcon   ${isCeilingMicMuted ? 'bg-info' : ''}`}
-                    style={{backgroundColor: '#e9ecef', width:'90px', height:'90px'}}>
-                    <img 
-                      src={isCeilingMicMuted ? MicMuteIcon : MicIcon}
-                      alt={isCeilingMicMuted ? 'Microphone Mute icon' : 'Microphone Icon' }
-                      className='img-fluid mt-3'/>
-                  </div>
-                  <h5 className={`row ${isCeilingMicMuted ? '' : 'ml-1'}`}>{isCeilingMicMuted ? 'Unmute' : 'Mute'}</h5>
+            <div className="row">
+              <div className="col-8 d-flex justify-content-start bg-secondary py-3 px-5 mx-auto">
+                <div className="col-1">
+                  <i
+                    className={`d-block bi bi-info-circle-fill text-info font-size-4 font-size-5-xl`}
+                  ></i>
                 </div>
-                
-              </div>}
+                <div className="col-11 font-size-3 font-size-4-xl">
+                  Sound not playing? Be sure to select the correct audio on your device.
+                </div>
+              </div>
+            </div>
           </div>
-              
-        </CModal>
+        </Modal.Body>
+      </Modal>
 
+      {/* Microphone Modal */}
+      <Modal show={showMicModal} onHide={handleCloseMicModal} fullscreen={fullscreen}>
+        <Modal.Header className="pb-0">
+          <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+            <h1 className="font-size-5 font-size-6-xl">
+              <button type="button" className="border-0 text-dark"
+              onClick={handleCloseMicModal}><i class="bi bi-arrow-left"></i></button>Microphones</h1>
+            <button type="button" className="border-0 text-muted"
+              onClick={handleCloseMicModal}><i class="bi bi-x-lg"></i></button>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="font-size-4 font-size-3-xl p-0">
+          <div className='container-fluid text-center pt-1'>
+            <div className="my-3 my-xl-5 mt-4">
+              <VolumeControl initialVolume={MicVolume} plusJoin='25' minusJoin='24' isMuted={isMicMuted} />
+            </div>
+            <div className="col-12 text-center mb-3 mb-xl-5">
+              <button type="button"
+                className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isMicMuted ? 'bg-info' : ''}`}
+                style={{ backgroundColor: '#D5D5D5' }}
+                onClick={toggleMicMute}>
+                <i
+                  className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
+                ></i>
+              </button>
+              <div className='font-size-3 font-size-4-xl'>{isMicMuted ? 'Unmute Microphones' : 'Mute Microphones'}</div>
+            </div>
+            <div className="col-12 text-center">
+              <button type="button"
+                className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isCeilingMicMuted ? 'bg-info' : ''}`}
+                style={{ backgroundColor: '#D5D5D5' }}
+                onClick={toggleCeilingMicMute}>
+                <i
+                  className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isCeilingMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
+                ></i>
+              </button>
+              <div className='font-size-3 font-size-4-xl'>{isCeilingMicMuted ? 'Unmute Ceiling Mics' : 'Mute Ceiling Mics'}</div>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
+
+        {/* Camera Control Modal */}
         <CModal show={showCamModal} onHide={handleCloseCamModal} title="Camera Controls">
-          <h5>Select Camera:</h5>
-          <div className='col-12 d-flex flex-row justify-content-between mx-auto py-4'>
-          {Array.from({length:numCameras}, (_, index) => {
+        <h2 className="text-center mb-4 font-size-4 font-size-5-xl">Select Camera</h2>
+        <div className='row'>
+          <div className="col-12 d-flex flex-wrap justify-content-around">
+            {Array.from({ length: numCameras }, (_, index) => {
               const camNumber = index + 1
-              return(
-                <div key={camNumber} 
-                className={`col-4 rounded-pill d-flex flex-row justify-content-center py-2 mr-2`}
-                style={{backgroundColor:(cameraSelected === camNumber) ? "#007FA4" : "#dee2e6"}}
-                onClick={() => handleCameraClicked(index +1)}
-                onMouseDown={() => {
-                  holdTimeoutRef.current = setTimeout(() => handleCamLongPress(camNumber), 500);
-                }}
-                onMouseUp={() => clearTimeout(holdTimeoutRef.current)}
-                onTouchStart={() => {
-                  holdTimeoutRef.current = setTimeout(() => handleCamLongPress(camNumber), 500);
-                }}
-                onTouchEnd={() => clearTimeout(holdTimeoutRef.current)}
-                onMouseLeave={() => clearTimeout(holdTimeoutRef.current)}>
-                <img 
-                  src={(cameraSelected === camNumber) ? CameraSmallWhite : CameraSmall}
-                  alt='Camera Icon'
-                  className=' img-fluid pr-2'/>
-                  <h5 className={`h6 ${(cameraSelected === camNumber) ? 'text-white' : ''}`}>{camNames[camNumber - 1]}</h5>
-                </div>)
+              return (
+                <button key={camNumber}
+                  className={`btn col-3 rounded-pill border-0 px-2 py-xl-3 mx-2 mb-4 mb-xl-5 font-size-3 font-size-4-xl ${(cameraSelected === camNumber) ? 'btn-info' : 'bg-gray-300'}`}
+                  onClick={() => handleCameraClicked(index + 1)}
+                  onMouseDown={() => {
+                    holdTimeoutRef.current = setTimeout(() => handleCamLongPress(camNumber), 500);
+                  }}
+                  onMouseUp={() => clearTimeout(holdTimeoutRef.current)}
+                  onTouchStart={() => {
+                    holdTimeoutRef.current = setTimeout(() => handleCamLongPress(camNumber), 500);
+                  }}
+                  onTouchEnd={() => clearTimeout(holdTimeoutRef.current)}
+                  onMouseLeave={() => clearTimeout(holdTimeoutRef.current)}>
+                  <i className="bi bi-camera-video-fill me-2"></i>
+                  {camNames[camNumber - 1]}
+                </button>)
             })}
           </div>
-          <Modal show={camRenameMode} onHide={handleCancelCamRename} dialogClassName='rename-modal vh-40'>
-            <Modal.Header closeButton>
-              <Modal.Title>Camera Rename</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <InputGroup className="mb-3">
-                <FormControl
-                  placeholder="Enter new camera name"
-                  value={newCamName}
-                  onChange={handleNewCamNameChange}
-                />
-              </InputGroup>
-            </Modal.Body>
+        </div>
+
+          {/* Camera Rename Modal */}
+          <Modal show={camRenameMode} onHide={handleCancelCamRename} fullscreen={fullscreen}>
+          <Modal.Header>
+            <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+              <h1 className="font-size-5 font-size-6-xl">
+                <button type="button" className="border-0 text-dark"
+                  onClick={handleCancelCamRename}><i class="bi bi-arrow-left"></i></button>Rename Camera</h1>
+              <button type="button" className="border-0 text-muted"
+                onClick={handleCancelCamRename}><i class="bi bi-x-lg"></i></button>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="col-8 pt-5 mx-auto">
+              <input
+                className="form-control"
+                placeholder="Enter a new camera name"
+                value={newCamName}
+                onChange={handleNewCamNameChange} />
+            </div>
+          </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleCancelCamRename}>
                 Cancel
@@ -400,49 +445,40 @@ const handleNewCamNameChange = (event) => {
               </Button>
             </Modal.Footer>
           </Modal>
-          {(cameraSelected !== 0) && (
-            <div className='pt-4'>
-              <h5 className='pb-3'>{camNames[cameraSelected- 1]}</h5>
-              <div className='d-flex flex-row justify-content-between'>
-                <div className='pt-4 pl-4'>
-                  <Opad upJoin='241' downJoin='242' leftJoin='243' rightJoin='244'/>
+          {/* /Camera Rename Modal */}
+
+          {showControls && (
+            <div>
+              <div>
+              {/* Camera Controls Row */}
+              <div className="row align-items-center">
+                <h2 className="text-center mb-4 font-size-4 font-size-5-xl">{camNames[cameraSelected - 1]}</h2>
+                <div className="col-3">
+                <Opad upJoin='241' downJoin='242' leftJoin='243' rightJoin='244'/>
                 </div>
-                <div className='d-flex flex-column pt-5 ml-5'>
-                    <div className='d-flex flex-row ml-3'>
-                      <img 
-                      
-                        src={Zoom}
-                        alt='Zoom-in Icon'
-                        className='img-fluid pr-2'/>
-                      <h6>Zoom</h6>
-                    </div>
-                    <div className='d-flex bg-info rounded-pill justify-content-between px-2'
-                    style={{width:'140px'}}>
-                      <div onClick={() => sendSignal('74', 'Zoom Out')}>
-                          <img 
-                              src={MinusWhite}
-                              alt='Minus Icon'
-                              className='img-fluid'/>
-                      </div>
-                      <div onClick={() => sendSignal('75', 'Zoom In')}>
-                          <img 
-                              src={PlusWhite}
-                              alt='Plus Icon'
-                              className='img-fluid'/>
-                      </div>
-                    </div>
+                <div className="col-2 text-center">
+                  <label className="d-block mb-2 font-size-3 font-size-4-xl"
+                    for="Zoom buttons"><i className="bi bi-zoom-in"></i> Zoom</label>
+                  <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                    <button type="button" className="btn btn-info border-0 rounded-start-pill p-3 px-4 ps-xl-5 text-white font-size-2 font-size-4-xl" onClick={() => sendSignal('74', 'Zoom Out')}>
+                      <i className="bi bi-dash-circle-fill"></i>
+                    </button>
+                    <button type="button" className="btn bg-info border-0 rounded-end-pill p-3 px-4 pe-xl-5 text-white font-size-2 font-size-4-xl" onClick={() => sendSignal('75', 'Zoom In')}>
+                      <i className="bi bi-plus-circle-fill"></i>
+                    </button>
+                  </div>
                 </div>
-                <div className='d-flex flex-column pl-0 pr-3'>
-                  {Array.from({ length: Math.ceil(numOfPresets / 2) }).map((_, rowIndex) => (
-                      <Row key={rowIndex} className="justify-content-center mb-2" style={{height: '4rem'}}>
+                <div className="col">
+                {Array.from({ length: Math.ceil(numOfPresets / 2) }).map((_, rowIndex) => (
+                      <Row key={rowIndex} className="">
                         {Array.from({ length: 2 }, (_, colIndex) => {
                           const presetNumber = rowIndex * 2 + colIndex + 1;
                           return (
                             presetNumber <= numOfPresets && (
-                              <Col key={presetNumber}  className="" style={{width: '12rem'}}>
-                                <Button
-                                  className='btn btn-info rounded-pill mr-4 border-0'
-                                  style={{height: '3.5rem', fontSize: '1.5rem'}}
+                              <div key={presetNumber} className="col-6 pt-2 pt-xl-4 px-4">
+                                  <button
+                                  className='btn btn-info col-12 rounded-pill border-0 py-2 px-3 me-1 mb-2 mb-xl-3 presetButton'
+                                  key={presetNumber}
                                   onClick={() => handlePresetClicked(presetNumber)}
                                   onMouseDown={() => {
                                     holdTimeoutRef.current = setTimeout(() => handlePresetLongPress(presetNumber), 500);
@@ -453,29 +489,37 @@ const handleNewCamNameChange = (event) => {
                                     holdTimeoutRef.current = setTimeout(() => handlePresetLongPress(presetNumber), 500);
                                   }}
                                   onTouchEnd={() => clearTimeout(holdTimeoutRef.current)}
-                                >
-                                  {presetNames[presetNumber - 1]}
-                                </Button>
-                              </Col>
+                                > 
+                                {presetNames[presetNumber - 1]}
+                                </button>
+                              </div>
                             )
                           );
                         })}
                       </Row>
                     ))}
                 </div>
-                <Modal show={presetRenameMode} onHide={handleCancelPresetRename} dialogClassName='rename-modal vh-40'>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Preset Rename</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <InputGroup className="mb-3">
-                      <FormControl
-                        placeholder="Enter new preset name"
-                        value={newPresetName}
-                        onChange={handleNewPresetNameChange}
-                      />
-                    </InputGroup>
-                  </Modal.Body>
+              </div>
+                {/* Preset Rename Modal */}
+              <Modal show={presetRenameMode} onHide={handleCancelPresetRename} fullscreen={fullscreen}>
+                <Modal.Header>
+                  <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+                    <h1 className="font-size-5 font-size-6-xl">
+                      <button type="button" className="border-0 text-dark"
+                        onClick={handleCancelPresetRename}><i class="bi bi-arrow-left"></i></button>Rename Preset</h1>
+                    <button type="button" className="border-0 text-muted"
+                      onClick={handleCancelPresetRename}><i class="bi bi-x-lg"></i></button>
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <div className="col-8 pt-5 mx-auto">
+                    <input
+                      className="form-control"
+                      placeholder="Enter a new preset name"
+                      value={newPresetName}
+                      onChange={handleNewPresetNameChange} />
+                  </div>
+                </Modal.Body>
                   <Modal.Footer>
                     <Button variant="secondary" onClick={handleCancelPresetRename}>
                       Cancel
@@ -485,6 +529,7 @@ const handleNewCamNameChange = (event) => {
                     </Button>
                   </Modal.Footer>
                 </Modal>
+                {/* /Preset Rename Modal */}
               </div>
             </div>
           )}
