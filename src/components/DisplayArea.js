@@ -103,28 +103,11 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         setAnnotationPressed(!annotationPressed)
         window.CrComLib.publishEvent('b', `${annotationJoin}`, true);
         window.CrComLib.publishEvent('b', `${annotationJoin}`, false);
-        // if (!powerSwitch) {
-            
-        //     console.log('Power On')
-        // } else {
-        //     window.CrComLib.publishEvent('b', `${annotationJoin}`, true);
-        //     window.CrComLib.publishEvent('b', `${annotationJoin}`, false);
-        //     console.log('Power Off')
-        // }
     }
     const handleFullscreenPressed = () => {
         setFullscreenPressed(!fullscreenPressed);
         window.CrComLib.publishEvent('b', `${fullscreenJoin}`, true);
         window.CrComLib.publishEvent('b', `${fullscreenJoin}`, false);
-        // if (!powerSwitch) {
-        //     window.CrComLib.publishEvent('b', `${fullscreenJoin}`, true);
-        //     window.CrComLib.publishEvent('b', `${fullscreenJoin}`, false);
-        //     console.log('Power On')
-        // } else {
-        //     window.CrComLib.publishEvent('b', `${fullscreenJoin}`, true);
-        //     window.CrComLib.publishEvent('b', `${fullscreenJoin}`, false);
-        //     console.log('Power Off')
-        // }
     } 
     const blurayControl = (joinNumber, press) => {
         setBluRayButton(press)
@@ -473,22 +456,24 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         {/* /Power Button */}
                         {/* Options */}
                         <div className="row justify-content-around mb-4 mb-xl-5">
-                            <div className="col-4">
-                                <button type="button"
-                                    className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${annotationPressed ? 'text-white' : 'text-dark'}`}
-                                    style={{backgroundColor:annotationPressed ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={handleAnnotationPressed}>
-                                    <i className="d-inline-block bi bi-pencil-fill font-size-4 font-size-5-xl mx-auto"></i>
-                                </button>
-                                <div className="font-size-3 font-size-4-xl">Annotate</div>
-                            </div>
-                            <div className="col-4">
-                                 <button type="button"
-                                    className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${fullscreenPressed ? 'text-white' : 'text-dark'}`}
-                                    style={{backgroundColor:fullscreenPressed ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={handleFullscreenPressed}>
-                                    <i className="d-inline-block bi bi-arrows-fullscreen font-size-4 font-size-5-xl mx-auto"></i>
-                                </button>
-                                <div className="font-size-3 font-size-4-xl">Preview Fullscreen</div>
-                            </div>
+                            {showAnnotation && 
+                                <div className="col-4">
+                                    <button type="button"
+                                        className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${annotationPressed ? 'text-white' : 'text-dark'}`}
+                                        style={{backgroundColor:annotationPressed ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={handleAnnotationPressed}>
+                                        <i className="d-inline-block bi bi-pencil-fill font-size-4 font-size-5-xl mx-auto"></i>
+                                    </button>
+                                    <div className="font-size-3 font-size-4-xl">Annotate</div>
+                                </div>}
+                            {showFullScreen && 
+                                <div className="col-4">
+                                    <button type="button"
+                                        className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${fullscreenPressed ? 'text-white' : 'text-dark'}`}
+                                        style={{backgroundColor:fullscreenPressed ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={handleFullscreenPressed}>
+                                        <i className="d-inline-block bi bi-arrows-fullscreen font-size-4 font-size-5-xl mx-auto"></i>
+                                    </button>
+                                    <div className="font-size-3 font-size-4-xl">Preview Fullscreen</div>
+                                </div>}
                             <div className="col-4">
                                 <button type="button"
                                     className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${isMuted ? 'text-white' : 'text-dark'}`}

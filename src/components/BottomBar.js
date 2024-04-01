@@ -268,7 +268,7 @@ const handleNewCamNameChange = (event) => {
               <div
                 className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isCeilingMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
               </div>
-              <div className={`font-size-0 font-size-2-xl ${isPresentationMuted ? '' : ''}`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
+              <div className={`font-size-0 font-size-2-xl`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
             </div>
           </div>
         </div>
@@ -447,7 +447,7 @@ const handleNewCamNameChange = (event) => {
           </Modal>
           {/* /Camera Rename Modal */}
 
-          {showControls && (
+          {(cameraSelected !== 0) && (
             <div>
               <div>
               {/* Camera Controls Row */}
