@@ -283,10 +283,13 @@ const handleNewCamNameChange = (event) => {
         <div>
         {/* System Off Modal */}
         <Modal show={showPowerModal} onHide={handleClosePowerModal} fullscreen={fullscreen}>
-          <Modal.Header closeButton className="pb-0">
-            <Modal.Title>
-              <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
-                onClick={handleClosePowerModal}><i class="bi bi-arrow-left"></i></button>System Off?</h1>
+          <Modal.Header className="pb-0">
+            <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+              <h1 className="font-size-5 font-size-6-xl">
+                <button type="button" className="border-0 text-dark"
+                  onClick={handleClosePowerModal}><i class="bi bi-arrow-left"></i></button>System Off?</h1>
+              <button type="button" className="border-0 text-muted"
+                onClick={handleClosePowerModal}><i class="bi bi-x-lg"></i></button>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className="font-size-4 font-size-5-xl p-0">
@@ -307,10 +310,13 @@ const handleNewCamNameChange = (event) => {
 
         {/* Presentation Volume Modal */}
       <Modal show={showVolumeModal} onHide={handleCloseVolumeModal} fullscreen={fullscreen}>
-        <Modal.Header closeButton className="pb-0">
-          <Modal.Title>
-            <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
+        <Modal.Header className="pb-0">
+          <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+            <h1 className="font-size-5 font-size-6-xl">
+              <button type="button" className="border-0 text-dark"
               onClick={handleCloseVolumeModal}><i class="bi bi-arrow-left"></i></button>Presentation Volume</h1>
+            <button type="button" className="border-0 text-muted"
+              onClick={handleCloseVolumeModal}><i class="bi bi-x-lg"></i></button>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="font-size-4 font-size-3-xl p-0">
@@ -347,10 +353,13 @@ const handleNewCamNameChange = (event) => {
 
       {/* Microphone Modal */}
       <Modal show={showMicModal} onHide={handleCloseMicModal} fullscreen={fullscreen}>
-        <Modal.Header closeButton className="pb-0">
-          <Modal.Title>
-            <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
+        <Modal.Header className="pb-0">
+          <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+            <h1 className="font-size-5 font-size-6-xl">
+              <button type="button" className="border-0 text-dark"
               onClick={handleCloseMicModal}><i class="bi bi-arrow-left"></i></button>Microphones</h1>
+            <button type="button" className="border-0 text-muted"
+              onClick={handleCloseMicModal}><i class="bi bi-x-lg"></i></button>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="font-size-4 font-size-3-xl p-0">
@@ -413,12 +422,15 @@ const handleNewCamNameChange = (event) => {
 
           {/* Camera Rename Modal */}
           <Modal show={camRenameMode} onHide={handleCancelCamRename} fullscreen={fullscreen}>
-            <Modal.Header closeButton>
-              <Modal.Title>
-              <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
-              onClick={handleCancelCamRename}><i class="bi bi-arrow-left"></i></button>Rename Camera</h1>
-                </Modal.Title>
-            </Modal.Header>
+          <Modal.Header>
+            <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+              <h1 className="font-size-5 font-size-6-xl">
+                <button type="button" className="border-0 text-dark"
+                  onClick={handleCancelCamRename}><i class="bi bi-arrow-left"></i></button>Rename Camera</h1>
+              <button type="button" className="border-0 text-muted"
+                onClick={handleCancelCamRename}><i class="bi bi-x-lg"></i></button>
+            </Modal.Title>
+          </Modal.Header>
           <Modal.Body>
             <div className="col-8 pt-5 mx-auto">
               <input
@@ -493,11 +505,14 @@ const handleNewCamNameChange = (event) => {
                 </div>
               </div>
                 {/* Preset Rename Modal */}
-                <Modal show={presetRenameMode} onHide={handleCancelPresetRename} fullscreen={fullscreen}>
-                <Modal.Header closeButton>
-                  <Modal.Title>
-                    <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
-                      onClick={handleCancelPresetRename}><i class="bi bi-arrow-left"></i></button>Rename Preset</h1>
+              <Modal show={presetRenameMode} onHide={handleCancelPresetRename} fullscreen={fullscreen}>
+                <Modal.Header>
+                  <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+                    <h1 className="font-size-5 font-size-6-xl">
+                      <button type="button" className="border-0 text-dark"
+                        onClick={handleCancelPresetRename}><i class="bi bi-arrow-left"></i></button>Rename Preset</h1>
+                    <button type="button" className="border-0 text-muted"
+                      onClick={handleCancelPresetRename}><i class="bi bi-x-lg"></i></button>
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
