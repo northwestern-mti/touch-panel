@@ -72,7 +72,7 @@ function Header(){
                                     onClick={handleCloseHelpModal}><i class="bi bi-x-lg"></i></button>
                             </Modal.Title>
                         </Modal.Header>
-                        <Modal.Body className="font-size-4 font-size-5-xl p-5">
+                        <Modal.Body className="font-size-4 font-size-5-xl p-4 p-xl-5">
                             <div className='container-fluid text-center'>
                                     <p>Please use the number below to call our support team for assistance.</p>
                                     <span className="d-block text-info fw-bold mt-5">7-ROOM</span>
