@@ -14,11 +14,12 @@
   width: 50%;
   height: 50%;
   text-align: center;  
-
-  &:active{
-      background-color: black;
-  }
 }
+
+.o-pad div:active{
+  background-color: black;
+}
+
 .o-pad i {
   transform: rotate(-45deg);
   position: relative;

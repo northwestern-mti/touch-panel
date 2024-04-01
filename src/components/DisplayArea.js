@@ -163,10 +163,13 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 >Conference Call</Button>
                 {/* Conference Call Modal */}
                 <Modal show={confCallClicked} onHide={handleCloseConfCallModal} fullscreen={fullscreen}>
-                    <Modal.Header closeButton className="pb-0">
-                        <Modal.Title>
-                            <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
-                                onClick={handleCloseConfCallModal}><i className="bi bi-arrow-left"></i></button>Conference Call</h1>
+                    <Modal.Header className="pb-0">
+                        <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+                            <h1 className="font-size-5 font-size-6-xl">
+                                <button type="button" className="border-0 text-dark"
+                                    onClick={handleCloseConfCallModal}><i class="bi bi-arrow-left"></i></button>Conference Call</h1>
+                            <button type="button" className="border-0 text-muted"
+                                onClick={handleCloseConfCallModal}><i class="bi bi-x-lg"></i></button>
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
@@ -300,12 +303,15 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 
                 {/* Blu-Ray Modal */}
                 <Modal show={bluRayClicked} onHide={handleCloseBluRayModal} fullscreen={fullscreen}>
-                <Modal.Header closeButton className="pb-0">
-                    <Modal.Title>
-                        <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
-                            onClick={handleCloseBluRayModal}><i className="bi bi-arrow-left"></i></button>Blu-Ray Controls</h1>
-                    </Modal.Title>
-                </Modal.Header>
+                    <Modal.Header className="pb-0">
+                        <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+                            <h1 className="font-size-5 font-size-6-xl">
+                                <button type="button" className="border-0 text-dark"
+                                    onClick={handleCloseBluRayModal}><i class="bi bi-arrow-left"></i></button>Blu-Ray Controls</h1>
+                            <button type="button" className="border-0 text-muted"
+                                onClick={handleCloseBluRayModal}><i class="bi bi-x-lg"></i></button>
+                        </Modal.Title>
+                    </Modal.Header>
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
                         <div className='container-fluid text-center'>
                             {/* Opad Control */}
@@ -430,10 +436,13 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
 
             {/* Display Settings Modal */}
             <Modal show={isClicked} fullscreen={fullscreen} onHide={handleCloseDisplayModal}>
-                <Modal.Header closeButton className="pb-0">
-                    <Modal.Title>
-                        <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
-                            onClick={handleCloseDisplayModal}><i className="bi bi-arrow-left"></i></button>Display Settings</h1>
+                <Modal.Header className="pb-0">
+                    <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+                        <h1 className="font-size-5 font-size-6-xl">
+                            <button type="button" className="border-0 text-dark"
+                                onClick={handleCloseDisplayModal}><i class="bi bi-arrow-left"></i></button>Display Settings</h1>
+                        <button type="button" className="border-0 text-muted"
+                            onClick={handleCloseDisplayModal}><i class="bi bi-x-lg"></i></button>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="font-size-2 font-size-3-xl p-0 pt-xl-3"> 

@@ -58,10 +58,13 @@ function Header(){
 
                     {/* Help Modal */}
                     <Modal show={showHelpModal} onHide={handleCloseHelpModal} fullscreen={fullscreen}>
-                        <Modal.Header closeButton className="pb-0">
-                            <Modal.Title>
-                                <h1 className="font-size-5 font-size-6-xl"><button type="button" className="border-0 text-dark"
-                                    onClick={handleCloseHelpModal}><i className="bi bi-arrow-left"></i></button>Help</h1>
+                        <Modal.Header className="pb-0">
+                            <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+                                <h1 className="font-size-5 font-size-6-xl">
+                                    <button type="button" className="border-0 text-dark"
+                                        onClick={handleCloseHelpModal}><i class="bi bi-arrow-left"></i></button>Help</h1>
+                                <button type="button" className="border-0 text-muted"
+                                    onClick={handleCloseHelpModal}><i class="bi bi-x-lg"></i></button>
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body className="font-size-4 font-size-5-xl p-5">
