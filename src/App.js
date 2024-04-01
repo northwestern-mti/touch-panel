@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react';
-import {Routes, Route, Navigate} from 'react-router-dom';
+import {Routes, Route, Navigate, useNavigate} from 'react-router-dom';
 import './App.css';
 import HomePage from './components/HomePage'
 import WelcomePage from './components/WelcomePage';
@@ -22,7 +22,7 @@ if (isActive) {
 }
 function App() {
   const [programStarted, setProgramStarted] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.addEventListener(WebXPanelEvents.CONNECT_WS, (detail) => {
@@ -50,23 +50,23 @@ function App() {
 
   useEffect(() => {
     window.CrComLib.subscribeState('b', '26', value=> setProgramStarted(value));
-    // if (!programStarted) {
-    //   navigate('/')
-    // } else {
-    //   navigate('/HomePage')
-    // }
+    if (!programStarted) {
+      navigate('/HomePage')
+    } else {
+      navigate('/WelcomePage')
+    }
     console.log('system status', programStarted)
     
 }, [programStarted]);
-  const handleProgramStartedChange = (value) => {
-    setProgramStarted(value)
+  const handleProgramStartedChange = () => {
+    setProgramStarted(prevProgramStarted => !prevProgramStarted)
   }
   return (
     <div className="App">
       <Routes>
         <Route  index path="/WelcomePage" element={<WelcomePage programStarted={programStarted} setProgramStarted={handleProgramStartedChange}/>}/>
         <Route path="/HomePage" element={<HomePage programStarted={programStarted} setProgramStarted={handleProgramStartedChange}/>}/>
-        <Route path="/" element={!programStarted ? <Navigate to="/HomePage" /> : <Navigate to="/WelcomePage" />} />
+       
       </Routes>
     </div>
   );
