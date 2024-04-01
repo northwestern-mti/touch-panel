@@ -355,7 +355,7 @@ function Header(){
                             </div>
                         </Modal.Body>
                         <Modal.Footer className="p-1">
-                            <Button variant="secondary" className="font-size-2 font-size-4-xl mx-2"><i className="bi bi-x-circle me-1"></i> Cancel</Button>
+                            <Button variant="secondary" className="font-size-2 font-size-4-xl mx-2" onClick={handleCloseAdminModal}><i className="bi bi-x-circle me-1"></i> Cancel</Button>
                             <Button variant="info" className="font-size-2 font-size-4-xl mx-2"><i className="bi bi-arrow-clockwise me-1"></i>Reset</Button>
                             <Button variant="primary" className="font-size-2 font-size-4-xl mx-2"> <i className="bi bi-floppy-fill me-1"></i>Save changes</Button>
                         </Modal.Footer>
