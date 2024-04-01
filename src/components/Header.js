@@ -24,7 +24,7 @@ function Header(){
     
     return(
         <div className='row p-0 m-0 headerRow'>
-            <div className="col-12 d-flex flex-row justify-content-evenly align-items-center  font-size-3 font-size-4-xl p-0" style={{ backgroundColor: 'var(--bs-primary)' }}>
+            <div className="col-12 d-flex flex-row justify-content-around align-items-center bg-primary font-size-3 font-size-4-xl p-0">
                     <div className="col-3">
                         <img
                             src={logo}
@@ -32,8 +32,13 @@ function Header(){
                             className='img-fluid'
                             style={{width:'12em', height:'auto'}}/>
                     </div>
-                    <div className="col-3 text-center text-white">
-                        <span>{(classRoom == "") ? 'Room' : classRoom}</span>
+                    <div className="col-1 text-center">
+                        <div className="text-primary font-size-1">
+                        admin button
+                        </div>
+                    </div>
+                    <div className="col-2 text-center text-white">
+                        <span>{(classRoom == "") ? 'Room ABCD' : classRoom}</span>
                     </div>
                     <div className="col-4 text-center text-white">
                                 <span className="d-block mb-2">
@@ -48,9 +53,9 @@ function Header(){
                                     </ch5-datetime>
                                 </span>
                     </div>
-                    <div className="col-2 text-white text-center">
+                    <div className="col-1 text-white text-center">
                     <button type="button"
-                        className="btn d-flex align-items-center rounded-circle mx-auto text-white font-size-4 font-size-5-xl circleIcon" style={{backgroundColor: '#007FA4'}} onClick={handleShowHelpModal}>
+                        className="btn btn-info d-flex align-items-center rounded-circle mx-auto text-white font-size-4 font-size-5-xl circleIcon" onClick={handleShowHelpModal}>
                         <i className="d-inline-block bi bi-question-lg mx-auto"></i>
                     </button>
                     </div>
