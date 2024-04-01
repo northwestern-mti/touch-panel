@@ -38,7 +38,7 @@ function Header(){
                         </div>
                     </div>
                     <div className="col-2 text-center text-white">
-                        <span>{(classRoom == "") ? 'Room ABCD' : classRoom}</span>
+                        <span>{(classRoom == "") ? 'Room' : classRoom}</span>
                     </div>
                     <div className="col-4 text-center text-white">
                                 <span className="d-block mb-2">
