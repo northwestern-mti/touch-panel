@@ -332,20 +332,21 @@ const handleNewCamNameChange = (event) => {
               </div>
               <h5 className={`row ${isMicMuted ? '' : 'ml-1'}`}>{isMicMuted ? 'Unmute' : 'Mute'}</h5>
             </div>
-            <div>
-              <h5 className='col-4'>Ceiling Mics</h5>
-              <div onClick={toggleCeilingMicMute} className='col-4 mx-auto pl-5'>
-                <div className={`rounded-circle muteIcon   ${isCeilingMicMuted ? 'bg-info' : ''}`}
-                  style={{backgroundColor: '#e9ecef', width:'90px', height:'90px'}}>
-                  <img 
-                    src={isCeilingMicMuted ? MicMuteIcon : MicIcon}
-                    alt={isCeilingMicMuted ? 'Microphone Mute icon' : 'Microphone Icon' }
-                    className='img-fluid mt-3'/>
+            {hasCeilingMics && 
+              <div>
+                <h5 className='col-4'>Ceiling Mics</h5>
+                <div onClick={toggleCeilingMicMute} className='col-4 mx-auto pl-5'>
+                  <div className={`rounded-circle muteIcon   ${isCeilingMicMuted ? 'bg-info' : ''}`}
+                    style={{backgroundColor: '#e9ecef', width:'90px', height:'90px'}}>
+                    <img 
+                      src={isCeilingMicMuted ? MicMuteIcon : MicIcon}
+                      alt={isCeilingMicMuted ? 'Microphone Mute icon' : 'Microphone Icon' }
+                      className='img-fluid mt-3'/>
+                  </div>
+                  <h5 className={`row ${isCeilingMicMuted ? '' : 'ml-1'}`}>{isCeilingMicMuted ? 'Unmute' : 'Mute'}</h5>
                 </div>
-                <h5 className={`row ${isCeilingMicMuted ? '' : 'ml-1'}`}>{isCeilingMicMuted ? 'Unmute' : 'Mute'}</h5>
-              </div>
-              
-            </div>
+                
+              </div>}
           </div>
               
         </CModal>

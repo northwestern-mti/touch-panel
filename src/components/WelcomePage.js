@@ -11,12 +11,12 @@ function WelcomePage({programStarted, setProgramStarted}) {
 
 
   const handleClick = () => {
-    setProgramStarted(programStarted);
-      window.CrComLib.publishEvent('b','1', true);
-      window.CrComLib.publishEvent('b','1', false);
-      console.log("Signal sent to processor");
-      navigate('/HomePage')
-    };
+    setProgramStarted(!programStarted);
+    window.CrComLib.publishEvent('b','1', true);
+    window.CrComLib.publishEvent('b','1', false);
+    console.log("Signal sent to processor");
+    navigate('/HomePage')
+};
 
 
   return (
