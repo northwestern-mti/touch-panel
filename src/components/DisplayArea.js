@@ -498,7 +498,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                      {/* Screen Position Buttons */}
                         <div className="row">
                             <div className="col text-center">
-                                <div className="my-3 my-xl-5">
+                                <div className="my-2 my-xl-3">
                                     {/* Down Button */}
                                     <button type="button"
                                         className="btn btn-info col-4 border-0 rounded-pill py-2 me-3 text-white fw-bold font-size-3" onClick={() => {
