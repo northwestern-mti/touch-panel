@@ -50,7 +50,7 @@ function Header(){
                             style={{width:'12em', height:'auto'}}/>
                     </div>
                     <div className="col-1 text-center p-0">
-                        <div className="text-primary font-size-1"
+                        <div className="text-primary py-5 font-size-1"
                         onMouseDown={() => {
                             holdTimeoutRef.current = setTimeout(() => handleAdminLongPress(), 500);
                           }}
