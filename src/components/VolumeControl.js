@@ -11,37 +11,39 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
 
   useEffect(() => {
     // Map decibels to the volume range (0 to 20)
-    const mappedVolume = Math.round((initialVolume * 20) / 65535);
-    setVolume(mappedVolume);
-    console.log('initial volume:', initialVolume, 'mapped volume:', mappedVolume);
+    // const mappedVolume = Math.round((initialVolume * 20) / 65535);
+
+    setVolume(initialVolume);
+    console.log('initial volume:', initialVolume);
   }, [initialVolume]);
 
   const handleIncreaseVolume = () => {
     if (volume < 20) {
       setVolume((prevVolume) => prevVolume + 1);
-      const volumeLevel = Math.round((volume * 65535) / 20);
+      // const volumeLevel = Math.round((volume * 65535) / 20);
       window.CrComLib.publishEvent('b', `${plusJoin}`, true);
       window.CrComLib.publishEvent('b', `${plusJoin}`, false);
-      window.CrComLib.publishEvent('n', `${volumeJoin}`, volumeLevel);
-      console.log('volume increased', volume)
+      window.CrComLib.publishEvent('n', `${volumeJoin}`, volume);
+      console.log('volume increased', volume, 'initial volume:', initialVolume);
+
     }
   };
 
   const handleDecreaseVolume = () => {
     if (volume > 0) {
       setVolume((prevVolume) => prevVolume - 1);
-      const volumeLevel = Math.round((volume * 65535) / 20);
+      // const volumeLevel = Math.round((volume * 65535) / 20);
       window.CrComLib.publishEvent('b', `${minusJoin}`, true);
       window.CrComLib.publishEvent('b', `${minusJoin}`, false);
-      window.CrComLib.publishEvent('n', `${volumeJoin}`, volumeLevel);
-      console.log('volume decreased', volume)
+      window.CrComLib.publishEvent('n', `${volumeJoin}`, volume);
+      console.log('volume decreased', volume, 'initial volume:', initialVolume)
     }
   };
   useEffect(() => {
     // Map decibels to the volume range (0 to 20)
     if (!isMuted){
-        const mappedVolume = Math.round((initialVolume * 20) / 65535);
-        setVolume(mappedVolume);
+        // const mappedVolume = Math.round((initialVolume * 20) / 65535);
+        setVolume(initialVolume);
     }
     
   }, [initialVolume]);
