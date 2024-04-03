@@ -17,6 +17,12 @@ $yellow: #FFC520;
 $green: #58B947;
 $cyan: #007FA4;
 
+//Change Switch Colors 
+$form-switch-color: $cyan;
+$form-switch-focus-color: $cyan;
+$form-switch-checked-color: $cyan;
+
+
 // Import Bootstrap
 @import '~bootstrap/scss/bootstrap.scss';
 @import "~bootstrap/scss/functions";

@@ -249,20 +249,22 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 <div className="col d-flex flex-row flex-wrap justify-content-around text-center font-size-3 font-size-4-xl py-3">
                     <div className="col-6 p-0 mb-3 mb-xl-5">
                         <div className="form-switch p-0">
-                            <input className="form-check-input border-0 m-0 mb-3 mediumSwitch" 
-                            type="checkbox"
-                            role="switch"
-                            id='autoFocusSwitch'
-                            checked={autoFocusSwitch}
-                            onChange={toggleAutoFocusSwitch}
+                            <input
+                                className={`form-check-input m-0 mb-3 mediumSwitch ${autoFocusSwitch ? 'customSwitchCheck' : ''}`}
+                                type="checkbox"
+                                role="switch"
+                                id='autoFocusSwitch'
+                                checked={autoFocusSwitch}
+                                onChange={toggleAutoFocusSwitch}
                             />
-                                <label className="d-block form-check-label font-size-2 font-size-4-xl"
-                                    htmlFor="autoFocusSwitch"><i className="bi bi-camera"></i> Autofocus</label>
+                            <label className="d-block form-check-label font-size-2 font-size-4-xl"
+                                htmlFor="autoFocusSwitch"><i className="bi bi-camera"></i> Autofocus</label>
                         </div>
                     </div>
                     <div className="col-6 p-0 mb-3 mb-xl-5">
                         <div className="form-switch p-0">
-                            <input className="form-check-input border-0 m-0 mb-3 mediumSwitch" 
+                            <input 
+                            className={`form-check-input m-0 mb-3 mediumSwitch ${lampSwitch ? 'customSwitchCheck' : ''}`}
                             type="checkbox"
                             role="switch"
                             id='lampSwitch'
@@ -453,7 +455,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             <div className="col text-center mx-auto">
                                 <div className="form-switch p-0">
                                     <input
-                                        className="form-check-input m-0 mb-4 border-0 largeSwitch"
+                                        className={`form-check-input m-0 mb-4 largeSwitch ${powerSwitch ? 'customSwitchCheck' : ''}`}
+                                        // className="form-check-input m-0 mb-4 border-0 largeSwitch"
                                         type="checkbox"
                                         role="switch"
                                         id="powerSwitch"
