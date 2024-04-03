@@ -81,7 +81,7 @@ function Header(){
                                 </span>
                     </div>
                     <div className="col-1 text-white text-center">
-                    <button type="button"
+                    <button
                         className="btn btn-info d-flex align-items-center rounded-circle mx-auto text-white font-size-4 font-size-5-xl circleIcon" onClick={handleShowHelpModal}>
                         <i className="d-inline-block bi bi-question-lg mx-auto"></i>
                     </button>

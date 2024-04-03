@@ -39,5 +39,21 @@ $cyan: #007FA4;
     }
 }
 
+// Custom Button
+.btn-gray {
+    --bs-btn-font-weight: 500;
+    --bs-btn-color: var(--bs-black);
+    --bs-btn-bg: var(--bs-gray-300);
+    --bs-btn-border-color: var(--bs-gray-300);
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: var(--bs-black);
+    --bs-btn-hover-bg: var(--bs-gray-300);
+    --bs-btn-hover-border-color: var(--bs-gray-300);
+    --bs-btn-focus-shadow-rgb: var(--bs-gray-300-rgb);
+    --bs-btn-active-color: var(--bs-black);
+    --bs-btn-active-bg: #{shade-color($gray-300, 50%)};
+    --bs-btn-active-border-color: #{shade-color($gray-300, 50%)};
+  }
+
 // Import Bootstrap Icons
 @import '~bootstrap-icons/font/bootstrap-icons.scss'

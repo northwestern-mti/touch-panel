@@ -479,7 +479,7 @@ const handleNewCamNameChange = (event) => {
                             presetNumber <= numOfPresets && (
                               <div key={presetNumber} className="col-6 pt-2 pt-xl-4 px-4">
                                   <button
-                                  className='btn btn-info col-12 rounded-pill border-0 py-2 px-3 me-1 mb-2 mb-xl-3 presetButton'
+                                  className='btn btn-gray col-12 rounded-pill border-0 py-2 px-3 me-1 mb-2 mb-xl-3 presetButton'
                                   key={presetNumber}
                                   onClick={() => handlePresetClicked(presetNumber)}
                                   onMouseDown={() => {

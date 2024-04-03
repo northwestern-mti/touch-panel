@@ -281,7 +281,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             window.CrComLib.publishEvent('b', '83', false);
                             console.log('DocCam Zooming Out') 
                         }}><i className="bi bi-dash-circle-fill"></i></button>
-                            <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-4-xl" onClick={() => {
+                            <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-4-xl" onClick={() => {
                             window.CrComLib.publishEvent('b', '84', true);
                             window.CrComLib.publishEvent('b', '84', false);
                             console.log('DocCam Zooming In') 

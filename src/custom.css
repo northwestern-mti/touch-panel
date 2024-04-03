@@ -12,7 +12,6 @@
 .displayAreaRoundIcon {
     height: 2.75em;
     width: 2.75em;
-    background-color: #dee2e6;
 }
 
 .displayAreaRoundIcon i {
@@ -173,6 +172,16 @@ body {
     font-size: var(--font-size-2);
     /* height: calc(var(--font-size-4)*2.25); */
 }
+
+/* Disable btn hover styles for touchscreen device */
+.btn-info:hover {
+    background-color: var(--bs-btn-bg);
+}
+
+.btn-info:active {
+    background-color: #a8d2de !important;
+}
+
 
 /* Media Queries */
 
