@@ -23,7 +23,7 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
       // const volumeLevel = Math.round((volume * 65535) / 20);
       window.CrComLib.publishEvent('b', `${plusJoin}`, true);
       window.CrComLib.publishEvent('b', `${plusJoin}`, false);
-      window.CrComLib.publishEvent('n', `${volumeJoin}`, volume);
+      // window.CrComLib.publishEvent('n', `${volumeJoin}`, volume);
       console.log('volume increased', volume, 'initial volume:', initialVolume);
 
     }
@@ -35,7 +35,7 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
       // const volumeLevel = Math.round((volume * 65535) / 20);
       window.CrComLib.publishEvent('b', `${minusJoin}`, true);
       window.CrComLib.publishEvent('b', `${minusJoin}`, false);
-      window.CrComLib.publishEvent('n', `${volumeJoin}`, volume);
+      // window.CrComLib.publishEvent('n', `${volumeJoin}`, volume);
       console.log('volume decreased', volume, 'initial volume:', initialVolume)
     }
   };

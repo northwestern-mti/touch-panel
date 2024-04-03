@@ -9,17 +9,24 @@ function Header(){
     const [classRoom, setClassRoom] = useState("");
     const [showHelpModal, setShowHelpModal] = useState(false);
     const [fullscreen, setFullscreen] = useState(true);
-    const handleShowHelpModal = () => {
-        console.log("Showing Modal")
-        setShowHelpModal(true);
-      }
-      const handleCloseHelpModal = () => {
-        setShowHelpModal(false);
-      }
     useEffect(() =>{
         window.CrComLib.subscribeState('s','1', value=> setClassRoom(value));
+        window.CrComLib.subscribeState('b','150', value=> setShowHelpModal(value));
         console.log(classRoom)
     }, [])
+    const handleShowHelpModal = () => {
+        console.log("Showing Help Modal")
+        setShowHelpModal(true);
+        window.CrComLib.publishEvent('b', '150', true);
+        window.CrComLib.publishEvent('b', '150', false);
+      }
+      const handleCloseHelpModal = () => {
+        console.log("Closing Help Modal")
+        setShowHelpModal(false);
+        window.CrComLib.publishEvent('b', '151', true);
+        window.CrComLib.publishEvent('b', '151', false);
+      }
+    
     
     
     return(

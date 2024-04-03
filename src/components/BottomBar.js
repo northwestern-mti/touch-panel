@@ -46,14 +46,16 @@ function BottomBar ({programStarted, setProgramStarted}) {
     window.CrComLib.subscribeState('b', '23', value => setIsMicMuted(value));
     window.CrComLib.subscribeState('b', '111', value => setIsCeilingMicMuted(value));
     window.CrComLib.subscribeState('b', '112', value => setHasCeilingMics(value));
+    window.CrComLib.subscribeState('b', '6', value => setShowPowerModal(value));
+    window.CrComLib.subscribeState('b', '95', value => setShowVolumeModal(value));
+    window.CrComLib.subscribeState('b', '97', value => setShowMicModal(value));
+    window.CrComLib.subscribeState('b', '88', value => setShowCamModal(value));
 
     setPresetNames(Array(numOfPresets).fill('').map((_, index) =>{
       let value;
       window.CrComLib.subscribeState('s', `${index + 101}`, incomingValue => {
         value = incomingValue;
-        // console.log(`value is: ${value}`)
         setTempPresetName(value)
-        // console.log(`temp preset name is ${tempPresetName}`);
       });
       return value;
     }));
@@ -63,21 +65,15 @@ function BottomBar ({programStarted, setProgramStarted}) {
       let value;
       window.CrComLib.subscribeState('s', `${index + 91}`, incomingValue => {
         value = incomingValue;
-        // console.log(`value is: ${value}`)
         setTempCamName(value)
-        // console.log(`temp Cam name is ${tempCamName}`);
       });
       return value;
     }));
-    // console.log(`number of cameras is ${numCameras}`);
-    // console.log(`number of presets is ${numOfPresets}`);
-    // console.log(`cameras array is ${camNames}`);
-    // console.log(`presets array is ${presetNames}`);
+    
     
   }, [numCameras, numOfPresets, tempCamName, tempPresetName])
 
   const programShutOff = () => {
-    handleClosePowerModal();
     setProgramStarted(!programStarted)
     navigate('/WelcomePage');
     window.CrComLib.publishEvent('b', '30', true);
@@ -88,34 +84,50 @@ function BottomBar ({programStarted, setProgramStarted}) {
   const handleShowPowerModal = () => {
     console.log("Showing Power Modal")
     setShowPowerModal(true);
+    window.CrComLib.publishEvent('b', '5', true);
+    window.CrComLib.publishEvent('b', '5', false);
   }
   const handleClosePowerModal = () => {
     setShowPowerModal(false);
+    window.CrComLib.publishEvent('b', '31', true);
+    window.CrComLib.publishEvent('b', '31', false);
   }
 
   const handleShowVolumeModal = () => {
     console.log("Showing Volume Modal")
     setShowVolumeModal(true);
+    window.CrComLib.publishEvent('b', '95', true);
+    window.CrComLib.publishEvent('b', '95', false);
   }
   const handleCloseVolumeModal = () => {
+    console.log("Closing Volume Modal")
     setShowVolumeModal(false);
+    window.CrComLib.publishEvent('b', '96', true);
+    window.CrComLib.publishEvent('b', '96', false);
   }
   const handleShowMicModal = () => {
     console.log("Showing Microphones Volume Modal")
     setShowMicModal(true);
-
+    window.CrComLib.publishEvent('b', '97', true);
+    window.CrComLib.publishEvent('b', '97', false);
   }
   const handleCloseMicModal = () => {
     setShowMicModal(false);
+    window.CrComLib.publishEvent('b', '98', true);
+    window.CrComLib.publishEvent('b', '98', false);
   }
   const handleShowCamModal = () => {
     console.log("Showing Cam Modal")
     setShowCamModal(true);
+    window.CrComLib.publishEvent('b', '88', true);
+    window.CrComLib.publishEvent('b', '88', false);
     
   }
   const handleCloseCamModal = () => {
     console.log("Closing Cam Modal")
     setShowCamModal(false);
+    window.CrComLib.publishEvent('b', '89', true);
+    window.CrComLib.publishEvent('b', '89', false);
   }
   const togglePresentationMute = () => {
     setIsPresentationMuted((prevIsPresentationMuted) => !(prevIsPresentationMuted));

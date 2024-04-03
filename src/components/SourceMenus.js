@@ -116,14 +116,14 @@ const SourceMenus = () => {
         <div className="col d-flex flex-column border-end border-dark p-0 m-0 align-items-start">
             <DisplayArea sourceSelected={source1} displayJoin={'253'} side='left'
                 showAnnotationJoin='42' showFullScreenJoin='44' annotationJoin='41' fullscreenJoin='43'
-                powerOff='251' powerOn='252' upJoin='256' downJoin='255'/>
+                powerOff='251' powerOn='252' upJoin='256' downJoin='255' showDisplayModalJoin='8' closeDisplayModalJoin='39'/>
         </div>
 
          {/* Display Area Right */}
         <div className="col p-0 m-0">
         <DisplayArea sourceSelected={source2} displayJoin={'260'} side='right' 
                 showAnnotationJoin='46' showFullScreenJoin='48' annotationJoin='45' fullscreenJoin='47'
-                powerOff='258' powerOn='259' upJoin='263' downJoin='262' />
+                powerOff='258' powerOn='259' upJoin='263' downJoin='262' showDisplayModalJoin='37' closeDisplayModalJoin='38'/>
         </div>
 
         {/* Source Select Menu Right */}

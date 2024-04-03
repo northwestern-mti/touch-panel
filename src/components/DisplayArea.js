@@ -6,7 +6,7 @@ import CModal from './CModal';
 import Opad from './Opad';
 
 function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, showFullScreenJoin,
-     annotationJoin, fullscreenJoin, powerOn, powerOff, upJoin, downJoin}) {
+     annotationJoin, fullscreenJoin, powerOn, powerOff, upJoin, downJoin,showDisplayModalJoin, closeDisplayModalJoin}) {
     const [ipAdd, setIpAdd] = useState('');
     const [isMuted, setIsMuted] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
@@ -29,6 +29,9 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         window.CrComLib.subscribeState('b', `${powerOn}`, value=> setPowerSwitch(value));
         window.CrComLib.subscribeState('b', `${annotationJoin}`, value=> setAnnotationPressed(value));
         window.CrComLib.subscribeState('b', `${fullscreenJoin}`, value=> setFullscreenPressed(value));
+        window.CrComLib.subscribeState('b', `${showDisplayModalJoin}`, value => setIsClicked(value));
+        window.CrComLib.subscribeState('b', '55', value => setBluRayClicked(value));
+        window.CrComLib.subscribeState('b', '117', value => setConfCallClicked(value));
 
         console.log('the state of isMuted', isMuted)
         
@@ -42,25 +45,37 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const handleShowDisplayModal = () => {
         console.log("Showing Display Modal")
         setIsClicked(true);
+        window.CrComLib.publishEvent('b', `${showDisplayModalJoin}`, true);
+        window.CrComLib.publishEvent('b', `${showDisplayModalJoin}`, false);
       }
     const handleCloseDisplayModal = () => {
         setIsClicked(false);
+        window.CrComLib.publishEvent('b', `${closeDisplayModalJoin}`, true);
+        window.CrComLib.publishEvent('b', `${closeDisplayModalJoin}`, false);
     }
     const handleShowBluRayModal = () => {
         console.log("Showing BluRay Modal")
         setBluRayClicked(true);
+        window.CrComLib.publishEvent('b', '55', true);
+        window.CrComLib.publishEvent('b', '55', false);
     }
     const handleCloseBluRayModal = () => {
         console.log("Closing BluRay Modal")
         setBluRayClicked(false);
+        window.CrComLib.publishEvent('b', '56', true);
+        window.CrComLib.publishEvent('b', '56', false);
     }
     const handleShowConfCallModal = () => {
         console.log("Showing ConfCall Modal")
         setConfCallClicked(true);
+        window.CrComLib.publishEvent('b', '117', true);
+        window.CrComLib.publishEvent('b', '117', false);
     }
     const handleCloseConfCallModal = () => {
         console.log("Closing ConfCall Modal")
         setConfCallClicked(false);
+        window.CrComLib.publishEvent('b', '118', true);
+        window.CrComLib.publishEvent('b', '118', false);
     }
     const togglePowerSwitch = () => {
         setPowerSwitch(!powerSwitch)
@@ -371,7 +386,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     return(
         <div className="col-12">
             <div className="row m-0">
-                {(sourceSelected == 0 | !powerSwitch) ? 
+                { !powerSwitch ? 
                     <div className='col bg-dark text-white text-center font-size-3 font-size-4-xl p-2 p-xl-3 sourceStatus'>
                         <p>Display {displayNum} is off.</p>
                     </div> : 
