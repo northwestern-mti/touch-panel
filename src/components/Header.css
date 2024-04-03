@@ -8,18 +8,28 @@
 }
 
 .form-floating > .form-control, .presetButton {
-    min-height: calc(2.5rem + calc(var(--bs-border-width) * 2));
     height: calc(2.5rem + calc(var(--bs-border-width) * 2));
+    min-height: calc(2.5rem + calc(var(--bs-border-width) * 2));
+    
 }
 
-.adminPresetButtonRow {
-    height:10vh;
+/* Truncate Toggle Button Text */
+.presetButton {
+    width: 23vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
+/* .adminPresetButtonRow {
+    height:10vh;
+} */
 
 /* XL Breakpoint */
 @media screen and (min-width: 1200px) { 
     .form-floating > .form-control, .presetButton {
-        min-height: calc(3rem + calc(var(--bs-border-width) * 2));
-        height: calc(3rem + calc(var(--bs-border-width) * 2));
+        height: calc(4rem + calc(var(--bs-border-width) * 2));
+        min-height: calc(4rem + calc(var(--bs-border-width) * 2));
+       
     }
 }
