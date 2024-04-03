@@ -180,7 +180,7 @@ function Header(){
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -195,7 +195,7 @@ function Header(){
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -210,7 +210,7 @@ function Header(){
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -225,7 +225,7 @@ function Header(){
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -240,7 +240,7 @@ function Header(){
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -255,7 +255,7 @@ function Header(){
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -270,7 +270,7 @@ function Header(){
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -285,7 +285,7 @@ function Header(){
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -300,7 +300,7 @@ function Header(){
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -315,7 +315,7 @@ function Header(){
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -330,7 +330,7 @@ function Header(){
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -345,7 +345,7 @@ function Header(){
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -360,7 +360,7 @@ function Header(){
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -375,7 +375,7 @@ function Header(){
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -390,7 +390,7 @@ function Header(){
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -405,7 +405,7 @@ function Header(){
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
