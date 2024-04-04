@@ -369,8 +369,7 @@ const handleNewCamNameChange = (event) => {
             </div>
             <div className="col-12 text-center mb-3 mb-xl-5">
               <button type="button"
-                className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isMicMuted ? 'bg-info' : ''}`}
-                style={{ backgroundColor: '#D5D5D5' }}
+                className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isMicMuted ? 'bg-info' : 'bg-gray-300'}`}
                 onClick={toggleMicMute}>
                 <i
                   className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
@@ -380,8 +379,7 @@ const handleNewCamNameChange = (event) => {
             </div>
             <div className="col-12 text-center">
               <button type="button"
-                className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isCeilingMicMuted ? 'bg-info' : ''}`}
-                style={{ backgroundColor: '#D5D5D5' }}
+                className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isCeilingMicMuted ? 'bg-info' : 'bg-gray-300'}`}
                 onClick={toggleCeilingMicMute}>
                 <i
                   className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isCeilingMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
@@ -481,7 +479,7 @@ const handleNewCamNameChange = (event) => {
                             presetNumber <= numOfPresets && (
                               <div key={presetNumber} className="col-6 pt-2 pt-xl-4 px-4">
                                   <button
-                                  className='btn btn-info col-12 rounded-pill border-0 py-2 px-3 me-1 mb-2 mb-xl-3 presetButton'
+                                  className='btn btn-gray col-12 rounded-pill border-0 py-2 px-3 me-1 mb-2 mb-xl-3 presetButton'
                                   key={presetNumber}
                                   onClick={() => handlePresetClicked(presetNumber)}
                                   onMouseDown={() => {

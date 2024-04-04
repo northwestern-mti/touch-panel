@@ -50,7 +50,7 @@ function Header(){
                             style={{width:'12em', height:'auto'}}/>
                     </div>
                     <div className="col-1 text-center p-0">
-                        <div className="text-primary font-size-1"
+                        <div className="text-primary py-3 py-xl-5 font-size-1"
                         onMouseDown={() => {
                             holdTimeoutRef.current = setTimeout(() => handleAdminLongPress(), 500);
                           }}
@@ -81,7 +81,7 @@ function Header(){
                                 </span>
                     </div>
                     <div className="col-1 text-white text-center">
-                    <button type="button"
+                    <button
                         className="btn btn-info d-flex align-items-center rounded-circle mx-auto text-white font-size-4 font-size-5-xl circleIcon" onClick={handleShowHelpModal}>
                         <i className="d-inline-block bi bi-question-lg mx-auto"></i>
                     </button>
@@ -120,14 +120,14 @@ function Header(){
                                     <button type="button" className="border-0 text-dark"
                                         onClick={handleCloseAdminModal}><i class="bi bi-arrow-left"></i></button>Admin</h1>
                                 <h2 className="align-self-center font-size-2 font-size-4-xl text-center">
-                                    <strong>Project file:</strong> placeholder.chz
+                                    <strong>Project file:</strong> placeholder.ch5z
                                 </h2>
                                 <button type="button" className="border-0 text-muted font-size-3 font-size-5-xl"
                                     onClick={handleCloseAdminModal}><i class="bi bi-x-lg"></i></button>
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body className="font-size-4 font-size-5-xl p-0 pt-1">
-                            <div className='container-fluid'>
+                            <div className='container-fluid overflow-y-auto'>
                                 <div className="row flex-wrap align-items-start justify-content-around pt-xl-3">
                                     <div className="col-5 d-flex flew-row align-items-center p-0 mb-2 mb-xl-2">
                                         <FloatingLabel
@@ -168,189 +168,272 @@ function Header(){
                                     </div>
 
                                 </div>
-                                {/* HDMI button row */}
-                                <div className="row mt-1">
-                                    <h3 className="text-center fw-bold font-size-2 font-size-4-xl mb-2 mb-xl-2">Enter input # of HDMI switcher or 0 for none</h3>
-                                    {/* Button column left */}
-                                    <div className="col-6 d-flex flex-column font-size-2 font-size-4-xl">
-                                        {/* number with incrementer */}
-                                        <div className="col d-flex flex-row align-items-center mb-xl-2">
+                                {/* HDMI Switcher row */}
+                                <div className="row flex-wrap mt-1 mb-xl-2 font-size-2 font-size-4-xl">
+                                    <h3 className="text-center fw-bold mb-4 font-size-2 font-size-4-xl">Enter input # of HDMI switcher or 0 for none</h3>
+                                    {/* HDMI Switcher */}
+                                    <div className="col-6 h-100">
+                                        <div className="d-flex flex-row align-items-center mb-2 mb-xl-3">
                                             <div className="col-6 text-center">
                                                 <span className="fw-bold">:0</span>
                                             </div>
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
-                                        {/* /number with incrementer */}
-                                        {/* number with incrementer */}
-                                        <div className="col d-flex flex-row align-items-center mb-xl-2">
-                                            <div className="col-6 text-center">
-                                                <span className="fw-bold">:0</span>
-                                            </div>
-                                            <div className="col-6 text-center">
-                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
-                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {/* /number with incrementer */}
-                                        {/* number with incrementer */}
-                                        <div className="col d-flex flex-row align-items-center mb-xl-2">
-                                            <div className="col-6 text-center">
-                                                <span className="fw-bold">:0</span>
-                                            </div>
-                                            <div className="col-6 text-center">
-                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
-                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {/* /number with incrementer */}
-                                        {/* number with incrementer */}
-                                        <div className="col d-flex flex-row align-items-center mb-xl-2">
-                                            <div className="col-6 text-center">
-                                                <span className="fw-bold">:0</span>
-                                            </div>
-                                            <div className="col-6 text-center">
-                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
-                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {/* /number with incrementer */}
-                                        {/* number with incrementer */}
-                                        <div className="col d-flex flex-row align-items-center mb-xl-2">
-                                            <div className="col-6 text-center">
-                                                <span className="fw-bold">:0</span>
-                                            </div>
-                                            <div className="col-6 text-center">
-                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
-                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {/* /number with incrementer */}
-                                        {/* number with incrementer */}
-                                        <div className="col d-flex flex-row align-items-center mb-xl-2">
-                                            <div className="col-6 text-center">
-                                                <span className="fw-bold">:0</span>
-                                            </div>
-                                            <div className="col-6 text-center">
-                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
-                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {/* /number with incrementer */}
                                     </div>
-                                    {/* /Button column left */}
-                                    {/* Button Column Right */}
-                                    <div className="col-6 d-flex flex-column font-size-2 font-size-4-xl">
-                                        {/* number with incrementer */}
-                                        <div className="col d-flex flex-row align-items-center mb-xl-2">
+                                    {/* /HDMI Switcher */}
+                                    {/* HDMI Switcher */}
+                                    <div className="col-6 h-100">
+                                        <div className="d-flex flex-row align-items-center mb-2 mb-xl-3">
                                             <div className="col-6 text-center">
                                                 <span className="fw-bold">:0</span>
                                             </div>
                                             <div className="col-6 text-center">
                                                 <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                     <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
                                                 </div>
                                             </div>
                                         </div>
-                                        {/* /number with incrementer */}
-                                        {/* number with incrementer */}
-                                        <div className="col d-flex flex-row align-items-center mb-xl-2">
-                                            <div className="col-6 text-center">
-                                                <span className="fw-bold">:0</span>
-                                            </div>
-                                            <div className="col-6 text-center">
-                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
-                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {/* /number with incrementer */}
-                                        {/* number with incrementer */}
-                                        <div className="col d-flex flex-row align-items-center mb-xl-2">
-                                            <div className="col-6 text-center">
-                                                <span className="fw-bold">:0</span>
-                                            </div>
-                                            <div className="col-6 text-center">
-                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
-                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {/* /number with incrementer */}
-                                        {/* number with incrementer */}
-                                        <div className="col d-flex flex-row align-items-center mb-xl-2">
-                                            <div className="col-6 text-center">
-                                                <span className="fw-bold">:0</span>
-                                            </div>
-                                            <div className="col-6 text-center">
-                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
-                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {/* /number with incrementer */}
-                                        {/* number with incrementer */}
-                                        <div className="col d-flex flex-row align-items-center mb-xl-2">
-                                            <div className="col-6 text-center">
-                                                <span className="fw-bold">:0</span>
-                                            </div>
-                                            <div className="col-6 text-center">
-                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
-                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {/* /number with incrementer */}
-                                        {/* number with incrementer */}
-                                        <div className="col d-flex flex-row align-items-center mb-xl-2">
-                                            <div className="col-6 text-center">
-                                                <span className="fw-bold">:0</span>
-                                            </div>
-                                            <div className="col-6 text-center">
-                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
-                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
-                                                    <button type="button" className="btn bg-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {/* /number with incrementer */}
                                     </div>
-                                    {/* /Button Column Right */}
+                                    {/* /HDMI Switcher */}
+                                    {/* HDMI Switcher */}
+                                    <div className="col-6 h-100">
+                                        <div className="d-flex flex-row align-items-center mb-2 mb-xl-3">
+                                            <div className="col-6 text-center">
+                                                <span className="fw-bold">:0</span>
+                                            </div>
+                                            <div className="col-6 text-center">
+                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* /HDMI Switcher */}
+                                    {/* HDMI Switcher */}
+                                    <div className="col-6 h-100">
+                                        <div className="d-flex flex-row align-items-center mb-2 mb-xl-3">
+                                            <div className="col-6 text-center">
+                                                <span className="fw-bold">:0</span>
+                                            </div>
+                                            <div className="col-6 text-center">
+                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* /HDMI Switcher */}
+                                    {/* HDMI Switcher */}
+                                    <div className="col-6 h-100">
+                                        <div className="d-flex flex-row align-items-center mb-2 mb-xl-3">
+                                            <div className="col-6 text-center">
+                                                <span className="fw-bold">:0</span>
+                                            </div>
+                                            <div className="col-6 text-center">
+                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* /HDMI Switcher */}
+                                    {/* HDMI Switcher */}
+                                    <div className="col-6 h-100">
+                                        <div className="d-flex flex-row align-items-center mb-2 mb-xl-3">
+                                            <div className="col-6 text-center">
+                                                <span className="fw-bold">:0</span>
+                                            </div>
+                                            <div className="col-6 text-center">
+                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* /HDMI Switcher */}
+                                    {/* HDMI Switcher */}
+                                    <div className="col-6 h-100">
+                                        <div className="d-flex flex-row align-items-center mb-2 mb-xl-3">
+                                            <div className="col-6 text-center">
+                                                <span className="fw-bold">:0</span>
+                                            </div>
+                                            <div className="col-6 text-center">
+                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* /HDMI Switcher */}
+                                    {/* HDMI Switcher */}
+                                    <div className="col-6 h-100">
+                                        <div className="d-flex flex-row align-items-center mb-2 mb-xl-3">
+                                            <div className="col-6 text-center">
+                                                <span className="fw-bold">:0</span>
+                                            </div>
+                                            <div className="col-6 text-center">
+                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* /HDMI Switcher */}
+                                    {/* HDMI Switcher */}
+                                    <div className="col-6 h-100">
+                                        <div className="d-flex flex-row align-items-center mb-2 mb-xl-3">
+                                            <div className="col-6 text-center">
+                                                <span className="fw-bold">:0</span>
+                                            </div>
+                                            <div className="col-6 text-center">
+                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* /HDMI Switcher */}
+                                    {/* HDMI Switcher */}
+                                    <div className="col-6 h-100">
+                                        <div className="d-flex flex-row align-items-center mb-2 mb-xl-3">
+                                            <div className="col-6 text-center">
+                                                <span className="fw-bold">:0</span>
+                                            </div>
+                                            <div className="col-6 text-center">
+                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* /HDMI Switcher */}
+                                    {/* HDMI Switcher */}
+                                    <div className="col-6 h-100">
+                                        <div className="d-flex flex-row align-items-center mb-2 mb-xl-3">
+                                            <div className="col-6 text-center">
+                                                <span className="fw-bold">:0</span>
+                                            </div>
+                                            <div className="col-6 text-center">
+                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* /HDMI Switcher */}
+                                    {/* HDMI Switcher */}
+                                    <div className="col-6 h-100">
+                                        <div className="d-flex flex-row align-items-center mb-2 mb-xl-3">
+                                            <div className="col-6 text-center">
+                                                <span className="fw-bold">:0</span>
+                                            </div>
+                                            <div className="col-6 text-center">
+                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* /HDMI Switcher */}
+                                    {/* HDMI Switcher */}
+                                    <div className="col-6 h-100">
+                                        <div className="d-flex flex-row align-items-center mb-2 mb-xl-3">
+                                            <div className="col-6 text-center">
+                                                <span className="fw-bold">:0</span>
+                                            </div>
+                                            <div className="col-6 text-center">
+                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* /HDMI Switcher */}
+                                    {/* HDMI Switcher */}
+                                    <div className="col-6 h-100">
+                                        <div className="d-flex flex-row align-items-center mb-2 mb-xl-3">
+                                            <div className="col-6 text-center">
+                                                <span className="fw-bold">:0</span>
+                                            </div>
+                                            <div className="col-6 text-center">
+                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* /HDMI Switcher */}
+                                    {/* HDMI Switcher */}
+                                    <div className="col-6 h-100">
+                                        <div className="d-flex flex-row align-items-center mb-2 mb-xl-3">
+                                            <div className="col-6 text-center">
+                                                <span className="fw-bold">:0</span>
+                                            </div>
+                                            <div className="col-6 text-center">
+                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* /HDMI Switcher */}
+                                    {/* HDMI Switcher */}
+                                    <div className="col-6 h-100">
+                                        <div className="d-flex flex-row align-items-center mb-2 mb-xl-3">
+                                            <div className="col-6 text-center">
+                                                <span className="fw-bold">:0</span>
+                                            </div>
+                                            <div className="col-6 text-center">
+                                                <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
+                                                    <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"><i className="bi bi-dash-circle-fill"></i></button>
+                                                    <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"><i className="bi bi-plus-circle-fill"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* /HDMI Switcher */}
 
                                 </div>
                                 {/* /HDMI button row */}
-                                <div className="row flex-nowrap align-items-center justify-content-around adminPresetButtonRow">
-                                    <button
-                                        className='btn btn-info col rounded-pill border-0 py-3 px-3 mx-1 presetButton'>
+                                <div className="row align-items-center justify-content-around adminPresetButtonRow p-0 mt-1">
+                                    <button className='btn btn-info rounded-pill border-0 px-3 py-xl-3 mb-3 presetButton'>
                                     </button>
-                                    <button
-                                        className='btn btn-info col rounded-pill border-0 py-2 px-3 mx-1 presetButton'>
+                                    <button className='btn btn-info rounded-pill border-0 px-3 mb-3 presetButton'>
                                     </button>
-                                    <button
-                                        className='btn btn-info col rounded-pill border-0 py-2 px-3 mx-1 presetButton'>
+                                    <button className='btn btn-info rounded-pill border-0 px-3 mb-3 presetButton'>
                                     </button>
-                                    <button
-                                        className='btn btn-info col rounded-pill border-0 py-2 px-3 mx-1 presetButton'>
+                                    <button className='btn btn-info rounded-pill border-0 px-3 mb-3 presetButton'>
                                     </button>
+                                    <button className='btn btn-info rounded-pill border-0 px-3 mb-3 presetButton'>
+                                    </button>
+                                    <button className='btn btn-info rounded-pill border-0 px-3 mb-3 presetButton'>
+                                    </button>
+                                    <button className='btn btn-info rounded-pill border-0 px-3 mb-3 presetButton'>
+                                    </button>
+                                    <button className='btn btn-info rounded-pill border-0 px-3 mb-3 presetButton'>
+                                    </button>
+                                   
+                                    
+                                    
                                 </div>
                             </div>
                         </Modal.Body>

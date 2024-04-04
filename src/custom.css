@@ -12,7 +12,6 @@
 .displayAreaRoundIcon {
     height: 2.75em;
     width: 2.75em;
-    background-color: #dee2e6;
 }
 
 .displayAreaRoundIcon i {
@@ -144,8 +143,14 @@ body {
 
 /* Switches */
 
-.form-switch .form-check-input:checked {
-    background-color: var(--bs-info);
+.form-check-input, .form-check-input:checked {
+    border-color: var(--bs-border-color)!important;
+    background-color: #fff;
+}
+.customSwitchCheck {
+    --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27%23007FA4%27/%3e%3c/svg%3e")!important;
+    background-position: right center;
+    background-image: var(--bs-form-switch-bg)!important;
 }
 
 .mediumSwitch {
@@ -154,11 +159,6 @@ body {
 
 .largeSwitch {
     transform: scale(2.25);
-}
-
-.form-check-input:checked {
-    background-color: var(--cyan);
-    border-color: var(--cyan);
 }
 
 /* BluRay Media Buttons */
@@ -173,6 +173,16 @@ body {
     font-size: var(--font-size-2);
     /* height: calc(var(--font-size-4)*2.25); */
 }
+
+/* Disable btn hover styles for touchscreen device */
+.btn-info:hover {
+    background-color: var(--bs-btn-bg);
+}
+
+.btn-info:active {
+    background-color: #a8d2de !important;
+}
+
 
 /* Media Queries */
 
