@@ -142,7 +142,6 @@ body {
 }
 
 /* Switches */
-
 .form-check-input, .form-check-input:checked {
     border-color: var(--bs-border-color)!important;
     background-color: #fff;
@@ -177,13 +176,31 @@ body {
     font-size: var(--font-size-2);
 }
 
-/* Disable btn hover styles for touchscreen device */
-.btn-info:hover {
-    background-color: var(--bs-btn-bg);
-}
-
 .btn-info:active {
     background-color: #a8d2de !important;
+}
+
+/* Disable btn hover styles for touchscreen device */
+@media (hover: none) {
+    .btn-info:hover {
+        background-color: var(--bs-btn-bg);
+    }
+
+    .btn-gray:hover {
+        background-color: var(--bs-btn-bg);
+    }
+}
+
+@media (hover: hover) {
+    /* Enable bluray hover styles for desktop/pointer devices */
+    .blurayControls:hover {
+        background-color: var(--bs-gray-300);
+    }
+
+    /* Enable opad hover styles for desktop/pointer devices */
+    .o-pad div:hover{
+        background-color: var(--bs-gray-300);
+      }
 }
 
 
