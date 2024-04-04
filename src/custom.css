@@ -167,11 +167,14 @@ body {
     height: 10vw;
 }
 
+.btn.blurayControls:active {
+    background-color: var(--bs-black);
+    color: var(--bs-white);
+}
+
 /* Camera Control Presets  */
 .presetButton {
-    /* width: 18vw; */
     font-size: var(--font-size-2);
-    /* height: calc(var(--font-size-4)*2.25); */
 }
 
 /* Disable btn hover styles for touchscreen device */
@@ -251,7 +254,6 @@ body {
         .presetButton {
             font-size: var(--font-size-4);
             line-height: var(--font-size-5);
-            /* height: calc(var(--font-size-5)*2.25); */
         }
 
     /* Custom Responsive Font Size Classes */

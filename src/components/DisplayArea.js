@@ -324,7 +324,6 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             {/* Media Buttons Row */}
                             <div className='d-flex flex-row mx-auto my-2 mb-2 mb-xl-5'>
                                 <button className='btn btn-white border border-1 position-relative rounded-circle mx-auto pt-2 blurayControls'
-                                    style={{backgroundColor: (blurayButton === 'Eject') ? 'black' : '' , color: (blurayButton === 'Eject') ? 'white' : '' }}
                                     onClick={() => { blurayControl('59', 'Eject') }}>
                                         <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-eject-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>
