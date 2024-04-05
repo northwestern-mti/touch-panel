@@ -23,7 +23,7 @@ function BottomBar () {
   const [numOfPresets, setNumOfPresets] = useState(0);
   const [presetRenameMode, setpresetRenameMode] = useState(false);
   const [presetNames, setPresetNames] = useState([]);
-  const [selectedPreset, setSelectedPreset] = useState(null);
+  const [selectedPreset, setSelectedPreset] = useState(0);
   const [newPresetName, setNewPresetName] = useState('');
   const [camNames, setCamNames] = useState([]);
   const [tempCamName, setTempCamName] = useState('');
@@ -127,6 +127,7 @@ const handleCameraClicked = (cameraNum) => {
   console.log(`${camNames[cameraNum - 1]}clicked` )
 }
 const handlePresetClicked = (presetNum) => {
+  setSelectedPreset(presetNum);
   window.CrComLib.publishEvent('n', '47', presetNum);
   console.log(`Preset ${presetNum} pressed`)
 }
@@ -479,7 +480,7 @@ const handleNewCamNameChange = (event) => {
                             presetNumber <= numOfPresets && (
                               <div key={presetNumber} className="col-6 pt-2 pt-xl-4 px-4">
                                   <button
-                                  className='btn btn-gray col-12 rounded-pill border-0 py-2 px-3 me-1 mb-2 mb-xl-3 presetButton'
+                                  className={`btn col-12 rounded-pill border-0 py-2 px-3 me-1 mb-2 mb-xl-3 presetButton ${(selectedPreset === presetNumber) ? 'btn-info' : 'btn-gray'}`}
                                   key={presetNumber}
                                   onClick={() => handlePresetClicked(presetNumber)}
                                   onMouseDown={() => {
