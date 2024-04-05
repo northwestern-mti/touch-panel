@@ -414,26 +414,23 @@ function Header(){
 
                                 </div>
                                 {/* /HDMI button row */}
-                                <div className="row align-items-center justify-content-around adminPresetButtonRow p-0 mt-1">
-                                    <button className='btn btn-info rounded-pill border-0 px-3 py-xl-3 mb-3 presetButton'>
+                                <div className="row flex-nowrap overflow-y-auto adminPresetButtonRow p-0 px-3 mt-1">
+                                    <button className='btn btn-info rounded-pill border-0 px-3 me-2 mb-3 presetButton'>first button with a long name
                                     </button>
-                                    <button className='btn btn-info rounded-pill border-0 px-3 mb-3 presetButton'>
+                                    <button className='btn btn-info rounded-pill border-0 px-3 me-2 mb-3 presetButton'>second button
                                     </button>
-                                    <button className='btn btn-info rounded-pill border-0 px-3 mb-3 presetButton'>
+                                    <button className='btn btn-info rounded-pill border-0 px-3 me-2 mb-3 presetButton'>
                                     </button>
-                                    <button className='btn btn-info rounded-pill border-0 px-3 mb-3 presetButton'>
+                                    <button className='btn btn-info rounded-pill border-0 px-3 me-2 mb-3 presetButton'>
                                     </button>
-                                    <button className='btn btn-info rounded-pill border-0 px-3 mb-3 presetButton'>
+                                    <button className='btn btn-info rounded-pill border-0 px-3 me-2 mb-3 presetButton'>
                                     </button>
-                                    <button className='btn btn-info rounded-pill border-0 px-3 mb-3 presetButton'>
+                                    <button className='btn btn-info rounded-pill border-0 px-3 me-2 mb-3 presetButton'>
                                     </button>
-                                    <button className='btn btn-info rounded-pill border-0 px-3 mb-3 presetButton'>
+                                    <button className='btn btn-info rounded-pill border-0 px-3 me-2 mb-3 presetButton'>
                                     </button>
-                                    <button className='btn btn-info rounded-pill border-0 px-3 mb-3 presetButton'>
+                                    <button className='btn btn-info rounded-pill border-0 px-3 me-2 mb-3 presetButton'>
                                     </button>
-                                   
-                                    
-                                    
                                 </div>
                             </div>
                         </Modal.Body>

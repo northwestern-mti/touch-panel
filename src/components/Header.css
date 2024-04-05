@@ -15,21 +15,16 @@
 
 /* Truncate Toggle Button Text */
 .presetButton {
-    width: 23vw;
+    width: 21vw;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-/* .adminPresetButtonRow {
-    height:10vh;
-} */
 
 /* XL Breakpoint */
 @media screen and (min-width: 1200px) { 
     .form-floating > .form-control, .presetButton {
         height: calc(4rem + calc(var(--bs-border-width) * 2));
         min-height: calc(4rem + calc(var(--bs-border-width) * 2));
-       
     }
 }
