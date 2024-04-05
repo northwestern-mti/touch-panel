@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import CrComLib from "@crestron/ch5-crcomlib";
 import {Button} from 'react-bootstrap';
 import AddIcon from './Icons/plus.svg';
@@ -7,6 +7,8 @@ import './VolumeControl.css'
 
 const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}) => {
   const [volume, setVolume] = useState(0);
+  const [pressInterval, setPressInterval] = useState(null);
+  const holdTimeoutRef = useRef(null);
 
 
   useEffect(() => {
@@ -39,6 +41,29 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
       console.log('volume decreased', volume, 'initial volume:', initialVolume)
     }
   };
+  const handleDecreaseOnClick = () => {
+    handleDecreaseVolume();
+    window.CrComLib.publishEvent('b', `${minusJoin}`, false);
+  }
+  const handleDecreaseOnMouseDown = () => {
+    setPressInterval(setInterval(handleDecreaseVolume, 200));
+  } 
+  const handleDecreaseOnMouseUp = () => {
+    clearInterval(pressInterval);
+    window.CrComLib.publishEvent('b', `${minusJoin}`, false);
+  }
+  const handleIncreaseOnClick = () => {
+    handleIncreaseVolume();
+    window.CrComLib.publishEvent('b', `${plusJoin}`, false);
+  }
+  const handleIncreaseOnMouseDown = () => {
+    setPressInterval(setInterval(handleIncreaseVolume, 200));
+  } 
+  const handleIncreaseOnMouseUp = () => {
+    clearInterval(pressInterval);
+    window.CrComLib.publishEvent('b', `${plusJoin}`, false);
+  }
+  
   useEffect(() => {
     // Map decibels to the volume range (0 to 20)
     if (!isMuted){
@@ -64,14 +89,26 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
 
   return (
     <div className="d-flex flex-row justify-content-center align-items-center">
-        <button className="bg-info border-0 rounded-circle me-2 volumeButton" onClick={handleDecreaseVolume}>
+        <button className="bg-info border-0 rounded-circle me-2 volumeButton" 
+          onClick={handleDecreaseOnClick}
+          onMouseDown={handleDecreaseOnMouseDown}
+          onMouseUp={handleDecreaseOnMouseUp}
+          onMouseLeave={handleDecreaseOnMouseUp}
+          onTouchStart={handleDecreaseOnMouseDown}
+          onTouchEnd={handleDecreaseOnMouseUp}>
             <img
                 src={RemoveIcon}
                 alt="Minus Icon"
                 className="img-fluid"/>
         </button>
         <div className="squaresContainer me-2">{renderSquares()}</div>
-        <button className="bg-info border-0 rounded-circle volumeButton" onClick={handleIncreaseVolume}>
+        <button className="bg-info border-0 rounded-circle volumeButton" 
+          onClick={handleIncreaseOnClick}
+          onMouseDown={handleIncreaseOnMouseDown}
+          onMouseUp={handleIncreaseOnMouseUp}
+          onMouseLeave={handleIncreaseOnMouseUp}
+          onTouchStart={handleIncreaseOnMouseDown}
+          onTouchEnd={handleIncreaseOnMouseUp}>
             <img
                 src={AddIcon}
                 alt="Plus Icon"
