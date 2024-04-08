@@ -24,6 +24,13 @@
     width: 7.75vw;
 }
 
+/* Mute Buttons */
+.muteIcon {
+    width: 10vw;
+    height: 10vw;
+}
+
+
 :root {
 /* Custom Responsive Font Sizes */
     /* size 0 xs */
@@ -258,21 +265,20 @@ body {
         line-height: var(--font-size-5);
     }
 
-    .circleIcon {
-        width: 100px;
-        height: 100px;
-    }
-
-    .sourceSelectMenu button {
-        line-height: var(--font-size-3)!important;
-    }
-
+        .circleIcon {
+            width: 100px;
+            height: 100px;
+        }
+    
+        .sourceSelectMenu button {
+            line-height: var(--font-size-3) !important;
+        }
         /* Camera Control Presets  */
         .presetButton {
             font-size: var(--font-size-4);
             line-height: var(--font-size-5);
         }
-
+    
     /* Custom Responsive Font Size Classes */
     .font-size-0-xl {
         font-size: var(--font-size-0)!important;
