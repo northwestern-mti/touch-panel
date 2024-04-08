@@ -184,53 +184,53 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 <i className="bi bi-backspace-fill"></i>
                                 </div>
                                 </div>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">1</span>
                                     <span className="d-block font-size-1" style={{height: 'var(--font-size-2'}}></span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">2</span>
                                     <span className="d-block font-size-1 font-size-2-xl">ABC</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">3</span>
                                     <span className="d-block font-size-1 font-size-2-xl">DEF</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">4</span>
                                     <span className="d-block font-size-1 font-size-2-xl">GHI</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">5</span>
                                     <span className="d-block font-size-1 font-size-2-xl">JKL</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">6</span>
                                     <span className="d-block font-size-1 font-size-2-xl">MNO</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">7</span>
                                     <span className="d-block font-size-1 font-size-2-xl">PQRS</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">8</span>
                                     <span className="d-block font-size-1 font-size-2-xl">TUV</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">9</span>
                                     <span className="d-block font-size-1 font-size-2-xl">WXYZ</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">*</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">0</span>
                                     <span className="d-block font-size-1 font-size-2-xl">+</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">#</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">
                                         <i className="bi bi-telephone-fill"></i>
                                     </span>
