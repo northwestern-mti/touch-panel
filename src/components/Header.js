@@ -12,6 +12,7 @@ function Header(){
     const [classRoom, setClassRoom] = useState("");
     const [showHelpModal, setShowHelpModal] = useState(false);
     const [showAdminModal, setShowAdminModal] = useState(false);
+    const [showPasswordModal, setShowPasswordModal] = useState(false);
     const [fullscreen, setFullscreen] = useState(true);
     const holdTimeoutRef = useRef(null);
     
@@ -22,15 +23,20 @@ function Header(){
     const handleCloseHelpModal = () => {
         setShowHelpModal(false);
     }
-    // const handleShowAdminModal = () => {
-    //     setShowAdminModal(true);
-    // }
+     const handleShowAdminModal = () => {
+         setShowAdminModal(true);
+     }
     const handleCloseAdminModal = () => {
         setShowAdminModal(false);
     }
 
+    const handleClosePasswordModal = () => {
+        setShowPasswordModal(false);
+    }
+
     const handleAdminLongPress = () => {
-        setShowAdminModal(true);
+        // setShowAdminModal(true);
+        setShowPasswordModal(true);
       };
 
     useEffect(() =>{
@@ -51,7 +57,16 @@ function Header(){
                     </div>
                     <div className="col-1 text-center p-0">
                         <div className="text-primary py-3 py-xl-5 font-size-1"
-                        onMouseDown={() => {
+                        // onMouseDown={() => {
+                        //     holdTimeoutRef.current = setTimeout(() => handleAdminLongPress(), 500);
+                        //   }}
+                        //   onMouseUp={() => clearTimeout(holdTimeoutRef.current)}
+                        //   onTouchStart={() => {
+                        //     holdTimeoutRef.current = setTimeout(() => handleAdminLongPress(), 500);
+                        //   }}
+                        //   onTouchEnd={() => clearTimeout(holdTimeoutRef.current)}
+                        //   onMouseLeave={() => clearTimeout(holdTimeoutRef.current)}
+                          onMouseDown={() => {
                             holdTimeoutRef.current = setTimeout(() => handleAdminLongPress(), 500);
                           }}
                           onMouseUp={() => clearTimeout(holdTimeoutRef.current)}
@@ -108,6 +123,67 @@ function Header(){
                                     <span className='text-info fw-bold'>
                                     {(classRoom == "") ? 'Room' : classRoom}
                                 </span>
+                            </div>
+                        </Modal.Body>
+                    </Modal>
+
+                     {/* Password Modal Placeholder */}
+                     <Modal show={showPasswordModal} fullscreen={fullscreen}>
+                        <Modal.Header className="py-2">
+                            <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+                                <h1 className="font-size-4 font-size-5-xl">
+                                    <button type="button" className="border-0 text-dark"
+                                        onClick={handleClosePasswordModal}><i class="bi bi-arrow-left"></i></button>Password Required</h1>
+                                <button type="button" className="border-0 text-muted font-size-3 font-size-5-xl"
+                                    onClick={handleClosePasswordModal}><i class="bi bi-x-lg"></i></button>
+                            </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body className="font-size-4 font-size-5-xl p-0 pt-1">
+                            <div className='container-fluid overflow-y-auto'>
+                            <div className="d-flex flex-wrap col-4 justify-content-around pt-3 pt-xl-5 mx-auto">
+                                <div className="d-flex flex-row col-12 justify-content-center align-items-center">
+                                <div className="col-9">
+                                    <input className="form-control border-0 rounded-pill bg-gray-300 text-muted text-center font-size-1 font-size-3-xl p-3 mb-3"
+                                    placeholder='847-555-5555' />
+                                </div>
+                                <div className="col-2 text-center p-0">
+                                    <i className="bi bi-backspace-fill"></i>
+                                </div>
+                                </div>
+                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">1</span>
+                                </Button>
+                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">2</span>
+                                </Button>
+                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">3</span>
+                                </Button>
+                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">4</span>
+                                </Button>
+                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">5</span>
+                                </Button>
+                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">6</span>
+                                </Button>
+                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">7</span>
+                                </Button>
+                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">8</span>
+                                </Button>
+                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">9</span>
+                                </Button>
+                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">0</span>
+                                </Button>
+                                <Button className="btn btn-gray col-8 rounded-pill border-0 text-dark p-0 mb-2 mb-xl-3">
+                                    <span className="d-block fw-bold font-size-4 font-size-5-xl" onClick={handleShowAdminModal}>Enter</span>
+                                </Button>
+                            </div>
                             </div>
                         </Modal.Body>
                     </Modal>

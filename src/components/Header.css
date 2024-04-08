@@ -21,6 +21,7 @@
     text-overflow: ellipsis;
 }
 
+
 /* XL Breakpoint */
 @media screen and (min-width: 1200px) { 
     .form-floating > .form-control, .presetButton {
