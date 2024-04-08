@@ -16,6 +16,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [confCallClicked, setConfCallClicked] = useState(false);
     const [showConfCallVolume, setShowConfCallVolume] = useState(false);
     const [isConfCallMuted, setIsConfCallMuted] = useState(false);
+    const [isCallActive, setIsCallActive] = useState(false);
     const [blurayButton, setBluRayButton] = useState('');
     const [powerSwitch, setPowerSwitch] = useState(true);
     const [lampSwitch, setLampSwitch] = useState(true);
@@ -72,6 +73,9 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     }
     const toggleConfCallVolumeMute = () => { 
         setIsConfCallMuted(!isConfCallMuted);
+    }
+    const toggleCallActive = () => { 
+        setIsCallActive(!isCallActive);
     }
 
     const togglePowerSwitch = () => {
@@ -245,9 +249,12 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">#</span>
                                 </Button>
-                                <Button className="btn btn-gray bg-success text-white rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button
+                                className={`btn btn-gray bg-success text-white rounded-circle border-0 p-0 mb-2 dialpadButton ${isCallActive ? 'bg-danger' : 'bg-success'}`} onClick={toggleCallActive}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">
-                                        <i className="bi bi-telephone-fill"></i>
+                                        <i 
+                                        className={`bi ${isCallActive ? 'bi-telephone-x-fill' : 'bi-telephone-fill'}`}
+                                        ></i>
                                     </span>
                                 </Button>
                             </div>
