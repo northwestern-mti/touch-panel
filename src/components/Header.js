@@ -131,7 +131,7 @@ function Header(){
                      <Modal show={showPasswordModal} fullscreen={fullscreen}>
                         <Modal.Header className="py-2 py-xl-4">
                             <Modal.Title className="col-12 d-flex flex-row justify-content-between">
-                                <h1 className="font-size-4 font-size-5-xl">
+                                <h1 className="font-size-5 font-size-6-xl">
                                     <button type="button" className="border-0 text-dark"
                                         onClick={handleClosePasswordModal}><i class="bi bi-arrow-left"></i></button>Password Required</h1>
                                 <button type="button" className="border-0 text-muted font-size-3 font-size-5-xl"
@@ -144,7 +144,7 @@ function Header(){
                                 <div className="d-flex flex-row col-12 justify-content-center align-items-center">
                                 <div className="col-9">
                                     <input className="form-control border-0 rounded-pill bg-gray-300 text-muted text-center font-size-1 font-size-3-xl p-3 mb-3"
-                                    placeholder='847-555-5555' />
+                                    placeholder='' />
                                 </div>
                                 <div className="col-2 text-center p-0">
                                     <i className="bi bi-backspace-fill"></i>
