@@ -129,7 +129,7 @@ function Header(){
 
                      {/* Password Modal Placeholder */}
                      <Modal show={showPasswordModal} fullscreen={fullscreen}>
-                        <Modal.Header className="py-2">
+                        <Modal.Header className="py-2 py-xl-4">
                             <Modal.Title className="col-12 d-flex flex-row justify-content-between">
                                 <h1 className="font-size-4 font-size-5-xl">
                                     <button type="button" className="border-0 text-dark"
@@ -150,37 +150,37 @@ function Header(){
                                     <i className="bi bi-backspace-fill"></i>
                                 </div>
                                 </div>
-                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">1</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">2</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">3</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">4</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">5</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">6</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">7</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">8</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">9</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 text-dark p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">0</span>
                                 </Button>
-                                <Button className="btn btn-gray col-8 rounded-pill border-0 text-dark p-0 mb-2 mb-xl-3">
+                                <Button className="btn btn-gray col-8 rounded-pill border-0 p-0 mb-2 mb-xl-3">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl" onClick={handleShowAdminModal}>Enter</span>
                                 </Button>
                             </div>
