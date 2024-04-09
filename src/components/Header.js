@@ -129,7 +129,7 @@ function Header(){
 
                      {/* Password Modal Placeholder */}
                      <Modal show={showPasswordModal} fullscreen={fullscreen}>
-                        <Modal.Header className="py-2 py-xl-4">
+                        <Modal.Header className="pb-1">
                             <Modal.Title className="col-12 d-flex flex-row justify-content-between">
                                 <h1 className="font-size-5 font-size-6-xl">
                                     <button type="button" className="border-0 text-dark"
@@ -190,9 +190,9 @@ function Header(){
                     
                     {/* Admin Modal */}
                     <Modal show={showAdminModal} onHide={handleCloseAdminModal} fullscreen={fullscreen}>
-                        <Modal.Header className="p-0 pt-2">
+                        <Modal.Header className="pb-1">
                             <Modal.Title className="col-12 d-flex flex-row justify-content-between">
-                                <h1 className="font-size-4 font-size-5-xl">
+                                <h1 className="font-size-5 font-size-6-xl">
                                     <button type="button" className="border-0 text-dark"
                                         onClick={handleCloseAdminModal}><i class="bi bi-arrow-left"></i></button>Admin</h1>
                                 <h2 className="align-self-center font-size-2 font-size-4-xl text-center">
