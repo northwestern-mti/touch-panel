@@ -204,48 +204,28 @@ function Header(){
                         </Modal.Header>
                         <Modal.Body className="font-size-4 font-size-5-xl p-0 pt-1">
                             <div className='container-fluid overflow-y-auto'>
-                                <div className="row flex-wrap align-items-start justify-content-around pt-xl-3">
+                                <div className="row flex-wrap align-items-start justify-content-around pt-xl-3 my-4">
                                     <div className="col-5 d-flex flew-row align-items-center p-0 mb-2 mb-xl-2">
                                         <FloatingLabel
                                             controlId="roomName"
                                             label="Room Name"
                                             className="col text-muted font-size-1 font-size-2-xl p-0"
                                         >
-                                            <Form.Control type="text/input" placeholder="Room Name" className="font-size-1 font-size-2-xl pt-3 pb-0 pt-xl-5 pb-xl-4" />
-                                        </FloatingLabel>
-                                    </div>
-                                    <div className="col-5 d-flex flew-row align-items-center p-0 mb-2 mb-xl-2">
-                                        <FloatingLabel
-                                            controlId="panoptoAddress"
-                                            label="Panopto Address"
-                                            className="col text-muted font-size-1 font-size-2-xl"
-                                        >
-                                            <Form.Control type="text" placeholder="Panopto Address" className="font-size-2 font-size-3-xl pt-3 pb-0 pt-xl-5 pb-xl-4" />
+                                            <Form.Control type="text/input" placeholder="Room Name" className="font-size-1 font-size-2-xl pt-2 pb-0 pt-xl-5 pb-xl-4" />
                                         </FloatingLabel>
                                     </div>
                                     <div className="col-5 d-flex flew-row align-items-center p-0 mb-2 mb-xl-2">
                                         <FloatingLabel
                                             controlId="wirelessAddress"
                                             label="Wireless Address"
-                                            className="col text-muted font-size-1 font-size-2-xl"
+                                            className="col text-muted font-size-1 font-size-2-xl p-0"
                                         >
-                                            <Form.Control type="text" placeholder="Wireless Address" className="font-size-2 font-size-3-xl pt-3 pb-0 pt-xl-5 pb-xl-4" />
+                                            <Form.Control type="text" placeholder="Wireless Address" className="font-size-1 font-size-2-xl pt-2 pb-0 pt-xl-5 pb-xl-4" />
                                         </FloatingLabel>
                                     </div>
-                                    <div className="col-5 d-flex flew-row align-items-center justify-content-start p-0 mb-2 mb-xl-2">
-                                        <FloatingLabel
-                                            controlId="crowdmicsAddress"
-                                            label="CrowdMics Address"
-                                            className="col text-muted font-size-1 font-size-2-xl"
-                                        >
-                                            <Form.Control type="text" placeholder="CrowdMics Address" className="font-size-2 font-size-3-xl pt-3 pb-0 pt-xl-5 pb-xl-4" />
-                                        </FloatingLabel>
-
-                                    </div>
-
                                 </div>
                                 {/* HDMI Switcher row */}
-                                <div className="row flex-wrap mt-1 mb-xl-2 font-size-2 font-size-4-xl">
+                                <div className="row flex-wrap mt-1 mb-4 font-size-2 font-size-4-xl">
                                     <h3 className="text-center fw-bold mb-4 font-size-2 font-size-4-xl">Enter input # of HDMI switcher or 0 for none</h3>
                                     {/* HDMI Switcher */}
                                     <div className="col-6 h-100">
@@ -490,7 +470,7 @@ function Header(){
 
                                 </div>
                                 {/* /HDMI button row */}
-                                <div className="row flex-nowrap overflow-y-auto adminPresetButtonRow p-0 px-3 mt-1">
+                                <div className="row flex-nowrap overflow-y-auto adminPresetButtonRow p-0 px-3 mt-1 my-4 mx-2">
                                     <button className='btn btn-info rounded-pill border-0 px-3 me-2 mb-3 presetButton'>first button with a long name
                                     </button>
                                     <button className='btn btn-info rounded-pill border-0 px-3 me-2 mb-3 presetButton'>second button
