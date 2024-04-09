@@ -271,7 +271,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 {/* /Conference Call Modal */}
                 {/* Conference Call Volume Modal */}
                 <Modal show={showConfCallVolume} onHide={handleCloseConfCallVolumeModal} fullscreen={fullscreen}>
-                    <Modal.Header>
+                    <Modal.Header className="pb-1">
                         <Modal.Title className="col-12 d-flex flex-row justify-content-between">
                             <h1 className="font-size-5 font-size-6-xl">
                                 <button type="button" className="border-0 text-dark"
