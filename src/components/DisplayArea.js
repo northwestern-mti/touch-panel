@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { useState, useEffect } from "react";
-import { Button, Row, Col} from 'react-bootstrap';
+import { Button} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-import CModal from './CModal';
+
 import Opad from './Opad';
 
 function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, showFullScreenJoin,
-     annotationJoin, fullscreenJoin, powerOn, powerOff, upJoin, downJoin,showDisplayModalJoin, closeDisplayModalJoin}) {
+    annotationJoin, fullscreenJoin, powerOn, powerOff, upJoin, downJoin,showDisplayModalJoin, closeDisplayModalJoin,
+    electricScreenJoin}) {
     const [ipAdd, setIpAdd] = useState('');
     const [isMuted, setIsMuted] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
@@ -21,6 +22,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [annotationPressed, setAnnotationPressed] = useState(false);
     const [fullscreenPressed, setFullscreenPressed] = useState(false);
     const [fullscreen, setFullscreen] = useState(true);
+    const [isElectricScreen, setIsElectricScreen] = useState(false);
     useEffect(() => {
         window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));
         window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
@@ -32,6 +34,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         window.CrComLib.subscribeState('b', `${showDisplayModalJoin}`, value => setIsClicked(value));
         window.CrComLib.subscribeState('b', '55', value => setBluRayClicked(value));
         window.CrComLib.subscribeState('b', '117', value => setConfCallClicked(value));
+        window.CrComLib.subscribeState('b', `${electricScreenJoin}`, value=> setIsElectricScreen(value));
 
         console.log('the state of isMuted', isMuted)
         
@@ -153,7 +156,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 <p>Enter the address below into your browser and follow the instructions
                     to present wirelessly.
                 </p>
-                <p className='text-info'>{(ipAdd == "") ? "123.210.123.210" : ipAdd}</p>
+                <p className='text-info'>{(ipAdd === "") ? "123.210.123.210" : ipAdd}</p>
                 </span>
             ;
             break;
@@ -501,6 +504,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         </div>
                      {/* /Options */}
                      {/* Screen Position Buttons */}
+                     {isElectricScreen &&
                         <div className="row">
                             <div className="col text-center">
                                 <div className="my-3 my-xl-5">
@@ -523,7 +527,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 </div>
                                 <span className="d-inline-block font-size-3 font-size-4-xl">Screen Position</span>
                             </div>
-                        </div>
+                        </div>}
                         {/* /Screen Position Buttons */}
                     </div>
                 </Modal.Body>
