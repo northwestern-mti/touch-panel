@@ -7,7 +7,7 @@ import Opad from './Opad';
 
 function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, showFullScreenJoin,
     annotationJoin, fullscreenJoin, powerOn, powerOff, upJoin, downJoin,showDisplayModalJoin, closeDisplayModalJoin,
-    electricScreenJoin}) {
+    electricScreenJoin, displayIsProjectorJoin}) {
     const [ipAdd, setIpAdd] = useState('');
     const [isMuted, setIsMuted] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
@@ -23,6 +23,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [fullscreenPressed, setFullscreenPressed] = useState(false);
     const [fullscreen, setFullscreen] = useState(true);
     const [isElectricScreen, setIsElectricScreen] = useState(false);
+    const [isProjector, setIsProjector] =  useState(false)
     useEffect(() => {
         window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));
         window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
@@ -35,7 +36,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         window.CrComLib.subscribeState('b', '55', value => setBluRayClicked(value));
         window.CrComLib.subscribeState('b', '117', value => setConfCallClicked(value));
         window.CrComLib.subscribeState('b', `${electricScreenJoin}`, value=> setIsElectricScreen(value));
-
+        window.CrComLib.subscribeState('b', `${displayIsProjectorJoin}`, value=> setIsProjector(value));
         console.log('the state of isMuted', isMuted)
         
     }, []);
@@ -406,25 +407,18 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
 
             {/* Button Row */}
             <div className="row align-items-center m-0 text-center font-size-2 font-size-3-xl contentAreaButtonRow">
-                {isMuted ?
-                    <div className="col-6 p-0">
-                        <button type="button"
-                            className="d-flex align-items-center border-0 rounded-circle text-center text-white mx-auto mb-2 bg-info circleIcon"
-                             data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
-                            <i
-                                className="d-inline-block bi bi-camera-video-off font-size-4 font-size-5-xl mx-auto"></i>
-                        </button>
-                        <div className="font-size-2 font-size-3-xl">Unmute Display</div>
-                    </div> :
-                    <div className="col-6 p-0">
-                        <button type="button"
-                            className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 bg-gray-300 circleIcon"
-                            data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
-                            <i className="d-inline-block bi bi-camera-video-fill font-size-4 font-size-5-xl mx-auto"></i>
-                        </button>
-                        <div className="font-size-2 font-size-3-xl">Mute Display</div>
-                    </div>}
-                    <div className='col-6 p-0'>
+                {isProjector &&
+                <div className="col-6 p-0">
+                    <button type="button"
+                        className={`d-flex align-items-center border-0 rounded-circle text-center  mx-auto mb-2  circleIcon ${isMuted ? 'bg-info text-white' : 'bg-gray-300 text-dark'}`}
+                        data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
+                        <i
+                            className={`d-inline-block  font-size-4 font-size-5-xl mx-auto ${isMuted ? 'bi bi-camera-video-off' : 'bi bi-camera-video-fill'}`}></i>
+                    </button>
+                    <div className="font-size-2 font-size-3-xl">{isMuted ? 'Unmute Display' : 'Mute Display'}</div> 
+                </div>}
+                    
+                <div className='col-6 p-0'>
                     {isClicked ? 
                           <button type="button"
                           className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 bg-info circleIcon"
@@ -492,14 +486,15 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     </button>
                                     <div className="font-size-3 font-size-4-xl">Preview Fullscreen</div>
                                 </div>}
-                            <div className="col-4">
-                                <button type="button"
-                                    className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${isMuted ? 'text-white' : 'text-dark'}`}
-                                    style={{backgroundColor:isMuted ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={() => toggleMute(displayJoin)}>
-                                    <i className={`d-inline-block bi ${isMuted ? 'bi-camera-video-off-fill' : 'bi-camera-video-fill'}  font-size-4 font-size-5-xl mx-auto`}></i>
-                                </button>
-                                <div className="font-size-3 font-size-4-xl">Mute Display</div>
-                            </div>
+                            {isProjector &&
+                                <div className="col-4">
+                                    <button type="button"
+                                        className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${isMuted ? 'text-white' : 'text-dark'}`}
+                                        style={{backgroundColor:isMuted ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={() => toggleMute(displayJoin)}>
+                                        <i className={`d-inline-block bi ${isMuted ? 'bi-camera-video-off-fill' : 'bi-camera-video-fill'}  font-size-4 font-size-5-xl mx-auto`}></i>
+                                    </button>
+                                    <div className="font-size-3 font-size-4-xl">Mute Display</div>
+                                </div>}
 
                         </div>
                      {/* /Options */}

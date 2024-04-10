@@ -15,6 +15,7 @@ function BottomBar ({programStarted, setProgramStarted}) {
   const [cameraSelected, setCameraSelected] = useState(0);
   const [showControls, setShowControls] = useState(false);
   const [hasCeilingMics, setHasCeilingMics] = useState(false);
+  const [hasMics, setHasMics] = useState(false)
   const [presentationVolume, setPresentationVolume] = useState(0);
   const [MicVolume, setMicVolume] = useState(0);
   const [isPresentationMuted, setIsPresentationMuted] = useState(false);
@@ -46,6 +47,7 @@ function BottomBar ({programStarted, setProgramStarted}) {
     window.CrComLib.subscribeState('b', '23', value => setIsMicMuted(value));
     window.CrComLib.subscribeState('b', '111', value => setIsCeilingMicMuted(value));
     window.CrComLib.subscribeState('b', '112', value => setHasCeilingMics(value));
+    window.CrComLib.subscribeState('b', '9', value => setHasMics(value));
     window.CrComLib.subscribeState('b', '6', value => setShowPowerModal(value));
     window.CrComLib.subscribeState('b', '95', value => setShowVolumeModal(value));
     window.CrComLib.subscribeState('b', '97', value => setShowMicModal(value));
@@ -240,16 +242,18 @@ const handleNewCamNameChange = (event) => {
           <i className="d-block bi bi-volume-up-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
           <span className="d-block">Presentation Volume</span>
         </button>
-        <button type="button"
-          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowMicModal}>
-          <i className="d-block bi bi-mic-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
-          <span className="d-block">Microphones</span>
-        </button>
-        <button type="button"
-          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowCamModal}>
-          <i className="d-block bi bi-camera-video-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
-          <span className="d-block">Camera Controls</span>
-        </button>
+        {(hasMics|| hasCeilingMics) &&
+          <button type="button"
+            className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowMicModal}>
+            <i className="d-block bi bi-mic-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
+            <span className="d-block">Microphones</span>
+          </button>}
+        {(numCameras > 0) &&
+          <button type="button"
+            className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowCamModal}>
+            <i className="d-block bi bi-camera-video-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
+            <span className="d-block">Camera Controls</span>
+          </button>}
         {/* Audio Statuses */}
         <div className="col h-100 border-0 py-1 pt-xl-2 px-1">
           <div className="d-flex justify-content-start mb-0">
@@ -261,6 +265,7 @@ const handleNewCamNameChange = (event) => {
               <div className={`font-size-0 font-size-2-xl ${isPresentationMuted ? '' : ''}`}>{isPresentationMuted ? "Muted" : 'On'}</div>
             </div>
           </div>
+          {hasMics &&
           <div className="d-flex justify-content-start mb-0">
             <div class="col-9 font-size-0 font-size-2-xl p-0 m-0">
               Microphones
@@ -271,7 +276,8 @@ const handleNewCamNameChange = (event) => {
               </div>
               <div className={`font-size-0 font-size-2-xl ${isMicMuted ? '' : ''}`}>{isMicMuted ? "Muted" : 'On'}</div>
             </div>
-          </div>
+          </div>}
+          {hasCeilingMics && 
           <div className="d-flex justify-content-start mb-0">
             <div className="col-9 font-size-0 font-size-2-xl p-0 m-0">
               Ceiling Mics
@@ -282,7 +288,7 @@ const handleNewCamNameChange = (event) => {
               </div>
               <div className={`font-size-0 font-size-2-xl`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
             </div>
-          </div>
+          </div>}
         </div>
         {/* /Audio Statuses */}
       </div>
@@ -372,20 +378,25 @@ const handleNewCamNameChange = (event) => {
         </Modal.Header>
         <Modal.Body className="font-size-4 font-size-3-xl p-0">
           <div className='container-fluid text-center pt-1'>
-            <div className="my-3 my-xl-5 mt-4">
+          {hasMics && (
+            <>
+              <div className="my-3 my-xl-5 mt-4">
               <VolumeControl initialVolume={MicVolume} plusJoin='25' minusJoin='24' isMuted={isMicMuted} />
-            </div>
-            <div className="col-12 text-center mb-3 mb-xl-5">
-              <button type="button"
-                className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isMicMuted ? 'bg-info' : ''}`}
-                style={{ backgroundColor: '#D5D5D5' }}
-                onClick={toggleMicMute}>
-                <i
-                  className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
-                ></i>
-              </button>
-              <div className='font-size-3 font-size-4-xl'>{isMicMuted ? 'Unmute Microphones' : 'Mute Microphones'}</div>
-            </div>
+              </div>
+              <div className="col-12 text-center mb-3 mb-xl-5">
+                <button type="button"
+                  className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isMicMuted ? 'bg-info' : ''}`}
+                  style={{ backgroundColor: '#D5D5D5' }}
+                  onClick={toggleMicMute}>
+                  <i
+                    className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
+                  ></i>
+                </button>
+                <div className='font-size-3 font-size-4-xl'>{isMicMuted ? 'Unmute Microphones' : 'Mute Microphones'}</div>
+              </div>
+            </>
+            )}
+            {hasCeilingMics &&
             <div className="col-12 text-center">
               <button type="button"
                 className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isCeilingMicMuted ? 'bg-info' : ''}`}
@@ -396,7 +407,7 @@ const handleNewCamNameChange = (event) => {
                 ></i>
               </button>
               <div className='font-size-3 font-size-4-xl'>{isCeilingMicMuted ? 'Unmute Ceiling Mics' : 'Mute Ceiling Mics'}</div>
-            </div>
+            </div>}
           </div>
         </Modal.Body>
       </Modal>
