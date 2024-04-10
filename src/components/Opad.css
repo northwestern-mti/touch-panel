@@ -17,7 +17,7 @@
 }
 
 .o-pad div:active{
-  background-color: black;
+  background-color: var(--bs-black);
 }
 
 .o-pad i {
@@ -118,6 +118,8 @@
     line-height: 0;
   }
 }
+
+
 
 
    

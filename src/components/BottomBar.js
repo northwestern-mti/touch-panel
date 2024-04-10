@@ -326,13 +326,13 @@ const handleNewCamNameChange = (event) => {
             <VolumeControl classNam="mx-auto" initialVolume={presentationVolume} plusJoin='22' minusJoin='21' isMuted={isPresentationMuted} volumeJoin='1' />
             </div>
             <div class="col-12 text-center mb-4">
-              <button type="button"
-                className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isPresentationMuted ? 'bg-info' : 'bg-gray-300'}`}
+              <Button type="button"
+                className={`btn border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isPresentationMuted ? 'btn-info' : 'btn-gray'}`}
                 onClick={togglePresentationMute}>
                 <i
                 className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPresentationMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
                 ></i>
-              </button>
+              </Button>
               <div className='font-size-3 font-size-4-xl'>{isPresentationMuted ? 'Unmute' : 'Mute'}</div>
             </div>
 

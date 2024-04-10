@@ -8,28 +8,28 @@
 }
 
 .form-floating > .form-control, .presetButton {
-    height: calc(2.5rem + calc(var(--bs-border-width) * 2));
-    min-height: calc(2.5rem + calc(var(--bs-border-width) * 2));
+    height: calc(3rem + calc(var(--bs-border-width) * 2));
+    min-height: calc(3rem + calc(var(--bs-border-width) * 2));
     
+}
+
+.form-floating label {
+    padding: .5em 0 0 .75em;
 }
 
 /* Truncate Toggle Button Text */
 .presetButton {
-    width: 23vw;
+    width: 21vw;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-/* .adminPresetButtonRow {
-    height:10vh;
-} */
 
 /* XL Breakpoint */
 @media screen and (min-width: 1200px) { 
     .form-floating > .form-control, .presetButton {
         height: calc(4rem + calc(var(--bs-border-width) * 2));
         min-height: calc(4rem + calc(var(--bs-border-width) * 2));
-       
     }
 }

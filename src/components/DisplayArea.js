@@ -4,6 +4,8 @@ import { Button, Row, Col} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import CModal from './CModal';
 import Opad from './Opad';
+import VolumeControl from './VolumeControl';
+
 
 function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, showFullScreenJoin,
      annotationJoin, fullscreenJoin, powerOn, powerOff, upJoin, downJoin}) {
@@ -12,6 +14,9 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [isClicked, setIsClicked] = useState(false);
     const [bluRayClicked, setBluRayClicked] = useState(false);
     const [confCallClicked, setConfCallClicked] = useState(false);
+    const [showConfCallVolume, setShowConfCallVolume] = useState(false);
+    const [isConfCallMuted, setIsConfCallMuted] = useState(false);
+    const [isCallActive, setIsCallActive] = useState(false);
     const [blurayButton, setBluRayButton] = useState('');
     const [powerSwitch, setPowerSwitch] = useState(true);
     const [lampSwitch, setLampSwitch] = useState(true);
@@ -60,6 +65,19 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         console.log("Closing ConfCall Modal")
         setConfCallClicked(false);
     }
+    const handleShowConfCallVolumeModal = () => {
+        setShowConfCallVolume(true);
+    }
+    const handleCloseConfCallVolumeModal = () => {
+        setShowConfCallVolume(false);
+    }
+    const toggleConfCallVolumeMute = () => { 
+        setIsConfCallMuted(!isConfCallMuted);
+    }
+    const toggleCallActive = () => { 
+        setIsCallActive(!isCallActive);
+    }
+
     const togglePowerSwitch = () => {
         setPowerSwitch(!powerSwitch)
         if (!powerSwitch) {
@@ -163,7 +181,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 >Conference Call</Button>
                 {/* Conference Call Modal */}
                 <Modal show={confCallClicked} onHide={handleCloseConfCallModal} fullscreen={fullscreen}>
-                    <Modal.Header className="pb-0">
+                    <Modal.Header className="pb-1">
                         <Modal.Title className="col-12 d-flex flex-row justify-content-between">
                             <h1 className="font-size-5 font-size-6-xl">
                                 <button type="button" className="border-0 text-dark"
@@ -174,73 +192,113 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     </Modal.Header>
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
                         <div className='container-fluid text-center pt-3 pt-xl-5'>
-                            <div className="d-flex flex-wrap col-3 col-xl-3 justify-content-around mx-auto">
+                            <div className="col-7 position-relative mx-auto">
+                            <div className="d-flex flex-wrap col-6 justify-content-around mx-auto">
                                 <div className="d-flex flex-row col-12 justify-content-between">
-                                <div className="col-10">
-                                    <input className="form-control border-0 rounded-pill bg-gray-300 text-muted text-center font-size-1 font-size-3-xl p-2 mb-3"
-                                    placeholder='847-555-5555' />
+                                    <div className="col-10">
+                                        <input className="form-control border-0 rounded-pill bg-gray-300 text-muted text-center font-size-1 font-size-3-xl p-2 mb-3"
+                                            placeholder='847-555-5555' />
+                                    </div>
+                                    <div className="col pt-2">
+                                        <i className="bi bi-backspace-fill"></i>
+                                    </div>
                                 </div>
-                                <div className="col pt-2">
-                                <i className="bi bi-backspace-fill"></i>
-                                </div>
-                                </div>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">1</span>
-                                    <span className="d-block font-size-1" style={{height: 'var(--font-size-2'}}></span>
+                                    <span className="d-block font-size-1" style={{ height: 'var(--font-size-2' }}></span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">2</span>
                                     <span className="d-block font-size-1 font-size-2-xl">ABC</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">3</span>
                                     <span className="d-block font-size-1 font-size-2-xl">DEF</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">4</span>
                                     <span className="d-block font-size-1 font-size-2-xl">GHI</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">5</span>
                                     <span className="d-block font-size-1 font-size-2-xl">JKL</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">6</span>
                                     <span className="d-block font-size-1 font-size-2-xl">MNO</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">7</span>
                                     <span className="d-block font-size-1 font-size-2-xl">PQRS</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">8</span>
                                     <span className="d-block font-size-1 font-size-2-xl">TUV</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">9</span>
                                     <span className="d-block font-size-1 font-size-2-xl">WXYZ</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">*</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">0</span>
                                     <span className="d-block font-size-1 font-size-2-xl">+</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">#</span>
                                 </Button>
-                                <Button className="btn rounded-circle border-0 bg-gray-300 text-dark p-0 mb-2 dialpadButton">
+                                <Button
+                                className={`btn btn-gray bg-success text-white rounded-circle border-0 p-0 mb-2 dialpadButton ${isCallActive ? 'bg-danger' : 'bg-success'}`} onClick={toggleCallActive}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">
-                                        <i className="bi bi-telephone-fill"></i>
+                                        <i 
+                                        className={`bi ${isCallActive ? 'bi-telephone-x-fill' : 'bi-telephone-fill'}`}
+                                        ></i>
                                     </span>
                                 </Button>
-                                
                             </div>
+                            <Button className="btn btn-secondary position-absolute top-50 start-100 translate-middle rounded-circle border-0 p-0 mb-2 dialpadButton" onClick={handleShowConfCallVolumeModal}>
+                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">
+                                        <i className="bi bi-volume-up-fill"></i>
+                                    </span>
+                            </Button>
+                            </div>
+
                         </div>
                     </Modal.Body>
                 </Modal>
                 {/* /Conference Call Modal */}
+                {/* Conference Call Volume Modal */}
+                <Modal show={showConfCallVolume} onHide={handleCloseConfCallVolumeModal} fullscreen={fullscreen}>
+                    <Modal.Header className="pb-1">
+                        <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+                            <h1 className="font-size-5 font-size-6-xl">
+                                <button type="button" className="border-0 text-dark"
+                                    onClick={handleCloseConfCallVolumeModal}><i class="bi bi-arrow-left"></i></button>Conference Call Volume</h1>
+                            <button type="button" className="border-0 text-muted"
+                                onClick={handleCloseConfCallVolumeModal}><i class="bi bi-x-lg"></i></button>
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="font-size-2 font-size-3-xl p-0">
+                        <div className='container-fluid text-center pt-5'>
+                            <div className="my-5">
+                                <VolumeControl className="mx-auto" />
+                            </div>
+                            <div class="col-12 text-center">
+                                <button type="button"
+                                    className={`btn border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isConfCallMuted ? 'btn-info' : 'btn-gray'}`}
+                                    onClick={toggleConfCallVolumeMute}>
+                                    <i
+                                        className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isConfCallMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
+                                    ></i>
+                                </button>
+                                <div className='font-size-3 font-size-4-xl'>{isConfCallMuted ? 'Unmute' : 'Mute'}</div>
+                            </div>
+                        </div>
+                    </Modal.Body>
+                </Modal>
+                {/* /Conference Volume Modal */}
             </span>;
             break;
         case 'DocCam':
@@ -324,7 +382,6 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             {/* Media Buttons Row */}
                             <div className='d-flex flex-row mx-auto my-2 mb-2 mb-xl-5'>
                                 <button className='btn btn-white border border-1 position-relative rounded-circle mx-auto pt-2 blurayControls'
-                                    style={{backgroundColor: (blurayButton === 'Eject') ? 'black' : '' , color: (blurayButton === 'Eject') ? 'white' : '' }}
                                     onClick={() => { blurayControl('59', 'Eject') }}>
                                         <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-eject-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>

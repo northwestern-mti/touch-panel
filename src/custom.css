@@ -24,6 +24,13 @@
     width: 7.75vw;
 }
 
+/* Mute Buttons */
+.muteIcon {
+    width: 10vw;
+    height: 10vw;
+}
+
+
 :root {
 /* Custom Responsive Font Sizes */
     /* size 0 xs */
@@ -142,7 +149,6 @@ body {
 }
 
 /* Switches */
-
 .form-check-input, .form-check-input:checked {
     border-color: var(--bs-border-color)!important;
     background-color: #fff;
@@ -167,20 +173,41 @@ body {
     height: 10vw;
 }
 
-/* Camera Control Presets  */
-.presetButton {
-    /* width: 18vw; */
-    font-size: var(--font-size-2);
-    /* height: calc(var(--font-size-4)*2.25); */
+.btn.blurayControls:active {
+    background-color: var(--bs-black);
+    color: var(--bs-white);
 }
 
-/* Disable btn hover styles for touchscreen device */
-.btn-info:hover {
-    background-color: var(--bs-btn-bg);
+/* Camera Control Presets  */
+.presetButton {
+    font-size: var(--font-size-2);
 }
 
 .btn-info:active {
     background-color: #a8d2de !important;
+}
+
+/* Disable btn hover styles for touchscreen device */
+@media (hover: none) {
+    .btn-info:hover {
+        background-color: var(--bs-btn-bg);
+    }
+
+    .btn-gray:hover {
+        background-color: var(--bs-btn-bg);
+    }
+}
+
+@media (hover: hover) {
+    /* Enable bluray hover styles for desktop/pointer devices */
+    .blurayControls:hover {
+        background-color: var(--bs-gray-300);
+    }
+
+    /* Enable opad hover styles for desktop/pointer devices */
+    .o-pad div:hover{
+        background-color: var(--bs-gray-300);
+      }
 }
 
 
@@ -238,22 +265,20 @@ body {
         line-height: var(--font-size-5);
     }
 
-    .circleIcon {
-        width: 100px;
-        height: 100px;
-    }
-
-    .sourceSelectMenu button {
-        line-height: var(--font-size-3)!important;
-    }
-
+        .circleIcon {
+            width: 100px;
+            height: 100px;
+        }
+    
+        .sourceSelectMenu button {
+            line-height: var(--font-size-3) !important;
+        }
         /* Camera Control Presets  */
         .presetButton {
             font-size: var(--font-size-4);
             line-height: var(--font-size-5);
-            /* height: calc(var(--font-size-5)*2.25); */
         }
-
+    
     /* Custom Responsive Font Size Classes */
     .font-size-0-xl {
         font-size: var(--font-size-0)!important;
