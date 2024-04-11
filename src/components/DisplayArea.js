@@ -408,7 +408,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             {/* Button Row */}
             <div className="row align-items-center m-0 text-center font-size-2 font-size-3-xl contentAreaButtonRow">
                 {isProjector &&
-                <div className="col-6 p-0">
+                <div className="col p-0">
                     <button type="button"
                         className={`d-flex align-items-center border-0 rounded-circle text-center  mx-auto mb-2  circleIcon ${isMuted ? 'bg-info text-white' : 'bg-gray-300 text-dark'}`}
                         data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
@@ -418,7 +418,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     <div className="font-size-2 font-size-3-xl">{isMuted ? 'Unmute Display' : 'Mute Display'}</div> 
                 </div>}
                     
-                <div className='col-6 p-0'>
+                <div className='col p-0'>
                     {isClicked ? 
                           <button type="button"
                           className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 bg-info circleIcon"
