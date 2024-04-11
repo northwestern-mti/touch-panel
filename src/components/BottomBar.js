@@ -256,7 +256,7 @@ const handleNewCamNameChange = (event) => {
           </button>}
         {/* Audio Statuses */}
         <div className="col h-100 border-0 py-1 pt-xl-2 px-1">
-          <div className="d-flex justify-content-start mb-0">
+          <div className="d-flex col-11 justify-content-start mx-auto mb-0">
             <div className="col-9 font-size-0 font-size-2-xl m-0 p-0">Presentation Audio</div>
             <div className="col-3 text-center">
               <div
@@ -266,7 +266,7 @@ const handleNewCamNameChange = (event) => {
             </div>
           </div>
           {hasMics &&
-          <div className="d-flex justify-content-start mb-0">
+          <div className="d-flex col-11 justify-content-start mb-0">
             <div class="col-9 font-size-0 font-size-2-xl p-0 m-0">
               Microphones
             </div>
@@ -278,7 +278,7 @@ const handleNewCamNameChange = (event) => {
             </div>
           </div>}
           {hasCeilingMics && 
-          <div className="d-flex justify-content-start mb-0">
+          <div className="d-flex col-11 justify-content-start mb-0">
             <div className="col-9 font-size-0 font-size-2-xl p-0 m-0">
               Ceiling Mics
             </div>
