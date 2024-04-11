@@ -294,7 +294,6 @@ const handleNewCamNameChange = (event) => {
       </div>
       {/* /Row */}
 
-        <div>
         {/* System Off Modal */}
         <Modal show={showPowerModal} onHide={handleClosePowerModal} fullscreen={fullscreen}>
           <Modal.Header className="pb-0">
@@ -320,7 +319,6 @@ const handleNewCamNameChange = (event) => {
             </div>
           </Modal.Body>
         </Modal>
-        </div>
 
         {/* Presentation Volume Modal */}
       <Modal show={showVolumeModal} onHide={handleCloseVolumeModal} fullscreen={fullscreen}>
