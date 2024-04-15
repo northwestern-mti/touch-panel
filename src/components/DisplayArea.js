@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { useState, useEffect } from "react";
-import { Button, Row, Col} from 'react-bootstrap';
+import { Button} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-import CModal from './CModal';
+
 import Opad from './Opad';
 import VolumeControl from './VolumeControl';
 
 
 function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, showFullScreenJoin,
-     annotationJoin, fullscreenJoin, powerOn, powerOff, upJoin, downJoin}) {
+    annotationJoin, fullscreenJoin, powerOn, powerOff, upJoin, downJoin,showDisplayModalJoin, closeDisplayModalJoin,
+    electricScreenJoin, displayIsProjectorJoin}) {
     const [ipAdd, setIpAdd] = useState('');
     const [isMuted, setIsMuted] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
@@ -26,44 +27,64 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [annotationPressed, setAnnotationPressed] = useState(false);
     const [fullscreenPressed, setFullscreenPressed] = useState(false);
     const [fullscreen, setFullscreen] = useState(true);
+    const [isElectricScreen, setIsElectricScreen] = useState(false);
+    const [isProjector, setIsProjector] =  useState(false)
     useEffect(() => {
         window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));
         window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
-        window.CrComLib.subscribeState('s', `${showFullScreenJoin}`, value=> setShowFullScreen(value)); 
+        window.CrComLib.subscribeState('b', `${showFullScreenJoin}`, value=> setShowFullScreen(value)); 
+        window.CrComLib.subscribeState('b', `${displayJoin}`, value=> setIsMuted(value));
+        window.CrComLib.subscribeState('b', `${powerOn}`, value=> setPowerSwitch(value));
+        window.CrComLib.subscribeState('b', `${annotationJoin}`, value=> setAnnotationPressed(value));
+        window.CrComLib.subscribeState('b', `${fullscreenJoin}`, value=> setFullscreenPressed(value));
+        window.CrComLib.subscribeState('b', `${showDisplayModalJoin}`, value => setIsClicked(value));
+        window.CrComLib.subscribeState('b', '55', value => setBluRayClicked(value));
+        window.CrComLib.subscribeState('b', '117', value => setConfCallClicked(value));
+        window.CrComLib.subscribeState('b', `${electricScreenJoin}`, value=> setIsElectricScreen(value));
+        window.CrComLib.subscribeState('b', `${displayIsProjectorJoin}`, value=> setIsProjector(value));
+        console.log('the state of isMuted', isMuted)
         
     }, []);
     const toggleMute = (joinNumber) => {
         setIsMuted((prevIsMuted) => !(prevIsMuted));
-        if (isMuted) {
-            window.CrComLib.publishEvent('b', `${joinNumber}`, false);
-            console.log('display unmuted')
-        } else{
-            window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-            console.log('display muted')
-        }
+        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
+        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+       
     }
     const handleShowDisplayModal = () => {
         console.log("Showing Display Modal")
         setIsClicked(true);
+        window.CrComLib.publishEvent('b', `${showDisplayModalJoin}`, true);
+        window.CrComLib.publishEvent('b', `${showDisplayModalJoin}`, false);
       }
     const handleCloseDisplayModal = () => {
         setIsClicked(false);
+        window.CrComLib.publishEvent('b', `${closeDisplayModalJoin}`, true);
+        window.CrComLib.publishEvent('b', `${closeDisplayModalJoin}`, false);
     }
     const handleShowBluRayModal = () => {
         console.log("Showing BluRay Modal")
         setBluRayClicked(true);
+        window.CrComLib.publishEvent('b', '55', true);
+        window.CrComLib.publishEvent('b', '55', false);
     }
     const handleCloseBluRayModal = () => {
         console.log("Closing BluRay Modal")
         setBluRayClicked(false);
+        window.CrComLib.publishEvent('b', '56', true);
+        window.CrComLib.publishEvent('b', '56', false);
     }
     const handleShowConfCallModal = () => {
         console.log("Showing ConfCall Modal")
         setConfCallClicked(true);
+        window.CrComLib.publishEvent('b', '117', true);
+        window.CrComLib.publishEvent('b', '117', false);
     }
     const handleCloseConfCallModal = () => {
         console.log("Closing ConfCall Modal")
         setConfCallClicked(false);
+        window.CrComLib.publishEvent('b', '118', true);
+        window.CrComLib.publishEvent('b', '118', false);
     }
     const handleShowConfCallVolumeModal = () => {
         setShowConfCallVolume(true);
@@ -117,27 +138,13 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
 
     const handleAnnotationPressed = () => {
         setAnnotationPressed(!annotationPressed)
-        if (!powerSwitch) {
-            window.CrComLib.publishEvent('b', `${annotationJoin}`, true);
-            window.CrComLib.publishEvent('b', `${annotationJoin}`, false);
-            console.log('Power On')
-        } else {
-            window.CrComLib.publishEvent('b', `${annotationJoin}`, true);
-            window.CrComLib.publishEvent('b', `${annotationJoin}`, false);
-            console.log('Power Off')
-        }
+        window.CrComLib.publishEvent('b', `${annotationJoin}`, true);
+        window.CrComLib.publishEvent('b', `${annotationJoin}`, false);
     }
     const handleFullscreenPressed = () => {
-        setFullscreenPressed(!fullscreenPressed)
-        if (!powerSwitch) {
-            window.CrComLib.publishEvent('b', `${fullscreenJoin}`, true);
-            window.CrComLib.publishEvent('b', `${fullscreenJoin}`, false);
-            console.log('Power On')
-        } else {
-            window.CrComLib.publishEvent('b', `${fullscreenJoin}`, true);
-            window.CrComLib.publishEvent('b', `${fullscreenJoin}`, false);
-            console.log('Power Off')
-        }
+        setFullscreenPressed(!fullscreenPressed);
+        window.CrComLib.publishEvent('b', `${fullscreenJoin}`, true);
+        window.CrComLib.publishEvent('b', `${fullscreenJoin}`, false);
     } 
     const blurayControl = (joinNumber, press) => {
         setBluRayButton(press)
@@ -157,22 +164,22 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             break;
     } 
     switch(sourceSelected) {
-        case 'PC':
+        case 1:
             message = <p>Please use the keyboard and mouse to start.</p>;
             break;
-        case 'Laptop':
+        case 2:
             message = <p>Connect your device to start presenting.</p>;
             break;
-        case 'Wireless':
+        case 3:
             message = <span>
                 <p>Enter the address below into your browser and follow the instructions
                     to present wirelessly.
                 </p>
-                <p className='text-info'>{(ipAdd == "") ? "123.210.123.210" : ipAdd}</p>
+                <p className='text-info'>{(ipAdd === "") ? "123.210.123.210" : ipAdd}</p>
                 </span>
             ;
             break;
-        case 'ConfCall':
+        case 6:
             message = <span>
                 <p>Select the button below to dial your number.</p>
                 <Button 
@@ -301,7 +308,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 {/* /Conference Volume Modal */}
             </span>;
             break;
-        case 'DocCam':
+        case 5:
             message = <span>
                 {/* /Document Camera settings */}
                 <div className="col d-flex flex-row flex-wrap justify-content-around text-center font-size-3 font-size-4-xl py-3">
@@ -355,7 +362,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 {/* /Document Camera settings */}
             </span>;
             break;
-        case 'BluRay':
+        case 4:
             message = <div>
                 <p>Your Blu-Ray content is being displayed.</p>
                 <button className='btn btn-info rounded-pill border-0 px-3 mt-3 font-size-3 font-size-4-xl' onClick={handleShowBluRayModal}>
@@ -442,7 +449,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     return(
         <div className="col-12">
             <div className="row m-0">
-                {(sourceSelected == '') ? 
+                { !powerSwitch ? 
                     <div className='col bg-dark text-white text-center font-size-3 font-size-4-xl p-2 p-xl-3 sourceStatus'>
                         <p>Display {displayNum} is off.</p>
                     </div> : 
@@ -459,25 +466,18 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
 
             {/* Button Row */}
             <div className="row align-items-center m-0 text-center font-size-2 font-size-3-xl contentAreaButtonRow">
-                {isMuted ?
-                    <div className="col-6 p-0">
-                        <button type="button"
-                            className="d-flex align-items-center border-0 rounded-circle text-center text-white mx-auto mb-2 bg-info circleIcon"
-                             data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
-                            <i
-                                className="d-inline-block bi bi-camera-video-off font-size-4 font-size-5-xl mx-auto"></i>
-                        </button>
-                        <div className="font-size-2 font-size-3-xl">Unmute Display</div>
-                    </div> :
-                    <div className="col-6 p-0">
-                        <button type="button"
-                            className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 bg-gray-300 circleIcon"
-                            data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
-                            <i className="d-inline-block bi bi-camera-video-fill font-size-4 font-size-5-xl mx-auto"></i>
-                        </button>
-                        <div className="font-size-2 font-size-3-xl">Mute Display</div>
-                    </div>}
-                    <div className='col-6 p-0'>
+                {isProjector &&
+                <div className="col p-0">
+                    <button type="button"
+                        className={`d-flex align-items-center border-0 rounded-circle text-center  mx-auto mb-2  circleIcon ${isMuted ? 'bg-info text-white' : 'bg-gray-300 text-dark'}`}
+                        data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
+                        <i
+                            className={`d-inline-block  font-size-4 font-size-5-xl mx-auto ${isMuted ? 'bi bi-camera-video-off' : 'bi bi-camera-video-fill'}`}></i>
+                    </button>
+                    <div className="font-size-2 font-size-3-xl">{isMuted ? 'Unmute Display' : 'Mute Display'}</div> 
+                </div>}
+                    
+                <div className='col p-0'>
                     {isClicked ? 
                           <button type="button"
                           className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 bg-info circleIcon"
@@ -528,34 +528,38 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         {/* /Power Button */}
                         {/* Options */}
                         <div className="row justify-content-around mb-4 mb-xl-5">
-                            <div className="col-4">
-                                <button type="button"
-                                    className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${annotationPressed ? 'text-white' : 'text-dark'}`}
-                                    style={{backgroundColor:annotationPressed ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={handleAnnotationPressed}>
-                                    <i className="d-inline-block bi bi-pencil-fill font-size-4 font-size-5-xl mx-auto"></i>
-                                </button>
-                                <div className="font-size-3 font-size-4-xl">Annotate</div>
-                            </div>
-                            <div className="col-4">
-                                 <button type="button"
-                                    className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${fullscreenPressed ? 'text-white' : 'text-dark'}`}
-                                    style={{backgroundColor:fullscreenPressed ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={handleFullscreenPressed}>
-                                    <i className="d-inline-block bi bi-arrows-fullscreen font-size-4 font-size-5-xl mx-auto"></i>
-                                </button>
-                                <div className="font-size-3 font-size-4-xl">Preview Fullscreen</div>
-                            </div>
-                            <div className="col-4">
-                                <button type="button"
-                                    className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${isMuted ? 'text-white' : 'text-dark'}`}
-                                    style={{backgroundColor:isMuted ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={() => toggleMute(displayJoin)}>
-                                    <i className={`d-inline-block bi ${isMuted ? 'bi-camera-video-off-fill' : 'bi-camera-video-fill'}  font-size-4 font-size-5-xl mx-auto`}></i>
-                                </button>
-                                <div className="font-size-3 font-size-4-xl">Mute Display</div>
-                            </div>
+                            {showAnnotation && 
+                                <div className="col-4">
+                                    <button type="button"
+                                        className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${annotationPressed ? 'text-white' : 'text-dark'}`}
+                                        style={{backgroundColor:annotationPressed ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={handleAnnotationPressed}>
+                                        <i className="d-inline-block bi bi-pencil-fill font-size-4 font-size-5-xl mx-auto"></i>
+                                    </button>
+                                    <div className="font-size-3 font-size-4-xl">Annotate</div>
+                                </div>}
+                            {showFullScreen && 
+                                <div className="col-4">
+                                    <button type="button"
+                                        className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${fullscreenPressed ? 'text-white' : 'text-dark'}`}
+                                        style={{backgroundColor:fullscreenPressed ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={handleFullscreenPressed}>
+                                        <i className="d-inline-block bi bi-arrows-fullscreen font-size-4 font-size-5-xl mx-auto"></i>
+                                    </button>
+                                    <div className="font-size-3 font-size-4-xl">Preview Fullscreen</div>
+                                </div>}
+                            {isProjector &&
+                                <div className="col-4">
+                                    <button type="button"
+                                        className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${isMuted ? 'text-white' : 'text-dark'}`}
+                                        style={{backgroundColor:isMuted ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={() => toggleMute(displayJoin)}>
+                                        <i className={`d-inline-block bi ${isMuted ? 'bi-camera-video-off-fill' : 'bi-camera-video-fill'}  font-size-4 font-size-5-xl mx-auto`}></i>
+                                    </button>
+                                    <div className="font-size-3 font-size-4-xl">Mute Display</div>
+                                </div>}
 
                         </div>
                      {/* /Options */}
                      {/* Screen Position Buttons */}
+                     {isElectricScreen &&
                         <div className="row">
                             <div className="col text-center">
                                 <div className="my-2 my-xl-3">
@@ -578,7 +582,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 </div>
                                 <span className="d-inline-block font-size-3 font-size-4-xl">Screen Position</span>
                             </div>
-                        </div>
+                        </div>}
                         {/* /Screen Position Buttons */}
                     </div>
                 </Modal.Body>
