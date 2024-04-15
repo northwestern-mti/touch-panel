@@ -7,13 +7,15 @@ import Opad from './Opad';
 import VolumeControl from './VolumeControl';
 
 
-function BottomBar () {
+function BottomBar ({programStarted, setProgramStarted}) {
   const [showPowerModal, setShowPowerModal] = useState(false);
   const [showVolumeModal, setShowVolumeModal] = useState(false);
   const [showMicModal, setShowMicModal] = useState(false);
   const [showCamModal, setShowCamModal] = useState(false);
-  const [cameraSelected, setCameraSelected] = useState('');
-  const [showControls, setShowControls] = useState(false)
+  const [cameraSelected, setCameraSelected] = useState(0);
+  const [showControls, setShowControls] = useState(false);
+  const [hasCeilingMics, setHasCeilingMics] = useState(false);
+  const [hasMics, setHasMics] = useState(false)
   const [presentationVolume, setPresentationVolume] = useState(0);
   const [MicVolume, setMicVolume] = useState(0);
   const [isPresentationMuted, setIsPresentationMuted] = useState(false);
@@ -40,14 +42,22 @@ function BottomBar () {
     window.CrComLib.subscribeState('n', '2', value=> setMicVolume(value));
     window.CrComLib.subscribeState('n', '41', value=> setNumCameras(value));
     window.CrComLib.subscribeState('n', '46', value=> setNumOfPresets(value));
+    window.CrComLib.subscribeState('n', '42', value=> setCameraSelected(value));
+    window.CrComLib.subscribeState('b', '20', value => setIsPresentationMuted(value));
+    window.CrComLib.subscribeState('b', '23', value => setIsMicMuted(value));
+    window.CrComLib.subscribeState('b', '111', value => setIsCeilingMicMuted(value));
+    window.CrComLib.subscribeState('b', '112', value => setHasCeilingMics(value));
+    window.CrComLib.subscribeState('b', '9', value => setHasMics(value));
+    window.CrComLib.subscribeState('b', '6', value => setShowPowerModal(value));
+    window.CrComLib.subscribeState('b', '95', value => setShowVolumeModal(value));
+    window.CrComLib.subscribeState('b', '97', value => setShowMicModal(value));
+    window.CrComLib.subscribeState('b', '88', value => setShowCamModal(value));
 
     setPresetNames(Array(numOfPresets).fill('').map((_, index) =>{
       let value;
       window.CrComLib.subscribeState('s', `${index + 101}`, incomingValue => {
         value = incomingValue;
-        console.log(`value is: ${value}`)
         setTempPresetName(value)
-        console.log(`temp preset name is ${tempPresetName}`);
       });
       return value;
     }));
@@ -57,22 +67,17 @@ function BottomBar () {
       let value;
       window.CrComLib.subscribeState('s', `${index + 91}`, incomingValue => {
         value = incomingValue;
-        console.log(`value is: ${value}`)
         setTempCamName(value)
-        console.log(`temp Cam name is ${tempCamName}`);
       });
       return value;
     }));
-    console.log(`number of cameras is ${numCameras}`);
-    console.log(`number of presets is ${numOfPresets}`);
-    console.log(`cameras array is ${camNames}`);
-    console.log(`presets array is ${presetNames}`);
+    
     
   }, [numCameras, numOfPresets, tempCamName, tempPresetName])
 
   const programShutOff = () => {
-    handleClosePowerModal()
-    navigate('/');
+    setProgramStarted(!programStarted)
+    navigate('/WelcomePage');
     window.CrComLib.publishEvent('b', '30', true);
     window.CrComLib.publishEvent('b', '30', false);
     
@@ -81,45 +86,58 @@ function BottomBar () {
   const handleShowPowerModal = () => {
     console.log("Showing Power Modal")
     setShowPowerModal(true);
+    window.CrComLib.publishEvent('b', '5', true);
+    window.CrComLib.publishEvent('b', '5', false);
   }
   const handleClosePowerModal = () => {
     setShowPowerModal(false);
+    window.CrComLib.publishEvent('b', '31', true);
+    window.CrComLib.publishEvent('b', '31', false);
   }
 
   const handleShowVolumeModal = () => {
     console.log("Showing Volume Modal")
     setShowVolumeModal(true);
+    window.CrComLib.publishEvent('b', '95', true);
+    window.CrComLib.publishEvent('b', '95', false);
   }
   const handleCloseVolumeModal = () => {
+    console.log("Closing Volume Modal")
     setShowVolumeModal(false);
+    window.CrComLib.publishEvent('b', '96', true);
+    window.CrComLib.publishEvent('b', '96', false);
   }
   const handleShowMicModal = () => {
     console.log("Showing Microphones Volume Modal")
     setShowMicModal(true);
-
+    window.CrComLib.publishEvent('b', '97', true);
+    window.CrComLib.publishEvent('b', '97', false);
   }
   const handleCloseMicModal = () => {
     setShowMicModal(false);
+    window.CrComLib.publishEvent('b', '98', true);
+    window.CrComLib.publishEvent('b', '98', false);
   }
   const handleShowCamModal = () => {
     console.log("Showing Cam Modal")
     setShowCamModal(true);
+    window.CrComLib.publishEvent('b', '88', true);
+    window.CrComLib.publishEvent('b', '88', false);
     
   }
   const handleCloseCamModal = () => {
     console.log("Closing Cam Modal")
     setShowCamModal(false);
+    window.CrComLib.publishEvent('b', '89', true);
+    window.CrComLib.publishEvent('b', '89', false);
   }
   const togglePresentationMute = () => {
     setIsPresentationMuted((prevIsPresentationMuted) => !(prevIsPresentationMuted));
-    if (isPresentationMuted) {
-        window.CrComLib.publishEvent('b', '20', false);
-        console.log('program unmuted')
-    } else{
-        window.CrComLib.publishEvent('b', '20', true);
-        console.log('program muted')
-    }
+    window.CrComLib.publishEvent('b', '20', true);
+    window.CrComLib.publishEvent('b', '20', false);
+    
 }
+
 const handleCameraClicked = (cameraNum) => {
   setCameraSelected(cameraNum);
   setShowControls(true);
@@ -133,23 +151,15 @@ const handlePresetClicked = (presetNum) => {
 }
 const toggleMicMute = () => {
   setIsMicMuted((prevIsMicMuted) => !(prevIsMicMuted));
-  if (isMicMuted) {
-      window.CrComLib.publishEvent('b', '23', false);
-      console.log('program unmuted')
-  } else{
-      window.CrComLib.publishEvent('b', '23', true);
-      console.log('program muted')
-  }
+  window.CrComLib.publishEvent('b', '23', true);
+  window.CrComLib.publishEvent('b', '23', false);
+  
 }
 const toggleCeilingMicMute = () => {
   setIsCeilingMicMuted((prevIsCeilingMicMuted) => !(prevIsCeilingMicMuted));
-  if (isCeilingMicMuted) {
-      window.CrComLib.publishEvent('b', '111', false);
-      console.log('program unmuted')
-  } else{
-      window.CrComLib.publishEvent('b', '111', true);
-      console.log('program muted')
-  }
+  window.CrComLib.publishEvent('b', '111', true);
+  window.CrComLib.publishEvent('b', '111', false);
+  
 }
 const sendSignal= (joinNumber, action) => {
   window.CrComLib.publishEvent('b', `${joinNumber}`, true);
@@ -233,19 +243,21 @@ const handleNewCamNameChange = (event) => {
           <i className="d-block bi bi-volume-up-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
           <span className="d-block">Presentation Volume</span>
         </button>
-        <button type="button"
-          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowMicModal}>
-          <i className="d-block bi bi-mic-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
-          <span className="d-block">Microphones</span>
-        </button>
-        <button type="button"
-          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowCamModal}>
-          <i className="d-block bi bi-camera-video-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
-          <span className="d-block">Camera Controls</span>
-        </button>
+        {(hasMics|| hasCeilingMics) &&
+          <button type="button"
+            className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowMicModal}>
+            <i className="d-block bi bi-mic-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
+            <span className="d-block">Microphones</span>
+          </button>}
+        {(numCameras > 0) &&
+          <button type="button"
+            className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowCamModal}>
+            <i className="d-block bi bi-camera-video-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
+            <span className="d-block">Camera Controls</span>
+          </button>}
         {/* Audio Statuses */}
         <div className="col h-100 border-0 py-1 pt-xl-2 px-1">
-          <div className="d-flex justify-content-start mb-0">
+          <div className="d-flex col-11 justify-content-start mb-0">
             <div className="col-9 font-size-0 font-size-2-xl m-0 p-0">Presentation Audio</div>
             <div className="col-3 text-center">
               <div
@@ -254,7 +266,8 @@ const handleNewCamNameChange = (event) => {
               <div className={`font-size-0 font-size-2-xl ${isPresentationMuted ? '' : ''}`}>{isPresentationMuted ? "Muted" : 'On'}</div>
             </div>
           </div>
-          <div className="d-flex justify-content-start mb-0">
+          {hasMics &&
+          <div className="d-flex col-11 justify-content-start mb-0">
             <div class="col-9 font-size-0 font-size-2-xl p-0 m-0">
               Microphones
             </div>
@@ -264,8 +277,9 @@ const handleNewCamNameChange = (event) => {
               </div>
               <div className={`font-size-0 font-size-2-xl ${isMicMuted ? '' : ''}`}>{isMicMuted ? "Muted" : 'On'}</div>
             </div>
-          </div>
-          <div className="d-flex justify-content-start mb-0">
+          </div>}
+          {hasCeilingMics && 
+          <div className="d-flex col-11 justify-content-start mb-0">
             <div className="col-9 font-size-0 font-size-2-xl p-0 m-0">
               Ceiling Mics
             </div>
@@ -273,15 +287,14 @@ const handleNewCamNameChange = (event) => {
               <div
                 className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isCeilingMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
               </div>
-              <div className={`font-size-0 font-size-2-xl ${isPresentationMuted ? '' : ''}`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
+              <div className={`font-size-0 font-size-2-xl`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
             </div>
-          </div>
+          </div>}
         </div>
         {/* /Audio Statuses */}
       </div>
       {/* /Row */}
 
-        <div>
         {/* System Off Modal */}
         <Modal show={showPowerModal} onHide={handleClosePowerModal} fullscreen={fullscreen}>
           <Modal.Header className="pb-0">
@@ -307,7 +320,6 @@ const handleNewCamNameChange = (event) => {
             </div>
           </Modal.Body>
         </Modal>
-        </div>
 
         {/* Presentation Volume Modal */}
       <Modal show={showVolumeModal} onHide={handleCloseVolumeModal} fullscreen={fullscreen}>
@@ -365,19 +377,24 @@ const handleNewCamNameChange = (event) => {
         </Modal.Header>
         <Modal.Body className="font-size-4 font-size-3-xl p-0">
           <div className='container-fluid text-center pt-1'>
-            <div className="my-3 my-xl-5 mt-4">
+          {hasMics && (
+            <>
+              <div className="my-3 my-xl-5 mt-4">
               <VolumeControl initialVolume={MicVolume} plusJoin='25' minusJoin='24' isMuted={isMicMuted} />
-            </div>
-            <div className="col-12 text-center mb-3 mb-xl-5">
-              <button type="button"
-                className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isMicMuted ? 'bg-info' : 'bg-gray-300'}`}
-                onClick={toggleMicMute}>
-                <i
-                  className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
-                ></i>
-              </button>
-              <div className='font-size-3 font-size-4-xl'>{isMicMuted ? 'Unmute Microphones' : 'Mute Microphones'}</div>
-            </div>
+              </div>
+              <div className="col-12 text-center mb-3 mb-xl-5">
+                <button type="button"
+                  className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isMicMuted ? 'bg-info' : 'bg-gray-300'}`}
+                    onClick={toggleMicMute}>
+                  <i
+                    className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
+                  ></i>
+                </button>
+                <div className='font-size-3 font-size-4-xl'>{isMicMuted ? 'Unmute Microphones' : 'Mute Microphones'}</div>
+              </div>
+            </>
+            )}
+            {hasCeilingMics &&
             <div className="col-12 text-center">
               <button type="button"
                 className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isCeilingMicMuted ? 'bg-info' : 'bg-gray-300'}`}
@@ -387,7 +404,7 @@ const handleNewCamNameChange = (event) => {
                 ></i>
               </button>
               <div className='font-size-3 font-size-4-xl'>{isCeilingMicMuted ? 'Unmute Ceiling Mics' : 'Mute Ceiling Mics'}</div>
-            </div>
+            </div>}
           </div>
         </Modal.Body>
       </Modal>
@@ -450,7 +467,7 @@ const handleNewCamNameChange = (event) => {
           </Modal>
           {/* /Camera Rename Modal */}
 
-          {showControls && (
+          {(cameraSelected !== 0) && (
             <div>
               <div>
               {/* Camera Controls Row */}

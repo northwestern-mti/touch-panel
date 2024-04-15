@@ -5,7 +5,7 @@ import SourceMenus from './SourceMenus';
 import './HomePage.css'
 
 
-function HomePage(){
+function HomePage({programStarted, setProgramStarted}){
 
 
 
@@ -19,7 +19,7 @@ function HomePage(){
             </div>
             {/* /row */}
            
-            <BottomBar className=''/>
+            <BottomBar programStarted={programStarted} setProgramStarted={setProgramStarted}/>
         </div>
     )
 
