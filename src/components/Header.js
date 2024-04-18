@@ -38,16 +38,12 @@ function Header(){
         window.CrComLib.subscribeState('s','25', value => setPwValue(value));
         window.CrComLib.subscribeState('n','22', value => setTextFieldsNum(value));
         window.CrComLib.subscribeState('n','21', value => setToggleButtonsNum(value));
-        // window.CrComLib.subscribeState('s','71', value => setTempField(value));
-        // window.CrComLib.subscribeState('n','23', value => setTempValue(value));
-        // console.log('temp field', tempField);
-        // console.log('temp value', tempValue);
         setTextFields(Array(textFieldsNum).fill('').map((_, index) =>{
             let value;
             window.CrComLib.subscribeState('s', `${index + 71}`, incomingValue => {
               value = incomingValue;
               setTempField(value)
-              console.log('temp field', tempField)
+            //   console.log('temp field', tempField)
             });
             return value;
           }));
@@ -58,7 +54,7 @@ function Header(){
             window.CrComLib.subscribeState('n', `${index + 23}`, incomingValue => {
                 value = incomingValue;
                 setTempValue(value)
-                console.log('temp value', tempValue)
+                // console.log('temp value', tempValue)
             });
             return value;
             }));
@@ -67,7 +63,7 @@ function Header(){
             window.CrComLib.subscribeState('s', `${index + 51}`, incomingValue => {
                 value = incomingValue;
                 setTempToggleText(value)
-                console.log('temp field', tempToggleText)
+                // console.log('temp field', tempToggleText)
             });
             return value;
             }));
@@ -76,18 +72,18 @@ function Header(){
             window.CrComLib.subscribeState('b', `${index + 331}`, incomingValue => {
                 value = incomingValue;
                 setTempToggleState(value)
-                console.log('temp state', tempToggleState)
+                // console.log('temp state', tempToggleState)
             });
             return value;
             }));
         
-        console.log('num of text fields', textFieldsNum)
-        console.log('num of toggle buttons', toggleButtonsNum)
-        console.log('array of text fields', textFields)
-        console.log('array of text fields values', textFieldsValues)
-        console.log('array of toggle buttons', toggleButtons)
-        console.log('room name is', configRoomName);
-        console.log('ipadd is', configIpAdd)
+        // console.log('num of text fields', textFieldsNum)
+        // console.log('num of toggle buttons', toggleButtonsNum)
+        // console.log('array of text fields', textFields)
+        // console.log('array of text fields values', textFieldsValues)
+        // console.log('array of toggle buttons', toggleButtons)
+        // console.log('room name is', configRoomName);
+        // console.log('ipadd is', configIpAdd)
     }, [pwValue, textFieldsNum, toggleButtonsNum, toggleButtonsStates, textFieldsValues])
     const handleShowHelpModal = () => {
         console.log("Showing Help Modal")
@@ -138,10 +134,11 @@ function Header(){
         window.CrComLib.publishEvent('b', '125', true);
         window.CrComLib.publishEvent('b', '125', false);
     }
-    const handleIncreaseOrDecrease = (joinNumber) => {
+    const handleIncreaseOrDecrease = (joinNumber, currIdx) => {
         window.CrComLib.publishEvent('b', `${joinNumber}`, true);
         window.CrComLib.publishEvent('b', `${joinNumber}`, false);
         console.log('join pressed', joinNumber)
+        console.log('current index is', currIdx)
     }
     const handleRoomNameChange = (event) => {
         setConfigRoomName(event.target.value);
@@ -367,9 +364,9 @@ function Header(){
                                                 <div className="col-6 text-center">
                                                     <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                         <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"
-                                                            onClick={() => handleIncreaseOrDecrease(`${index + 361}`)}><i className="bi bi-plus-circle-fill"></i></button>
+                                                            onClick={() => handleIncreaseOrDecrease(`${index * 2 + 361}`, index)}><i className="bi bi-plus-circle-fill"></i></button>
                                                         <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"
-                                                            onClick={() => handleIncreaseOrDecrease(`${index + 361 + 1}`)}><i className="bi bi-dash-circle-fill"></i></button>
+                                                            onClick={() => handleIncreaseOrDecrease(`${index * 2 + 361 + 1}`, index)}><i className="bi bi-dash-circle-fill"></i></button>
                                                         
                                                     </div>
                                                 </div>
