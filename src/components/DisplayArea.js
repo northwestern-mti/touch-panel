@@ -28,7 +28,10 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [fullscreenPressed, setFullscreenPressed] = useState(false);
     const [fullscreen, setFullscreen] = useState(true);
     const [isElectricScreen, setIsElectricScreen] = useState(false);
-    const [isProjector, setIsProjector] =  useState(false)
+    const [isProjector, setIsProjector] =  useState(false);
+    const [dialString, setDialString] = useState('');
+    const [confCallVolume, setConfCallVolume] = useState(0);
+    const [showIncomingCall, setShowIncomingCall] = useState(false)
     useEffect(() => {
         window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));
         window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
@@ -42,9 +45,14 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         window.CrComLib.subscribeState('b', '117', value => setConfCallClicked(value));
         window.CrComLib.subscribeState('b', `${electricScreenJoin}`, value=> setIsElectricScreen(value));
         window.CrComLib.subscribeState('b', `${displayIsProjectorJoin}`, value=> setIsProjector(value));
-        console.log('the state of isMuted', isMuted)
+        window.CrComLib.subscribeState('s', '16', value=> setDialString(value));
+        window.CrComLib.subscribeState('n', '3', value=> setConfCallVolume(value));
+        window.CrComLib.subscribeState('b', '100', value=> setIsConfCallMuted(value));
+        window.CrComLib.subscribeState('b', '109', value=> setShowIncomingCall(value));
+
         
-    }, []);
+        
+    }, [dialString]);
     const toggleMute = (joinNumber) => {
         setIsMuted((prevIsMuted) => !(prevIsMuted));
         window.CrComLib.publishEvent('b', `${joinNumber}`, true);
@@ -94,6 +102,11 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     }
     const toggleConfCallVolumeMute = () => { 
         setIsConfCallMuted(!isConfCallMuted);
+        window.CrComLib.publishEvent('b', '100', true);
+        window.CrComLib.publishEvent('b', '100', false);
+    }
+    const handleCloseIncomingCallModal = () => {
+        setShowIncomingCall(false);
     }
     const toggleCallActive = () => { 
         setIsCallActive(!isCallActive);
@@ -153,6 +166,11 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         console.log(`${press} pressed`)
         console.log(blurayButton)
     }
+    const handleDialKeyPres = (joinNumber) => {
+        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
+        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        console.log('pw key pressed', joinNumber)
+    };
     let message;
     let displayNum;
     switch (side) {
@@ -204,56 +222,74 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 <div className="d-flex flex-row col-12 justify-content-between">
                                     <div className="col-10">
                                         <input className="form-control border-0 rounded-pill bg-gray-300 text-muted text-center font-size-1 font-size-3-xl p-2 mb-3"
-                                            placeholder='847-555-5555' />
+                                            placeholder='847-555-5555'
+                                            value={dialString} />
                                     </div>
-                                    <div className="col pt-2">
+                                    <div className="col pt-2" 
+                                        onClick={() => {
+                                            window.CrComLib.publishEvent('b', '107', true);
+                                            window.CrComLib.publishEvent('b', '107', false);
+                                            console.log('backspace pressed')
+                                        }}>
                                         <i className="bi bi-backspace-fill"></i>
                                     </div>
                                 </div>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('281')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">1</span>
                                     <span className="d-block font-size-1" style={{ height: 'var(--font-size-2' }}></span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('282')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">2</span>
                                     <span className="d-block font-size-1 font-size-2-xl">ABC</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('283')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">3</span>
                                     <span className="d-block font-size-1 font-size-2-xl">DEF</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('284')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">4</span>
                                     <span className="d-block font-size-1 font-size-2-xl">GHI</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('285')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">5</span>
                                     <span className="d-block font-size-1 font-size-2-xl">JKL</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('286')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">6</span>
                                     <span className="d-block font-size-1 font-size-2-xl">MNO</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('287')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">7</span>
                                     <span className="d-block font-size-1 font-size-2-xl">PQRS</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('288')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">8</span>
                                     <span className="d-block font-size-1 font-size-2-xl">TUV</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('289')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">9</span>
                                     <span className="d-block font-size-1 font-size-2-xl">WXYZ</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('291')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">*</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('290')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">0</span>
                                     <span className="d-block font-size-1 font-size-2-xl">+</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('292')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">#</span>
                                 </Button>
                                 <Button
@@ -290,7 +326,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
                         <div className='container-fluid text-center pt-5'>
                             <div className="my-5">
-                                <VolumeControl className="mx-auto" />
+                                <VolumeControl className="mx-auto" initialVolume={confCallVolume} plusJoin='102' minusJoin='101' isMuted={isConfCallMuted}/>
                             </div>
                             <div class="col-12 text-center">
                                 <button type="button"
@@ -306,6 +342,40 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     </Modal.Body>
                 </Modal>
                 {/* /Conference Volume Modal */}
+                <Modal show={showIncomingCall} onHide={handleCloseIncomingCallModal} fullscreen={fullscreen}>
+                    <Modal.Header className="pb-0">
+                        <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+                        <h1 className="font-size-5 font-size-6-xl">
+                            <button type="button" className="border-0 text-dark"
+                            onClick={handleCloseIncomingCallModal}><i class="bi bi-arrow-left"></i></button>Incoming Telephone Call</h1>
+                        <button type="button" className="border-0 text-muted"
+                            onClick={handleCloseIncomingCallModal}><i class="bi bi-x-lg"></i></button>
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="font-size-4 font-size-5-xl p-0">
+                        <div className='container-fluid text-center p-5'>
+                        <div className="mb-xl-5">Would you like to pick up the call?</div>
+                        <div className='d-flex justify-content-center mt-5'>
+                            <button className='btn btn-danger col-4 rounded-pill px-5 text-white mx-3'
+                                onClick={() => {
+                                    window.CrComLib.publishEvent('b', '108', true);
+                                    window.CrComLib.publishEvent('b', '108', false);
+                                    console.log('Call ignored')
+                                }}>
+                                Ignore
+                            </button>
+                            <button className='btn btn-success col-4 rounded-pill px-5 mx-3 text-white' 
+                                onClick={() => {
+                                    window.CrComLib.publishEvent('b', '109', true);
+                                    window.CrComLib.publishEvent('b', '109', false);
+                                    console.log('Call ignored')
+                                }}>
+                                Answer
+                            </button>
+                        </div>
+                        </div>
+                    </Modal.Body>
+                </Modal>
             </span>;
             break;
         case 5:
