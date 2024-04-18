@@ -197,6 +197,11 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             </Popover.Body>
         </Popover>
     );
+    const handleDialKeyPres = (joinNumber) => {
+        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
+        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        console.log('pw key pressed', joinNumber)
+    };
     let message;
     let displayNum;
     switch (side) {
@@ -252,6 +257,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                             placeholder='' 
                                             value={dialString}/>
                                     </div>
+                                    
                                 </div>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
                                     onClick={() => handleDialKeyPres('281')}>
@@ -364,7 +370,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
                         <div className='container-fluid text-center pt-5'>
                             <div className="mt-4 mb-5 mt-xl-5">
-                                <VolumeControl className="mx-auto" />
+                                <VolumeControl className="mx-auto" initialVolume={confCallVolume} plusJoin='102' minusJoin='101' isMuted={isConfCallMuted}/>
                             </div>
                             <div className="row m-0 my-xl-5"></div>
                             <div className="col-12 d-flex flex-wrap justify-content-evenly py-3">
