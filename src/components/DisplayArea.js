@@ -222,7 +222,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 <div className="d-flex flex-row col-12 justify-content-between">
                                     <div className="col-10">
                                         <input className="form-control border-0 rounded-pill bg-gray-300 text-muted text-center font-size-1 font-size-3-xl p-2 mb-3"
-                                            placeholder='847-555-5555'
+                                            placeholder=''
                                             value={dialString} />
                                     </div>
                                     <div className="col pt-2" 
