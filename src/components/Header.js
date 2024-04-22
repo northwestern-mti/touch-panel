@@ -84,7 +84,7 @@ function Header(){
         // console.log('array of text fields', textFields)
         // console.log('array of text fields values', textFieldsValues)
         // console.log('array of toggle buttons', toggleButtons)
-        console.log('room name is', configRoomName);
+        // console.log('room name is', configRoomName);
         // console.log('ipadd is', configIpAdd)
     }, [pwValue, textFieldsNum, toggleButtonsNum, textFieldsValues, toggleButtonsStates])
     const handleShowHelpModal = () => {
