@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 function Header(){
     const [classRoom, setClassRoom] = useState("");
     const [ipAdd, setIpAdd] = useState('')
+    const [ipAdd, setIpAdd] = useState('')
     const [configRoomName, setConfigRoomName] = useState('')
     const [configIpAdd, setConfigIpAdd] = useState('');
     const [showHelpModal, setShowHelpModal] = useState(false);
