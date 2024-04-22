@@ -77,6 +77,7 @@ function BottomBar ({programStarted, setProgramStarted}) {
       });
       return value;
     }));
+    console.log('array of cam names', camNames)
     
   }, [numCameras, numOfPresets, tempCamName, tempPresetName])
 
