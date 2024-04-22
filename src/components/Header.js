@@ -82,7 +82,7 @@ function Header(){
         // console.log('array of text fields', textFields)
         // console.log('array of text fields values', textFieldsValues)
         // console.log('array of toggle buttons', toggleButtons)
-        console.log('room name is', configRoomName);
+        // console.log('room name is', configRoomName);
         // console.log('ipadd is', configIpAdd)
     }, [pwValue, textFieldsNum, toggleButtonsNum, textFieldsValues, toggleButtonsStates])
     const handleShowHelpModal = () => {
@@ -358,16 +358,17 @@ function Header(){
                                     {Array.from({ length: textFieldsNum }, (_, index) => (
                                         <div className="col-6 h-100">
                                             <div key={index} className="d-flex flex-row align-items-center mb-2 mb-xl-3">
-                                                <div className="col-6 text-center">
+                                                <div className="col-6">
                                                     <span>{textFields[index]}</span>
-                                                    <span className="fw-bold">:{textFieldsValues[index]}</span>
+                                                    <span>: </span>
+                                                    <span className="fw-bold"> {textFieldsValues[index]}</span>
                                                 </div>
                                                 <div className="col-6 text-center">
                                                     <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
-                                                        <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"
-                                                            onClick={() => handleIncreaseOrDecrease(`${index * 2 + 361}`, index)}><i className="bi bi-plus-circle-fill"></i></button>
                                                         <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"
                                                             onClick={() => handleIncreaseOrDecrease(`${index * 2 + 361 + 1}`, index)}><i className="bi bi-dash-circle-fill"></i></button>
+                                                        <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"
+                                                            onClick={() => handleIncreaseOrDecrease(`${index * 2 + 361}`, index)}><i className="bi bi-plus-circle-fill"></i></button>
                                                         
                                                     </div>
                                                 </div>
