@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 function Header(){
     const [classRoom, setClassRoom] = useState("");
     const [ipAdd, setIpAdd] = useState('')
+    const [ipAdd, setIpAdd] = useState('')
     const [configRoomName, setConfigRoomName] = useState('')
     const [configIpAdd, setConfigIpAdd] = useState('');
     const [showHelpModal, setShowHelpModal] = useState(false);
@@ -34,8 +35,10 @@ function Header(){
     const navigate = useNavigate();
     useEffect(() =>{
         window.CrComLib.subscribeState('s','1', value=> setClassRoom(value));
+        window.CrComLib.subscribeState('s','2', value=> setIpAdd(value));
         // window.CrComLib.subscribeState('s','5', value=> setConfigRoomName(value));
-        window.CrComLib.subscribeState('s','6', value=> setConfigIpAdd(value));
+        // window.CrComLib.subscribeState('s','6', value=> setConfigIpAdd(value));
+        window.CrComLib.subscribeState('b', '121', value=> setShowPasswordModal(value));
         window.CrComLib.subscribeState('b', '93', value=> setShowAdminModal(value));
         window.CrComLib.subscribeState('s','25', value => setPwValue(value));
         window.CrComLib.subscribeState('n','22', value => setTextFieldsNum(value));
@@ -118,6 +121,7 @@ function Header(){
     }
 
     const handleAdminLongPress = () => {
+        // setShowPasswordModal(true);
         window.CrComLib.publishEvent('b', '120', true);
       };
       const handleAdminPWDesktop = () => {
@@ -163,12 +167,11 @@ function Header(){
     const handleRoomNameChange = (event) => {
         console.log("input is",event.target.value)
         setConfigRoomName(event.target.value);
-        console.log('config room nmae is', configRoomName)
+        // window.CrComLib.publishEvent('s', '5', configRoomName)
     }
     const handleIpChange = (event) => {
         setConfigIpAdd(event.target.value);
-        console.log('config ip add is', configIpAdd)
-
+        // window.CrComLib.publishEvent('s', '6', configIpAdd)
     }
     
     const handleToggleStateChange = (joinNumber) => {
