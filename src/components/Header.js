@@ -34,8 +34,8 @@ function Header(){
     const navigate = useNavigate();
     useEffect(() =>{
         window.CrComLib.subscribeState('s','1', value=> setClassRoom(value));
-        window.CrComLib.subscribeState('s','2', value=> setIpAdd(value));
-        window.CrComLib.subscribeState('b', '121', value=> setShowPasswordModal(value));
+        // window.CrComLib.subscribeState('s','5', value=> setConfigRoomName(value));
+        window.CrComLib.subscribeState('s','6', value=> setConfigIpAdd(value));
         window.CrComLib.subscribeState('b', '93', value=> setShowAdminModal(value));
         window.CrComLib.subscribeState('s','25', value => setPwValue(value));
         window.CrComLib.subscribeState('n','22', value => setTextFieldsNum(value));
@@ -78,13 +78,15 @@ function Header(){
             });
             return value;
             }));
-        if (configRoomName === '') {
-            setConfigRoomName(classRoom);
-            }
-        if (configIpAdd === '') {
-            setConfigIpAdd(ipAdd);
-            }
-    }, [pwValue, textFieldsNum, toggleButtonsNum, textFieldsValues, toggleButtonsStates, configIpAdd, configRoomName, ipAdd, classRoom])
+        
+        // console.log('num of text fields', textFieldsNum)
+        // console.log('num of toggle buttons', toggleButtonsNum)
+        // console.log('array of text fields', textFields)
+        // console.log('array of text fields values', textFieldsValues)
+        // console.log('array of toggle buttons', toggleButtons)
+        console.log('room name is', configRoomName);
+        // console.log('ipadd is', configIpAdd)
+    }, [pwValue, textFieldsNum, toggleButtonsNum, textFieldsValues, toggleButtonsStates])
     const handleShowHelpModal = () => {
         console.log("Showing Help Modal")
         setShowHelpModal(true);
@@ -159,6 +161,7 @@ function Header(){
         console.log('current index is', currIdx)
     }
     const handleRoomNameChange = (event) => {
+        console.log("input is",event.target.value)
         setConfigRoomName(event.target.value);
         console.log('config room nmae is', configRoomName)
     }
