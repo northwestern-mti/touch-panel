@@ -159,7 +159,6 @@ function Header(){
         console.log('current index is', currIdx)
     }
     const handleRoomNameChange = (event) => {
-        console.log("input is",event.target.value)
         setConfigRoomName(event.target.value);
     }
     const handleIpChange = (event) => {
