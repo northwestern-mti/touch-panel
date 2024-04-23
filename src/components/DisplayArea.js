@@ -49,6 +49,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         window.CrComLib.subscribeState('n', '3', value=> setConfCallVolume(value));
         window.CrComLib.subscribeState('b', '100', value=> setIsConfCallMuted(value));
         window.CrComLib.subscribeState('b', '109', value=> setShowIncomingCall(value));
+        window.CrComLib.subscribeState('b', '106', value=> setIsCallActive(value));
 
         
         

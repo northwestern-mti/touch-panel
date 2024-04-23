@@ -16,7 +16,7 @@ const SourceMenus = () => {
     const [showWireless, setShowWireless] = useState(false);
     const [showBluray, setShowBluray] = useState(false);
     const [showDocCam, setShowDocCam] = useState(false);
-    const [showConfCall, setShowConfCall] = useState(true);
+    const [showConfCall, setShowConfCall] = useState(false);
     const [hasDisplay2, setHasDisplay2] = useState(false);
 
     useEffect(() => {
