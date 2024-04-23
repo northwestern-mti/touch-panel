@@ -34,8 +34,6 @@ function Header(){
     useEffect(() =>{
         window.CrComLib.subscribeState('s','1', value=> setClassRoom(value));
         window.CrComLib.subscribeState('s','2', value=> setIpAdd(value));
-        // window.CrComLib.subscribeState('s','5', value=> setConfigRoomName(value));
-        // window.CrComLib.subscribeState('s','6', value=> setConfigIpAdd(value));
         window.CrComLib.subscribeState('b', '121', value=> setShowPasswordModal(value));
         window.CrComLib.subscribeState('b', '93', value=> setShowAdminModal(value));
         window.CrComLib.subscribeState('s','25', value => setPwValue(value));
@@ -79,15 +77,13 @@ function Header(){
             });
             return value;
             }));
-        
-        // console.log('num of text fields', textFieldsNum)
-        // console.log('num of toggle buttons', toggleButtonsNum)
-        // console.log('array of text fields', textFields)
-        // console.log('array of text fields values', textFieldsValues)
-        // console.log('array of toggle buttons', toggleButtons)
-        // console.log('room name is', configRoomName);
-        // console.log('ipadd is', configIpAdd)
-    }, [pwValue, textFieldsNum, toggleButtonsNum, textFieldsValues, toggleButtonsStates])
+        if (configRoomName === '') {
+            setConfigRoomName(classRoom);
+            }
+        if (configIpAdd === '') {
+            setConfigIpAdd(ipAdd);
+            }
+    }, [pwValue, textFieldsNum, toggleButtonsNum, textFieldsValues, toggleButtonsStates, configIpAdd, configRoomName, ipAdd, classRoom])
     const handleShowHelpModal = () => {
         console.log("Showing Help Modal")
         setShowHelpModal(true);
@@ -119,7 +115,6 @@ function Header(){
     }
 
     const handleAdminLongPress = () => {
-        // setShowPasswordModal(true);
         window.CrComLib.publishEvent('b', '120', true);
       };
     const handlePwKeyPres = (joinNumber) => {
@@ -130,10 +125,10 @@ function Header(){
     const handleSaveConfig = () => {
         window.CrComLib.publishEvent('b', '124', true);
         window.CrComLib.publishEvent('b', '124', false);
-        if (configRoomName !== '') {
+        if (configRoomName !== classRoom) {
             window.CrComLib.publishEvent('s', '5', configRoomName)
         }
-        if (ipAdd !== '') {
+        if (configIpAdd !== ipAdd) {
             window.CrComLib.publishEvent('s', '6', configIpAdd)
         }
     };
@@ -150,13 +145,11 @@ function Header(){
         console.log('current index is', currIdx)
     }
     const handleRoomNameChange = (event) => {
-        console.log("input is",event.target.value)
         setConfigRoomName(event.target.value);
-        // window.CrComLib.publishEvent('s', '5', configRoomName)
     }
     const handleIpChange = (event) => {
         setConfigIpAdd(event.target.value);
-        // window.CrComLib.publishEvent('s', '6', configIpAdd)
+
     }
     
     const handleToggleStateChange = (joinNumber) => {
