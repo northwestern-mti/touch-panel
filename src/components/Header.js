@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 
 function Header(){
     const [classRoom, setClassRoom] = useState("");
-    const [ipAdd, setIpAdd] = useState('')
     const [ipAdd, setIpAdd] = useState('')
     const [configRoomName, setConfigRoomName] = useState('')
     const [configIpAdd, setConfigIpAdd] = useState('');
@@ -83,10 +82,7 @@ function Header(){
         if (configIpAdd === '') {
             setConfigIpAdd(ipAdd);
             }
-    }, [pwValue, textFieldsNum, toggleButtonsNum, textFieldsValues, toggleButtonsStates, configIpAdd, configRoomName, ipAdd, classRoom]);
-    
-
-    
+    }, [pwValue, textFieldsNum, toggleButtonsNum, textFieldsValues, toggleButtonsStates, configIpAdd, configRoomName, ipAdd, classRoom])
     const handleShowHelpModal = () => {
         console.log("Showing Help Modal")
         setShowHelpModal(true);
@@ -148,13 +144,10 @@ function Header(){
         console.log('current index is', currIdx)
     }
     const handleRoomNameChange = (event) => {
-        console.log("input is",event.target.value)
         setConfigRoomName(event.target.value);
-        console.log('config room nmae is', configRoomName)
     }
     const handleIpChange = (event) => {
         setConfigIpAdd(event.target.value);
-        console.log('config ip add is', configIpAdd)
 
     }
     
