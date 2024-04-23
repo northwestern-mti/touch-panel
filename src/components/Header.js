@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -28,14 +28,11 @@ function Header(){
     const [tempValue, setTempValue] = useState(0);
     const [tempToggleText, setTempToggleText] = useState('');
     const [tempToggleState, setTempToggleState] = useState(false)
-    const holdTimeoutRef = useRef(null);
 
     const navigate = useNavigate();
     useEffect(() =>{
         window.CrComLib.subscribeState('s','1', value=> setClassRoom(value));
         window.CrComLib.subscribeState('s','2', value=> setIpAdd(value));
-        // window.CrComLib.subscribeState('s','5', value=> setConfigRoomName(value));
-        // window.CrComLib.subscribeState('s','6', value=> setConfigIpAdd(value));
         window.CrComLib.subscribeState('b', '121', value=> setShowPasswordModal(value));
         window.CrComLib.subscribeState('b', '93', value=> setShowAdminModal(value));
         window.CrComLib.subscribeState('s','25', value => setPwValue(value));
@@ -57,7 +54,7 @@ function Header(){
             window.CrComLib.subscribeState('n', `${index + 23}`, incomingValue => {
                 value = incomingValue;
                 setTempValue(value)
-                // console.log('temp value', tempValue)
+                
             });
             return value;
             }));
@@ -66,7 +63,7 @@ function Header(){
             window.CrComLib.subscribeState('s', `${index + 51}`, incomingValue => {
                 value = incomingValue;
                 setTempToggleText(value)
-                // console.log('temp field', tempToggleText)
+               
             });
             return value;
             }));
@@ -75,19 +72,17 @@ function Header(){
             window.CrComLib.subscribeState('b', `${index + 331}`, incomingValue => {
                 value = incomingValue;
                 setTempToggleState(value)
-                // console.log('temp state', tempToggleState)
+               
             });
             return value;
             }));
-        
-        // console.log('num of text fields', textFieldsNum)
-        // console.log('num of toggle buttons', toggleButtonsNum)
-        // console.log('array of text fields', textFields)
-        // console.log('array of text fields values', textFieldsValues)
-        // console.log('array of toggle buttons', toggleButtons)
-        // console.log('room name is', configRoomName);
-        // console.log('ipadd is', configIpAdd)
-    }, [pwValue, textFieldsNum, toggleButtonsNum, textFieldsValues, toggleButtonsStates])
+        if (configRoomName === '') {
+            setConfigRoomName(classRoom);
+            }
+        if (configIpAdd === '') {
+            setConfigIpAdd(ipAdd);
+            }
+    }, [pwValue, textFieldsNum, toggleButtonsNum, textFieldsValues, toggleButtonsStates, configIpAdd, configRoomName, ipAdd, classRoom])
     const handleShowHelpModal = () => {
         console.log("Showing Help Modal")
         setShowHelpModal(true);
@@ -119,9 +114,7 @@ function Header(){
     }
 
     const handleAdminLongPress = () => {
-        // setShowPasswordModal(true);
         window.CrComLib.publishEvent('b', '120', true);
-        window.CrComLib.publishEvent('b', '120', false);
       };
     const handlePwKeyPres = (joinNumber) => {
         window.CrComLib.publishEvent('b', `${joinNumber}`, true);
@@ -131,16 +124,18 @@ function Header(){
     const handleSaveConfig = () => {
         window.CrComLib.publishEvent('b', '124', true);
         window.CrComLib.publishEvent('b', '124', false);
-        if (configRoomName !== '') {
+        if (configRoomName !== classRoom) {
             window.CrComLib.publishEvent('s', '5', configRoomName)
         }
-        if (ipAdd !== '') {
+        if (configIpAdd !== ipAdd) {
             window.CrComLib.publishEvent('s', '6', configIpAdd)
         }
     };
     const handleResetConfig = () => {
         window.CrComLib.publishEvent('b', '125', true);
         window.CrComLib.publishEvent('b', '125', false);
+        setConfigRoomName(classRoom);
+        setConfigIpAdd(ipAdd)
     }
     const handleIncreaseOrDecrease = (joinNumber, currIdx) => {
         window.CrComLib.publishEvent('b', `${joinNumber}`, true);
@@ -149,14 +144,13 @@ function Header(){
         console.log('current index is', currIdx)
     }
     const handleRoomNameChange = (event) => {
-        console.log("input is",event.target.value)
         setConfigRoomName(event.target.value);
-        // window.CrComLib.publishEvent('s', '5', configRoomName)
     }
     const handleIpChange = (event) => {
         setConfigIpAdd(event.target.value);
-        // window.CrComLib.publishEvent('s', '6', configIpAdd)
+
     }
+    
     const handleToggleStateChange = (joinNumber) => {
         window.CrComLib.publishEvent('b', `${joinNumber}`, true);
         window.CrComLib.publishEvent('b', `${joinNumber}`, false);
@@ -175,24 +169,11 @@ function Header(){
                     </div>
                     <div className="col-1 text-center p-0">
                         <div className="text-primary py-3 py-xl-5 font-size-1"
-                        // onMouseDown={() => {
-                        //     holdTimeoutRef.current = setTimeout(() => handleAdminLongPress(), 500);
-                        //   }}
-                        //   onMouseUp={() => clearTimeout(holdTimeoutRef.current)}
-                        //   onTouchStart={() => {
-                        //     holdTimeoutRef.current = setTimeout(() => handleAdminLongPress(), 500);
-                        //   }}
-                        //   onTouchEnd={() => clearTimeout(holdTimeoutRef.current)}
-                        //   onMouseLeave={() => clearTimeout(holdTimeoutRef.current)}
-                          onMouseDown={() => {
-                            holdTimeoutRef.current = setTimeout(() => handleAdminLongPress(), 500);
-                          }}
-                          onMouseUp={() => clearTimeout(holdTimeoutRef.current)}
-                          onTouchStart={() => {
-                            holdTimeoutRef.current = setTimeout(() => handleAdminLongPress(), 500);
-                          }}
-                          onTouchEnd={() => clearTimeout(holdTimeoutRef.current)}
-                          onMouseLeave={() => clearTimeout(holdTimeoutRef.current)}
+                            onMouseDown={handleAdminLongPress}
+                            onMouseUp={() => window.CrComLib.publishEvent('b', '120', false)}
+                            onTouchStart={handleAdminLongPress}
+                            onTouchEnd={() => window.CrComLib.publishEvent('b', '120', false)}
+                            onMouseLeave={() => window.CrComLib.publishEvent('b', '120', false)}
                         >
                         admin button
                         </div>
@@ -265,7 +246,11 @@ function Header(){
                                     placeholder='' 
                                     value={pwValue}/>
                                 </div>
-                                <div className="col-2 text-center p-0">
+                                <div className="col-2 text-center p-0" 
+                                    onClick={() => {
+                                        window.CrComLib.publishEvent('b', '129', true);
+                                        window.CrComLib.publishEvent('b', '129', false);
+                                    }}>
                                     <i className="bi bi-backspace-fill"></i>
                                 </div>
                                 </div>
@@ -324,9 +309,6 @@ function Header(){
                                 <h1 className="font-size-5 font-size-6-xl">
                                     <button type="button" className="border-0 text-dark"
                                         onClick={handleCloseAdminModal}><i class="bi bi-arrow-left"></i></button>Admin</h1>
-                                {/* <h2 className="align-self-center font-size-2 font-size-4-xl text-center">
-                                    <strong>Project file:</strong> placeholder.ch5z
-                                </h2> */}
                                 <button type="button" className="border-0 text-muted font-size-3 font-size-5-xl"
                                     onClick={handleCloseAdminModal}><i class="bi bi-x-lg"></i></button>
                             </Modal.Title>
