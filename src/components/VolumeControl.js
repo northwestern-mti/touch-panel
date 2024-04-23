@@ -46,22 +46,31 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
     window.CrComLib.publishEvent('b', `${minusJoin}`, false);
   }
   const handleDecreaseOnMouseDown = () => {
+    clearInterval(pressInterval);
     setPressInterval(setInterval(handleDecreaseVolume, 200));
   } 
   const handleDecreaseOnMouseUp = () => {
-    clearInterval(pressInterval);
-    window.CrComLib.publishEvent('b', `${minusJoin}`, false);
+    if (pressInterval !== null) {
+      clearInterval(pressInterval);
+      setPressInterval(null);
+      window.CrComLib.publishEvent('b', `${minusJoin}`, false);
+    }
   }
   const handleIncreaseOnClick = () => {
     handleIncreaseVolume();
     window.CrComLib.publishEvent('b', `${plusJoin}`, false);
   }
   const handleIncreaseOnMouseDown = () => {
+    clearInterval(pressInterval)
     setPressInterval(setInterval(handleIncreaseVolume, 200));
   } 
   const handleIncreaseOnMouseUp = () => {
-    clearInterval(pressInterval);
-    window.CrComLib.publishEvent('b', `${plusJoin}`, false);
+    if (pressInterval !== null) {
+      clearInterval(pressInterval);
+      setPressInterval(null);
+      window.CrComLib.publishEvent('b', `${plusJoin}`, false);
+    }
+    
   }
   
   useEffect(() => {

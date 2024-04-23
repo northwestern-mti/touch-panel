@@ -67,11 +67,10 @@ function BottomBar ({programStarted, setProgramStarted}) {
       let value;
       window.CrComLib.subscribeState('s', `${index + 91}`, incomingValue => {
         value = incomingValue;
-        setTempCamName(value)
+        setTempCamName(value);
       });
       return value;
     }));
-    
     
   }, [numCameras, numOfPresets, tempCamName, tempPresetName])
 
@@ -418,7 +417,7 @@ const handleNewCamNameChange = (event) => {
               const camNumber = index + 1
               return (
                 <button key={camNumber}
-                  className={`btn col-3 rounded-pill border-0 px-2 py-xl-3 mx-2 mb-4 mb-xl-5 font-size-3 font-size-4-xl ${(cameraSelected === camNumber) ? 'btn-info' : 'bg-gray-300'}`}
+                  className={`btn col-3 rounded-pill border-0 px-2 py-xl-3 mx-2 mb-4 mb-xl-5 font-size-3 font-size-4-xl cameraButton ${(cameraSelected === camNumber) ? 'btn-info' : 'bg-gray-300'}`}
                   onClick={() => handleCameraClicked(index + 1)}
                   onMouseDown={() => {
                     holdTimeoutRef.current = setTimeout(() => handleCamLongPress(camNumber), 500);
