@@ -19,7 +19,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [isConfCallMuted, setIsConfCallMuted] = useState(false);
     const [isCallActive, setIsCallActive] = useState(false);
     const [blurayButton, setBluRayButton] = useState('');
-    const [powerSwitch, setPowerSwitch] = useState(true);
+    const [powerSwitch, setPowerSwitch] = useState(false);
     const [lampSwitch, setLampSwitch] = useState(true);
     const [autoFocusSwitch, setAutoFocusSwitch] = useState(true);
     const [showAnnotation, setShowAnnotation] = useState(false);
@@ -111,6 +111,15 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     }
     const toggleCallActive = () => { 
         setIsCallActive(!isCallActive);
+        if (isCallActive) {
+            window.CrComLib.publishEvent('b', '105', true);
+            window.CrComLib.publishEvent('b', '105', false);
+            console.log('On_hook 105')
+        } else {
+            window.CrComLib.publishEvent('b', '106', true);
+            window.CrComLib.publishEvent('b', '106', false);
+            console.log('On_hook 106')
+        }
     }
 
     const togglePowerSwitch = () => {
@@ -294,7 +303,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">#</span>
                                 </Button>
                                 <Button
-                                className={`btn btn-gray bg-success text-white rounded-circle border-0 p-0 mb-2 dialpadButton ${isCallActive ? 'bg-danger' : 'bg-success'}`} onClick={toggleCallActive}>
+                                className={`btn btn-gray bg-success text-white rounded-circle border-0 p-0 mb-2 dialpadButton ${isCallActive ? 'bg-danger' : 'bg-success'}`} 
+                                onClick={toggleCallActive}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">
                                         <i 
                                         className={`bi ${isCallActive ? 'bi-telephone-x-fill' : 'bi-telephone-fill'}`}
@@ -343,6 +353,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     </Modal.Body>
                 </Modal>
                 {/* /Conference Volume Modal */}
+                {/* /Conference Incoming Call Modal */}
                 <Modal show={showIncomingCall} onHide={handleCloseIncomingCallModal} fullscreen={fullscreen}>
                     <Modal.Header className="pb-0">
                         <Modal.Title className="col-12 d-flex flex-row justify-content-between">
@@ -369,7 +380,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 onClick={() => {
                                     window.CrComLib.publishEvent('b', '109', true);
                                     window.CrComLib.publishEvent('b', '109', false);
-                                    console.log('Call ignored')
+                                    console.log('Call picked up')
                                 }}>
                                 Answer
                             </button>
@@ -377,6 +388,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         </div>
                     </Modal.Body>
                 </Modal>
+                {/* /Conference Incoming Call Modal */}
             </span>;
             break;
         case 5:

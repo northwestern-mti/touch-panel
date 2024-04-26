@@ -76,7 +76,7 @@ function BottomBar ({programStarted, setProgramStarted}) {
 
   const programShutOff = () => {
     setProgramStarted(!programStarted)
-    navigate('/WelcomePage');
+    // navigate('/WelcomePage');
     window.CrComLib.publishEvent('b', '30', true);
     window.CrComLib.publishEvent('b', '30', false);
     

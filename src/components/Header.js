@@ -145,9 +145,11 @@ function Header(){
     }
     const handleRoomNameChange = (event) => {
         setConfigRoomName(event.target.value);
+        console.log('config room nmae is', configRoomName)
     }
     const handleIpChange = (event) => {
         setConfigIpAdd(event.target.value);
+        console.log('config ip add is', configIpAdd)
 
     }
     
