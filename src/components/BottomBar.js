@@ -313,9 +313,9 @@ const popover = (
             </div>
             <div className="col-3 text-center">
               <div
-                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isPrivacyModeEnabled ? 'bg-gray-600' : 'bg-success'}`} style={{ width: '1vw', height: '1vw' }}>
+                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isPrivacyModeEnabled ? 'bg-success' : 'bg-gray-600'}`} style={{ width: '1vw', height: '1vw' }}>
               </div>
-              <div className={`font-size-0 font-size-1-xl`}>{isPrivacyModeEnabled ? "Off" : 'On'}</div>
+              <div className={`font-size-0 font-size-1-xl`}>{isPrivacyModeEnabled ? "On" : 'Off'}</div>
             </div>
           </div>
         </div>
@@ -441,7 +441,7 @@ const popover = (
                   className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isPrivacyModeEnabled ? 'btn-info' : 'btn-gray'}`}
                   onClick={togglePrivacyMode}>
                   <i
-                    className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPrivacyModeEnabled ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
+                    className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPrivacyModeEnabled ? 'bi-lock-fill' : 'bi-unlock-fill'}`}
                   ></i>
                 </button>
                 <div className='font-size-3 font-size-4-xl'>
@@ -459,7 +459,6 @@ const popover = (
               </div>
             </div>
           </div>
-            {/* Privacy Mode Offcanvas */}
         </Modal.Body>
       </Modal>
 
