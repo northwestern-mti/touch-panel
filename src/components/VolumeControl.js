@@ -123,7 +123,6 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
                 alt="Plus Icon"
                 className="img-fluid"/>
         </button>
-        
     </div>
   );
 };
