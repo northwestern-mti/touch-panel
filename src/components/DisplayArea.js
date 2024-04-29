@@ -246,9 +246,11 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             <div className="col-7 position-relative mx-auto">
                             <div className="d-flex flex-wrap col-6 justify-content-around mx-auto">
                                 <div className="d-flex flex-row col-12 justify-content-between">
+                                    
                                     <div className="col">
                                         <input className="form-control border-0 rounded-pill bg-gray-300 text-dark text-center font-size-2 font-size-3-xl p-2 p-xl-3 mb-3"
-                                            placeholder='' />
+                                            placeholder='' 
+                                            value={dialString}/>
                                     </div>
                                 </div>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
@@ -325,7 +327,12 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     </span>
                                 </Button>
                                 {/* Clear button */}
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => {
+                                        window.CrComLib.publishEvent('b', '107', true);
+                                        window.CrComLib.publishEvent('b', '107', false);
+                                        console.log('backspace pressed')
+                                }}>
                                     <span className="d-block fw-bold font-size-3 font-size-4-xl">
                                     <i className="bi bi-backspace-fill"></i>
                                     </span>
