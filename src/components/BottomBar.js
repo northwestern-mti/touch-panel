@@ -407,7 +407,7 @@ const popover = (
           <div className='container-fluid text-center pt-1'>
           {hasMics && (
             <>
-              <div className="my-3 my-xl-5 mt-4">
+              <div className="my-3 my-xl-5">
               <VolumeControl initialVolume={MicVolume} plusJoin='25' minusJoin='24' isMuted={isMicMuted} />
               </div>
             </>
