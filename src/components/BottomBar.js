@@ -17,7 +17,7 @@ function BottomBar ({programStarted, setProgramStarted}) {
   const [cameraSelected, setCameraSelected] = useState(0);
   const [showControls, setShowControls] = useState(true);
   const [hasCeilingMics, setHasCeilingMics] = useState(true);
-  const [hasMics, setHasMics] = useState(true)
+  const [hasMics, setHasMics] = useState(false)
   const [presentationVolume, setPresentationVolume] = useState(0);
   const [MicVolume, setMicVolume] = useState(0);
   const [isPresentationMuted, setIsPresentationMuted] = useState(false);
@@ -49,8 +49,8 @@ function BottomBar ({programStarted, setProgramStarted}) {
     window.CrComLib.subscribeState('b', '20', value => setIsPresentationMuted(value));
     window.CrComLib.subscribeState('b', '23', value => setIsMicMuted(value));
     window.CrComLib.subscribeState('b', '111', value => setIsCeilingMicMuted(value));
-    window.CrComLib.subscribeState('b', '112', value => setHasCeilingMics(value));
-    window.CrComLib.subscribeState('b', '9', value => setHasMics(value));
+    // window.CrComLib.subscribeState('b', '112', value => setHasCeilingMics(value));
+    // window.CrComLib.subscribeState('b', '9', value => setHasMics(value));
     window.CrComLib.subscribeState('b', '6', value => setShowPowerModal(value));
     window.CrComLib.subscribeState('b', '95', value => setShowVolumeModal(value));
     window.CrComLib.subscribeState('b', '97', value => setShowMicModal(value));
