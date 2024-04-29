@@ -13,8 +13,8 @@ function BottomBar ({programStarted, setProgramStarted}) {
   const [showMicModal, setShowMicModal] = useState(false);
   const [showCamModal, setShowCamModal] = useState(false);
   const [cameraSelected, setCameraSelected] = useState(0);
-  const [showControls, setShowControls] = useState(false);
-  const [hasCeilingMics, setHasCeilingMics] = useState(false);
+  const [showControls, setShowControls] = useState(true);
+  const [hasCeilingMics, setHasCeilingMics] = useState(true);
   const [hasMics, setHasMics] = useState(false)
   const [presentationVolume, setPresentationVolume] = useState(0);
   const [MicVolume, setMicVolume] = useState(0);
@@ -46,8 +46,8 @@ function BottomBar ({programStarted, setProgramStarted}) {
     window.CrComLib.subscribeState('b', '20', value => setIsPresentationMuted(value));
     window.CrComLib.subscribeState('b', '23', value => setIsMicMuted(value));
     window.CrComLib.subscribeState('b', '111', value => setIsCeilingMicMuted(value));
-    window.CrComLib.subscribeState('b', '112', value => setHasCeilingMics(value));
-    window.CrComLib.subscribeState('b', '9', value => setHasMics(value));
+    // window.CrComLib.subscribeState('b', '112', value => setHasCeilingMics(value));
+    // window.CrComLib.subscribeState('b', '9', value => setHasMics(value));
     window.CrComLib.subscribeState('b', '6', value => setShowPowerModal(value));
     window.CrComLib.subscribeState('b', '95', value => setShowVolumeModal(value));
     window.CrComLib.subscribeState('b', '97', value => setShowMicModal(value));
@@ -238,7 +238,7 @@ const handleNewCamNameChange = (event) => {
           <span className="d-block">System Off</span>
         </button>
         <button type="button"
-          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowVolumeModal}>
+          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl ps-1 pe-1" onClick={handleShowVolumeModal}>
           <i className="d-block bi bi-volume-up-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
           <span className="d-block">Presentation Volume</span>
         </button>
