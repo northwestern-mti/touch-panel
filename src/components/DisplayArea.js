@@ -242,22 +242,13 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
-                        <div className='container-fluid text-center pt-3 pt-xl-5'>
+                        <div className='container-fluid text-center pt-2 pt-xl-5'>
                             <div className="col-7 position-relative mx-auto">
                             <div className="d-flex flex-wrap col-6 justify-content-around mx-auto">
                                 <div className="d-flex flex-row col-12 justify-content-between">
-                                    <div className="col-10">
-                                        <input className="form-control border-0 rounded-pill bg-gray-300 text-muted text-center font-size-1 font-size-3-xl p-2 mb-3"
-                                            placeholder=''
-                                            value={dialString} />
-                                    </div>
-                                    <div className="col pt-2" 
-                                        onClick={() => {
-                                            window.CrComLib.publishEvent('b', '107', true);
-                                            window.CrComLib.publishEvent('b', '107', false);
-                                            console.log('backspace pressed')
-                                        }}>
-                                        <i className="bi bi-backspace-fill"></i>
+                                    <div className="col">
+                                        <input className="form-control border-0 rounded-pill bg-gray-300 text-dark text-center font-size-2 font-size-3-xl p-2 p-xl-3 mb-3"
+                                            placeholder='' />
                                     </div>
                                 </div>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
@@ -318,6 +309,12 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     onClick={() => handleDialKeyPres('292')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">#</span>
                                 </Button>
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <span className="d-block fw-bold font-size-4 font-size-5-xl">
+                                    <i className="bi bi-x"></i>
+                                </span>
+                                <span className="d-block font-size-1 font-size-2-xl">clear</span>
+                                </Button>
                                 <Button
                                 className={`btn btn-gray bg-success text-white rounded-circle border-0 p-0 mb-2 dialpadButton ${isCallActive ? 'bg-danger' : 'bg-success'}`} 
                                 onClick={toggleCallActive}>
@@ -327,6 +324,13 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                         ></i>
                                     </span>
                                 </Button>
+                                {/* Clear button */}
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                    <span className="d-block fw-bold font-size-3 font-size-4-xl">
+                                    <i className="bi bi-backspace-fill"></i>
+                                    </span>
+                                </Button>
+                                {/* Clear button */}
                             </div>
                             <Button className="btn btn-secondary position-absolute top-50 start-100 translate-middle rounded-circle border-0 p-0 mb-2 dialpadButton" onClick={handleShowConfCallVolumeModal}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">
