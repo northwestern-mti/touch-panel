@@ -15,7 +15,7 @@ function BottomBar ({programStarted, setProgramStarted}) {
   const [cameraSelected, setCameraSelected] = useState(0);
   const [showControls, setShowControls] = useState(true);
   const [hasCeilingMics, setHasCeilingMics] = useState(true);
-  const [hasMics, setHasMics] = useState(false)
+  const [hasMics, setHasMics] = useState(true)
   const [presentationVolume, setPresentationVolume] = useState(0);
   const [MicVolume, setMicVolume] = useState(0);
   const [isPresentationMuted, setIsPresentationMuted] = useState(false);
@@ -374,7 +374,7 @@ const handleNewCamNameChange = (event) => {
               onClick={handleCloseMicModal}><i class="bi bi-x-lg"></i></button>
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body className="font-size-4 font-size-3-xl p-0 pt-2 pt-xl-4">
+        <Modal.Body className="font-size-4 font-size-3-xl p-0 pt-2">
           <div className='container-fluid text-center pt-1'>
           {hasMics && (
             <>
@@ -383,20 +383,20 @@ const handleNewCamNameChange = (event) => {
               </div>
               <div className="col-12 text-center mb-3 mb-xl-5">
                 <button type="button"
-                  className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isMicMuted ? 'bg-info' : 'bg-gray-300'}`}
+                  className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isMicMuted ? 'btn-info' : 'btn-gray'}`}
                     onClick={toggleMicMute}>
                   <i
                     className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
                   ></i>
                 </button>
-                <div className='font-size-3 font-size-4-xl'>{isMicMuted ? 'Unmute Microphones' : 'Mute Microphones'}</div>
+                <div className='font-size-3 font-size-4-xl'>{isMicMuted ? 'Unmute All Microphones' : 'Mute All Microphones'}</div>
               </div>
             </>
             )}
             {hasCeilingMics &&
             <div className="col-12 text-center">
               <button type="button"
-                className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isCeilingMicMuted ? 'bg-info' : 'bg-gray-300'}`}
+                className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isCeilingMicMuted ? 'btn-info' : 'btn-gray'}`}
                 onClick={toggleCeilingMicMute}>
                 <i
                   className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isCeilingMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
