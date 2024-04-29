@@ -49,8 +49,8 @@ function BottomBar ({programStarted, setProgramStarted}) {
     window.CrComLib.subscribeState('b', '20', value => setIsPresentationMuted(value));
     window.CrComLib.subscribeState('b', '23', value => setIsMicMuted(value));
     window.CrComLib.subscribeState('b', '111', value => setIsCeilingMicMuted(value));
-    // window.CrComLib.subscribeState('b', '112', value => setHasCeilingMics(value));
-    // window.CrComLib.subscribeState('b', '9', value => setHasMics(value));
+    window.CrComLib.subscribeState('b', '112', value => setHasCeilingMics(value));
+    window.CrComLib.subscribeState('b', '9', value => setHasMics(value));
     window.CrComLib.subscribeState('b', '6', value => setShowPowerModal(value));
     window.CrComLib.subscribeState('b', '95', value => setShowVolumeModal(value));
     window.CrComLib.subscribeState('b', '97', value => setShowMicModal(value));
