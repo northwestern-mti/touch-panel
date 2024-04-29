@@ -409,30 +409,56 @@ const popover = (
               <div className="my-3 my-xl-5">
               <VolumeControl initialVolume={MicVolume} plusJoin='25' minusJoin='24' isMuted={isMicMuted} />
               </div>
-              <div className="col-12 text-center mb-3 mb-xl-5">
-                <button type="button"
-                  className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isMicMuted ? 'btn-info' : 'btn-gray'}`}
-                    onClick={toggleMicMute}>
-                  <i
-                    className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
-                  ></i>
-                </button>
-                <div className='font-size-3 font-size-4-xl'>{isMicMuted ? 'Unmute All Microphones' : 'Mute All Microphones'}</div>
-              </div>
             </>
             )}
-            {hasCeilingMics &&
-            <div className="col-12 text-center">
-              <button type="button"
-                className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isCeilingMicMuted ? 'btn-info' : 'btn-gray'}`}
-                onClick={toggleCeilingMicMute}>
-                <i
-                  className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isCeilingMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
-                ></i>
-              </button>
-              <div className='font-size-3 font-size-4-xl'>{isCeilingMicMuted ? 'Unmute Ceiling Mics' : 'Mute Ceiling Mics'}</div>
-            </div>}
+            <div className="col-12 d-flex flex-wrap justify-content-around py-3">
+              {hasMics && (
+                <div className="col-6">
+                  <button type="button"
+                    className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isMicMuted ? 'btn-info' : 'btn-gray'}`}
+                    onClick={toggleMicMute}>
+                    <i
+                      className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
+                    ></i>
+                  </button>
+                  <div className='font-size-3 font-size-4-xl'>{isMicMuted ? 'Unmute All Microphones' : 'Mute All Microphones'}</div>
+                </div>
+              )}
+              {hasCeilingMics &&
+                <div className="col-6">
+                  <button type="button"
+                    className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isCeilingMicMuted ? 'btn-info' : 'btn-gray'}`}
+                    onClick={toggleCeilingMicMute}>
+                    <i
+                      className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isCeilingMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
+                    ></i>
+                  </button>
+                  <div className='font-size-3 font-size-4-xl'>{isCeilingMicMuted ? 'Unmute Ceiling Mics' : 'Mute Ceiling Mics'}</div>
+                </div>}
+              <div className="col-3 col-lg-2 position-relative">
+                <button type="button"
+                  className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isPrivacyModeEnabled ? 'btn-info' : 'btn-gray'}`}
+                  onClick={togglePrivacyMode}>
+                  <i
+                    className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPrivacyModeEnabled ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
+                  ></i>
+                </button>
+                <div className='font-size-3 font-size-4-xl'>
+                  {isPrivacyModeEnabled ? 'Disable Privacy Mode' : 'Enable Privacy Mode'}
+                </div>
+                <div className="position-absolute top-0 start-100 translate-middle">
+                <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+                    <a className="ms-3">
+                      <i
+                        className={`d-block bi bi-info-circle-fill font-size-4 font-size-5-xl`}
+                      ></i>
+                    </a>
+                  </OverlayTrigger>
+                  </div>
+              </div>
+            </div>
           </div>
+            {/* Privacy Mode Offcanvas */}
         </Modal.Body>
       </Modal>
 
