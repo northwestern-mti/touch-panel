@@ -272,14 +272,14 @@ const popover = (
             <span className="d-block">Camera Controls</span>
           </button>}
         {/* Audio Statuses */}
-        <div className="col h-100 border-0 py-1 pt-xl-2 px-1">
+        <div className="col h-100 border-0 pt-2 pb-0 px-1">
           <div className="d-flex col-11 justify-content-start mb-0">
             <div className="col-9 font-size-0 font-size-2-xl m-0 p-0">Presentation Audio</div>
             <div className="col-3 text-center">
               <div
-                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isPresentationMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
+                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isPresentationMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '1vw', height: '1vw' }}>
               </div>
-              <div className={`font-size-0 font-size-2-xl ${isPresentationMuted ? '' : ''}`}>{isPresentationMuted ? "Muted" : 'On'}</div>
+              <div className={`font-size-0 font-size-1-xl ${isPresentationMuted ? '' : ''}`}>{isPresentationMuted ? "Muted" : 'On'}</div>
             </div>
           </div>
           {hasMics &&
@@ -289,9 +289,9 @@ const popover = (
             </div>
             <div className="col-3 text-center">
               <div
-                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
+                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '1vw', height: '1vw' }}>
               </div>
-              <div className={`font-size-0 font-size-2-xl ${isMicMuted ? '' : ''}`}>{isMicMuted ? "Muted" : 'On'}</div>
+              <div className={`font-size-0 font-size-1-xl ${isMicMuted ? '' : ''}`}>{isMicMuted ? "Muted" : 'On'}</div>
             </div>
           </div>}
           {hasCeilingMics && 
@@ -301,11 +301,23 @@ const popover = (
             </div>
             <div className="col-3 text-center">
               <div
-                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isCeilingMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
+                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isCeilingMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '1vw', height: '1vw' }}>
               </div>
-              <div className={`font-size-0 font-size-2-xl`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
+              <div className={`font-size-0 font-size-1-xl`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
             </div>
           </div>}
+          {/* Privacy Mode Status */}
+          <div className="d-flex col-11 justify-content-start mb-0">
+            <div className="col-9 font-size-0 font-size-2-xl p-0 m-0">
+              Privacy Mode
+            </div>
+            <div className="col-3 text-center">
+              <div
+                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isPrivacyModeEnabled ? 'bg-gray-600' : 'bg-success'}`} style={{ width: '1vw', height: '1vw' }}>
+              </div>
+              <div className={`font-size-0 font-size-1-xl`}>{isPrivacyModeEnabled ? "Off" : 'On'}</div>
+            </div>
+          </div>
         </div>
         {/* /Audio Statuses */}
       </div>
