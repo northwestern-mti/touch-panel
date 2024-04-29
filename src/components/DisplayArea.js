@@ -360,7 +360,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 <VolumeControl className="mx-auto" />
                             </div>
                             <div className="row m-0 my-xl-5"></div>
-                            <div className="col-12 d-flex flex-wrap justify-content-evenly py-3">
+                            <div className="col-12 d-flex flex-wrap justify-content-around py-3">
                                 <div class="col-3 text-center">
                                     <button type="button"
                                         className={`btn border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isConfCallMuted ? 'btn-info' : 'btn-gray'}`}
