@@ -402,7 +402,7 @@ const popover = (
               onClick={handleCloseMicModal}><i class="bi bi-x-lg"></i></button>
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body className="font-size-4 font-size-3-xl p-0 pt-2">
+        <Modal.Body className="font-size-4 font-size-3-xl p-0 pt-2 pt-xl-4">
           <div className='container-fluid text-center pt-1'>
           {hasMics && (
             <>
