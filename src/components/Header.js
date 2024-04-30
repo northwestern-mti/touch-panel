@@ -164,7 +164,8 @@ function Header(){
                         <img src={logo} alt='Northwestern Logo' className='img-fluid'/>
                     </div>
                     <div className="col-1 text-center p-0">
-                        <div className="text-primary py-3 py-xl-5 font-size-1"
+                        <div className="text-primary py-3 py-xl-4 font-size-1"
+                            onClick={handleAdminLongPress}
                             onMouseDown={handleAdminLongPress}
                             onMouseUp={() => window.CrComLib.publishEvent('b', '120', false)}
                             onTouchStart={handleAdminLongPress}
@@ -177,8 +178,8 @@ function Header(){
                     <div className="col-2 text-center text-white">
                         <span>{(classRoom == "") ? 'Room' : classRoom}</span>
                     </div>
-                    <div className="col-3 text-center text-white">
-                                <span className="d-block mb-2">
+                    <div className="col-3 text-center text-white font-size-2 font-size-3-xl">
+                                <span className="d-block mb-1">
                                     <ch5-datetime 
                                         displaytype="date" 
                                         styleForDate="MMMM d, yyyy">
@@ -192,7 +193,7 @@ function Header(){
                     </div>
                     <div className="col-1 text-white text-center">
                     <button
-                        className="btn btn-info d-flex align-items-center rounded-circle mx-auto text-white font-size-4 font-size-5-xl circleIcon" onClick={handleShowHelpModal}>
+                        className="btn btn-info d-flex align-items-center rounded-circle p-0 mx-auto text-white font-size-3 font-size-4-xl circleIcon" onClick={handleShowHelpModal}>
                         <i className="d-inline-block bi bi-question-lg mx-auto"></i>
                     </button>
                     </div>
