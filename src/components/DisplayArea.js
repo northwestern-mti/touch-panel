@@ -197,11 +197,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             </Popover.Body>
         </Popover>
     );
-    const handleDialKeyPres = (joinNumber) => {
-        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
-        console.log('pw key pressed', joinNumber)
-    };
+    
     let message;
     let displayNum;
     switch (side) {
