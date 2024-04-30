@@ -120,8 +120,8 @@ body {
 }
 
 .circleIcon {
-    width: 65px;
-    height: 65px;
+    width: 7vw;
+    height: 7vw;
 }
 
 .sourceSelectMenu button {
@@ -268,11 +268,11 @@ body {
         line-height: var(--font-size-5);
     }
 
-        .circleIcon {
+        /* .circleIcon {
             width: 100px;
             height: 100px;
         }
-    
+     */
         .sourceSelectMenu button {
             line-height: var(--font-size-3) !important;
         }
