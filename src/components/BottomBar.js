@@ -273,7 +273,7 @@ const popover = (
           </button>}
         {/* Audio Statuses */}
         <div className="col h-100 border-0 pt-2 pb-0 px-1">
-          <div className="d-flex col-11 justify-content-start mb-0">
+          <div className="d-flex col-11 justify-content-start mb-0 mx-auto">
             <div className="col-9 font-size-0 font-size-2-xl m-0 p-0">Presentation Audio</div>
             <div className="col-3 text-center">
               <div
@@ -283,7 +283,7 @@ const popover = (
             </div>
           </div>
           {hasMics &&
-          <div className="d-flex col-11 justify-content-start mb-0">
+          <div className="d-flex col-11 justify-content-start mb-0 mx-auto">
             <div class="col-9 font-size-0 font-size-2-xl p-0 m-0">
               Microphones
             </div>
@@ -295,7 +295,7 @@ const popover = (
             </div>
           </div>}
           {hasCeilingMics && 
-          <div className="d-flex col-11 justify-content-start mb-0">
+          <div className="d-flex col-11 justify-content-start mb-0 mx-auto">
             <div className="col-9 font-size-0 font-size-2-xl p-0 m-0">
               Ceiling Mics
             </div>
@@ -306,8 +306,7 @@ const popover = (
               <div className={`font-size-0 font-size-1-xl`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
             </div>
           </div>}
-          {/* Privacy Mode Status */}
-          <div className="d-flex col-11 justify-content-start mb-0">
+          <div className="d-flex col-11 justify-content-start mb-0 mx-auto">
             <div className="col-9 font-size-0 font-size-2-xl p-0 m-0">
               Privacy Mode
             </div>
