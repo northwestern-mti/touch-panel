@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -82,7 +82,12 @@ function Header(){
         if (configIpAdd === '') {
             setConfigIpAdd(ipAdd);
             }
-    }, [pwValue, textFieldsNum, toggleButtonsNum, textFieldsValues, toggleButtonsStates, configIpAdd, configRoomName, ipAdd, classRoom])
+    }, [pwValue, textFieldsNum, toggleButtonsNum, textFieldsValues, toggleButtonsStates, configIpAdd, configRoomName, ipAdd, classRoom]);
+    
+    const memoizedLogo = useMemo(() => {
+        return <img src={logo} alt='Northwestern Logo' className='img-fluid'/>
+    }, [])
+    
     const handleShowHelpModal = () => {
         console.log("Showing Help Modal")
         setShowHelpModal(true);
@@ -163,11 +168,7 @@ function Header(){
         <div className='row p-0 m-0 headerRow'>
             <div className="col-12 d-flex flex-row justify-content-around align-items-center bg-primary font-size-3 font-size-4-xl p-0">
                     <div className="col-3">
-                        <img
-                            src={logo}
-                            alt="Northwestern Logo"
-                            className='img-fluid'
-                            style={{width:'12em', height:'auto'}}/>
+                        {memoizedLogo}
                     </div>
                     <div className="col-1 text-center p-0">
                         <div className="text-primary py-3 py-xl-5 font-size-1"

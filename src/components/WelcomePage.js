@@ -1,20 +1,22 @@
 import logo from "./Icons/Northwestern_purple.svg"
 import Header from './Header';
-import React from 'react';
+import React, {useMemo} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function WelcomePage({programStarted, setProgramStarted}) {
   
   const navigate = useNavigate();
   
-
+  const memoizedLogo = useMemo(() => {
+    return <img src={logo} alt='Northwestern Logo' className='img-fluid'/>
+}, [])
 
   const handleClick = () => {
     setProgramStarted(!programStarted);
     window.CrComLib.publishEvent('b','1', true);
     window.CrComLib.publishEvent('b','1', false);
     console.log("Signal sent to processor");
-    // navigate('/HomePage')
+    navigate('/HomePage')
 };
 
 
@@ -24,10 +26,7 @@ function WelcomePage({programStarted, setProgramStarted}) {
         <div className="container-fluid" onClick={handleClick}>
             <div className="row">
                 <div className="col-8 mx-auto my-5">
-                    <img
-                        src={logo}
-                        alt="Northwestern Logo"
-                        className="img-fluid"/>
+                    {memoizedLogo}
                 </div>
             </div>
             <div className="row">

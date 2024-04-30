@@ -49,8 +49,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    window.CrComLib.subscribeState('b', '26', value=> setProgramStarted(value));
-    if (!programStarted) {
+    window.CrComLib.subscribeState('b', '29', value=> setProgramStarted(value));
+    if (programStarted) {
       navigate('/HomePage')
     } else {
       navigate('/WelcomePage')
