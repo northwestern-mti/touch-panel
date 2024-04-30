@@ -177,11 +177,15 @@ function Header(){
         <div className='row p-0 m-0 headerRow'>
             <div className="col-12 d-flex flex-row justify-content-around align-items-center bg-primary font-size-3 font-size-4-xl p-0">
                     <div className="col-3">
-                        <img src={logo} alt='Northwestern Logo' className='img-fluid'/>
+                        <img
+                            src={logo}
+                            alt="Northwestern Logo"
+                            className='img-fluid'
+                            style={{width:'22vw', height:'auto'}}/>
                     </div>
                     <div className="col-1 text-center p-0">
                         <div className="text-primary py-3 py-xl-4 font-size-1"
-                            onClick={handleAdminPWDesktop}
+                            onClick={handleAdminLongPress}
                             onMouseDown={handleAdminLongPress}
                             onMouseUp={() => window.CrComLib.publishEvent('b', '120', false)}
                             onTouchStart={handleAdminLongPress}
