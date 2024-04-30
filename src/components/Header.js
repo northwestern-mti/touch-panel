@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Alert from 'react-bootstrap/Alert';
 import './Header.css'
 import logo from "./Icons/Northwestern_WHITE.svg"
 import { useNavigate } from 'react-router-dom';
@@ -185,7 +184,7 @@ function Header(){
                     </div>
                     <div className="col-1 text-center p-0">
                         <div className="text-primary py-3 py-xl-4 font-size-1"
-                            onClick={handleAdminLongPress}
+                            onClick={handleAdminPWDesktop}
                             onMouseDown={handleAdminLongPress}
                             onMouseUp={() => window.CrComLib.publishEvent('b', '120', false)}
                             onTouchStart={handleAdminLongPress}
@@ -331,41 +330,7 @@ function Header(){
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body className="font-size-4 font-size-5-xl p-0 pt-1">
-                            <div className='container-fluid p-0'>
-                                <Alert
-                                    className={`col-8 font-size-2 font-size-3-xl my-3 mx-auto`}
-                                    show={showSaveAlert}
-                                    variant="success"
-                                >
-                                    <Alert.Heading className="col-12 d-flex flex-row justify-content-between">
-                                        <h4 className="font-size-2 font-size-3-xl fw-bold">Saved!</h4>
-                                        <button
-                                            type="button"
-                                            className="btn alert-success shadow-none border-0 text-muted p-0 font-size-3 font-size-4-xl"
-                                            onClick={() => setShowSaveAlert(false)}>
-                                            <i class="bi bi-x-lg"></i></button>
-                                    </Alert.Heading>
-                                    <p>
-                                        Your changes have been saved.
-                                    </p>
-                                </Alert>
-                                <Alert
-                                    className={`col-8 font-size-2 font-size-3-xl my-3 mx-auto`}
-                                    show={showResetAlert}
-                                    variant="success" 
-                                >
-                                    <Alert.Heading className="col-12 d-flex flex-row justify-content-between">
-                                    <h4 className="font-size-2 font-size-3-xl fw-bold">Settings Reset!</h4>
-                                    <button
-                                            type="button"
-                                            className="btn alert-success shadow-none border-0 text-muted p-0 font-size-3 font-size-4-xl"
-                                            onClick={() => setShowResetAlert(false)}>
-                                            <i class="bi bi-x-lg"></i></button>
-                                    </Alert.Heading>
-                                    <p>
-                                        The settings have been reset.
-                                    </p>
-                                </Alert>
+                            <div className='container-fluid overflow-y-auto'>
                                 <div className="row flex-wrap align-items-start justify-content-around pt-1">
                                     <div className="col-5 d-flex flex-row align-items-start p-0 mb-2 mb-xl-2">
                                             <Form.Group className="col mb-3" controlId="roomName">
