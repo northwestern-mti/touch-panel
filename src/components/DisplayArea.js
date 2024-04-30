@@ -20,6 +20,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [isConfCallMuted, setIsConfCallMuted] = useState(false);
     const [isCallActive, setIsCallActive] = useState(false);
     const [isPrivacyModeEnabled, setIsPrivacyModeEnabled] = useState(false);
+    const [configPrivacyMode, setConfigPrivacyMode] = useState(false)
     const [blurayButton, setBluRayButton] = useState('');
     const [powerSwitch, setPowerSwitch] = useState(false);
     const [lampSwitch, setLampSwitch] = useState(true);
@@ -52,6 +53,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         window.CrComLib.subscribeState('b', '100', value=> setIsConfCallMuted(value));
         window.CrComLib.subscribeState('b', '109', value=> setShowIncomingCall(value));
         window.CrComLib.subscribeState('b', '106', value=> setIsCallActive(value));
+        window.CrComLib.subscribeState('b', '79', value=> setConfigPrivacyMode(value));
+        window.CrComLib.subscribeState('b', '103', value=> setIsPrivacyModeEnabled(value));
 
         
         
@@ -126,6 +129,9 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
 
     const togglePrivacyMode = () => {
         setIsPrivacyModeEnabled(!isPrivacyModeEnabled);
+        window.CrComLib.publishEvent('b', '103', true);
+        window.CrComLib.publishEvent('b', '103', false);
+
       }
 
     const togglePowerSwitch = () => {
@@ -313,11 +319,16 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     onClick={() => handleDialKeyPres('292')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">#</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
-                                <span className="d-block fw-bold font-size-4 font-size-5-xl">
-                                    <i className="bi bi-x"></i>
-                                </span>
-                                <span className="d-block font-size-1 font-size-2-xl">clear</span>
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => {
+                                        window.CrComLib.publishEvent('b', '104', true);
+                                        window.CrComLib.publishEvent('b', '104', false);
+                                        console.log('backspace pressed')
+                                }}>
+                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">
+                                        <i className="bi bi-x"></i>
+                                    </span>
+                                    <span className="d-block font-size-1 font-size-2-xl">clear</span>
                                 </Button>
                                 <Button
                                 className={`btn btn-gray bg-success text-white rounded-circle border-0 p-0 mb-2 dialpadButton ${isCallActive ? 'bg-danger' : 'bg-success'}`} 
@@ -380,27 +391,28 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     </button>
                                     <div className='font-size-3 font-size-4-xl'>{isConfCallMuted ? 'Unmute' : 'Mute'}</div>
                                 </div>
-                                <div className="col-3 position-relative">
-                                    <button type="button"
-                                        className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isPrivacyModeEnabled ? 'btn-info' : 'btn-gray'}`}
-                                        onClick={togglePrivacyMode}>
-                                        <i
-                                            className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPrivacyModeEnabled ? 'bi-lock-fill' : 'bi-unlock-fill'}`}
-                                        ></i>
-                                    </button>
-                                    <div className='font-size-3 font-size-4-xl'>
-                                        {isPrivacyModeEnabled ? 'Disable Privacy Mode' : 'Enable Privacy Mode'}
-                                    </div>
-                                    <div className="position-absolute top-0 start-100 translate-middle">
-                                        <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
-                                            <a className="ms-3">
-                                                <i
-                                                    className={`d-block bi bi-info-circle-fill font-size-4 font-size-5-xl`}
-                                                ></i>
-                                            </a>
-                                        </OverlayTrigger>
-                                    </div>
-                                </div>
+                                {configPrivacyMode &&
+                                    <div className="col-3 position-relative">
+                                        <button type="button"
+                                            className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isPrivacyModeEnabled ? 'btn-info' : 'btn-gray'}`}
+                                            onClick={togglePrivacyMode}>
+                                            <i
+                                                className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPrivacyModeEnabled ? 'bi-lock-fill' : 'bi-unlock-fill'}`}
+                                            ></i>
+                                        </button>
+                                        <div className='font-size-3 font-size-4-xl'>
+                                            {isPrivacyModeEnabled ? 'Disable Privacy Mode' : 'Enable Privacy Mode'}
+                                        </div>
+                                        <div className="position-absolute top-0 start-100 translate-middle">
+                                            <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+                                                <a className="ms-3">
+                                                    <i
+                                                        className={`d-block bi bi-info-circle-fill font-size-4 font-size-5-xl`}
+                                                    ></i>
+                                                </a>
+                                            </OverlayTrigger>
+                                        </div>
+                                    </div>}
                             </div>
                         </div>
                     </Modal.Body>
