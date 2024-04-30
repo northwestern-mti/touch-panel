@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Row, Col, InputGroup, FormControl, Modal } from 'react-bootstrap'; 
+import { Button, Row, Col, InputGroup, FormControl, Modal } from 'react-bootstrap';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
 import './BottomBar.css';
 import CModal from './CModal';
 import Opad from './Opad';
@@ -13,14 +15,15 @@ function BottomBar ({programStarted, setProgramStarted}) {
   const [showMicModal, setShowMicModal] = useState(false);
   const [showCamModal, setShowCamModal] = useState(false);
   const [cameraSelected, setCameraSelected] = useState(0);
-  const [showControls, setShowControls] = useState(false);
-  const [hasCeilingMics, setHasCeilingMics] = useState(false);
-  const [hasMics, setHasMics] = useState(false)
+  const [showControls, setShowControls] = useState(true);
+  const [hasCeilingMics, setHasCeilingMics] = useState(true);
+  const [hasMics, setHasMics] = useState(true)
   const [presentationVolume, setPresentationVolume] = useState(0);
   const [MicVolume, setMicVolume] = useState(0);
   const [isPresentationMuted, setIsPresentationMuted] = useState(false);
   const [isMicMuted, setIsMicMuted] = useState(false);
   const [isCeilingMicMuted, setIsCeilingMicMuted] = useState(false);
+  const [isPrivacyModeEnabled, setIsPrivacyModeEnabled] = useState(false);
   const [numCameras, setNumCameras] = useState(0);
   const [numOfPresets, setNumOfPresets] = useState(0);
   const [presetRenameMode, setpresetRenameMode] = useState(false);
@@ -160,6 +163,9 @@ const toggleCeilingMicMute = () => {
   window.CrComLib.publishEvent('b', '111', false);
   
 }
+const togglePrivacyMode = () => {
+  setIsPrivacyModeEnabled(!isPrivacyModeEnabled);
+}
 const sendSignal= (joinNumber, action) => {
   window.CrComLib.publishEvent('b', `${joinNumber}`, true);
   window.CrComLib.publishEvent('b', `${joinNumber}`, false);
@@ -227,6 +233,17 @@ const handleCancelCamRename = () => {
 const handleNewCamNameChange = (event) => {
   setNewCamName(event.target.value);
 };
+
+// Privacy Mode Popover
+const popover = (
+  <Popover id="popover-basic">
+    <Popover.Header className="text-center font-size-2 font-size-3-xl fw-bold" as="h3">Privacy Mode</Popover.Header>
+    <Popover.Body className="text-center px-3 py-2 font-size-2 font-size-3-xl">
+      Mute audio being sent to external sources (for example, Zoom or a conference call). 
+      <br /><span className="font-size-1 font-size-2-xl fst-italic">Room microphones won't be affected by this setting.</span>
+    </Popover.Body>
+  </Popover>
+);
   
   return (
 
@@ -238,7 +255,7 @@ const handleNewCamNameChange = (event) => {
           <span className="d-block">System Off</span>
         </button>
         <button type="button"
-          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowVolumeModal}>
+          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl ps-1 pe-1" onClick={handleShowVolumeModal}>
           <i className="d-block bi bi-volume-up-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
           <span className="d-block">Presentation Volume</span>
         </button>
@@ -255,14 +272,14 @@ const handleNewCamNameChange = (event) => {
             <span className="d-block">Camera Controls</span>
           </button>}
         {/* Audio Statuses */}
-        <div className="col h-100 border-0 py-1 pt-xl-2 px-1">
+        <div className="col h-100 border-0 pt-2 pb-0 px-1">
           <div className="d-flex col-11 justify-content-start mb-0">
             <div className="col-9 font-size-0 font-size-2-xl m-0 p-0">Presentation Audio</div>
             <div className="col-3 text-center">
               <div
-                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isPresentationMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
+                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isPresentationMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '1vw', height: '1vw' }}>
               </div>
-              <div className={`font-size-0 font-size-2-xl ${isPresentationMuted ? '' : ''}`}>{isPresentationMuted ? "Muted" : 'On'}</div>
+              <div className={`font-size-0 font-size-1-xl ${isPresentationMuted ? '' : ''}`}>{isPresentationMuted ? "Muted" : 'On'}</div>
             </div>
           </div>
           {hasMics &&
@@ -272,9 +289,9 @@ const handleNewCamNameChange = (event) => {
             </div>
             <div className="col-3 text-center">
               <div
-                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
+                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '1vw', height: '1vw' }}>
               </div>
-              <div className={`font-size-0 font-size-2-xl ${isMicMuted ? '' : ''}`}>{isMicMuted ? "Muted" : 'On'}</div>
+              <div className={`font-size-0 font-size-1-xl ${isMicMuted ? '' : ''}`}>{isMicMuted ? "Muted" : 'On'}</div>
             </div>
           </div>}
           {hasCeilingMics && 
@@ -284,11 +301,23 @@ const handleNewCamNameChange = (event) => {
             </div>
             <div className="col-3 text-center">
               <div
-                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isCeilingMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '13px', height: '13px' }}>
+                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isCeilingMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '1vw', height: '1vw' }}>
               </div>
-              <div className={`font-size-0 font-size-2-xl`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
+              <div className={`font-size-0 font-size-1-xl`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
             </div>
           </div>}
+          {/* Privacy Mode Status */}
+          <div className="d-flex col-11 justify-content-start mb-0">
+            <div className="col-9 font-size-0 font-size-2-xl p-0 m-0">
+              Privacy Mode
+            </div>
+            <div className="col-3 text-center">
+              <div
+                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isPrivacyModeEnabled ? 'bg-success' : 'bg-gray-600'}`} style={{ width: '1vw', height: '1vw' }}>
+              </div>
+              <div className={`font-size-0 font-size-1-xl`}>{isPrivacyModeEnabled ? "On" : 'Off'}</div>
+            </div>
+          </div>
         </div>
         {/* /Audio Statuses */}
       </div>
@@ -374,36 +403,61 @@ const handleNewCamNameChange = (event) => {
               onClick={handleCloseMicModal}><i class="bi bi-x-lg"></i></button>
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body className="font-size-4 font-size-3-xl p-0">
+        <Modal.Body className="font-size-4 font-size-3-xl p-0 pt-2">
           <div className='container-fluid text-center pt-1'>
           {hasMics && (
             <>
-              <div className="my-3 my-xl-5 mt-4">
+              <div className="my-3 my-xl-5">
               <VolumeControl initialVolume={MicVolume} plusJoin='25' minusJoin='24' isMuted={isMicMuted} />
-              </div>
-              <div className="col-12 text-center mb-3 mb-xl-5">
-                <button type="button"
-                  className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isMicMuted ? 'bg-info' : 'bg-gray-300'}`}
-                    onClick={toggleMicMute}>
-                  <i
-                    className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
-                  ></i>
-                </button>
-                <div className='font-size-3 font-size-4-xl'>{isMicMuted ? 'Unmute Microphones' : 'Mute Microphones'}</div>
               </div>
             </>
             )}
-            {hasCeilingMics &&
-            <div className="col-12 text-center">
-              <button type="button"
-                className={`d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-3 mb-xl-4 muteIcon ${isCeilingMicMuted ? 'bg-info' : 'bg-gray-300'}`}
-                onClick={toggleCeilingMicMute}>
-                <i
-                  className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isCeilingMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
-                ></i>
-              </button>
-              <div className='font-size-3 font-size-4-xl'>{isCeilingMicMuted ? 'Unmute Ceiling Mics' : 'Mute Ceiling Mics'}</div>
-            </div>}
+            <div className="col-12 d-flex flex-wrap justify-content-around py-3">
+              {hasMics && (
+                <div className="col-6">
+                  <button type="button"
+                    className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isMicMuted ? 'btn-info' : 'btn-gray'}`}
+                    onClick={toggleMicMute}>
+                    <i
+                      className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
+                    ></i>
+                  </button>
+                  <div className='font-size-3 font-size-4-xl'>{isMicMuted ? 'Unmute All Microphones' : 'Mute All Microphones'}</div>
+                </div>
+              )}
+              {hasCeilingMics &&
+                <div className="col-6">
+                  <button type="button"
+                    className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isCeilingMicMuted ? 'btn-info' : 'btn-gray'}`}
+                    onClick={toggleCeilingMicMute}>
+                    <i
+                      className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isCeilingMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
+                    ></i>
+                  </button>
+                  <div className='font-size-3 font-size-4-xl'>{isCeilingMicMuted ? 'Unmute Ceiling Mics' : 'Mute Ceiling Mics'}</div>
+                </div>}
+              <div className="col-3 col-lg-2 position-relative">
+                <button type="button"
+                  className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isPrivacyModeEnabled ? 'btn-info' : 'btn-gray'}`}
+                  onClick={togglePrivacyMode}>
+                  <i
+                    className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPrivacyModeEnabled ? 'bi-lock-fill' : 'bi-unlock-fill'}`}
+                  ></i>
+                </button>
+                <div className='font-size-3 font-size-4-xl'>
+                  {isPrivacyModeEnabled ? 'Disable Privacy Mode' : 'Enable Privacy Mode'}
+                </div>
+                <div className="position-absolute top-0 start-100 translate-middle">
+                <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+                    <a className="ms-3">
+                      <i
+                        className={`d-block bi bi-info-circle-fill font-size-4 font-size-5-xl`}
+                      ></i>
+                    </a>
+                  </OverlayTrigger>
+                  </div>
+              </div>
+            </div>
           </div>
         </Modal.Body>
       </Modal>

@@ -95,9 +95,12 @@ body {
     line-height: var(--font-size-3)!important;
 }
 
-.headerRow,
+.headerRow {
+    height: 14.5vh;
+}
+
 .footerRow {
-    height: 17vh;
+    height: 19.5vh;
 }
 
 .bodyContainer {

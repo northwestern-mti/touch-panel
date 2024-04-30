@@ -2,7 +2,8 @@ import * as React from 'react';
 import { useState, useEffect } from "react";
 import { Button} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
 import Opad from './Opad';
 import VolumeControl from './VolumeControl';
 
@@ -18,6 +19,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [showConfCallVolume, setShowConfCallVolume] = useState(false);
     const [isConfCallMuted, setIsConfCallMuted] = useState(false);
     const [isCallActive, setIsCallActive] = useState(false);
+    const [isPrivacyModeEnabled, setIsPrivacyModeEnabled] = useState(false);
     const [blurayButton, setBluRayButton] = useState('');
     const [powerSwitch, setPowerSwitch] = useState(true);
     const [lampSwitch, setLampSwitch] = useState(true);
@@ -99,6 +101,10 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         setIsCallActive(!isCallActive);
     }
 
+    const togglePrivacyMode = () => {
+        setIsPrivacyModeEnabled(!isPrivacyModeEnabled);
+      }
+
     const togglePowerSwitch = () => {
         setPowerSwitch(!powerSwitch)
         if (!powerSwitch) {
@@ -153,6 +159,16 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         console.log(`${press} pressed`)
         console.log(blurayButton)
     }
+    // Privacy Mode Popover
+    const popover = (
+        <Popover id="popover-basic">
+            <Popover.Header className="text-center font-size-2 font-size-3-xl fw-bold" as="h3">Privacy Mode</Popover.Header>
+            <Popover.Body className="text-center px-3 py-2 font-size-2 font-size-3-xl">
+                Mute audio being sent to external sources (for example, Zoom or a conference call).
+                <br /><span className="font-size-1 font-size-2-xl fst-italic">Room microphones won't be affected by this setting.</span>
+            </Popover.Body>
+        </Popover>
+    );
     let message;
     let displayNum;
     switch (side) {
@@ -198,16 +214,13 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
-                        <div className='container-fluid text-center pt-3 pt-xl-5'>
+                        <div className='container-fluid text-center pt-2 pt-xl-5'>
                             <div className="col-7 position-relative mx-auto">
                             <div className="d-flex flex-wrap col-6 justify-content-around mx-auto">
                                 <div className="d-flex flex-row col-12 justify-content-between">
-                                    <div className="col-10">
-                                        <input className="form-control border-0 rounded-pill bg-gray-300 text-muted text-center font-size-1 font-size-3-xl p-2 mb-3"
-                                            placeholder='847-555-5555' />
-                                    </div>
-                                    <div className="col pt-2">
-                                        <i className="bi bi-backspace-fill"></i>
+                                    <div className="col">
+                                        <input className="form-control border-0 rounded-pill bg-gray-300 text-dark text-center font-size-2 font-size-3-xl p-2 p-xl-3 mb-3"
+                                            placeholder='' />
                                     </div>
                                 </div>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
@@ -256,6 +269,12 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">#</span>
                                 </Button>
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <span className="d-block fw-bold font-size-4 font-size-5-xl">
+                                    <i className="bi bi-x"></i>
+                                </span>
+                                <span className="d-block font-size-1 font-size-2-xl">clear</span>
+                                </Button>
                                 <Button
                                 className={`btn btn-gray bg-success text-white rounded-circle border-0 p-0 mb-2 dialpadButton ${isCallActive ? 'bg-danger' : 'bg-success'}`} onClick={toggleCallActive}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">
@@ -264,6 +283,13 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                         ></i>
                                     </span>
                                 </Button>
+                                {/* Clear button */}
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                    <span className="d-block fw-bold font-size-3 font-size-4-xl">
+                                    <i className="bi bi-backspace-fill"></i>
+                                    </span>
+                                </Button>
+                                {/* Clear button */}
                             </div>
                             <Button className="btn btn-secondary position-absolute top-50 start-100 translate-middle rounded-circle border-0 p-0 mb-2 dialpadButton" onClick={handleShowConfCallVolumeModal}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">
@@ -289,18 +315,42 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     </Modal.Header>
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
                         <div className='container-fluid text-center pt-5'>
-                            <div className="my-5">
+                            <div className="mt-4 mb-5 mt-xl-5">
                                 <VolumeControl className="mx-auto" />
                             </div>
-                            <div class="col-12 text-center">
-                                <button type="button"
-                                    className={`btn border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isConfCallMuted ? 'btn-info' : 'btn-gray'}`}
-                                    onClick={toggleConfCallVolumeMute}>
-                                    <i
-                                        className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isConfCallMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
-                                    ></i>
-                                </button>
-                                <div className='font-size-3 font-size-4-xl'>{isConfCallMuted ? 'Unmute' : 'Mute'}</div>
+                            <div className="row m-0 my-xl-5"></div>
+                            <div className="col-12 d-flex flex-wrap justify-content-evenly py-3">
+                                <div class="col-3 text-center">
+                                    <button type="button"
+                                        className={`btn border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isConfCallMuted ? 'btn-info' : 'btn-gray'}`}
+                                        onClick={toggleConfCallVolumeMute}>
+                                        <i
+                                            className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isConfCallMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
+                                        ></i>
+                                    </button>
+                                    <div className='font-size-3 font-size-4-xl'>{isConfCallMuted ? 'Unmute' : 'Mute'}</div>
+                                </div>
+                                <div className="col-3 position-relative">
+                                    <button type="button"
+                                        className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isPrivacyModeEnabled ? 'btn-info' : 'btn-gray'}`}
+                                        onClick={togglePrivacyMode}>
+                                        <i
+                                            className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPrivacyModeEnabled ? 'bi-lock-fill' : 'bi-unlock-fill'}`}
+                                        ></i>
+                                    </button>
+                                    <div className='font-size-3 font-size-4-xl'>
+                                        {isPrivacyModeEnabled ? 'Disable Privacy Mode' : 'Enable Privacy Mode'}
+                                    </div>
+                                    <div className="position-absolute top-0 start-100 translate-middle">
+                                        <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+                                            <a className="ms-3">
+                                                <i
+                                                    className={`d-block bi bi-info-circle-fill font-size-4 font-size-5-xl`}
+                                                ></i>
+                                            </a>
+                                        </OverlayTrigger>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </Modal.Body>
