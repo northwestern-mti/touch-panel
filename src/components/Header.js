@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -84,7 +84,12 @@ function Header(){
         if (configIpAdd === '') {
             setConfigIpAdd(ipAdd);
             }
-    }, [pwValue, textFieldsNum, toggleButtonsNum, textFieldsValues, toggleButtonsStates, configIpAdd, configRoomName, ipAdd, classRoom])
+    }, [pwValue, textFieldsNum, toggleButtonsNum, textFieldsValues, toggleButtonsStates, configIpAdd, configRoomName, ipAdd, classRoom]);
+    
+    const memoizedLogo = useMemo(() => {
+        return <img src={logo} alt='Northwestern Logo' className='img-fluid'/>
+    }, [])
+    
     const handleShowHelpModal = () => {
         console.log("Showing Help Modal")
         setShowHelpModal(true);
