@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Row, Col, InputGroup, FormControl, Modal } from 'react-bootstrap';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
+import { Button, Row, Col, InputGroup, FormControl, Modal } from 'react-bootstrap';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
 import './BottomBar.css';
 import CModal from './CModal';
 import Opad from './Opad';
@@ -18,12 +21,16 @@ function BottomBar ({programStarted, setProgramStarted}) {
   const [showControls, setShowControls] = useState(true);
   const [hasCeilingMics, setHasCeilingMics] = useState(true);
   const [hasMics, setHasMics] = useState(true)
+  const [showControls, setShowControls] = useState(true);
+  const [hasCeilingMics, setHasCeilingMics] = useState(true);
+  const [hasMics, setHasMics] = useState(true)
   const [presentationVolume, setPresentationVolume] = useState(0);
   const [MicVolume, setMicVolume] = useState(0);
   const [isPresentationMuted, setIsPresentationMuted] = useState(false);
   const [isMicMuted, setIsMicMuted] = useState(false);
   const [isCeilingMicMuted, setIsCeilingMicMuted] = useState(false);
   const [isPrivacyModeEnabled, setIsPrivacyModeEnabled] = useState(false);
+  const [configPrivacyMode, setConfigPrivacyMode] = useState(false);
   const [numCameras, setNumCameras] = useState(0);
   const [numOfPresets, setNumOfPresets] = useState(0);
   const [presetRenameMode, setpresetRenameMode] = useState(false);
@@ -55,6 +62,8 @@ function BottomBar ({programStarted, setProgramStarted}) {
     window.CrComLib.subscribeState('b', '95', value => setShowVolumeModal(value));
     window.CrComLib.subscribeState('b', '97', value => setShowMicModal(value));
     window.CrComLib.subscribeState('b', '88', value => setShowCamModal(value));
+    window.CrComLib.subscribeState('b', '79', value=> setConfigPrivacyMode(value));
+    window.CrComLib.subscribeState('b', '103', value=> setIsPrivacyModeEnabled(value));
 
     setPresetNames(Array(numOfPresets).fill('').map((_, index) =>{
       let value;
@@ -71,6 +80,7 @@ function BottomBar ({programStarted, setProgramStarted}) {
       window.CrComLib.subscribeState('s', `${index + 91}`, incomingValue => {
         value = incomingValue;
         setTempCamName(value);
+        setTempCamName(value);
       });
       return value;
     }));
@@ -79,7 +89,7 @@ function BottomBar ({programStarted, setProgramStarted}) {
 
   const programShutOff = () => {
     setProgramStarted(!programStarted)
-    navigate('/WelcomePage');
+    // navigate('/WelcomePage');
     window.CrComLib.publishEvent('b', '30', true);
     window.CrComLib.publishEvent('b', '30', false);
     
@@ -165,6 +175,8 @@ const toggleCeilingMicMute = () => {
 }
 const togglePrivacyMode = () => {
   setIsPrivacyModeEnabled(!isPrivacyModeEnabled);
+  window.CrComLib.publishEvent('b', '103', true);
+  window.CrComLib.publishEvent('b', '103', false);
 }
 const sendSignal= (joinNumber, action) => {
   window.CrComLib.publishEvent('b', `${joinNumber}`, true);
@@ -244,6 +256,17 @@ const popover = (
     </Popover.Body>
   </Popover>
 );
+
+// Privacy Mode Popover
+const popover = (
+  <Popover id="popover-basic">
+    <Popover.Header className="text-center font-size-2 font-size-3-xl fw-bold" as="h3">Privacy Mode</Popover.Header>
+    <Popover.Body className="text-center px-3 py-2 font-size-2 font-size-3-xl">
+      Mute audio being sent to external sources (for example, Zoom or a conference call). 
+      <br /><span className="font-size-1 font-size-2-xl fst-italic">Room microphones won't be affected by this setting.</span>
+    </Popover.Body>
+  </Popover>
+);
   
   return (
 
@@ -255,6 +278,7 @@ const popover = (
           <span className="d-block">System Off</span>
         </button>
         <button type="button"
+          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl ps-1 pe-1" onClick={handleShowVolumeModal}>
           className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl ps-1 pe-1" onClick={handleShowVolumeModal}>
           <i className="d-block bi bi-volume-up-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
           <span className="d-block">Presentation Volume</span>
@@ -274,21 +298,27 @@ const popover = (
         {/* Audio Statuses */}
         <div className="col h-100 border-0 pt-2 pb-0 px-1">
           <div className="d-flex col-11 justify-content-start mb-0 mx-auto">
+        <div className="col h-100 border-0 pt-2 pb-0 px-1">
+          <div className="d-flex col-11 justify-content-start mb-0 mx-auto">
             <div className="col-9 font-size-0 font-size-2-xl m-0 p-0">Presentation Audio</div>
             <div className="col-3 text-center">
               <div
                 className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isPresentationMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '1vw', height: '1vw' }}>
+                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isPresentationMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '1vw', height: '1vw' }}>
               </div>
+              <div className={`font-size-0 font-size-1-xl ${isPresentationMuted ? '' : ''}`}>{isPresentationMuted ? "Muted" : 'On'}</div>
               <div className={`font-size-0 font-size-1-xl ${isPresentationMuted ? '' : ''}`}>{isPresentationMuted ? "Muted" : 'On'}</div>
             </div>
           </div>
           {hasMics &&
+          <div className="d-flex col-11 justify-content-start mb-0 mx-auto">
           <div className="d-flex col-11 justify-content-start mb-0 mx-auto">
             <div class="col-9 font-size-0 font-size-2-xl p-0 m-0">
               Microphones
             </div>
             <div className="col-3 text-center">
               <div
+                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '1vw', height: '1vw' }}>
                 className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '1vw', height: '1vw' }}>
               </div>
               <div className={`font-size-0 font-size-1-xl ${isMicMuted ? '' : ''}`}>{isMicMuted ? "Muted" : 'On'}</div>
@@ -435,27 +465,28 @@ const popover = (
                   </button>
                   <div className='font-size-3 font-size-4-xl'>{isCeilingMicMuted ? 'Unmute Ceiling Mics' : 'Mute Ceiling Mics'}</div>
                 </div>}
-              <div className="col-3 col-lg-2 position-relative">
-                <button type="button"
-                  className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isPrivacyModeEnabled ? 'btn-info' : 'btn-gray'}`}
-                  onClick={togglePrivacyMode}>
-                  <i
-                    className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPrivacyModeEnabled ? 'bi-lock-fill' : 'bi-unlock-fill'}`}
-                  ></i>
-                </button>
-                <div className='font-size-3 font-size-4-xl'>
-                  {isPrivacyModeEnabled ? 'Disable Privacy Mode' : 'Enable Privacy Mode'}
-                </div>
-                <div className="position-absolute top-0 start-100 translate-middle">
-                <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-                    <a className="ms-3">
-                      <i
-                        className={`d-block bi bi-info-circle-fill font-size-4 font-size-5-xl`}
-                      ></i>
-                    </a>
-                  </OverlayTrigger>
+              {configPrivacyMode && 
+                <div className="col-3 col-lg-2 position-relative">
+                  <button type="button"
+                    className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isPrivacyModeEnabled ? 'btn-info' : 'btn-gray'}`}
+                    onClick={togglePrivacyMode}>
+                    <i
+                      className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPrivacyModeEnabled ? 'bi-lock-fill' : 'bi-unlock-fill'}`}
+                    ></i>
+                  </button>
+                  <div className='font-size-3 font-size-4-xl'>
+                    {isPrivacyModeEnabled ? 'Disable Privacy Mode' : 'Enable Privacy Mode'}
                   </div>
-              </div>
+                  <div className="position-absolute top-0 start-100 translate-middle">
+                  <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+                      <a className="ms-3">
+                        <i
+                          className={`d-block bi bi-info-circle-fill font-size-4 font-size-5-xl`}
+                        ></i>
+                      </a>
+                    </OverlayTrigger>
+                    </div>
+                </div>}
             </div>
           </div>
         </Modal.Body>

@@ -14,7 +14,7 @@ function WelcomePage({programStarted, setProgramStarted}) {
     window.CrComLib.publishEvent('b','1', true);
     window.CrComLib.publishEvent('b','1', false);
     console.log("Signal sent to processor");
-    navigate('/HomePage')
+    // navigate('/HomePage')
 };
 
 

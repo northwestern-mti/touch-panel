@@ -20,8 +20,9 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [isConfCallMuted, setIsConfCallMuted] = useState(false);
     const [isCallActive, setIsCallActive] = useState(false);
     const [isPrivacyModeEnabled, setIsPrivacyModeEnabled] = useState(false);
+    const [configPrivacyMode, setConfigPrivacyMode] = useState(false)
     const [blurayButton, setBluRayButton] = useState('');
-    const [powerSwitch, setPowerSwitch] = useState(true);
+    const [powerSwitch, setPowerSwitch] = useState(false);
     const [lampSwitch, setLampSwitch] = useState(true);
     const [autoFocusSwitch, setAutoFocusSwitch] = useState(true);
     const [showAnnotation, setShowAnnotation] = useState(false);
@@ -30,7 +31,10 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [fullscreenPressed, setFullscreenPressed] = useState(false);
     const [fullscreen, setFullscreen] = useState(true);
     const [isElectricScreen, setIsElectricScreen] = useState(false);
-    const [isProjector, setIsProjector] =  useState(false)
+    const [isProjector, setIsProjector] =  useState(false);
+    const [dialString, setDialString] = useState('');
+    const [confCallVolume, setConfCallVolume] = useState(0);
+    const [showIncomingCall, setShowIncomingCall] = useState(false)
     useEffect(() => {
         window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));
         window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
@@ -44,9 +48,17 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         window.CrComLib.subscribeState('b', '117', value => setConfCallClicked(value));
         window.CrComLib.subscribeState('b', `${electricScreenJoin}`, value=> setIsElectricScreen(value));
         window.CrComLib.subscribeState('b', `${displayIsProjectorJoin}`, value=> setIsProjector(value));
-        console.log('the state of isMuted', isMuted)
+        window.CrComLib.subscribeState('s', '16', value=> setDialString(value));
+        window.CrComLib.subscribeState('n', '3', value=> setConfCallVolume(value));
+        window.CrComLib.subscribeState('b', '100', value=> setIsConfCallMuted(value));
+        window.CrComLib.subscribeState('b', '109', value=> setShowIncomingCall(value));
+        window.CrComLib.subscribeState('b', '106', value=> setIsCallActive(value));
+        window.CrComLib.subscribeState('b', '79', value=> setConfigPrivacyMode(value));
+        window.CrComLib.subscribeState('b', '103', value=> setIsPrivacyModeEnabled(value));
+
         
-    }, []);
+        
+    }, [dialString]);
     const toggleMute = (joinNumber) => {
         setIsMuted((prevIsMuted) => !(prevIsMuted));
         window.CrComLib.publishEvent('b', `${joinNumber}`, true);
@@ -96,6 +108,11 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     }
     const toggleConfCallVolumeMute = () => { 
         setIsConfCallMuted(!isConfCallMuted);
+        window.CrComLib.publishEvent('b', '100', true);
+        window.CrComLib.publishEvent('b', '100', false);
+    }
+    const handleCloseIncomingCallModal = () => {
+        setShowIncomingCall(false);
     }
     const toggleCallActive = () => { 
         setIsCallActive(!isCallActive);
@@ -103,6 +120,23 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
 
     const togglePrivacyMode = () => {
         setIsPrivacyModeEnabled(!isPrivacyModeEnabled);
+      }
+        if (isCallActive) {
+            window.CrComLib.publishEvent('b', '105', true);
+            window.CrComLib.publishEvent('b', '105', false);
+            console.log('On_hook 105')
+        } else {
+            window.CrComLib.publishEvent('b', '106', true);
+            window.CrComLib.publishEvent('b', '106', false);
+            console.log('On_hook 106')
+        }
+    }
+
+    const togglePrivacyMode = () => {
+        setIsPrivacyModeEnabled(!isPrivacyModeEnabled);
+        window.CrComLib.publishEvent('b', '103', true);
+        window.CrComLib.publishEvent('b', '103', false);
+
       }
 
     const togglePowerSwitch = () => {
@@ -215,68 +249,90 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     </Modal.Header>
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
                         <div className='container-fluid text-center pt-2 pt-xl-5'>
+                        <div className='container-fluid text-center pt-2 pt-xl-5'>
                             <div className="col-7 position-relative mx-auto">
                             <div className="d-flex flex-wrap col-6 justify-content-around mx-auto">
                                 <div className="d-flex flex-row col-12 justify-content-between">
+                                    
                                     <div className="col">
                                         <input className="form-control border-0 rounded-pill bg-gray-300 text-dark text-center font-size-2 font-size-3-xl p-2 p-xl-3 mb-3"
-                                            placeholder='' />
+                                            placeholder='' 
+                                            value={dialString}/>
                                     </div>
+                                    
                                 </div>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('281')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">1</span>
                                     <span className="d-block font-size-1" style={{ height: 'var(--font-size-2' }}></span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('282')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">2</span>
                                     <span className="d-block font-size-1 font-size-2-xl">ABC</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('283')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">3</span>
                                     <span className="d-block font-size-1 font-size-2-xl">DEF</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('284')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">4</span>
                                     <span className="d-block font-size-1 font-size-2-xl">GHI</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('285')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">5</span>
                                     <span className="d-block font-size-1 font-size-2-xl">JKL</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('286')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">6</span>
                                     <span className="d-block font-size-1 font-size-2-xl">MNO</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('287')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">7</span>
                                     <span className="d-block font-size-1 font-size-2-xl">PQRS</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('288')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">8</span>
                                     <span className="d-block font-size-1 font-size-2-xl">TUV</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('289')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">9</span>
                                     <span className="d-block font-size-1 font-size-2-xl">WXYZ</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('291')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">*</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('290')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">0</span>
                                     <span className="d-block font-size-1 font-size-2-xl">+</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => handleDialKeyPres('292')}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">#</span>
                                 </Button>
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
-                                <span className="d-block fw-bold font-size-4 font-size-5-xl">
-                                    <i className="bi bi-x"></i>
-                                </span>
-                                <span className="d-block font-size-1 font-size-2-xl">clear</span>
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => {
+                                        window.CrComLib.publishEvent('b', '104', true);
+                                        window.CrComLib.publishEvent('b', '104', false);
+                                        console.log('backspace pressed')
+                                }}>
+                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">
+                                        <i className="bi bi-x"></i>
+                                    </span>
+                                    <span className="d-block font-size-1 font-size-2-xl">clear</span>
                                 </Button>
                                 <Button
-                                className={`btn btn-gray bg-success text-white rounded-circle border-0 p-0 mb-2 dialpadButton ${isCallActive ? 'bg-danger' : 'bg-success'}`} onClick={toggleCallActive}>
+                                className={`btn btn-gray bg-success text-white rounded-circle border-0 p-0 mb-2 dialpadButton ${isCallActive ? 'bg-danger' : 'bg-success'}`} 
+                                onClick={toggleCallActive}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">
                                         <i 
                                         className={`bi ${isCallActive ? 'bi-telephone-x-fill' : 'bi-telephone-fill'}`}
@@ -284,7 +340,12 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     </span>
                                 </Button>
                                 {/* Clear button */}
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton">
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    onClick={() => {
+                                        window.CrComLib.publishEvent('b', '107', true);
+                                        window.CrComLib.publishEvent('b', '107', false);
+                                        console.log('backspace pressed')
+                                }}>
                                     <span className="d-block fw-bold font-size-3 font-size-4-xl">
                                     <i className="bi bi-backspace-fill"></i>
                                     </span>
@@ -317,6 +378,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         <div className='container-fluid text-center pt-5'>
                             <div className="mt-4 mb-5 mt-xl-5">
                                 <VolumeControl className="mx-auto" />
+                            <div className="mt-4 mb-5 mt-xl-5">
+                                <VolumeControl className="mx-auto" initialVolume={confCallVolume} plusJoin='102' minusJoin='101' isMuted={isConfCallMuted}/>
                             </div>
                             <div className="row m-0 my-xl-5"></div>
                             <div className="col-12 d-flex flex-wrap justify-content-evenly py-3">
@@ -330,32 +393,69 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     </button>
                                     <div className='font-size-3 font-size-4-xl'>{isConfCallMuted ? 'Unmute' : 'Mute'}</div>
                                 </div>
-                                <div className="col-3 position-relative">
-                                    <button type="button"
-                                        className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isPrivacyModeEnabled ? 'btn-info' : 'btn-gray'}`}
-                                        onClick={togglePrivacyMode}>
-                                        <i
-                                            className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPrivacyModeEnabled ? 'bi-lock-fill' : 'bi-unlock-fill'}`}
-                                        ></i>
-                                    </button>
-                                    <div className='font-size-3 font-size-4-xl'>
-                                        {isPrivacyModeEnabled ? 'Disable Privacy Mode' : 'Enable Privacy Mode'}
-                                    </div>
-                                    <div className="position-absolute top-0 start-100 translate-middle">
-                                        <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
-                                            <a className="ms-3">
-                                                <i
-                                                    className={`d-block bi bi-info-circle-fill font-size-4 font-size-5-xl`}
-                                                ></i>
-                                            </a>
-                                        </OverlayTrigger>
-                                    </div>
-                                </div>
+                                {configPrivacyMode &&
+                                    <div className="col-3 position-relative">
+                                        <button type="button"
+                                            className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isPrivacyModeEnabled ? 'btn-info' : 'btn-gray'}`}
+                                            onClick={togglePrivacyMode}>
+                                            <i
+                                                className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPrivacyModeEnabled ? 'bi-lock-fill' : 'bi-unlock-fill'}`}
+                                            ></i>
+                                        </button>
+                                        <div className='font-size-3 font-size-4-xl'>
+                                            {isPrivacyModeEnabled ? 'Disable Privacy Mode' : 'Enable Privacy Mode'}
+                                        </div>
+                                        <div className="position-absolute top-0 start-100 translate-middle">
+                                            <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+                                                <a className="ms-3">
+                                                    <i
+                                                        className={`d-block bi bi-info-circle-fill font-size-4 font-size-5-xl`}
+                                                    ></i>
+                                                </a>
+                                            </OverlayTrigger>
+                                        </div>
+                                    </div>}
                             </div>
                         </div>
                     </Modal.Body>
                 </Modal>
                 {/* /Conference Volume Modal */}
+                {/* /Conference Incoming Call Modal */}
+                <Modal show={showIncomingCall} onHide={handleCloseIncomingCallModal} fullscreen={fullscreen}>
+                    <Modal.Header className="pb-0">
+                        <Modal.Title className="col-12 d-flex flex-row justify-content-between">
+                        <h1 className="font-size-5 font-size-6-xl">
+                            <button type="button" className="border-0 text-dark"
+                            onClick={handleCloseIncomingCallModal}><i class="bi bi-arrow-left"></i></button>Incoming Telephone Call</h1>
+                        <button type="button" className="border-0 text-muted"
+                            onClick={handleCloseIncomingCallModal}><i class="bi bi-x-lg"></i></button>
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="font-size-4 font-size-5-xl p-0">
+                        <div className='container-fluid text-center p-5'>
+                        <div className="mb-xl-5">Would you like to pick up the call?</div>
+                        <div className='d-flex justify-content-center mt-5'>
+                            <button className='btn btn-danger col-4 rounded-pill px-5 text-white mx-3'
+                                onClick={() => {
+                                    window.CrComLib.publishEvent('b', '108', true);
+                                    window.CrComLib.publishEvent('b', '108', false);
+                                    console.log('Call ignored')
+                                }}>
+                                Ignore
+                            </button>
+                            <button className='btn btn-success col-4 rounded-pill px-5 mx-3 text-white' 
+                                onClick={() => {
+                                    window.CrComLib.publishEvent('b', '109', true);
+                                    window.CrComLib.publishEvent('b', '109', false);
+                                    console.log('Call picked up')
+                                }}>
+                                Answer
+                            </button>
+                        </div>
+                        </div>
+                    </Modal.Body>
+                </Modal>
+                {/* /Conference Incoming Call Modal */}
             </span>;
             break;
         case 5:
