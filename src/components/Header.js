@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
 import './Header.css'
 import logo from "./Icons/Northwestern_WHITE.svg"
 import { useNavigate } from 'react-router-dom';
@@ -26,7 +27,9 @@ function Header(){
     const [tempField, setTempField] = useState('');
     const [tempValue, setTempValue] = useState(0);
     const [tempToggleText, setTempToggleText] = useState('');
-    const [tempToggleState, setTempToggleState] = useState(false)
+    const [tempToggleState, setTempToggleState] = useState(false);
+    const [showSaveAlert, setShowSaveAlert] = useState(false);
+    const [showResetAlert, setShowResetAlert] = useState(false);
 
     const navigate = useNavigate();
     useEffect(() =>{
@@ -127,18 +130,28 @@ function Header(){
         window.CrComLib.publishEvent('b', '124', true);
         window.CrComLib.publishEvent('b', '124', false);
         if (configRoomName !== classRoom) {
-            window.CrComLib.publishEvent('s', '5', configRoomName)
+            window.CrComLib.publishEvent('s', '5', configRoomName);
         }
         if (configIpAdd !== ipAdd) {
-            window.CrComLib.publishEvent('s', '6', configIpAdd)
-        }
+            window.CrComLib.publishEvent('s', '6', configIpAdd);
+        };
+        setShowSaveAlert(true);
+    };
+
+    const handleCloseSaveAlert = () => {
+        setShowSaveAlert(!showSaveAlert);
     };
     const handleResetConfig = () => {
         window.CrComLib.publishEvent('b', '125', true);
         window.CrComLib.publishEvent('b', '125', false);
         setConfigRoomName(classRoom);
-        setConfigIpAdd(ipAdd)
+        setConfigIpAdd(ipAdd);
+        setShowResetAlert(true);
     }
+    const handleCloseResetAlert = () => {
+        setShowResetAlert(!showResetAlert);
+    };
+    
     const handleIncreaseOrDecrease = (joinNumber, currIdx) => {
         window.CrComLib.publishEvent('b', `${joinNumber}`, true);
         window.CrComLib.publishEvent('b', `${joinNumber}`, false);
@@ -225,7 +238,7 @@ function Header(){
                         </Modal.Body>
                     </Modal>
 
-                     {/* Password Modal Placeholder */}
+                     {/* Password Modal */}
                      <Modal show={showPasswordModal} fullscreen={fullscreen}>
                         <Modal.Header className="pb-1">
                             <Modal.Title className="col-12 d-flex flex-row justify-content-between">
@@ -313,7 +326,31 @@ function Header(){
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body className="font-size-4 font-size-5-xl p-0 pt-1">
-                            <div className='container-fluid overflow-y-auto'>
+                            <div className='container-fluid p-0'>
+                                <Alert
+                                    className={`col-8 font-size-2 font-size-3-xl my-3 mx-auto`}
+                                    show={showSaveAlert}
+                                    variant="success"
+                                    onClose={() => setShowSaveAlert(false)}
+                                    dismissible
+                                >
+                                    <Alert.Heading className="font-size-2 font-size-3-xl fw-bold">Saved!</Alert.Heading>
+                                    <p>
+                                        Your changes have been saved.
+                                    </p>
+                                </Alert>
+                                <Alert
+                                    className={`col-8 font-size-2 font-size-3-xl my-3 mx-auto`}
+                                    show={showResetAlert}
+                                    variant="success" 
+                                    onClose={() => setShowResetAlert(false)}
+                                    dismissible
+                                >
+                                    <Alert.Heading className="font-size-2 font-size-3-xl fw-bold">Settings Reset!</Alert.Heading>
+                                    <p>
+                                        The settings have been reset.
+                                    </p>
+                                </Alert>
                                 <div className="row flex-wrap align-items-start justify-content-around pt-1">
                                     <div className="col-5 d-flex flex-row align-items-start p-0 mb-2 mb-xl-2">
                                             <Form.Group className="col mb-3" controlId="roomName">
