@@ -270,12 +270,6 @@ body {
         font-size: var(--font-size-4);
         line-height: var(--font-size-5);
     }
-
-        /* .circleIcon {
-            width: 100px;
-            height: 100px;
-        }
-     */
         .sourceSelectMenu button {
             line-height: var(--font-size-3) !important;
         }
