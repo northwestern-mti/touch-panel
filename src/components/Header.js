@@ -331,10 +331,15 @@ function Header(){
                                     className={`col-8 font-size-2 font-size-3-xl my-3 mx-auto`}
                                     show={showSaveAlert}
                                     variant="success"
-                                    onClose={() => setShowSaveAlert(false)}
-                                    dismissible
                                 >
-                                    <Alert.Heading className="font-size-2 font-size-3-xl fw-bold">Saved!</Alert.Heading>
+                                    <Alert.Heading className="col-12 d-flex flex-row justify-content-between">
+                                        <h4 className="font-size-2 font-size-3-xl fw-bold">Saved!</h4>
+                                        <button
+                                            type="button"
+                                            className="btn alert-success shadow-none border-0 text-muted p-0 font-size-3 font-size-4-xl"
+                                            onClick={() => setShowSaveAlert(false)}>
+                                            <i class="bi bi-x-lg"></i></button>
+                                    </Alert.Heading>
                                     <p>
                                         Your changes have been saved.
                                     </p>
@@ -343,10 +348,15 @@ function Header(){
                                     className={`col-8 font-size-2 font-size-3-xl my-3 mx-auto`}
                                     show={showResetAlert}
                                     variant="success" 
-                                    onClose={() => setShowResetAlert(false)}
-                                    dismissible
                                 >
-                                    <Alert.Heading className="font-size-2 font-size-3-xl fw-bold">Settings Reset!</Alert.Heading>
+                                    <Alert.Heading className="col-12 d-flex flex-row justify-content-between">
+                                    <h4 className="font-size-2 font-size-3-xl fw-bold">Settings Reset!</h4>
+                                    <button
+                                            type="button"
+                                            className="btn alert-success shadow-none border-0 text-muted p-0 font-size-3 font-size-4-xl"
+                                            onClick={() => setShowResetAlert(false)}>
+                                            <i class="bi bi-x-lg"></i></button>
+                                    </Alert.Heading>
                                     <p>
                                         The settings have been reset.
                                     </p>
