@@ -118,11 +118,6 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     }
     const toggleCallActive = () => { 
         setIsCallActive(!isCallActive);
-    }
-
-    const togglePrivacyMode = () => {
-        setIsPrivacyModeEnabled(!isPrivacyModeEnabled);
-      }
         if (isCallActive) {
             window.CrComLib.publishEvent('b', '105', true);
             window.CrComLib.publishEvent('b', '105', false);
@@ -138,7 +133,6 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         setIsPrivacyModeEnabled(!isPrivacyModeEnabled);
         window.CrComLib.publishEvent('b', '103', true);
         window.CrComLib.publishEvent('b', '103', false);
-
       }
 
     const togglePowerSwitch = () => {
@@ -194,7 +188,12 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         window.CrComLib.publishEvent('b', `${joinNumber}`, false);
         console.log(`${press} pressed`)
         console.log(blurayButton)
-    }
+    };
+    const handleDialKeyPres = (joinNumber) => {
+        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
+        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        console.log('pw key pressed', joinNumber)
+    };
     // Privacy Mode Popover
     const popover = (
         <Popover id="popover-basic">
@@ -393,8 +392,6 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     </Modal.Header>
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
                         <div className='container-fluid text-center pt-5'>
-                            <div className="mt-4 mb-5 mt-xl-5">
-                                <VolumeControl className="mx-auto" />
                             <div className="mt-4 mb-5 mt-xl-5">
                                 <VolumeControl className="mx-auto" initialVolume={confCallVolume} plusJoin='102' minusJoin='101' isMuted={isConfCallMuted}/>
                             </div>
