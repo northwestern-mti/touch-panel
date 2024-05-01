@@ -3,9 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Row, Col, InputGroup, FormControl, Modal } from 'react-bootstrap';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
-import { Button, Row, Col, InputGroup, FormControl, Modal } from 'react-bootstrap';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
 import './BottomBar.css';
 import CModal from './CModal';
 import Opad from './Opad';
@@ -18,9 +15,6 @@ function BottomBar ({programStarted, setProgramStarted}) {
   const [showMicModal, setShowMicModal] = useState(false);
   const [showCamModal, setShowCamModal] = useState(false);
   const [cameraSelected, setCameraSelected] = useState(0);
-  const [showControls, setShowControls] = useState(true);
-  const [hasCeilingMics, setHasCeilingMics] = useState(true);
-  const [hasMics, setHasMics] = useState(true)
   const [showControls, setShowControls] = useState(true);
   const [hasCeilingMics, setHasCeilingMics] = useState(true);
   const [hasMics, setHasMics] = useState(true)
@@ -256,17 +250,6 @@ const popover = (
     </Popover.Body>
   </Popover>
 );
-
-// Privacy Mode Popover
-const popover = (
-  <Popover id="popover-basic">
-    <Popover.Header className="text-center font-size-2 font-size-3-xl fw-bold" as="h3">Privacy Mode</Popover.Header>
-    <Popover.Body className="text-center px-3 py-2 font-size-2 font-size-3-xl">
-      Mute audio being sent to external sources (for example, Zoom or a conference call). 
-      <br /><span className="font-size-1 font-size-2-xl fst-italic">Room microphones won't be affected by this setting.</span>
-    </Popover.Body>
-  </Popover>
-);
   
   return (
 
@@ -278,7 +261,6 @@ const popover = (
           <span className="d-block">System Off</span>
         </button>
         <button type="button"
-          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl ps-1 pe-1" onClick={handleShowVolumeModal}>
           className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl ps-1 pe-1" onClick={handleShowVolumeModal}>
           <i className="d-block bi bi-volume-up-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
           <span className="d-block">Presentation Volume</span>
@@ -298,27 +280,21 @@ const popover = (
         {/* Audio Statuses */}
         <div className="col h-100 border-0 pt-2 pb-0 px-1">
           <div className="d-flex col-11 justify-content-start mb-0 mx-auto">
-        <div className="col h-100 border-0 pt-2 pb-0 px-1">
-          <div className="d-flex col-11 justify-content-start mb-0 mx-auto">
             <div className="col-9 font-size-0 font-size-2-xl m-0 p-0">Presentation Audio</div>
             <div className="col-3 text-center">
               <div
                 className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isPresentationMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '1vw', height: '1vw' }}>
-                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isPresentationMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '1vw', height: '1vw' }}>
               </div>
-              <div className={`font-size-0 font-size-1-xl ${isPresentationMuted ? '' : ''}`}>{isPresentationMuted ? "Muted" : 'On'}</div>
               <div className={`font-size-0 font-size-1-xl ${isPresentationMuted ? '' : ''}`}>{isPresentationMuted ? "Muted" : 'On'}</div>
             </div>
           </div>
           {hasMics &&
-          <div className="d-flex col-11 justify-content-start mb-0 mx-auto">
           <div className="d-flex col-11 justify-content-start mb-0 mx-auto">
             <div class="col-9 font-size-0 font-size-2-xl p-0 m-0">
               Microphones
             </div>
             <div className="col-3 text-center">
               <div
-                className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '1vw', height: '1vw' }}>
                 className={`border-0 rounded-circle mx-auto mb-0 mb-xl-1  ${isMicMuted ? 'bg-warning' : 'bg-success'}`} style={{ width: '1vw', height: '1vw' }}>
               </div>
               <div className={`font-size-0 font-size-1-xl ${isMicMuted ? '' : ''}`}>{isMicMuted ? "Muted" : 'On'}</div>
@@ -336,6 +312,7 @@ const popover = (
               <div className={`font-size-0 font-size-1-xl`}>{isCeilingMicMuted ? "Muted" : 'On'}</div>
             </div>
           </div>}
+          {configPrivacyMode &&
           <div className="d-flex col-11 justify-content-start mb-0 mx-auto">
             <div className="col-9 font-size-0 font-size-2-xl p-0 m-0">
               Privacy Mode
@@ -347,6 +324,7 @@ const popover = (
               <div className={`font-size-0 font-size-1-xl`}>{isPrivacyModeEnabled ? "On" : 'Off'}</div>
             </div>
           </div>
+          }
         </div>
         {/* /Audio Statuses */}
       </div>
