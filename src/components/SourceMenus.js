@@ -88,7 +88,7 @@ const SourceMenus = () => {
     // }    
 
     return (
-        <div>
+        <div className='text-bg-light px-0'>
             {!showLaptop ?
                 
                 <div id="loading-spinner" className="position-absolute top-50 start-50 translate-middle">
