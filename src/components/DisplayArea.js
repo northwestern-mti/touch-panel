@@ -4,8 +4,6 @@ import { Button} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
 import Opad from './Opad';
 import VolumeControl from './VolumeControl';
 
@@ -189,21 +187,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         console.log(`${press} pressed`)
         console.log(blurayButton)
     };
-    const handleDialKeyPres = (joinNumber) => {
-        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
-        console.log('pw key pressed', joinNumber)
-    };
-    // Privacy Mode Popover
-    const popover = (
-        <Popover id="popover-basic">
-            <Popover.Header className="text-center font-size-2 font-size-3-xl fw-bold" as="h3">Privacy Mode</Popover.Header>
-            <Popover.Body className="text-center px-3 py-2 font-size-2 font-size-3-xl">
-                Mute audio being sent to external sources (for example, Zoom or a conference call).
-                <br /><span className="font-size-1 font-size-2-xl fst-italic">Room microphones won't be affected by this setting.</span>
-            </Popover.Body>
-        </Popover>
-    );
+
     const handleDialKeyPres = (joinNumber) => {
         window.CrComLib.publishEvent('b', `${joinNumber}`, true);
         window.CrComLib.publishEvent('b', `${joinNumber}`, false);
