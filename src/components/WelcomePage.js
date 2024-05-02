@@ -1,6 +1,6 @@
 import logo from "./Icons/Northwestern_purple.svg"
 import Header from './Header';
-import React, {useMemo} from 'react';
+import React, {useMemo, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function WelcomePage({programStarted, setProgramStarted}) {
@@ -11,7 +11,7 @@ function WelcomePage({programStarted, setProgramStarted}) {
     window.CrComLib.publishEvent('b','1', true);
     window.CrComLib.publishEvent('b','1', false);
     console.log("Signal sent to processor");
-    navigate('/HomePage')
+    // navigate('/HomePage')
 };
 
   return (
