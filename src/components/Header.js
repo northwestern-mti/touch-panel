@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Alert from 'react-bootstrap/Alert';
 import './Header.css'
 import logo from "./Icons/Northwestern_WHITE.svg"
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +27,9 @@ function Header(){
     const [tempField, setTempField] = useState('');
     const [tempValue, setTempValue] = useState(0);
     const [tempToggleText, setTempToggleText] = useState('');
-    const [tempToggleState, setTempToggleState] = useState(false)
+    const [tempToggleState, setTempToggleState] = useState(false);
+    const [showSaveAlert, setShowSaveAlert] = useState(false);
+    const [showResetAlert, setShowResetAlert] = useState(false);
 
     const navigate = useNavigate();
     useEffect(() =>{
@@ -116,6 +118,9 @@ function Header(){
     const handleAdminLongPress = () => {
         window.CrComLib.publishEvent('b', '120', true);
       };
+      const handleAdminPWDesktop = () => {
+        window.CrComLib.publishEvent('b', '120', true);
+      };
     const handlePwKeyPres = (joinNumber) => {
         window.CrComLib.publishEvent('b', `${joinNumber}`, true);
         window.CrComLib.publishEvent('b', `${joinNumber}`, false);
@@ -125,18 +130,28 @@ function Header(){
         window.CrComLib.publishEvent('b', '124', true);
         window.CrComLib.publishEvent('b', '124', false);
         if (configRoomName !== classRoom) {
-            window.CrComLib.publishEvent('s', '5', configRoomName)
+            window.CrComLib.publishEvent('s', '5', configRoomName);
         }
         if (configIpAdd !== ipAdd) {
-            window.CrComLib.publishEvent('s', '6', configIpAdd)
-        }
+            window.CrComLib.publishEvent('s', '6', configIpAdd);
+        };
+        setShowSaveAlert(true);
+    };
+
+    const handleCloseSaveAlert = () => {
+        setShowSaveAlert(!showSaveAlert);
     };
     const handleResetConfig = () => {
         window.CrComLib.publishEvent('b', '125', true);
         window.CrComLib.publishEvent('b', '125', false);
         setConfigRoomName(classRoom);
-        setConfigIpAdd(ipAdd)
+        setConfigIpAdd(ipAdd);
+        setShowResetAlert(true);
     }
+    const handleCloseResetAlert = () => {
+        setShowResetAlert(!showResetAlert);
+    };
+    
     const handleIncreaseOrDecrease = (joinNumber, currIdx) => {
         window.CrComLib.publishEvent('b', `${joinNumber}`, true);
         window.CrComLib.publishEvent('b', `${joinNumber}`, false);
@@ -165,10 +180,11 @@ function Header(){
                             src={logo}
                             alt="Northwestern Logo"
                             className='img-fluid'
-                            style={{width:'12em', height:'auto'}}/>
+                            style={{width:'22vw', height:'auto'}}/>
                     </div>
                     <div className="col-1 text-center p-0">
-                        <div className="text-primary py-3 py-xl-5 font-size-1"
+                        <div className="text-primary py-3 py-xl-4 font-size-1"
+                            onClick={handleAdminPWDesktop}
                             onMouseDown={handleAdminLongPress}
                             onMouseUp={() => window.CrComLib.publishEvent('b', '120', false)}
                             onTouchStart={handleAdminLongPress}
@@ -181,8 +197,8 @@ function Header(){
                     <div className="col-2 text-center text-white">
                         <span>{(classRoom == "") ? 'Room' : classRoom}</span>
                     </div>
-                    <div className="col-3 text-center text-white">
-                                <span className="d-block mb-2">
+                    <div className="col-3 text-center text-white font-size-2 font-size-3-xl">
+                                <span className="d-block mb-1">
                                     <ch5-datetime 
                                         displaytype="date" 
                                         styleForDate="MMMM d, yyyy">
@@ -196,7 +212,7 @@ function Header(){
                     </div>
                     <div className="col-1 text-white text-center">
                     <button
-                        className="btn btn-info d-flex align-items-center rounded-circle mx-auto text-white font-size-4 font-size-5-xl circleIcon" onClick={handleShowHelpModal}>
+                        className="btn btn-info d-flex align-items-center rounded-circle p-0 mx-auto text-white font-size-3 font-size-4-xl circleIcon" onClick={handleShowHelpModal}>
                         <i className="d-inline-block bi bi-question-lg mx-auto"></i>
                     </button>
                     </div>
@@ -226,7 +242,7 @@ function Header(){
                         </Modal.Body>
                     </Modal>
 
-                     {/* Password Modal Placeholder */}
+                     {/* Password Modal */}
                      <Modal show={showPasswordModal} fullscreen={fullscreen}>
                         <Modal.Header className="pb-1">
                             <Modal.Title className="col-12 d-flex flex-row justify-content-between">
@@ -304,9 +320,9 @@ function Header(){
                     
                     {/* Admin Modal */}
                     <Modal show={showAdminModal} onHide={handleCloseAdminModal} fullscreen={fullscreen}>
-                        <Modal.Header className="pb-1">
+                        <Modal.Header className="p-0 py-2">
                             <Modal.Title className="col-12 d-flex flex-row justify-content-between">
-                                <h1 className="font-size-5 font-size-6-xl">
+                                <h1 className="font-size-4 font-size-5-xl">
                                     <button type="button" className="border-0 text-dark"
                                         onClick={handleCloseAdminModal}><i class="bi bi-arrow-left"></i></button>Admin</h1>
                                 <button type="button" className="border-0 text-muted font-size-3 font-size-5-xl"
@@ -314,41 +330,64 @@ function Header(){
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body className="font-size-4 font-size-5-xl p-0 pt-1">
-                            <div className='container-fluid overflow-y-auto'>
-                                <div className="row flex-wrap align-items-start justify-content-around pt-xl-3 my-4">
-                                    <div className="col-5 d-flex flew-row align-items-center p-0 mb-2 mb-xl-2">
-                                        <FloatingLabel
-                                            controlId="roomName"
-                                            label="Room Name"
-                                            className="col text-muted font-size-1 font-size-2-xl p-0"
-                                            
-                                        >
-                                            <Form.Control type="text/input" placeholder={classRoom} className="font-size-1 font-size-2-xl pt-2 pb-0 pt-xl-5 pb-xl-4" 
-                                                value={configRoomName}
-                                                onChange={handleRoomNameChange}/>
-                                        </FloatingLabel>
+                            <div className='container-fluid p-0'>
+                                <Alert
+                                    className={`col-8 font-size-2 font-size-3-xl my-3 mx-auto`}
+                                    show={showSaveAlert}
+                                    variant="success"
+                                >
+                                    <Alert.Heading className="col-12 d-flex flex-row justify-content-between">
+                                        <h4 className="font-size-2 font-size-3-xl fw-bold">Saved!</h4>
+                                        <button
+                                            type="button"
+                                            className="btn alert-success shadow-none border-0 text-muted p-0 font-size-3 font-size-4-xl"
+                                            onClick={() => setShowSaveAlert(false)}>
+                                            <i class="bi bi-x-lg"></i></button>
+                                    </Alert.Heading>
+                                    <p>
+                                        Your changes have been saved.
+                                    </p>
+                                </Alert>
+                                <Alert
+                                    className={`col-8 font-size-2 font-size-3-xl my-3 mx-auto`}
+                                    show={showResetAlert}
+                                    variant="success" 
+                                >
+                                    <Alert.Heading className="col-12 d-flex flex-row justify-content-between">
+                                    <h4 className="font-size-2 font-size-3-xl fw-bold">Settings Reset!</h4>
+                                    <button
+                                            type="button"
+                                            className="btn alert-success shadow-none border-0 text-muted p-0 font-size-3 font-size-4-xl"
+                                            onClick={() => setShowResetAlert(false)}>
+                                            <i class="bi bi-x-lg"></i></button>
+                                    </Alert.Heading>
+                                    <p>
+                                        The settings have been reset.
+                                    </p>
+                                </Alert>
+                                <div className="row flex-wrap align-items-start justify-content-around pt-1">
+                                    <div className="col-5 d-flex flex-row align-items-start p-0 mb-2 mb-xl-2">
+                                            <Form.Group className="col mb-3" controlId="roomName">
+                                                <Form.Label className="font-size-2 font-size-3-xl">Room Name</Form.Label>
+                                                <Form.Control className="font-size-2 font-size-3-xl p-3" type="text/input" placeholder={classRoom}  />
+                                            </Form.Group>
                                     </div>
-                                    <div className="col-5 d-flex flew-row align-items-center p-0 mb-2 mb-xl-2">
-                                        <FloatingLabel
-                                            controlId="wirelessAddress"
-                                            label="Wireless Address"
-                                            className="col text-muted font-size-1 font-size-2-xl p-0"
-                                        >
-                                            <Form.Control type="text" placeholder={ipAdd} className="font-size-1 font-size-2-xl pt-2 pb-0 pt-xl-5 pb-xl-4" 
-                                                value={configIpAdd}
-                                                onChange={handleIpChange}/>
-                                        </FloatingLabel>
+                                    <div className="col-5 d-flex flex-row align-items-start p-0 mb-2 mb-xl-2">
+                                        <Form.Group className="col mb-3" controlId="wirelessAddress">
+                                                <Form.Label className="font-size-2 font-size-3-xl">Wireless Address</Form.Label>
+                                                <Form.Control className="font-size-2 font-size-3-xl p-3" type="text/input" placeholder={ipAdd}  />
+                                            </Form.Group>
                                     </div>
                                 </div>
                                 {/* HDMI Switcher row */}
-                                <div className="row flex-wrap mt-1 mb-4 font-size-2 font-size-4-xl">
+                                <div className="row flex-wrap justify-content-around mt-1 mb-4 font-size-2 font-size-4-xl">
                                     <h3 className="text-center fw-bold mb-4 font-size-2 font-size-4-xl">Enter input # of HDMI switcher or 0 for none</h3>
                                     {/* HDMI Switcher */}
                                     
                                     {Array.from({ length: textFieldsNum }, (_, index) => (
-                                        <div className="col-6 h-100">
+                                        <div className="col-5 h-100">
                                             <div key={index} className="d-flex flex-row align-items-center mb-2 mb-xl-3">
-                                                <div className="col-6">
+                                                <div className="col-6 font-size-2 font-size-3-xl">
                                                     <span>{textFields[index]}</span>
                                                     <span>: </span>
                                                     <span className="fw-bold"> {textFieldsValues[index]}</span>
@@ -367,10 +406,10 @@ function Header(){
                                     ))}
                                 </div>
                                 {/* /HDMI button row */}
-                                <div className="row flex-nowrap overflow-y-auto adminPresetButtonRow p-0 px-3 mt-1 my-4 mx-2">
+                                <div className="row flex-wrap justify-content-around px-3 my-5">
                                     {Array.from({ length: toggleButtonsNum }, (_, index) => (
-                                        <button key={index} className={`btn btn-info rounded-pill border-0 px-3 me-2 mb-3 presetButton
-                                            ${(toggleButtonsStates[index]) ? 'btn-info text-white' : 'btn-gray text-black'}`}
+                                        <button key={index} className={`btn col-5 rounded-pill border-0 p-2 me-2 mb-3 font-size-2 font-size-3-xl adminPresetButton
+                                            ${(toggleButtonsStates[index]) ? 'btn-info' : 'btn-gray'}`}
                                             onClick={() => handleToggleStateChange(`${index + 331}`)}>
                                             {toggleButtons[index]}
                                         </button>
@@ -379,7 +418,7 @@ function Header(){
                                 </div>
                             </div>
                         </Modal.Body>
-                        <Modal.Footer className="p-1">
+                        <Modal.Footer className="p-0 py-2">
                             <Button variant="secondary" className="font-size-2 font-size-4-xl mx-2" onClick={handleCloseAdminModal}><i className="bi bi-x-circle me-1"></i> Cancel</Button>
                             <Button variant="info" className="font-size-2 font-size-4-xl mx-2" onClick={handleResetConfig}><i className="bi bi-arrow-clockwise me-1"></i>Reset</Button>
                             <Button variant="primary" className="font-size-2 font-size-4-xl mx-2" onClick={handleSaveConfig}> <i className="bi bi-floppy-fill me-1"></i>Save changes</Button>

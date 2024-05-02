@@ -17,7 +17,7 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
 
     setVolume(initialVolume);
     console.log('initial volume:', initialVolume);
-  }, [initialVolume]);
+  }, []);
 
   const handleIncreaseVolume = () => {
     if (volume < 20) {

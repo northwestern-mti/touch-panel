@@ -120,8 +120,8 @@ body {
 }
 
 .circleIcon {
-    width: 65px;
-    height: 65px;
+    width: 7vw;
+    height: 7vw;
 }
 
 .sourceSelectMenu button {
@@ -155,6 +155,9 @@ body {
 .form-check-input, .form-check-input:checked {
     border-color: var(--bs-border-color)!important;
     background-color: #fff;
+}
+.form-switch .form-check-input {
+    transition:none;
 }
 .customSwitchCheck {
     --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27%23007FA4%27/%3e%3c/svg%3e")!important;
@@ -267,12 +270,6 @@ body {
         font-size: var(--font-size-4);
         line-height: var(--font-size-5);
     }
-
-        .circleIcon {
-            width: 100px;
-            height: 100px;
-        }
-    
         .sourceSelectMenu button {
             line-height: var(--font-size-3) !important;
         }
