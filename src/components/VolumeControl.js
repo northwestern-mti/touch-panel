@@ -80,7 +80,7 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
         setVolume(initialVolume);
     }
     
-  }, [initialVolume]);
+  }, []);
 
 
   const renderSquares = () => {
@@ -104,7 +104,8 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
           onMouseUp={handleDecreaseOnMouseUp}
           onMouseLeave={handleDecreaseOnMouseUp}
           onTouchStart={handleDecreaseOnMouseDown}
-          onTouchEnd={handleDecreaseOnMouseUp}>
+          onTouchEnd={handleDecreaseOnMouseUp}
+          onTouchCancel={handleDecreaseOnMouseUp}>
             <img
                 src={RemoveIcon}
                 alt="Minus Icon"
@@ -117,7 +118,8 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
           onMouseUp={handleIncreaseOnMouseUp}
           onMouseLeave={handleIncreaseOnMouseUp}
           onTouchStart={handleIncreaseOnMouseDown}
-          onTouchEnd={handleIncreaseOnMouseUp}>
+          onTouchEnd={handleIncreaseOnMouseUp}
+          onTouchCancel={handleIncreaseOnMouseUp}>
             <img
                 src={AddIcon}
                 alt="Plus Icon"
