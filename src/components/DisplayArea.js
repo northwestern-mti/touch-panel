@@ -4,8 +4,6 @@ import { Button} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
 import Opad from './Opad';
 import VolumeControl from './VolumeControl';
 
