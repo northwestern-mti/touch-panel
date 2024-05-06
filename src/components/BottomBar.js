@@ -326,6 +326,7 @@ const popover = (
           </div>
           }
         </div>
+      
         {/* /Audio Statuses */}
       </div>
       {/* /Row */}
