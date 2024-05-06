@@ -1,14 +1,11 @@
 import logo from "./Icons/Northwestern_purple.svg"
 import Header from './Header';
-import React from 'react';
+import React, {useMemo, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function WelcomePage({programStarted, setProgramStarted}) {
-  
   const navigate = useNavigate();
   
-
-
   const handleClick = () => {
     setProgramStarted(!programStarted);
     window.CrComLib.publishEvent('b','1', true);
@@ -17,17 +14,13 @@ function WelcomePage({programStarted, setProgramStarted}) {
     // navigate('/HomePage')
 };
 
-
   return (
     <div>
         <Header/>
         <div className="container-fluid" onClick={handleClick}>
             <div className="row">
                 <div className="col-8 mx-auto my-5">
-                    <img
-                        src={logo}
-                        alt="Northwestern Logo"
-                        className="img-fluid"/>
+                    <img src={logo} alt='Northwestern Logo' className='img-fluid'/>
                 </div>
             </div>
             <div className="row">

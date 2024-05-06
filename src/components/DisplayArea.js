@@ -4,6 +4,8 @@ import { Button} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
 import Opad from './Opad';
 import VolumeControl from './VolumeControl';
 
@@ -187,6 +189,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         console.log(`${press} pressed`)
         console.log(blurayButton)
     };
+;
     const handleDialKeyPres = (joinNumber) => {
         window.CrComLib.publishEvent('b', `${joinNumber}`, true);
         window.CrComLib.publishEvent('b', `${joinNumber}`, false);
@@ -202,6 +205,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             </Popover.Body>
         </Popover>
     );
+    
     let message;
     let displayNum;
     switch (side) {
