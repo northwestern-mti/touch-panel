@@ -187,7 +187,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         console.log(`${press} pressed`)
         console.log(blurayButton)
     };
-
+;
     const handleDialKeyPres = (joinNumber) => {
         window.CrComLib.publishEvent('b', `${joinNumber}`, true);
         window.CrComLib.publishEvent('b', `${joinNumber}`, false);

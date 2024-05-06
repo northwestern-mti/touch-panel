@@ -74,6 +74,7 @@ function BottomBar ({programStarted, setProgramStarted}) {
       window.CrComLib.subscribeState('s', `${index + 91}`, incomingValue => {
         value = incomingValue;
         setTempCamName(value);
+        setTempCamName(value);
       });
       return value;
     }));
