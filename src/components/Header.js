@@ -84,7 +84,7 @@ function Header(){
         if (configIpAdd === '') {
             setConfigIpAdd(ipAdd);
             }
-    }, [pwValue, textFieldsNum, toggleButtonsNum, textFieldsValues, toggleButtonsStates, configIpAdd, configRoomName, ipAdd, classRoom]);
+    }, [pwValue, textFieldsNum, toggleButtonsNum, textFieldsValues, toggleButtonsStates]);
     
 
     
@@ -130,14 +130,10 @@ function Header(){
         console.log('pw key pressed', joinNumber)
     };
     const handleSaveConfig = () => {
+        window.CrComLib.publishEvent('s', '5', configRoomName);
+        window.CrComLib.publishEvent('s', '6', configIpAdd);
         window.CrComLib.publishEvent('b', '124', true);
         window.CrComLib.publishEvent('b', '124', false);
-        if (configRoomName !== classRoom) {
-            window.CrComLib.publishEvent('s', '5', configRoomName);
-        }
-        if (configIpAdd !== ipAdd) {
-            window.CrComLib.publishEvent('s', '6', configIpAdd);
-        };
         setShowSaveAlert(true);
     };
 
@@ -149,7 +145,7 @@ function Header(){
         window.CrComLib.publishEvent('b', '125', false);
         setConfigRoomName(classRoom);
         setConfigIpAdd(ipAdd);
-        setShowResetAlert(true);
+        
     }
     const handleCloseResetAlert = () => {
         setShowResetAlert(!showResetAlert);
@@ -163,9 +159,13 @@ function Header(){
     }
     const handleRoomNameChange = (event) => {
         setConfigRoomName(event.target.value);
+        console.log('config room name is: ', configRoomName)
+        console.log('room name is ', classRoom)
     }
     const handleIpChange = (event) => {
         setConfigIpAdd(event.target.value);
+        console.log('config ip add is ', configIpAdd);
+        console.log('ip add is ', ipAdd)
 
     }
     
@@ -368,13 +368,15 @@ function Header(){
                                     <div className="col-5 d-flex flex-row align-items-start p-0 mb-2 mb-xl-2">
                                             <Form.Group className="col mb-3" controlId="roomName">
                                                 <Form.Label className="font-size-2 font-size-3-xl">Room Name</Form.Label>
-                                                <Form.Control className="font-size-2 font-size-3-xl p-3" type="text/input" placeholder={classRoom}  />
+                                                <Form.Control className="font-size-2 font-size-3-xl p-3" type="text/input" placeholder={classRoom} 
+                                                    value={configRoomName} onChange={handleRoomNameChange}/>
                                             </Form.Group>
                                     </div>
                                     <div className="col-5 d-flex flex-row align-items-start p-0 mb-2 mb-xl-2">
                                         <Form.Group className="col mb-3" controlId="wirelessAddress">
                                                 <Form.Label className="font-size-2 font-size-3-xl">Wireless Address</Form.Label>
-                                                <Form.Control className="font-size-2 font-size-3-xl p-3" type="text/input" placeholder={ipAdd}  />
+                                                <Form.Control className="font-size-2 font-size-3-xl p-3" type="text/input" placeholder={ipAdd} 
+                                                    value={configIpAdd} onChange={handleIpChange} />
                                             </Form.Group>
                                     </div>
                                 </div>
