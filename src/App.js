@@ -1,5 +1,5 @@
-import React, { useEffect} from 'react';
-import {Routes, Route} from 'react-router-dom';
+import React, { useEffect, useState} from 'react';
+import {Routes, Route, Navigate, useNavigate} from 'react-router-dom';
 import './App.css';
 import HomePage from './components/HomePage'
 import WelcomePage from './components/WelcomePage';
@@ -21,6 +21,9 @@ if (isActive) {
   WebXPanel.initialize(WebXPanelConfigParams);
 }
 function App() {
+  const [programStarted, setProgramStarted] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
     window.addEventListener(WebXPanelEvents.CONNECT_WS, (detail) => {
       console.log(`WebXPanel websocket connection event: ${JSON.stringify(detail)}`);
@@ -44,11 +47,28 @@ function App() {
       console.log(`WebXPanel websocket disconnection event: ${JSON.stringify(detail)}`);
     });
   }, []);
+
+  useEffect(() => {
+    window.CrComLib.subscribeState('b', '29', value=> {
+      setProgramStarted(value)
+      if (value) {
+        navigate('/HomePage')
+      } else {
+        navigate('/WelcomePage')
+      }
+    });
+    console.log('system status', programStarted)
+    
+}, []);
+  const handleProgramStartedChange = () => {
+    setProgramStarted(prevProgramStarted => !prevProgramStarted)
+  }
   return (
     <div className="App">
       <Routes>
-        <Route  index path="/" element={<WelcomePage/>}/>
-        <Route path="/HomePage" element={<HomePage/>}/>
+        <Route  index path="/WelcomePage" element={<WelcomePage programStarted={programStarted} setProgramStarted={handleProgramStartedChange}/>}/>
+        <Route path="/HomePage" element={<HomePage programStarted={programStarted} setProgramStarted={handleProgramStartedChange}/>}/>
+       
       </Routes>
     </div>
   );

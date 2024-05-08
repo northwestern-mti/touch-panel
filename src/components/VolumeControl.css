@@ -1,36 +1,30 @@
-/* styles.css */
-
-.volumeComponent {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  .controls {
-    margin-bottom: 10px;
-  }
-  
-  .square {
-    width: 25px;
-    height: 25px;
+   .square {
+    width: 3vw;
+    height: 3vw;
     margin: 2px;
     display: inline-block;
-    background-color: gray; /* Default color for unfilled squares */
+    background-color: var(--bs-gray-400); /* Default color for unfilled squares */
   }
   
   .square.filled {
-    background-color: green; /* Default color for filled squares */
+    background-color: var(--bs-success); /* Default color for filled squares */
   }
   
   .square.filled:nth-child(-n + 12) {
-    background-color: green; /* Green for the first 12 filled squares */
+    background-color: var(--bs-success); /* Green for the first 12 filled squares */
   }
   
   .square.filled:nth-child(n + 13):nth-child(-n + 17) {
-    background-color: yellow; /* Yellow for the next 5 filled squares */
+    background-color: var(--bs-warning); /* Yellow for the next 5 filled squares */
   }
   
   .square.filled:nth-child(n + 18) {
-    background-color: red; /* Red for the last 3 filled squares */
+    background-color: var(--bs-danger); /* Red for the last 3 filled squares */
   }
+
+  .volumeButton {
+    height: 7vw;
+    width: 7vw;
+  }
+
   

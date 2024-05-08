@@ -1,7 +1,26 @@
 .cancelButton{
     background-color: #6c757d !important;
 }
-.IconMute{
-    height: 80px !important;
-    width: 80px !important;
+
+.modal-content {
+    line-height: var(--font-size-5)!important;
 }
+.cameraButton {
+    width: 25vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.presetButton {
+    width: 21vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* 
+@media screen and (min-width: 1200px) {
+    .muteIcon {
+        width: 5em;
+        height: 5em;
+    }
+} */

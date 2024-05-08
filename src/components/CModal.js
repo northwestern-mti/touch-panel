@@ -19,29 +19,23 @@ const CModal = ({ show, onHide, title, children }) => {
     }
   }, [show]);
   return (
-    <div className={`modal ${show ? 'show' : ''} align-middle` }  role="dialog" ref={modalRef}
-        style={{display: show ? 'block' : 'none', backgroundColor:'rgba(0,0,0,0.3'}}>
-      <div className="modal-dialog row" role="document">
+    <div className={`modal ${show ? 'show' : ''} align-middle p-0` }  role="dialog" ref={modalRef}
+        style={{display: show ? 'block' : 'none', backgroundColor:'rgba(0,0,0,0.3', height: '100vh', width: '100vw'}}>
+      <div className="modal-dialog modal-fullscreen" role="document" >
         <div className="modal-content">
-          <div className="modal-header bg-secondary d-flex justify-content-between align-items-center">
-            <div className='row'>
-              <Button variant="link" onClick={onHide} className="btn-close text-white">
-                      <img
-                          src={BackArrow}
-                          alt='Back arrow'
-                          className='img-fluid' />
-              </Button>
-            <h5 className='modal-title text-black'>{title}</h5>
+          <div className="modal-header pb-0">
+            <div className="modal-title col-12 d-flex flex-row justify-content-between">
+            <h1 className="font-size-5 font-size-6-xl">
+              <button variant="link" onClick={onHide} className="border-0 text-dark">
+              <i className="bi bi-arrow-left"></i>
+              </button>{title}
+            </h1>
+            <button variant="link" onClick={onHide} className="border-0 text-muted h4">
+              <i className="bi bi-x-lg"></i>
+              </button>
             </div>
-            
-            <Button variant="link" onClick={onHide} className="btn-close text-white ">
-                    <img
-                        src={X}
-                        alt='X'
-                        className='img-fluid' />
-            </Button>
           </div>
-          <div className="modal-body text-black">
+          <div className="modal-body text-black p-0">
             {children}
           </div>
         </div>

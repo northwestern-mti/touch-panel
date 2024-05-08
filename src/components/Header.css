@@ -2,3 +2,33 @@
     height: 70px !important;
     width: 70px !important;
 }
+
+.modal-content label {
+    padding: .25em .5em;
+}
+
+/* .form-floating > .form-control, .presetButton {
+    height: calc(3rem + calc(var(--bs-border-width) * 2));
+    min-height: calc(3rem + calc(var(--bs-border-width) * 2));
+    
+} */
+
+.form-floating label {
+    padding: .5em 0 0 .75em;
+}
+
+/* Truncate Toggle Button Text */
+.adminPresetButton {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* XL Breakpoint */
+@media screen and (min-width: 1200px) { 
+    /* .form-floating > .form-control, .presetButton {
+        height: calc(4rem + calc(var(--bs-border-width) * 2));
+        min-height: calc(4rem + calc(var(--bs-border-width) * 2));
+    } */
+}
