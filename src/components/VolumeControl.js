@@ -105,7 +105,8 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
           onMouseLeave={handleDecreaseOnMouseUp}
           onTouchStart={handleDecreaseOnMouseDown}
           onTouchEnd={handleDecreaseOnMouseUp}
-          onTouchCancel={handleDecreaseOnMouseUp}>
+          onTouchCancel={handleDecreaseOnMouseUp}
+          onTouchMove={handleDecreaseOnMouseUp}>
             <img
                 src={RemoveIcon}
                 alt="Minus Icon"
@@ -119,7 +120,8 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
           onMouseLeave={handleIncreaseOnMouseUp}
           onTouchStart={handleIncreaseOnMouseDown}
           onTouchEnd={handleIncreaseOnMouseUp}
-          onTouchCancel={handleIncreaseOnMouseUp}>
+          onTouchCancel={handleIncreaseOnMouseUp}
+          onTouchMove={handleIncreaseOnMouseUp}>
             <img
                 src={AddIcon}
                 alt="Plus Icon"
