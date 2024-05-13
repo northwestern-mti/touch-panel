@@ -19,6 +19,9 @@ const SourceMenus = () => {
     const [showConfCall, setShowConfCall] = useState(true);
     const [hasDisplay2, setHasDisplay2] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const CrSignalName = {
+        '`programStart`' : '29'
+      }
 
     useEffect(() => {
         window.CrComLib.subscribeState('b', '211', value=> setShowDesktop(value));

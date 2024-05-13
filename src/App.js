@@ -23,6 +23,9 @@ if (isActive) {
 function App() {
   const [programStarted, setProgramStarted] = useState(false);
   const navigate = useNavigate();
+  const CrSignalName = {
+    'programStart' : '29'
+  }
 
   useEffect(() => {
     window.addEventListener(WebXPanelEvents.CONNECT_WS, (detail) => {
@@ -49,7 +52,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    window.CrComLib.subscribeState('b', '29', value=> {
+    window.CrComLib.subscribeState('b', CrSignalName.programStart, value=> {
       setProgramStarted(value)
       if (value) {
         navigate('/HomePage')
