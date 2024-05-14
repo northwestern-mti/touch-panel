@@ -254,7 +254,7 @@ function Header(){
                             <div className="d-flex flex-wrap col-4 justify-content-around pt-3 pt-xl-5 mx-auto">
                                 <div className="d-flex flex-row col-12 justify-content-center align-items-center">
                                 <div className="col-9">
-                                    <input className="form-control border-0 rounded-pill bg-gray-300 text-muted text-center font-size-1 font-size-3-xl p-3 mb-3"
+                                    <input readOnly className="form-control border-0 rounded-pill bg-gray-300 text-muted text-center font-size-1 font-size-3-xl p-3 mb-3"
                                     placeholder='' 
                                     value={pwValue}/>
                                 </div>

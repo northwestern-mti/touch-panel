@@ -255,7 +255,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 <div className="d-flex flex-row col-12 justify-content-between">
                                     
                                     <div className="col">
-                                        <input className="form-control border-0 rounded-pill bg-gray-300 text-dark text-center font-size-2 font-size-3-xl p-2 p-xl-3 mb-3"
+                                        <input readOnly className="form-control border-0 rounded-pill bg-gray-300 text-dark text-center font-size-2 font-size-3-xl p-2 p-xl-3 mb-3"
                                             placeholder='' 
                                             value={dialString}/>
                                     </div>
