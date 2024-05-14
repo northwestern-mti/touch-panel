@@ -41,27 +41,59 @@ function BottomBar ({programStarted, setProgramStarted}) {
   const navigate = useNavigate();
   const [fullscreen, setFullscreen] = useState(true);
 
+  const CrSignalName = {
+    'PresentationVolume' : '1',
+    'MicVolume' : '2',
+    'NumberOfCameras' : '41',
+    'NumberOfPresets' : '46',
+    'CameraSelected' : '42',
+    'PresetSelected': '47',
+    'PresentationMuted' : '20',
+    'MicMuted' : '23',
+    'CeilingMicMuted' : '111',
+    'HasCeilingMics' : '112',
+    'HasMics' : '9',
+    'ShowVolumeModal' : '95',
+    'ShowPowerModal' : '6',
+    'ShowMicModal' : '97',
+    'ShowCamModal' : '88',
+    'ConfigPrivacyMode' : '79',
+    'IsPrivacyModeEnabled' : '103',
+    'PresetNameBaseIdx' : 101,
+    'CameraNameBaseIdx' : 91,
+    'PowerOff': '30',
+    'HandleShowPowerModal' : '5',
+    'ClosePowerModal' : '31',
+    'CloseVolumeModal' : '96',
+    'CloseMicModal' : '98',
+    'CloseCamModal' : '89',
+    'PresetLongPress' : '48',
+    'CameraLongPress' : '43',
+    'SaveNewNameAnalog' : '40',
+    'SaveNewNameDigital' : '190'
+  }
+
   useEffect(() => {
-    window.CrComLib.subscribeState('n', '1', value=> setPresentationVolume(value));
-    window.CrComLib.subscribeState('n', '2', value=> setMicVolume(value));
-    window.CrComLib.subscribeState('n', '41', value=> setNumCameras(value));
-    window.CrComLib.subscribeState('n', '46', value=> setNumOfPresets(value));
-    window.CrComLib.subscribeState('n', '42', value=> setCameraSelected(value));
-    window.CrComLib.subscribeState('b', '20', value => setIsPresentationMuted(value));
-    window.CrComLib.subscribeState('b', '23', value => setIsMicMuted(value));
-    window.CrComLib.subscribeState('b', '111', value => setIsCeilingMicMuted(value));
-    window.CrComLib.subscribeState('b', '112', value => setHasCeilingMics(value));
-    window.CrComLib.subscribeState('b', '9', value => setHasMics(value));
-    window.CrComLib.subscribeState('b', '6', value => setShowPowerModal(value));
-    window.CrComLib.subscribeState('b', '95', value => setShowVolumeModal(value));
-    window.CrComLib.subscribeState('b', '97', value => setShowMicModal(value));
-    window.CrComLib.subscribeState('b', '88', value => setShowCamModal(value));
-    window.CrComLib.subscribeState('b', '79', value=> setConfigPrivacyMode(value));
-    window.CrComLib.subscribeState('b', '103', value=> setIsPrivacyModeEnabled(value));
+    window.CrComLib.subscribeState('n', CrSignalName.PresentationVolume, value=> setPresentationVolume(value));
+    window.CrComLib.subscribeState('n', CrSignalName.MicVolume, value=> setMicVolume(value));
+    window.CrComLib.subscribeState('n', CrSignalName.NumberOfCameras, value=> setNumCameras(value));
+    window.CrComLib.subscribeState('n', CrSignalName.NumberOfPresets, value=> setNumOfPresets(value));
+    window.CrComLib.subscribeState('n', CrSignalName.CameraSelected, value=> setCameraSelected(value));
+    window.CrComLib.subscribeState('b', CrSignalName.PresentationMuted, value => setIsPresentationMuted(value));
+    window.CrComLib.subscribeState('b', CrSignalName.MicMuted, value => setIsMicMuted(value));
+    window.CrComLib.subscribeState('b', CrSignalName.CeilingMicMuted, value => setIsCeilingMicMuted(value));
+    window.CrComLib.subscribeState('b', CrSignalName.HasCeilingMics, value => setHasCeilingMics(value));
+    window.CrComLib.subscribeState('b', CrSignalName.HasMics, value => setHasMics(value));
+    window.CrComLib.subscribeState('b', CrSignalName.ShowPowerModal, value => setShowPowerModal(value));
+    window.CrComLib.subscribeState('b', CrSignalName.ShowVolumeModal, value => setShowVolumeModal(value));
+    window.CrComLib.subscribeState('b', CrSignalName.ShowMicModal, value => setShowMicModal(value));
+    window.CrComLib.subscribeState('b', CrSignalName.ShowCamModal, value => setShowCamModal(value));
+    window.CrComLib.subscribeState('b', CrSignalName.ConfigPrivacyMode, value=> setConfigPrivacyMode(value));
+    window.CrComLib.subscribeState('b', CrSignalName.IsPrivacyModeEnabled, value=> setIsPrivacyModeEnabled(value));
 
     setPresetNames(Array(numOfPresets).fill('').map((_, index) =>{
       let value;
-      window.CrComLib.subscribeState('s', `${index + 101}`, incomingValue => {
+      window.CrComLib.subscribeState('s', `${index + CrSignalName.PresetNameBaseIdx}`, incomingValue => {
         value = incomingValue;
         setTempPresetName(value)
       });
@@ -71,7 +103,7 @@ function BottomBar ({programStarted, setProgramStarted}) {
     setCamNames(Array(numCameras).fill('').map((_, index) =>
     {
       let value;
-      window.CrComLib.subscribeState('s', `${index + 91}`, incomingValue => {
+      window.CrComLib.subscribeState('s', `${index + CrSignalName.CameraNameBaseIdx}`, incomingValue => {
         value = incomingValue;
         setTempCamName(value);
       });
@@ -83,93 +115,93 @@ function BottomBar ({programStarted, setProgramStarted}) {
   const programShutOff = () => {
     setProgramStarted(!programStarted)
     // navigate('/WelcomePage');
-    window.CrComLib.publishEvent('b', '30', true);
-    window.CrComLib.publishEvent('b', '30', false);
+    window.CrComLib.publishEvent('b', CrSignalName.PowerOff, true);
+    window.CrComLib.publishEvent('b', CrSignalName.PowerOff, false);
     
     console.log("program shut off")
 }
   const handleShowPowerModal = () => {
     console.log("Showing Power Modal")
     setShowPowerModal(true);
-    window.CrComLib.publishEvent('b', '5', true);
-    window.CrComLib.publishEvent('b', '5', false);
+    window.CrComLib.publishEvent('b', CrSignalName.HandleShowPowerModal, true);
+    window.CrComLib.publishEvent('b', CrSignalName.HandleShowPowerModal, false);
   }
   const handleClosePowerModal = () => {
     setShowPowerModal(false);
-    window.CrComLib.publishEvent('b', '31', true);
-    window.CrComLib.publishEvent('b', '31', false);
+    window.CrComLib.publishEvent('b', CrSignalName.ClosePowerModal, true);
+    window.CrComLib.publishEvent('b', CrSignalName.ClosePowerModal, false);
   }
 
   const handleShowVolumeModal = () => {
     console.log("Showing Volume Modal")
     setShowVolumeModal(true);
-    window.CrComLib.publishEvent('b', '95', true);
-    window.CrComLib.publishEvent('b', '95', false);
+    window.CrComLib.publishEvent('b', CrSignalName.ShowVolumeModal, true);
+    window.CrComLib.publishEvent('b', CrSignalName.ShowVolumeModal, false);
   }
   const handleCloseVolumeModal = () => {
     console.log("Closing Volume Modal")
     setShowVolumeModal(false);
-    window.CrComLib.publishEvent('b', '96', true);
-    window.CrComLib.publishEvent('b', '96', false);
+    window.CrComLib.publishEvent('b', CrSignalName.CloseVolumeModal, true);
+    window.CrComLib.publishEvent('b', CrSignalName.CloseVolumeModal, false);
   }
   const handleShowMicModal = () => {
     console.log("Showing Microphones Volume Modal")
     setShowMicModal(true);
-    window.CrComLib.publishEvent('b', '97', true);
-    window.CrComLib.publishEvent('b', '97', false);
+    window.CrComLib.publishEvent('b', CrSignalName.ShowMicModal, true);
+    window.CrComLib.publishEvent('b', CrSignalName.ShowMicModal, false);
   }
   const handleCloseMicModal = () => {
     setShowMicModal(false);
-    window.CrComLib.publishEvent('b', '98', true);
-    window.CrComLib.publishEvent('b', '98', false);
+    window.CrComLib.publishEvent('b', CrSignalName.CloseMicModal, true);
+    window.CrComLib.publishEvent('b', CrSignalName.CloseMicModal, false);
   }
   const handleShowCamModal = () => {
     console.log("Showing Cam Modal")
     setShowCamModal(true);
-    window.CrComLib.publishEvent('b', '88', true);
-    window.CrComLib.publishEvent('b', '88', false);
+    window.CrComLib.publishEvent('b', CrSignalName.ShowCamModal, true);
+    window.CrComLib.publishEvent('b', CrSignalName.ShowCamModal, false);
     
   }
   const handleCloseCamModal = () => {
     console.log("Closing Cam Modal")
     setShowCamModal(false);
-    window.CrComLib.publishEvent('b', '89', true);
-    window.CrComLib.publishEvent('b', '89', false);
+    window.CrComLib.publishEvent('b', CrSignalName.CloseCamModal, true);
+    window.CrComLib.publishEvent('b', CrSignalName.CloseCamModal, false);
   }
   const togglePresentationMute = () => {
     setIsPresentationMuted((prevIsPresentationMuted) => !(prevIsPresentationMuted));
-    window.CrComLib.publishEvent('b', '20', true);
-    window.CrComLib.publishEvent('b', '20', false);
+    window.CrComLib.publishEvent('b', CrSignalName.PresentationMuted, true);
+    window.CrComLib.publishEvent('b', CrSignalName.PresentationMuted, false);
     
 }
 
 const handleCameraClicked = (cameraNum) => {
   setCameraSelected(cameraNum);
   setShowControls(true);
-  window.CrComLib.publishEvent('n', '42', cameraNum);
+  window.CrComLib.publishEvent('n', CrSignalName.CameraSelected, cameraNum);
   console.log(`${camNames[cameraNum - 1]}clicked` )
 }
 const handlePresetClicked = (presetNum) => {
   setSelectedPreset(presetNum);
-  window.CrComLib.publishEvent('n', '47', presetNum);
+  window.CrComLib.publishEvent('n', CrSignalName.PresetSelected, presetNum);
   console.log(`Preset ${presetNum} pressed`)
 }
 const toggleMicMute = () => {
   setIsMicMuted((prevIsMicMuted) => !(prevIsMicMuted));
-  window.CrComLib.publishEvent('b', '23', true);
-  window.CrComLib.publishEvent('b', '23', false);
+  window.CrComLib.publishEvent('b', CrSignalName.MicMuted, true);
+  window.CrComLib.publishEvent('b', CrSignalName.MicMuted, false);
   
 }
 const toggleCeilingMicMute = () => {
   setIsCeilingMicMuted((prevIsCeilingMicMuted) => !(prevIsCeilingMicMuted));
-  window.CrComLib.publishEvent('b', '111', true);
-  window.CrComLib.publishEvent('b', '111', false);
+  window.CrComLib.publishEvent('b', CrSignalName.CeilingMicMuted, true);
+  window.CrComLib.publishEvent('b', CrSignalName.CeilingMicMuted, false);
   
 }
 const togglePrivacyMode = () => {
   setIsPrivacyModeEnabled(!isPrivacyModeEnabled);
-  window.CrComLib.publishEvent('b', '103', true);
-  window.CrComLib.publishEvent('b', '103', false);
+  window.CrComLib.publishEvent('b', CrSignalName.IsPrivacyModeEnabled, true);
+  window.CrComLib.publishEvent('b', CrSignalName.IsPrivacyModeEnabled, false);
 }
 const sendSignal= (joinNumber, action) => {
   window.CrComLib.publishEvent('b', `${joinNumber}`, true);
@@ -179,7 +211,7 @@ const sendSignal= (joinNumber, action) => {
 const handlePresetLongPress = (presetNumber) => {
   setSelectedPreset(presetNumber);
   setpresetRenameMode(true);
-  window.CrComLib.publishEvent('n', '48', presetNumber);
+  window.CrComLib.publishEvent('n', CrSignalName.PresetLongPress, presetNumber);
   console.log(`Long press on preset ${presetNumber}`);
 };
 
@@ -190,9 +222,9 @@ const handleSaveNewPresetName = () => {
   updatedPresetNames[selectedPreset - 1] = newPresetName;
   console.log(`New name for preset ${selectedPreset}: ${newPresetName}`);
   setPresetNames(updatedPresetNames);
-  window.CrComLib.publishEvent('s', '40', newPresetName);
-  window.CrComLib.publishEvent('b', '190', true);
-  window.CrComLib.publishEvent('b', '190', false);
+  window.CrComLib.publishEvent('s', CrSignalName.SaveNewNameAnalog, newPresetName);
+  window.CrComLib.publishEvent('b', CrSignalName.SaveNewNameDigital, true);
+  window.CrComLib.publishEvent('b', CrSignalName.SaveNewNameDigital, false);
   setpresetRenameMode(false);
   setNewPresetName('');
 };
@@ -210,7 +242,7 @@ const handleNewPresetNameChange = (event) => {
 const handleCamLongPress = (camNumber) => {
   setSelectedCamera(camNumber);
   setCamRenameMode(true);
-  window.CrComLib.publishEvent('n', '43', camNumber);
+  window.CrComLib.publishEvent('n', CrSignalName.CameraLongPress, camNumber);
   console.log(`Long press on Camera ${camNumber}`);
 };
 
@@ -221,9 +253,9 @@ const handleSaveNewCamName = () => {
   updatedCamNames[selectedCamera - 1] = newCamName;
   console.log(`New name for camera${selectedCamera}: ${newCamName}`);
   setCamNames(updatedCamNames);
-  window.CrComLib.publishEvent('s', '40', newCamName);
-  window.CrComLib.publishEvent('b', '190', true);
-  window.CrComLib.publishEvent('b', '190', false);
+  window.CrComLib.publishEvent('s', CrSignalName.SaveNewNameAnalog, newCamName);
+  window.CrComLib.publishEvent('b', CrSignalName.SaveNewNameDigital, true);
+  window.CrComLib.publishEvent('b', CrSignalName.SaveNewNameDigital, false);
   setCamRenameMode(false);
   setNewCamName('');
 };
