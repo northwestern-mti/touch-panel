@@ -16,7 +16,7 @@ const SourceMenus = () => {
     const [showWireless, setShowWireless] = useState(false);
     const [showBluray, setShowBluray] = useState(false);
     const [showDocCam, setShowDocCam] = useState(false);
-    const [showConfCall, setShowConfCall] = useState(true);
+    const [showConfCall, setShowConfCall] = useState(false);
     const [hasDisplay2, setHasDisplay2] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -26,7 +26,7 @@ const SourceMenus = () => {
         window.CrComLib.subscribeState('b', '213', value=> setShowWireless(value));
         window.CrComLib.subscribeState('b', '214', value=> setShowBluray(value));
         window.CrComLib.subscribeState('b', '215', value=> setShowDocCam(value));
-        window.CrComLib.subscribeState('b', '217', value=> setShowConfCall(value));
+        window.CrComLib.subscribeState('b', '216', value=> setShowConfCall(value));
         window.CrComLib.subscribeState('n', '51', value => setSource1(value));
         window.CrComLib.subscribeState('n', '52', value => setSource2(value));
         window.CrComLib.subscribeState('b', '36', value => setHasDisplay2(value))
