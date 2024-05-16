@@ -84,7 +84,8 @@ function Header(){
         if (configIpAdd === '') {
             setConfigIpAdd(ipAdd);
             }
-    }, [pwValue, textFieldsNum, toggleButtonsNum, textFieldsValues, toggleButtonsStates]);
+        
+    }, [textFieldsValues, toggleButtonsStates]);
     
 
     

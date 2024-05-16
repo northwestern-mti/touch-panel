@@ -57,8 +57,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         window.CrComLib.subscribeState('b', '103', value=> setIsPrivacyModeEnabled(value));
 
         
-        
-    }, [dialString]);
+        console.log('dialstring is ', dialString)
+    }, []);
     const toggleMute = (joinNumber) => {
         setIsMuted((prevIsMuted) => !(prevIsMuted));
         window.CrComLib.publishEvent('b', `${joinNumber}`, true);
@@ -191,7 +191,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const handleDialKeyPres = (joinNumber) => {
         window.CrComLib.publishEvent('b', `${joinNumber}`, true);
         window.CrComLib.publishEvent('b', `${joinNumber}`, false);
-        console.log('pw key pressed', joinNumber)
+        console.log('Dialpad key pressed', joinNumber)
     };
     // Privacy Mode Popover
     const popover = (
