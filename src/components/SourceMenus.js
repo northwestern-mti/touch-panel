@@ -11,25 +11,25 @@ const SourceMenus = () => {
     const [source1, setSource1] = useState(0);
     const [inputSelected2, setInputSelected2] = useState('');
     const [source2, setSource2] = useState(0);
-    const [showDesktop, setShowDesktop] = useState(false);
-    const [showLaptop, setShowLaptop] = useState(false);
-    const [showWireless, setShowWireless] = useState(false);
-    const [showBluray, setShowBluray] = useState(false);
-    const [showDocCam, setShowDocCam] = useState(false);
+    const [showDesktop, setShowDesktop] = useState(true);
+    const [showLaptop, setShowLaptop] = useState(true);
+    const [showWireless, setShowWireless] = useState(true);
+    const [showBluray, setShowBluray] = useState(true);
+    const [showDocCam, setShowDocCam] = useState(true);
     const [showConfCall, setShowConfCall] = useState(true);
-    const [hasDisplay2, setHasDisplay2] = useState(false);
+    const [hasDisplay2, setHasDisplay2] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        window.CrComLib.subscribeState('b', '211', value=> setShowDesktop(value));
-        window.CrComLib.subscribeState('b', '212', value=> setShowLaptop(value));
-        window.CrComLib.subscribeState('b', '213', value=> setShowWireless(value));
-        window.CrComLib.subscribeState('b', '214', value=> setShowBluray(value));
-        window.CrComLib.subscribeState('b', '215', value=> setShowDocCam(value));
-        window.CrComLib.subscribeState('b', '217', value=> setShowConfCall(value));
-        window.CrComLib.subscribeState('n', '51', value => setSource1(value));
+        // window.CrComLib.subscribeState('b', '211', value=> setShowDesktop(value));
+        // window.CrComLib.subscribeState('b', '212', value=> setShowLaptop(value));
+        // window.CrComLib.subscribeState('b', '213', value=> setShowWireless(value));
+        // window.CrComLib.subscribeState('b', '214', value=> setShowBluray(value));
+        // window.CrComLib.subscribeState('b', '215', value=> setShowDocCam(value));
+        // window.CrComLib.subscribeState('b', '217', value=> setShowConfCall(value));
+        // window.CrComLib.subscribeState('n', '51', value => setSource1(value));
         window.CrComLib.subscribeState('n', '52', value => setSource2(value));
-        window.CrComLib.subscribeState('b', '36', value => setHasDisplay2(value))
+        // window.CrComLib.subscribeState('b', '36', value => setHasDisplay2(value))
         
     }, []);
     useEffect(() => {

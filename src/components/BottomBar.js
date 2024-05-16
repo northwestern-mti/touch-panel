@@ -331,7 +331,7 @@ const popover = (
       {/* /Row */}
 
         {/* System Off Modal */}
-        <Modal show={showPowerModal} onHide={handleClosePowerModal} fullscreen={fullscreen}>
+        <Modal show={showPowerModal} onHide={handleClosePowerModal} fullscreen={fullscreen} animation={false}>
           <Modal.Header className="pb-0">
             <Modal.Title className="col-12 d-flex flex-row justify-content-between">
               <h1 className="font-size-5 font-size-6-xl">
@@ -357,7 +357,7 @@ const popover = (
         </Modal>
 
         {/* Presentation Volume Modal */}
-      <Modal show={showVolumeModal} onHide={handleCloseVolumeModal} fullscreen={fullscreen}>
+      <Modal show={showVolumeModal} onHide={handleCloseVolumeModal} fullscreen={fullscreen} animation={false}>
         <Modal.Header className="pb-0">
           <Modal.Title className="col-12 d-flex flex-row justify-content-between">
             <h1 className="font-size-5 font-size-6-xl">
@@ -400,7 +400,7 @@ const popover = (
       </Modal>
 
       {/* Microphone Modal */}
-      <Modal show={showMicModal} onHide={handleCloseMicModal} fullscreen={fullscreen}>
+      <Modal show={showMicModal} onHide={handleCloseMicModal} fullscreen={fullscreen} animation={false}>
         <Modal.Header className="pb-0">
           <Modal.Title className="col-12 d-flex flex-row justify-content-between">
             <h1 className="font-size-5 font-size-6-xl">
