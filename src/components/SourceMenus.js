@@ -19,20 +19,66 @@ const SourceMenus = () => {
     const [showConfCall, setShowConfCall] = useState(true);
     const [hasDisplay2, setHasDisplay2] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const CrSignalName = {
-        '`programStart`' : '29'
+    const CrSignalNames = {
+        'ShowDesktop' : '211',
+        'ShowLaptop' : '212',
+        'ShowWireless': '213',
+        'ShowBluray': '214',
+        'ShowDocCam': '215',
+        'ShowConfCall': '217',
+        'Source_Display1': '51',
+        'Source_Display2': '52',
+        'HasDisplay2': '36',
+        'Source_Desktop_Display1': '200',
+        'Source_Laptop_Display1': '201',
+        'Source_Wireless_Display1': '202',
+        'Source_ConfCall_Display1': '205',
+        'Source_DocCam_Display1': '204',
+        'Source_Bluray_Display1': '203',
+        'Source_Desktop_Display2': '430',
+        'Source_Laptop_Display2': '431',
+        'Source_Wireless_Display2': '432',
+        'Source_ConfCall_Display2': '435',
+        'Source_DocCam_Display2': '2434',
+        'Source_Bluray_Display2': '433',
+        'Mute_Display1': '253',
+        'ShowAnnotation_Display1': '42',
+        'ShowFullScreen_Display1': '44',
+        'HandleAnnotation_Display1': '41',
+        'HandleFullScreen_Display1': '43',
+        'PowerOff_Display1': '251',
+        'PowerOn_Display1': '252',
+        'Screen_Up_Display1': '256',
+        'Screen_Down_Display1': '255',
+        'ShowDisplayModal_Display1': '8',
+        'CloseDisplayModal_Display1': '39',
+        'IsElectricScreen_Display1': '257',
+        'Is_Projector_Display1': '32',
+        'Mute_Display2': '260',
+        'ShowAnnotation_Display2': '46',
+        'ShowFullScreen_Display2': '48',
+        'HandleAnnotation_Display2': '45',
+        'HandleFullScreen_Display2': '47',
+        'PowerOff_Display2': '258',
+        'PowerOn_Display2': '259',
+        'Screen_Up_Display2': '263',
+        'Screen_Down_Display2': '262',
+        'ShowDisplayModal_Display2': '37',
+        'CloseDisplayModal_Display2': '38',
+        'IsElectricScreen_Display2': '264',
+        'Is_Projector_Display1': '33'
       }
 
     useEffect(() => {
-        window.CrComLib.subscribeState('b', '211', value=> setShowDesktop(value));
-        window.CrComLib.subscribeState('b', '212', value=> setShowLaptop(value));
-        window.CrComLib.subscribeState('b', '213', value=> setShowWireless(value));
-        window.CrComLib.subscribeState('b', '214', value=> setShowBluray(value));
-        window.CrComLib.subscribeState('b', '215', value=> setShowDocCam(value));
-        window.CrComLib.subscribeState('b', '217', value=> setShowConfCall(value));
-        window.CrComLib.subscribeState('n', '51', value => setSource1(value));
-        window.CrComLib.subscribeState('n', '52', value => setSource2(value));
-        window.CrComLib.subscribeState('b', '36', value => setHasDisplay2(value))
+        window.CrComLib.subscribeState('b', CrSignalNames.ShowDesktop, value=> setShowDesktop(value));
+        window.CrComLib.subscribeState('b', CrSignalNames.ShowLaptop, value=> setShowLaptop(value));
+        window.CrComLib.subscribeState('b', CrSignalNames.ShowWireless, value=> setShowWireless(value));
+        window.CrComLib.subscribeState('b', CrSignalNames.ShowBluray, value=> setShowBluray(value));
+        window.CrComLib.subscribeState('b', CrSignalNames.ShowDocCam, value=> setShowDocCam(value));
+        window.CrComLib.subscribeState('b', CrSignalNames.ShowConfCall, value=> setShowConfCall(value));
+        window.CrComLib.subscribeState('n', CrSignalNames.Source_Display1, value => setSource1(value));
+        window.CrComLib.subscribeState('n', CrSignalNames.Source_Display2, value => setSource2(value));
+        window.CrComLib.subscribeState('b', CrSignalNames.HasDisplay2, value => setHasDisplay2(value))
         
     }, []);
     useEffect(() => {
@@ -105,33 +151,33 @@ const SourceMenus = () => {
             <div className="col-2 d-flex flex-column text-start p-0 sourceSelectMenu text-dark">
                 {showDesktop &&
                     <button type="button"
-                        className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source1 === 1) ? 'sourceSelectActiveLeft' : 'sourceSelectButtonLeft'}`} onClick={() => handleSourceSelected1('200', 1)}>
+                        className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source1 === 1) ? 'sourceSelectActiveLeft' : 'sourceSelectButtonLeft'}`} onClick={() => handleSourceSelected1(CrSignalNames.Source_Desktop_Display1, 1)}>
                         <i className="bi bi-pc-display me-1"></i> Resident Computer
                     </button>}
                 {showLaptop &&
                     <button type="button"
-                        className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source1 === 2) ? 'sourceSelectActiveLeft' : 'sourceSelectButtonLeft'}`} onClick={() => handleSourceSelected1('201', 2)}>
+                        className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source1 === 2) ? 'sourceSelectActiveLeft' : 'sourceSelectButtonLeft'}`} onClick={() => handleSourceSelected1(CrSignalNames.Source_Laptop_Display1, 2)}>
                         <i className="bi bi-laptop me-1"></i> Laptop and Other Sources
                     </button>}
                 {showWireless && 
                     <button type="button"
-                        className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source1 === 3) ? 'sourceSelectActiveLeft' : 'sourceSelectButtonLeft'}`} onClick={() => handleSourceSelected1('202', 3)}>
+                        className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source1 === 3) ? 'sourceSelectActiveLeft' : 'sourceSelectButtonLeft'}`} onClick={() => handleSourceSelected1(CrSignalNames.Source_Wireless_Display1, 3)}>
                         <img className="containter-fluid me-1" src={WirelessIcon} alt='Wireless icon'
                         style={{width:'var(--font-size-3'}}></img> Wireless with Solstice
                     </button>}
                 {showConfCall && 
                     <button type="button"
-                        className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source1 === 6) ? 'sourceSelectActiveLeft' : 'sourceSelectButtonLeft'}`} onClick={() => handleSourceSelected1('205', 6)}>
+                        className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source1 === 6) ? 'sourceSelectActiveLeft' : 'sourceSelectButtonLeft'}`} onClick={() => handleSourceSelected1(CrSignalNames.Source_ConfCall_Display1, 6)}>
                         <i className="bi bi-telephone me-1"></i> Conference Call
                     </button>}
                 {showDocCam &&
                     <button type="button"
-                        className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source1 === 5) ? 'sourceSelectActiveLeft' : 'sourceSelectButtonLeft'}`} onClick={() => handleSourceSelected1('204', 5)}>
+                        className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source1 === 5) ? 'sourceSelectActiveLeft' : 'sourceSelectButtonLeft'}`} onClick={() => handleSourceSelected1(CrSignalNames.Source_DocCam_Display1, 5)}>
                         <i className="bi bi-journal-text me-1"></i> Document Camera
                     </button>}
                 {showBluray && 
                     <button type="button"
-                        className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source1 === 4) ? 'sourceSelectActiveLeft' : 'sourceSelectButtonLeft'}`} onClick={() => handleSourceSelected1('203', 4)}>
+                        className={`btn col border-0 border-bottom border-dark font-size-2 font-size-3-xl p-0 py-1 py-xl-2 ${(source1 === 4) ? 'sourceSelectActiveLeft' : 'sourceSelectButtonLeft'}`} onClick={() => handleSourceSelected1(CrSignalNames.Source_Bluray_Display1, 4)}>
                         <i className="bi bi-disc me-1"></i> Blu-Ray
                     </button>}
             </div>
