@@ -429,7 +429,7 @@ const popover = (
                       className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
                     ></i>
                   </button>
-                  <div className='font-size-3 font-size-4-xl'>{isMicMuted ? 'Unmute All Microphones' : 'Mute All Microphones'}</div>
+                  <div className='font-size-3 font-size-4-xl'>{isMicMuted ? 'Unmute Wireless Mics' : 'Mute Wireless Mics'}</div>
                 </div>
               )}
               {hasCeilingMics &&
