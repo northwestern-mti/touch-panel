@@ -34,7 +34,59 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [isProjector, setIsProjector] =  useState(false);
     const [dialString, setDialString] = useState('');
     const [confCallVolume, setConfCallVolume] = useState(0);
-    const [showIncomingCall, setShowIncomingCall] = useState(false)
+    const [showIncomingCall, setShowIncomingCall] = useState(false);
+
+    const CrSignalNames = {
+        'IpAddress' : '2',
+        'ShowConfCallModal': '117',
+        'CloseConfCallModal': '118',
+        'ConfCallDialString': '3',
+        'ConfCallMute': '100',
+        'ShowConfCallIncomingCall': '109',
+        'ConfCall_EndCall': '105',
+        'ConfCall_CallActive': '106',
+        'Config_PrivacyMode': '79',
+        'EnablePrivacyMode': '103',
+        'ShowBlurayModal': '55',
+        'CloseBlurayModal': '56',
+        'DocCam_LampOn': '85',
+        'DocCam_LampOff': '86',
+        'DocCam_AutoFocus': '80',
+        'ConfCall_DialPad_1': '281',
+        'ConfCall_DialPad_2': '282',
+        'ConfCall_DialPad_3': '283',
+        'ConfCall_DialPad_4': '284',
+        'ConfCall_DialPad_5': '285',
+        'ConfCall_DialPad_6': '286',
+        'ConfCall_DialPad_7': '287',
+        'ConfCall_DialPad_8': '288',
+        'ConfCall_DialPad_9': '289',
+        'ConfCall_DialPad_0': '290',
+        'ConfCall_DialPad_*': '291',
+        'ConfCall_DialPad_#': '292',
+        'ConfCall_DialString_Clear': '104',
+        'ConfCall_DialString_Backspace': '107',
+        'ConfCall_CallIgnored': '108',
+        'DocCam_ZoomOut': '83',
+        'DocCam_ZoomIn': '84',
+        'Bluray_Up': '271',
+        'Bluray_Right':'272',
+        'Bluray_Down': '273',
+        'Bluray_Left': '274',
+        'Bluray_Ok': '275',
+        'Bluray_Previous': '57',
+        'Bluray_Next': '58',
+        'Bluray_Eject': '59',
+        'Bluray_Home': '60',
+        'Bluray_Info': '61',
+        'Bluray_Menu': '62',
+        'Bluray_Return': '63',
+        'Bluray_Play': '64',
+        'Bluray_Pause': '65',
+        'Bluray_Stop': '66',
+        'Bluray_Rewind': '67',
+        'Bluray_Fast_Forward': '68'
+    }
     useEffect(() => {
         window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));
         window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
@@ -323,7 +375,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     onClick={() => {
                                         window.CrComLib.publishEvent('b', '104', true);
                                         window.CrComLib.publishEvent('b', '104', false);
-                                        console.log('backspace pressed')
+                                        console.log('Clear pressed')
                                 }}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">
                                         <i className="bi bi-x"></i>
