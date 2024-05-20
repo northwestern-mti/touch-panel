@@ -533,7 +533,9 @@ const popover = (
               <div>
               {/* Camera Controls Row */}
               <div className="row align-items-center">
-                <h2 className="text-center mb-4 font-size-4 font-size-5-xl">{camNames[cameraSelected - 1]}</h2>
+                <h2 className="text-center mb-4 font-size-4 font-size-5-xl">
+                  <span className="d-block mx-auto cameraNameHeading">{camNames[cameraSelected - 1]}</span>
+                  </h2>
                 <div className="col-3">
                 <Opad upJoin='241' downJoin='242' leftJoin='243' rightJoin='244'/>
                 </div>
@@ -556,9 +558,9 @@ const popover = (
                           const presetNumber = rowIndex * 2 + colIndex + 1;
                           return (
                             presetNumber <= numOfPresets && (
-                              <div key={presetNumber} className="col-6 pt-2 pt-xl-4 px-4">
+                              <div key={presetNumber} className="col-6 text-center pt-2 pt-xl-4 px-4">
                                   <button
-                                  className={`btn col-12 rounded-pill border-0 py-2 px-3 me-1 mb-2 mb-xl-3 presetButton ${(selectedPreset === presetNumber) ? 'btn-info' : 'btn-gray'}`}
+                                  className={`btn col-12 rounded-pill border-0 py-3 px-3 me-1 mb-2 mb-xl-3 presetButton ${(selectedPreset === presetNumber) ? 'btn-info' : 'btn-gray'}`}
                                   key={presetNumber}
                                   onClick={() => handlePresetClicked(presetNumber)}
                                   onMouseDown={() => {
