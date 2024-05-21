@@ -7,6 +7,8 @@
     "@crestron/ch5-utilities": "^0.1.52",
     "@crestron/ch5-utilities-cli": "^2.0.0",
     "@crestron/ch5-webxpanel": "^2.6.1",
+    "@mdi/js": "^7.4.47",
+    "@mdi/react": "^1.6.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
