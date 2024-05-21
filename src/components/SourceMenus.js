@@ -184,7 +184,7 @@ const SourceMenus = () => {
             
             {/* Display Area Left */}
             <div className={`col d-flex flex-column  border-dark p-0 m-0 align-items-start text-dark ${hasDisplay2 ? 'border-end' : ''}`}>
-                <DisplayArea sourceSelected={source1} displayJoin={CrSignalNames.Mute_Display1} side='left'
+                <DisplayArea sourceSelected={source1} displayJoin={CrSignalNames.Mute_Display1} side={hasDisplay2 ? 'left' : ''}
                     showAnnotationJoin={CrSignalNames.ShowAnnotation_Display1} showFullScreenJoin={CrSignalNames.ShowFullScreen_Display1} annotationJoin={CrSignalNames.HandleAnnotation_Display1} fullscreenJoin={CrSignalNames.HandleFullScreen_Display1}
                     powerOff={CrSignalNames.PowerOff_Display1} powerOn={CrSignalNames.PowerOn_Display1} upJoin={CrSignalNames.Screen_Up_Display1} downJoin={CrSignalNames.Screen_Down_Display1} showDisplayModalJoin={CrSignalNames.ShowDisplayModal_Display1} 
                     closeDisplayModalJoin={CrSignalNames.CloseDisplayModal_Display1} electricScreenJoin={CrSignalNames.IsElectricScreen_Display1} displayIsProjectorJoin={CrSignalNames.Is_Projector_Display1}/>
