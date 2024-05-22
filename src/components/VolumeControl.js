@@ -72,6 +72,22 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
     }
     
   }
+const handleIncreaseOnTouchMove = (e) => {
+  const incBtn = document.getElementById('increaseButton');
+  const touch = e.touches[0];
+  const targetEl = document.elementFromPoint(touch.clientX, touch.clientY);
+  if (!incBtn.contains(targetEl)) {
+    handleIncreaseOnMouseUp();
+  }
+}
+const handleDecreaseOnTouchMove = (e) => {
+  const decBtn = document.getElementById('decreaseButton');
+  const touch = e.touches[0];
+  const targetEl = document.elementFromPoint(touch.clientX, touch.clientY);
+  if (!decBtn.contains(targetEl)) {
+    handleDecreaseOnMouseUp();
+  }
+}
   
   useEffect(() => {
     // Map decibels to the volume range (0 to 20)
@@ -98,7 +114,7 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
 
   return (
     <div className="d-flex flex-row justify-content-center align-items-center">
-        <button className="bg-info border-0 rounded-circle me-2 volumeButton" 
+        <button className="bg-info border-0 rounded-circle me-2 volumeButton" id="decreaseButton"
           onClick={handleDecreaseOnClick}
           onMouseDown={handleDecreaseOnMouseDown}
           onMouseUp={handleDecreaseOnMouseUp}
@@ -106,14 +122,14 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
           onTouchStart={handleDecreaseOnMouseDown}
           onTouchEnd={handleDecreaseOnMouseUp}
           onTouchCancel={handleDecreaseOnMouseUp}
-          onTouchMove={handleDecreaseOnMouseUp}>
+          onTouchMove={handleDecreaseOnTouchMove}>
             <img
                 src={RemoveIcon}
                 alt="Minus Icon"
                 className="img-fluid"/>
         </button>
         <div className="squaresContainer me-2">{renderSquares()}</div>
-        <button className="bg-info border-0 rounded-circle volumeButton" 
+        <button className="bg-info border-0 rounded-circle volumeButton" id="increaseButton"
           onClick={handleIncreaseOnClick}
           onMouseDown={handleIncreaseOnMouseDown}
           onMouseUp={handleIncreaseOnMouseUp}
@@ -121,7 +137,7 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
           onTouchStart={handleIncreaseOnMouseDown}
           onTouchEnd={handleIncreaseOnMouseUp}
           onTouchCancel={handleIncreaseOnMouseUp}
-          onTouchMove={handleIncreaseOnMouseUp}>
+          onTouchMove={handleIncreaseOnTouchMove}>
             <img
                 src={AddIcon}
                 alt="Plus Icon"
