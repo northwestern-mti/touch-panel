@@ -9,10 +9,14 @@ function WelcomePage({programStarted, setProgramStarted}) {
     'startJoin' : '1'
   }
   
+  const CrSignalType = {
+    'Boolean' : 'b',
+  }
+  
   const handleClick = () => {
     setProgramStarted(!programStarted);
-    window.CrComLib.publishEvent('b',CrSignalName.startJoin, true);
-    window.CrComLib.publishEvent('b',CrSignalName.startJoin, false);
+    window.CrComLib.publishEvent(CrSignalType.Boolean,CrSignalName.startJoin, true);
+    window.CrComLib.publishEvent(CrSignalType.Boolean,CrSignalName.startJoin, false);
     console.log("Signal sent to processor");
     // navigate('/HomePage')
 };

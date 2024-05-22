@@ -3,9 +3,12 @@ import React from 'react';
 import './Opad.css'; // Import custom CSS for styling
 
 const OPad = ({centerButton, upJoin, downJoin, leftJoin, rightJoin, centerJoin}) => {
+  const CrSignalType = {
+    'Boolean' : 'b',
+  }
   const sendSignal = (joinNumber, action) => {
-    window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-    window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+    window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, true);
+    window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
     console.log(`Sending signal for ${action} direction`);
   };
 

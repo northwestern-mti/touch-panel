@@ -68,17 +68,21 @@ const SourceMenus = () => {
         'IsElectricScreen_Display2': '264',
         'Is_Projector_Display2': '33'
       }
+    const CrSignalType = {
+    'Boolean' : 'b',
+    'Number' : 'n'
+    }
 
     useEffect(() => {
-        window.CrComLib.subscribeState('b', CrSignalNames.ShowDesktop, value=> setShowDesktop(value));
-        window.CrComLib.subscribeState('b', CrSignalNames.ShowLaptop, value=> setShowLaptop(value));
-        window.CrComLib.subscribeState('b', CrSignalNames.ShowWireless, value=> setShowWireless(value));
-        window.CrComLib.subscribeState('b', CrSignalNames.ShowBluray, value=> setShowBluray(value));
-        window.CrComLib.subscribeState('b', CrSignalNames.ShowDocCam, value=> setShowDocCam(value));
-        window.CrComLib.subscribeState('b', CrSignalNames.ShowConfCall, value=> setShowConfCall(value));
-        window.CrComLib.subscribeState('n', CrSignalNames.Source_Display1, value => setSource1(value));
-        window.CrComLib.subscribeState('n', CrSignalNames.Source_Display2, value => setSource2(value));
-        window.CrComLib.subscribeState('b', CrSignalNames.HasDisplay2, value => setHasDisplay2(value))
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ShowDesktop, value=> setShowDesktop(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ShowLaptop, value=> setShowLaptop(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ShowWireless, value=> setShowWireless(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ShowBluray, value=> setShowBluray(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ShowDocCam, value=> setShowDocCam(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ShowConfCall, value=> setShowConfCall(value));
+        window.CrComLib.subscribeState(CrSignalType.Number, CrSignalNames.Source_Display1, value => setSource1(value));
+        window.CrComLib.subscribeState(CrSignalType.Number, CrSignalNames.Source_Display2, value => setSource2(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.HasDisplay2, value => setHasDisplay2(value))
         
     }, []);
     useEffect(() => {
@@ -97,15 +101,15 @@ const SourceMenus = () => {
             if (inputSelected1 === ''){
                 setInputSelected1(`${joinNumber}`);
                 setSource1(sourceId);
-                window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-                window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+                window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, true);
+                window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
                 console.log(`signal sent to join number: ${joinNumber}`)
             } else {
                 console.log(`transfering signal from: ${inputSelected1} to ${joinNumber}` )
                 setInputSelected1(`${joinNumber}`);
                 setSource1(sourceId);
-                window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-                window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+                window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, true);
+                window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
                 console.log(`signal sent to join number: ${joinNumber}`)   
             }
         } 
@@ -116,23 +120,23 @@ const SourceMenus = () => {
             if (inputSelected2 === ''){
                 setInputSelected2(`${joinNumber}`);
                 setSource2(sourceId);
-                window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-                window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+                window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, true);
+                window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
                 console.log(`signal sent to join number: ${joinNumber}`)
             } else {
                 console.log(`transfering signal from: ${inputSelected2} to ${joinNumber}` )
                 setInputSelected2(`${joinNumber}`);
                 setSource2(sourceId);
-                window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-                window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+                window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, true);
+                window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
                 console.log(`signal sent to join number: ${joinNumber}`)   
             }
         } 
     }
 
     // const toggleDisplay = (display) => {
-    //     window.CrComLib.publishEvent('b', `${display}`, true);
-    //     window.CrComLib.publishEvent('b', `${display}`, false);
+    //     window.CrComLib.publishEvent(CrSignalType.Boolean, `${display}`, true);
+    //     window.CrComLib.publishEvent(CrSignalType.Boolean, `${display}`, false);
     //     console.log('source sent to projector')
     // }    
 

@@ -26,6 +26,9 @@ function App() {
   const CrSignalName = {
     'programStart' : '29'
   }
+  const CrSignalType = {
+    'Boolean' : 'b',
+  }
 
   useEffect(() => {
     window.addEventListener(WebXPanelEvents.CONNECT_WS, (detail) => {
@@ -52,7 +55,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    window.CrComLib.subscribeState('b', CrSignalName.programStart, value=> {
+    window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalName.programStart, value=> {
       setProgramStarted(value)
       if (value) {
         navigate('/HomePage')

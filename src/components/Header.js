@@ -67,17 +67,22 @@ function Header(){
         'PwBackSpace' : '129',
         'TextFieldsValuesIncDecBaseIdx' : 361
     }
+    const CrSignalType = {
+        'Boolean' : 'b',
+        'Number' : 'n',
+        'String': 's'
+    }
     useEffect(() =>{
-        window.CrComLib.subscribeState('s', CrSignalNames.RoomName, value=> setClassRoom(value));
-        window.CrComLib.subscribeState('s', CrSignalNames.IpAdd, value=> setIpAdd(value));
-        window.CrComLib.subscribeState('b', CrSignalNames.ShowPasswordModal, value=> setShowPasswordModal(value));
-        window.CrComLib.subscribeState('b', CrSignalNames.ShowAdminModal, value=> setShowAdminModal(value));
-        window.CrComLib.subscribeState('s', CrSignalNames.PwInputValue, value => setPwValue(value));
-        window.CrComLib.subscribeState('n', CrSignalNames.NumberOfTextFields, value => setTextFieldsNum(value));
-        window.CrComLib.subscribeState('n', CrSignalNames.NumberOfToggleButtons, value => setToggleButtonsNum(value));
+        window.CrComLib.subscribeState(CrSignalType.String, CrSignalNames.RoomName, value=> setClassRoom(value));
+        window.CrComLib.subscribeState(CrSignalType.String, CrSignalNames.IpAdd, value=> setIpAdd(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ShowPasswordModal, value=> setShowPasswordModal(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ShowAdminModal, value=> setShowAdminModal(value));
+        window.CrComLib.subscribeState(CrSignalType.String, CrSignalNames.PwInputValue, value => setPwValue(value));
+        window.CrComLib.subscribeState(CrSignalType.Number, CrSignalNames.NumberOfTextFields, value => setTextFieldsNum(value));
+        window.CrComLib.subscribeState(CrSignalType.Number, CrSignalNames.NumberOfToggleButtons, value => setToggleButtonsNum(value));
         setTextFields(Array(textFieldsNum).fill('').map((_, index) =>{
             let value;
-            window.CrComLib.subscribeState('s', `${index + CrSignalNames.TextFieldsBaseIdx}`, incomingValue => {
+            window.CrComLib.subscribeState(CrSignalType.String, `${index + CrSignalNames.TextFieldsBaseIdx}`, incomingValue => {
               value = incomingValue;
               setTempField(value)
             //   console.log('temp field', tempField)
@@ -88,7 +93,7 @@ function Header(){
         setTextFieldsValues(Array(textFieldsNum).fill('').map((_, index) =>
             {
             let value;
-            window.CrComLib.subscribeState('n', `${index + CrSignalNames.TextFieldsValuesBaseIdx}`, incomingValue => {
+            window.CrComLib.subscribeState(CrSignalType.Number, `${index + CrSignalNames.TextFieldsValuesBaseIdx}`, incomingValue => {
                 value = incomingValue;
                 setTempValue(value)
                 
@@ -97,7 +102,7 @@ function Header(){
             }));
         setToggleButtons(Array(toggleButtonsNum).fill('').map((_, index) =>{
             let value;
-            window.CrComLib.subscribeState('s', `${index + CrSignalNames.ToggleButtonsBaseIdx}`, incomingValue => {
+            window.CrComLib.subscribeState(CrSignalType.String, `${index + CrSignalNames.ToggleButtonsBaseIdx}`, incomingValue => {
                 value = incomingValue;
                 setTempToggleText(value)
                
@@ -106,7 +111,7 @@ function Header(){
             }));
         setToggleButtonsStates(Array(toggleButtonsNum).fill('').map((_, index) =>{
             let value;
-            window.CrComLib.subscribeState('b', `${index + CrSignalNames.ToggleButtonsStatesBaseIdx}`, incomingValue => {
+            window.CrComLib.subscribeState(CrSignalType.Boolean, `${index + CrSignalNames.ToggleButtonsStatesBaseIdx}`, incomingValue => {
                 value = incomingValue;
                 setTempToggleState(value)
                
@@ -126,46 +131,46 @@ function Header(){
     const handleShowHelpModal = () => {
         console.log("Showing Help Modal")
         setShowHelpModal(true);
-        window.CrComLib.publishEvent('b', CrSignalNames.ShowHelpModal, true);
-        window.CrComLib.publishEvent('b', CrSignalNames.ShowHelpModal, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ShowHelpModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ShowHelpModal, false);
       }
     const handleCloseHelpModal = () => {
         console.log("Closing Help Modal")
         setShowHelpModal(false);
-        window.CrComLib.publishEvent('b', CrSignalNames.CloseHelpModal, true);
-        window.CrComLib.publishEvent('b', CrSignalNames.CloseHelpModal, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.CloseHelpModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.CloseHelpModal, false);
       }
     const handleShowAdminModal = () => {
-        window.CrComLib.publishEvent('b', CrSignalNames.HandleShowAdminModal, true);
-        window.CrComLib.publishEvent('b', CrSignalNames.HandleShowAdminModal, false)
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.HandleShowAdminModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.HandleShowAdminModal, false)
      }
     const handleCloseAdminModal = () => {
         
-        window.CrComLib.publishEvent('b', CrSignalNames.CloseAdminModal, true);
-        window.CrComLib.publishEvent('b', CrSignalNames.CloseAdminModal, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.CloseAdminModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.CloseAdminModal, false);
         navigate('/HomePage');
     }
 
     const handleClosePasswordModal = () => {
         setShowPasswordModal(false);
-        window.CrComLib.publishEvent('b', CrSignalNames.ClosePasswordModal, true);
-        window.CrComLib.publishEvent('b', CrSignalNames.ClosePasswordModal, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ClosePasswordModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ClosePasswordModal, false);
         console.log('Closing Password Modal')
     }
 
     const handleAdminLongPress = () => {
-        window.CrComLib.publishEvent('b', CrSignalNames.HandleShowPasswordModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.HandleShowPasswordModal, true);
       };
     const handlePwKeyPres = (joinNumber) => {
-        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
         console.log('pw key pressed', joinNumber)
     };
     const handleSaveConfig = () => {
-        window.CrComLib.publishEvent('s', CrSignalNames.ConfigRoomName, configRoomName);
-        window.CrComLib.publishEvent('s', CrSignalNames.ConfigIpAdd, configIpAdd);
-        window.CrComLib.publishEvent('b', CrSignalNames.SaveConfigFile, true);
-        window.CrComLib.publishEvent('b', CrSignalNames.SaveConfigFile, false);
+        window.CrComLib.publishEvent(CrSignalType.String, CrSignalNames.ConfigRoomName, configRoomName);
+        window.CrComLib.publishEvent(CrSignalType.String, CrSignalNames.ConfigIpAdd, configIpAdd);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.SaveConfigFile, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.SaveConfigFile, false);
         setShowSaveAlert(true);
     };
 
@@ -173,8 +178,8 @@ function Header(){
         setShowSaveAlert(!showSaveAlert);
     };
     const handleResetConfig = () => {
-        window.CrComLib.publishEvent('b', CrSignalNames.ResetConfigFile, true);
-        window.CrComLib.publishEvent('b', CrSignalNames.ResetConfigFile, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ResetConfigFile, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ResetConfigFile, false);
         setConfigRoomName(classRoom);
         setConfigIpAdd(ipAdd);
         setShowResetAlert(true);
@@ -185,8 +190,8 @@ function Header(){
     };
     
     const handleIncreaseOrDecrease = (joinNumber, currIdx) => {
-        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
         console.log('join pressed', joinNumber)
         console.log('current index is', currIdx)
     }
@@ -203,8 +208,8 @@ function Header(){
     }
     
     const handleToggleStateChange = (joinNumber) => {
-        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
         console.log('toggle state changed', joinNumber)
     }
 
@@ -217,11 +222,11 @@ function Header(){
                     <div className="col-1 text-center p-0">
                         <div className="text-primary py-3 py-xl-4 font-size-1"
                             onMouseDown={handleAdminLongPress}
-                            onMouseUp={() => window.CrComLib.publishEvent('b', CrSignalNames.HandleShowPasswordModal, false)}
+                            onMouseUp={() => window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.HandleShowPasswordModal, false)}
                             onTouchStart={handleAdminLongPress}
-                            onTouchEnd={() => window.CrComLib.publishEvent('b', CrSignalNames.HandleShowPasswordModal, false)}
-                            onMouseLeave={() => window.CrComLib.publishEvent('b', CrSignalNames.HandleShowPasswordModal, false)}
-                            onTouchCancel={() => window.CrComLib.publishEvent('b', CrSignalNames.HandleShowPasswordModal, false)}
+                            onTouchEnd={() => window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.HandleShowPasswordModal, false)}
+                            onMouseLeave={() => window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.HandleShowPasswordModal, false)}
+                            onTouchCancel={() => window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.HandleShowPasswordModal, false)}
                         >
                         admin button
                         </div>
@@ -296,8 +301,8 @@ function Header(){
                                 </div>
                                 <div className="col-2 text-center p-0" 
                                     onClick={() => {
-                                        window.CrComLib.publishEvent('b', CrSignalNames.PwBackSpace, true);
-                                        window.CrComLib.publishEvent('b', CrSignalNames.PwBackSpace, false);
+                                        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.PwBackSpace, true);
+                                        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.PwBackSpace, false);
                                     }}>
                                     <i className="bi bi-backspace-fill"></i>
                                 </div>

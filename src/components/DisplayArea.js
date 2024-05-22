@@ -90,70 +90,75 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         'Bluray_Rewind': '67',
         'Bluray_Fast_Forward': '68'
     }
+    const CrSignalType = {
+        'Boolean' : 'b',
+        'Number' : 'n',
+        'String': 's'
+    }
     useEffect(() => {
-        window.CrComLib.subscribeState('s', CrSignalNames.IpAddress, value=> setIpAdd(value));
-        window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
-        window.CrComLib.subscribeState('b', `${showFullScreenJoin}`, value=> setShowFullScreen(value)); 
-        window.CrComLib.subscribeState('b', `${displayJoin}`, value=> setIsMuted(value));
-        window.CrComLib.subscribeState('b', `${powerOn}`, value=> setPowerSwitch(value));
-        window.CrComLib.subscribeState('b', `${annotationJoin}`, value=> setAnnotationPressed(value));
-        window.CrComLib.subscribeState('b', `${fullscreenJoin}`, value=> setFullscreenPressed(value));
-        window.CrComLib.subscribeState('b', `${showDisplayModalJoin}`, value => setIsClicked(value));
-        window.CrComLib.subscribeState('b', CrSignalNames.ShowBlurayModal, value => setBluRayClicked(value));
-        window.CrComLib.subscribeState('b', CrSignalNames.ShowConfCallModal, value => setConfCallClicked(value));
-        window.CrComLib.subscribeState('b', `${electricScreenJoin}`, value=> setIsElectricScreen(value));
-        window.CrComLib.subscribeState('b', `${displayIsProjectorJoin}`, value=> setIsProjector(value));
-        window.CrComLib.subscribeState('s', CrSignalNames.ConfCall_DialString, value=> setDialString(value));
-        window.CrComLib.subscribeState('n', CrSignalNames.ConfCall_Volume, value=> setConfCallVolume(value));
-        window.CrComLib.subscribeState('b', CrSignalNames.ConfCall_Mute, value=> setIsConfCallMuted(value));
-        window.CrComLib.subscribeState('b', CrSignalNames.ShowConfCallIncomingCall, value=> setShowIncomingCall(value));
-        window.CrComLib.subscribeState('b', CrSignalNames.ConfCall_CallActive, value=> setIsCallActive(value));
-        window.CrComLib.subscribeState('b', CrSignalNames.Config_PrivacyMode, value=> setConfigPrivacyMode(value));
-        window.CrComLib.subscribeState('b', CrSignalNames.EnablePrivacyMode, value=> setIsPrivacyModeEnabled(value));
+        window.CrComLib.subscribeState(CrSignalType.String, CrSignalNames.IpAddress, value=> setIpAdd(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${showAnnotationJoin}`, value=> setShowAnnotation(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${showFullScreenJoin}`, value=> setShowFullScreen(value)); 
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${displayJoin}`, value=> setIsMuted(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${powerOn}`, value=> setPowerSwitch(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${annotationJoin}`, value=> setAnnotationPressed(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${fullscreenJoin}`, value=> setFullscreenPressed(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${showDisplayModalJoin}`, value => setIsClicked(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ShowBlurayModal, value => setBluRayClicked(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ShowConfCallModal, value => setConfCallClicked(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${electricScreenJoin}`, value=> setIsElectricScreen(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${displayIsProjectorJoin}`, value=> setIsProjector(value));
+        window.CrComLib.subscribeState(CrSignalType.String, CrSignalNames.ConfCall_DialString, value=> setDialString(value));
+        window.CrComLib.subscribeState(CrSignalType.Number, CrSignalNames.ConfCall_Volume, value=> setConfCallVolume(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ConfCall_Mute, value=> setIsConfCallMuted(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ShowConfCallIncomingCall, value=> setShowIncomingCall(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ConfCall_CallActive, value=> setIsCallActive(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.Config_PrivacyMode, value=> setConfigPrivacyMode(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.EnablePrivacyMode, value=> setIsPrivacyModeEnabled(value));
 
         
         
     }, [dialString]);
     const toggleMute = (joinNumber) => {
         setIsMuted((prevIsMuted) => !(prevIsMuted));
-        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
        
     }
     const handleShowDisplayModal = () => {
         console.log("Showing Display Modal")
         setIsClicked(true);
-        window.CrComLib.publishEvent('b', `${showDisplayModalJoin}`, true);
-        window.CrComLib.publishEvent('b', `${showDisplayModalJoin}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${showDisplayModalJoin}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${showDisplayModalJoin}`, false);
       }
     const handleCloseDisplayModal = () => {
         setIsClicked(false);
-        window.CrComLib.publishEvent('b', `${closeDisplayModalJoin}`, true);
-        window.CrComLib.publishEvent('b', `${closeDisplayModalJoin}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${closeDisplayModalJoin}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${closeDisplayModalJoin}`, false);
     }
     const handleShowBluRayModal = () => {
         console.log("Showing BluRay Modal")
         setBluRayClicked(true);
-        window.CrComLib.publishEvent('b', CrSignalNames.ShowBlurayModal, true);
-        window.CrComLib.publishEvent('b', CrSignalNames.ShowBlurayModal, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ShowBlurayModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ShowBlurayModal, false);
     }
     const handleCloseBluRayModal = () => {
         console.log("Closing BluRay Modal")
         setBluRayClicked(false);
-        window.CrComLib.publishEvent('b', CrSignalNames.CloseBlurayModal, true);
-        window.CrComLib.publishEvent('b', CrSignalNames.CloseBlurayModal, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.CloseBlurayModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.CloseBlurayModal, false);
     }
     const handleShowConfCallModal = () => {
         console.log("Showing ConfCall Modal")
         setConfCallClicked(true);
-        window.CrComLib.publishEvent('b', CrSignalNames.ShowConfCallModal, true);
-        window.CrComLib.publishEvent('b', CrSignalNames.ShowConfCallModal, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ShowConfCallModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ShowConfCallModal, false);
     }
     const handleCloseConfCallModal = () => {
         console.log("Closing ConfCall Modal")
         setConfCallClicked(false);
-        window.CrComLib.publishEvent('b', CrSignalNames.CloseConfCallModal, true);
-        window.CrComLib.publishEvent('b', CrSignalNames.CloseConfCallModal, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.CloseConfCallModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.CloseConfCallModal, false);
     }
     const handleShowConfCallVolumeModal = () => {
         setShowConfCallVolume(true);
@@ -163,8 +168,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     }
     const toggleConfCallVolumeMute = () => { 
         setIsConfCallMuted(!isConfCallMuted);
-        window.CrComLib.publishEvent('b', CrSignalNames.ConfCall_Mute, true);
-        window.CrComLib.publishEvent('b', CrSignalNames.ConfCall_Mute, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_Mute, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_Mute, false);
     }
     const handleCloseIncomingCallModal = () => {
         setShowIncomingCall(false);
@@ -172,78 +177,78 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const toggleCallActive = () => { 
         setIsCallActive(!isCallActive);
         if (isCallActive) {
-            window.CrComLib.publishEvent('b', CrSignalNames.ConfCall_EndCall, true);
-            window.CrComLib.publishEvent('b', CrSignalNames.ConfCall_EndCall, false);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_EndCall, true);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_EndCall, false);
             console.log('On_hook: End Call')
         } else {
-            window.CrComLib.publishEvent('b', CrSignalNames.ConfCall_CallActive, true);
-            window.CrComLib.publishEvent('b', CrSignalNames.ConfCall_CallActive, false);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_CallActive, true);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_CallActive, false);
             console.log('On_hook: Call Active')
         }
     }
 
     const togglePrivacyMode = () => {
         setIsPrivacyModeEnabled(!isPrivacyModeEnabled);
-        window.CrComLib.publishEvent('b', CrSignalNames.EnablePrivacyMode, true);
-        window.CrComLib.publishEvent('b', CrSignalNames.EnablePrivacyMode, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.EnablePrivacyMode, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.EnablePrivacyMode, false);
       }
 
     const togglePowerSwitch = () => {
         setPowerSwitch(!powerSwitch)
         if (!powerSwitch) {
-            window.CrComLib.publishEvent('b', `${powerOn}`, true);
-            window.CrComLib.publishEvent('b', `${powerOn}`, false);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, `${powerOn}`, true);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, `${powerOn}`, false);
             console.log('Power On')
         } else {
-            window.CrComLib.publishEvent('b', `${powerOff}`, true);
-            window.CrComLib.publishEvent('b', `${powerOff}`, false);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, `${powerOff}`, true);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, `${powerOff}`, false);
             console.log('Power Off')
         }
     }
     const toggleLampSwitch = () => {
         setLampSwitch(!lampSwitch)
         if (!lampSwitch) {
-            window.CrComLib.publishEvent('b', CrSignalNames.DocCam_LampOn, true);
-            window.CrComLib.publishEvent('b', CrSignalNames.DocCam_LampOn, false);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_LampOn, true);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_LampOn, false);
             console.log('Lamp On')
         } else {
-            window.CrComLib.publishEvent('b', CrSignalNames.DocCam_LampOff, true);
-            window.CrComLib.publishEvent('b', CrSignalNames.DocCam_LampOff, false);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_LampOff, true);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_LampOff, false);
             console.log('Lamp Off')
         }
     }
     const toggleAutoFocusSwitch = () => {
         setAutoFocusSwitch(!autoFocusSwitch);
-        window.CrComLib.publishEvent('b', CrSignalNames.DocCam_AutoFocus, true);
-        window.CrComLib.publishEvent('b', CrSignalNames.DocCam_AutoFocus, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_AutoFocus, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_AutoFocus, false);
         console.log('Status of AutoFocus is: ', autoFocusSwitch)
     }
 
     const handleAnnotationPressed = () => {
         setAnnotationPressed(!annotationPressed)
-        window.CrComLib.publishEvent('b', `${annotationJoin}`, true);
-        window.CrComLib.publishEvent('b', `${annotationJoin}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${annotationJoin}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${annotationJoin}`, false);
         console.log('state of annotation button', showAnnotation);
         console.log('state of fullscreen button', showFullScreen);
     }
     const handleFullscreenPressed = () => {
         setFullscreenPressed(!fullscreenPressed);
-        window.CrComLib.publishEvent('b', `${fullscreenJoin}`, true);
-        window.CrComLib.publishEvent('b', `${fullscreenJoin}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${fullscreenJoin}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${fullscreenJoin}`, false);
         console.log('state of annotation button', showAnnotation);
         console.log('state of fullscreen button', showFullScreen);
     } 
     const blurayControl = (joinNumber, press) => {
         setBluRayButton(press)
-        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
         console.log(`${press} pressed`)
         console.log(blurayButton)
     };
 ;
     const handleDialKeyPres = (joinNumber) => {
-        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
         console.log('pw key pressed', joinNumber)
     };
     // Privacy Mode Popover
@@ -376,8 +381,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
                                     onClick={() => {
-                                        window.CrComLib.publishEvent('b', CrSignalNames.ConfCall_DialString_Clear, true);
-                                        window.CrComLib.publishEvent('b', CrSignalNames.ConfCall_DialString_Clear, false);
+                                        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_DialString_Clear, true);
+                                        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_DialString_Clear, false);
                                         console.log('Clear pressed')
                                 }}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">
@@ -397,8 +402,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 {/* Clear button */}
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
                                     onClick={() => {
-                                        window.CrComLib.publishEvent('b', CrSignalNames.ConfCall_DialString_Backspace, true);
-                                        window.CrComLib.publishEvent('b', CrSignalNames.ConfCall_DialString_Backspace, false);
+                                        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_DialString_Backspace, true);
+                                        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_DialString_Backspace, false);
                                         console.log('backspace pressed')
                                 }}>
                                     <span className="d-block fw-bold font-size-3 font-size-4-xl">
@@ -490,16 +495,16 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         <div className='d-flex justify-content-center mt-5'>
                             <button className='btn btn-danger col-4 rounded-pill px-5 text-white mx-3'
                                 onClick={() => {
-                                    window.CrComLib.publishEvent('b', CrSignalNames.ConfCall_CallIgnore, true);
-                                    window.CrComLib.publishEvent('b', CrSignalNames.ConfCall_CallIgnore, false);
+                                    window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_CallIgnore, true);
+                                    window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_CallIgnore, false);
                                     console.log('Call ignored')
                                 }}>
                                 Ignore
                             </button>
                             <button className='btn btn-success col-4 rounded-pill px-5 mx-3 text-white' 
                                 onClick={() => {
-                                    window.CrComLib.publishEvent('b', CrSignalNames.ShowConfCallIncomingCall, true);
-                                    window.CrComLib.publishEvent('b', CrSignalNames.ShowConfCallIncomingCall, false);
+                                    window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ShowConfCallIncomingCall, true);
+                                    window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ShowConfCallIncomingCall, false);
                                     console.log('Call picked up')
                                 }}>
                                 Answer
@@ -547,13 +552,13 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     <div className="col-12 mb-2">
                         <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                             <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-4-xl" onClick={() => {
-                            window.CrComLib.publishEvent('b', CrSignalNames.DocCam_ZoomOut, true);
-                            window.CrComLib.publishEvent('b', CrSignalNames.DocCam_ZoomOut, false);
+                            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_ZoomOut, true);
+                            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_ZoomOut, false);
                             console.log('DocCam Zooming Out') 
                         }}><i className="bi bi-dash-circle-fill"></i></button>
                             <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-4-xl" onClick={() => {
-                            window.CrComLib.publishEvent('b', CrSignalNames.DocCam_ZoomIn, true);
-                            window.CrComLib.publishEvent('b', CrSignalNames.DocCam_ZoomIn, false);
+                            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_ZoomIn, true);
+                            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_ZoomIn, false);
                             console.log('DocCam Zooming In') 
                         }}><i className="bi bi-plus-circle-fill"></i></button>
                         </div>
@@ -769,8 +774,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     {/* Down Button */}
                                     <button type="button"
                                         className="btn btn-info col-4 border-0 rounded-pill py-2 me-3 text-white fw-bold font-size-3" onClick={() => {
-                                            window.CrComLib.publishEvent('b', `${downJoin}`, true);
-                                            window.CrComLib.publishEvent('b', `${downJoin}`, false);
+                                            window.CrComLib.publishEvent(CrSignalType.Boolean, `${downJoin}`, true);
+                                            window.CrComLib.publishEvent(CrSignalType.Boolean, `${downJoin}`, false);
                                             console.log('Screen downed')
                                         }}><i
                                             className="d-inline-block bi bi-chevron-down font-size-4 font-size-5-xl mx-auto"></i></button>
@@ -778,8 +783,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     <button type="button"
                                         className="btn btn-info col-4 border-0 rounded-pill py-2 text-white fw-bold font-size-3"><i
                                             className="d-inline-block bi bi-chevron-up font-size-4 font-size-5-xl mx-auto" onClick={() => {
-                                                window.CrComLib.publishEvent('b', `${upJoin}`, true);
-                                                window.CrComLib.publishEvent('b', `${upJoin}`, false);
+                                                window.CrComLib.publishEvent(CrSignalType.Boolean, `${upJoin}`, true);
+                                                window.CrComLib.publishEvent(CrSignalType.Boolean, `${upJoin}`, false);
                                                 console.log('Screen upped')
                                             }}></i></button>
                                 </div>
