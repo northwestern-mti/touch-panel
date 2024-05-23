@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Row, Col, InputGroup, FormControl, Modal } from 'react-bootstrap';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
+import Icon from '@mdi/react';
+import { mdiBroadcastOff } from '@mdi/js';
+import { mdiBroadcast } from '@mdi/js';
 import './BottomBar.css';
 import CModal from './CModal';
 import Opad from './Opad';
@@ -376,7 +379,7 @@ const popover = (
       {/* /Row */}
 
         {/* System Off Modal */}
-        <Modal show={showPowerModal} onHide={handleClosePowerModal} fullscreen={fullscreen}>
+        <Modal show={showPowerModal} onHide={handleClosePowerModal} fullscreen={fullscreen} animation={false}>
           <Modal.Header className="pb-0">
             <Modal.Title className="col-12 d-flex flex-row justify-content-between">
               <h1 className="font-size-5 font-size-6-xl">
@@ -402,7 +405,7 @@ const popover = (
         </Modal>
 
         {/* Presentation Volume Modal */}
-      <Modal show={showVolumeModal} onHide={handleCloseVolumeModal} fullscreen={fullscreen}>
+      <Modal show={showVolumeModal} onHide={handleCloseVolumeModal} fullscreen={fullscreen} animation={false}>
         <Modal.Header className="pb-0">
           <Modal.Title className="col-12 d-flex flex-row justify-content-between">
             <h1 className="font-size-5 font-size-6-xl">
@@ -445,7 +448,7 @@ const popover = (
       </Modal>
 
       {/* Microphone Modal */}
-      <Modal show={showMicModal} onHide={handleCloseMicModal} fullscreen={fullscreen}>
+      <Modal show={showMicModal} onHide={handleCloseMicModal} fullscreen={fullscreen} animation={false}>
         <Modal.Header className="pb-0">
           <Modal.Title className="col-12 d-flex flex-row justify-content-between">
             <h1 className="font-size-5 font-size-6-xl">
@@ -474,7 +477,7 @@ const popover = (
                       className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
                     ></i>
                   </button>
-                  <div className='font-size-3 font-size-4-xl'>{isMicMuted ? 'Unmute All Microphones' : 'Mute All Microphones'}</div>
+                  <div className='font-size-3 font-size-4-xl'>{isMicMuted ? 'Unmute Wireless Mics' : 'Mute Wireless Mics'}</div>
                 </div>
               )}
               {hasCeilingMics &&
@@ -490,16 +493,28 @@ const popover = (
                 </div>}
               {configPrivacyMode && 
                 <div className="col-3 col-lg-2 position-relative">
-                  <button type="button"
-                    className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isPrivacyModeEnabled ? 'btn-info' : 'btn-gray'}`}
-                    onClick={togglePrivacyMode}>
-                    <i
-                      className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPrivacyModeEnabled ? 'bi-lock-fill' : 'bi-unlock-fill'}`}
-                    ></i>
-                  </button>
-                  <div className='font-size-3 font-size-4-xl'>
-                    {isPrivacyModeEnabled ? 'Disable Privacy Mode' : 'Enable Privacy Mode'}
-                  </div>
+                  {isPrivacyModeEnabled
+                    ? <div>
+                      <button type="button"
+                        className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon btn-info`}
+                        onClick={togglePrivacyMode}>
+                        <Icon className="d-inline-block mx-auto" path={mdiBroadcastOff} size={2} />
+                      </button>
+                      <div className='font-size-3 font-size-4-xl'>
+                        Disable Privacy Mode
+                      </div>
+                    </div>
+                    : <div>
+                      <button type="button"
+                        className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon btn-gray`}
+                        onClick={togglePrivacyMode}>
+                        <Icon className="d-inline-block mx-auto" path={mdiBroadcast} size={2} />
+                      </button>
+                      <div className='font-size-3 font-size-4-xl'>
+                        Enable Privacy Mode
+                      </div>
+                    </div>
+                  }
                   <div className="position-absolute top-0 start-100 translate-middle">
                   <OverlayTrigger trigger="click" placement="right" overlay={popover}>
                       <a className="ms-3">
@@ -578,7 +593,9 @@ const popover = (
               <div>
               {/* Camera Controls Row */}
               <div className="row align-items-center">
-                <h2 className="text-center mb-4 font-size-4 font-size-5-xl">{camNames[cameraSelected - 1]}</h2>
+                <h2 className="text-center mb-4 font-size-4 font-size-5-xl">
+                  <span className="d-block mx-auto cameraNameHeading">{camNames[cameraSelected - 1]}</span>
+                  </h2>
                 <div className="col-3">
                 <Opad upJoin={CrSignalName.Camera_Up} downJoin={CrSignalName.Camera_Down} leftJoin={CrSignalName.Camera_Left} rightJoin={CrSignalName.Camera_Right}/>
                 </div>
@@ -601,9 +618,9 @@ const popover = (
                           const presetNumber = rowIndex * 2 + colIndex + 1;
                           return (
                             presetNumber <= numOfPresets && (
-                              <div key={presetNumber} className="col-6 pt-2 pt-xl-4 px-4">
+                              <div key={presetNumber} className="col-6 text-center pt-2 pt-xl-4 px-4">
                                   <button
-                                  className={`btn col-12 rounded-pill border-0 py-2 px-3 me-1 mb-2 mb-xl-3 presetButton ${(selectedPreset === presetNumber) ? 'btn-info' : 'btn-gray'}`}
+                                  className={`btn col-12 rounded-pill border-0 py-3 px-3 me-1 mb-2 mb-xl-3 presetButton ${(selectedPreset === presetNumber) ? 'btn-info' : 'btn-gray'}`}
                                   key={presetNumber}
                                   onClick={() => handlePresetClicked(presetNumber)}
                                   onMouseDown={() => {

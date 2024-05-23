@@ -18,7 +18,7 @@ function WelcomePage({programStarted, setProgramStarted}) {
     window.CrComLib.publishEvent(CrSignalType.Boolean,CrSignalName.startJoin, true);
     window.CrComLib.publishEvent(CrSignalType.Boolean,CrSignalName.startJoin, false);
     console.log("Signal sent to processor");
-    // navigate('/HomePage')
+    navigate('/HomePage')
 };
 
   return (

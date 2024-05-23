@@ -11,13 +11,13 @@ const SourceMenus = () => {
     const [source1, setSource1] = useState(0);
     const [inputSelected2, setInputSelected2] = useState('');
     const [source2, setSource2] = useState(0);
-    const [showDesktop, setShowDesktop] = useState(false);
-    const [showLaptop, setShowLaptop] = useState(false);
-    const [showWireless, setShowWireless] = useState(false);
-    const [showBluray, setShowBluray] = useState(false);
-    const [showDocCam, setShowDocCam] = useState(false);
+    const [showDesktop, setShowDesktop] = useState(true);
+    const [showLaptop, setShowLaptop] = useState(true);
+    const [showWireless, setShowWireless] = useState(true);
+    const [showBluray, setShowBluray] = useState(true);
+    const [showDocCam, setShowDocCam] = useState(true);
     const [showConfCall, setShowConfCall] = useState(true);
-    const [hasDisplay2, setHasDisplay2] = useState(false);
+    const [hasDisplay2, setHasDisplay2] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const CrSignalNames = {
         'ShowDesktop' : '211',

@@ -4,6 +4,9 @@ import { Button} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
+import Icon from '@mdi/react';
+import { mdiBroadcastOff } from '@mdi/js';
+import { mdiBroadcast } from '@mdi/js';
 import Opad from './Opad';
 import VolumeControl from './VolumeControl';
 
@@ -453,16 +456,28 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 </div>
                                 {configPrivacyMode &&
                                     <div className="col-3 position-relative">
-                                        <button type="button"
-                                            className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isPrivacyModeEnabled ? 'btn-info' : 'btn-gray'}`}
-                                            onClick={togglePrivacyMode}>
-                                            <i
-                                                className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPrivacyModeEnabled ? 'bi-lock-fill' : 'bi-unlock-fill'}`}
-                                            ></i>
-                                        </button>
-                                        <div className='font-size-3 font-size-4-xl'>
-                                            {isPrivacyModeEnabled ? 'Disable Privacy Mode' : 'Enable Privacy Mode'}
-                                        </div>
+                                        {isPrivacyModeEnabled
+                                            ? <div>
+                                                <button type="button"
+                                                    className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon btn-info`}
+                                                    onClick={togglePrivacyMode}>
+                                                    <Icon className="d-inline-block mx-auto" path={mdiBroadcastOff} size={2} />
+                                                </button>
+                                                <div className='font-size-3 font-size-4-xl'>
+                                                    Disable Privacy Mode
+                                                </div>
+                                            </div>
+                                            : <div>
+                                                <button type="button"
+                                                    className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon btn-gray`}
+                                                    onClick={togglePrivacyMode}>
+                                                    <Icon className="d-inline-block mx-auto" path={mdiBroadcast} size={2} />
+                                                </button>
+                                                <div className='font-size-3 font-size-4-xl'>
+                                                    Enable Privacy Mode
+                                                </div>
+                                            </div>
+                                        }
                                         <div className="position-absolute top-0 start-100 translate-middle">
                                             <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
                                                 <a className="ms-3">

@@ -5,6 +5,14 @@
 .modal-content {
     line-height: var(--font-size-5)!important;
 }
+
+.cameraNameHeading {
+    width: 49vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .cameraButton {
     width: 25vw;
     white-space: nowrap;
@@ -12,15 +20,8 @@
     text-overflow: ellipsis;
 }
 .presetButton {
-    width: 21vw;
+    width: 19vw;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-/* 
-@media screen and (min-width: 1200px) {
-    .muteIcon {
-        width: 5em;
-        height: 5em;
-    }
-} */

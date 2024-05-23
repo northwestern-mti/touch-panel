@@ -256,7 +256,7 @@ function Header(){
                 <div>
 
                     {/* Help Modal */}
-                    <Modal show={showHelpModal} onHide={handleCloseHelpModal} fullscreen={fullscreen}>
+                    <Modal show={showHelpModal} onHide={handleCloseHelpModal} fullscreen={fullscreen} animation={false}>
                         <Modal.Header className="pb-0">
                             <Modal.Title className="col-12 d-flex flex-row justify-content-between">
                                 <h1 className="font-size-5 font-size-6-xl">
@@ -356,7 +356,7 @@ function Header(){
                     </Modal>
                     
                     {/* Admin Modal */}
-                    <Modal show={showAdminModal} onHide={handleCloseAdminModal} fullscreen={fullscreen}>
+                    <Modal show={showAdminModal} onHide={handleCloseAdminModal} fullscreen={fullscreen} animation={false}>
                         <Modal.Header className="p-0 py-2">
                             <Modal.Title className="col-12 d-flex flex-row justify-content-between">
                                 <h1 className="font-size-4 font-size-5-xl">
