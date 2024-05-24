@@ -1,8 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import CrComLib from "@crestron/ch5-crcomlib";
 import {Button} from 'react-bootstrap';
-import AddIcon from './Icons/plus.svg';
-import RemoveIcon from './Icons/dash.svg';
 import './VolumeControl.css'
 
 const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}) => {
@@ -121,12 +119,8 @@ const handleDecreaseOnTouchMove = (e) => {
           onMouseLeave={handleDecreaseOnMouseUp}
           onTouchStart={handleDecreaseOnMouseDown}
           onTouchEnd={handleDecreaseOnMouseUp}
-          onTouchCancel={handleDecreaseOnMouseUp}
-          onTouchMove={handleDecreaseOnTouchMove}>
-            <img
-                src={RemoveIcon}
-                alt="Minus Icon"
-                className="img-fluid"/>
+          onTouchCancel={handleDecreaseOnMouseUp}>
+            <i className="bi bi-dash-lg text-white fw-bold font-size-5 font-size-6-xl"></i>
         </button>
         <div className="squaresContainer me-2">{renderSquares()}</div>
         <button className="bg-info border-0 rounded-circle volumeButton" id="increaseButton"
@@ -136,12 +130,8 @@ const handleDecreaseOnTouchMove = (e) => {
           onMouseLeave={handleIncreaseOnMouseUp}
           onTouchStart={handleIncreaseOnMouseDown}
           onTouchEnd={handleIncreaseOnMouseUp}
-          onTouchCancel={handleIncreaseOnMouseUp}
-          onTouchMove={handleIncreaseOnTouchMove}>
-            <img
-                src={AddIcon}
-                alt="Plus Icon"
-                className="img-fluid"/>
+          onTouchCancel={handleIncreaseOnMouseUp}>
+            <i className="bi bi-plus-lg text-white fw-bold font-size-5 font-size-6-xl"></i>
         </button>
     </div>
   );
