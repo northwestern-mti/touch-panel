@@ -5,11 +5,18 @@ import { useNavigate } from 'react-router-dom';
 
 function WelcomePage({programStarted, setProgramStarted}) {
   const navigate = useNavigate();
+  const CrSignalName ={
+    'startJoin' : '1'
+  }
+  
+  const CrSignalType = {
+    'Boolean' : 'b',
+  }
   
   const handleClick = () => {
     setProgramStarted(!programStarted);
-    window.CrComLib.publishEvent('b','1', true);
-    window.CrComLib.publishEvent('b','1', false);
+    window.CrComLib.publishEvent(CrSignalType.Boolean,CrSignalName.startJoin, true);
+    window.CrComLib.publishEvent(CrSignalType.Boolean,CrSignalName.startJoin, false);
     console.log("Signal sent to processor");
     navigate('/HomePage')
 };
