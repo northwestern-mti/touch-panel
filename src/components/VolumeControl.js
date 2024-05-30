@@ -8,6 +8,9 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
   const [pressInterval, setPressInterval] = useState(null);
   const holdTimeoutRef = useRef(null);
 
+  const CrSignalType = {
+    'Boolean' : 'b',
+  }
 
   useEffect(() => {
     // Map decibels to the volume range (0 to 20)
@@ -21,8 +24,8 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
     if (volume < 20) {
       setVolume((prevVolume) => prevVolume + 1);
       // const volumeLevel = Math.round((volume * 65535) / 20);
-      window.CrComLib.publishEvent('b', `${plusJoin}`, true);
-      window.CrComLib.publishEvent('b', `${plusJoin}`, false);
+      window.CrComLib.publishEvent(CrSignalType.Boolean, `${plusJoin}`, true);
+      window.CrComLib.publishEvent(CrSignalType.Boolean, `${plusJoin}`, false);
       // window.CrComLib.publishEvent('n', `${volumeJoin}`, volume);
       console.log('volume increased', volume, 'initial volume:', initialVolume);
 
@@ -33,15 +36,15 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
     if (volume > 0) {
       setVolume((prevVolume) => prevVolume - 1);
       // const volumeLevel = Math.round((volume * 65535) / 20);
-      window.CrComLib.publishEvent('b', `${minusJoin}`, true);
-      window.CrComLib.publishEvent('b', `${minusJoin}`, false);
+      window.CrComLib.publishEvent(CrSignalType.Boolean, `${minusJoin}`, true);
+      window.CrComLib.publishEvent(CrSignalType.Boolean, `${minusJoin}`, false);
       // window.CrComLib.publishEvent('n', `${volumeJoin}`, volume);
       console.log('volume decreased', volume, 'initial volume:', initialVolume)
     }
   };
   const handleDecreaseOnClick = () => {
     handleDecreaseVolume();
-    window.CrComLib.publishEvent('b', `${minusJoin}`, false);
+    window.CrComLib.publishEvent(CrSignalType.Boolean, `${minusJoin}`, false);
   }
   const handleDecreaseOnMouseDown = () => {
     clearInterval(pressInterval);
@@ -51,12 +54,12 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
     if (pressInterval !== null) {
       clearInterval(pressInterval);
       setPressInterval(null);
-      window.CrComLib.publishEvent('b', `${minusJoin}`, false);
+      window.CrComLib.publishEvent(CrSignalType.Boolean, `${minusJoin}`, false);
     }
   }
   const handleIncreaseOnClick = () => {
     handleIncreaseVolume();
-    window.CrComLib.publishEvent('b', `${plusJoin}`, false);
+    window.CrComLib.publishEvent(CrSignalType.Boolean, `${plusJoin}`, false);
   }
   const handleIncreaseOnMouseDown = () => {
     clearInterval(pressInterval)
@@ -66,7 +69,7 @@ const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}
     if (pressInterval !== null) {
       clearInterval(pressInterval);
       setPressInterval(null);
-      window.CrComLib.publishEvent('b', `${plusJoin}`, false);
+      window.CrComLib.publishEvent(CrSignalType.Boolean, `${plusJoin}`, false);
     }
     
   }

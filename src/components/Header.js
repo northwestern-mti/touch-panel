@@ -32,17 +32,57 @@ function Header(){
     const [showResetAlert, setShowResetAlert] = useState(false);
 
     const navigate = useNavigate();
+    const CrSignalNames = {
+        'RoomName': '1',
+        'IpAdd' : '2',
+        'ConfigRoomName': '5',
+        'ConfigIpAdd': '6',
+        'ShowPasswordModal': '121',
+        'ShowAdminModal' : '93',
+        'PwInputValue': '25',
+        'NumberOfTextFields' : '22',
+        'NumberOfToggleButtons': '21',
+        'TextFieldsBaseIdx' : 71,
+        'TextFieldsValuesBaseIdx' : 23,
+        'ToggleButtonsStatesBaseIdx' : 331,
+        'ToggleButtonsBaseIdx' : 51,
+        'ShowHelpModal' : '150',
+        'CloseHelpModal' : '151',
+        'HandleShowAdminModal' : '130',
+        'CloseAdminModal' : '123',
+        'ClosePasswordModal' : '122',
+        'HandleShowPasswordModal' : '120',
+        'PW_1' : '131',
+        'PW_2' : '132',
+        'PW_3' : '133',
+        'PW_4' : '134',
+        'PW_5' : '135',
+        'PW_6' : '136',
+        'PW_7' : '137',
+        'PW_8' : '138',
+        'PW_9' : '139',
+        'PW_0' : '140',
+        'SaveConfigFile' : '124',
+        'ResetConfigFile' : '125',
+        'PwBackSpace' : '129',
+        'TextFieldsValuesIncDecBaseIdx' : 361
+    }
+    const CrSignalType = {
+        'Boolean' : 'b',
+        'Number' : 'n',
+        'String': 's'
+    }
     useEffect(() =>{
-        window.CrComLib.subscribeState('s','1', value=> setClassRoom(value));
-        window.CrComLib.subscribeState('s','2', value=> setIpAdd(value));
-        window.CrComLib.subscribeState('b', '121', value=> setShowPasswordModal(value));
-        window.CrComLib.subscribeState('b', '93', value=> setShowAdminModal(value));
-        window.CrComLib.subscribeState('s','25', value => setPwValue(value));
-        window.CrComLib.subscribeState('n','22', value => setTextFieldsNum(value));
-        window.CrComLib.subscribeState('n','21', value => setToggleButtonsNum(value));
+        window.CrComLib.subscribeState(CrSignalType.String, CrSignalNames.RoomName, value=> setClassRoom(value));
+        window.CrComLib.subscribeState(CrSignalType.String, CrSignalNames.IpAdd, value=> setIpAdd(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ShowPasswordModal, value=> setShowPasswordModal(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ShowAdminModal, value=> setShowAdminModal(value));
+        window.CrComLib.subscribeState(CrSignalType.String, CrSignalNames.PwInputValue, value => setPwValue(value));
+        window.CrComLib.subscribeState(CrSignalType.Number, CrSignalNames.NumberOfTextFields, value => setTextFieldsNum(value));
+        window.CrComLib.subscribeState(CrSignalType.Number, CrSignalNames.NumberOfToggleButtons, value => setToggleButtonsNum(value));
         setTextFields(Array(textFieldsNum).fill('').map((_, index) =>{
             let value;
-            window.CrComLib.subscribeState('s', `${index + 71}`, incomingValue => {
+            window.CrComLib.subscribeState(CrSignalType.String, `${index + CrSignalNames.TextFieldsBaseIdx}`, incomingValue => {
               value = incomingValue;
               setTempField(value)
             //   console.log('temp field', tempField)
@@ -53,7 +93,7 @@ function Header(){
         setTextFieldsValues(Array(textFieldsNum).fill('').map((_, index) =>
             {
             let value;
-            window.CrComLib.subscribeState('n', `${index + 23}`, incomingValue => {
+            window.CrComLib.subscribeState(CrSignalType.Number, `${index + CrSignalNames.TextFieldsValuesBaseIdx}`, incomingValue => {
                 value = incomingValue;
                 setTempValue(value)
                 
@@ -62,7 +102,7 @@ function Header(){
             }));
         setToggleButtons(Array(toggleButtonsNum).fill('').map((_, index) =>{
             let value;
-            window.CrComLib.subscribeState('s', `${index + 51}`, incomingValue => {
+            window.CrComLib.subscribeState(CrSignalType.String, `${index + CrSignalNames.ToggleButtonsBaseIdx}`, incomingValue => {
                 value = incomingValue;
                 setTempToggleText(value)
                
@@ -71,7 +111,7 @@ function Header(){
             }));
         setToggleButtonsStates(Array(toggleButtonsNum).fill('').map((_, index) =>{
             let value;
-            window.CrComLib.subscribeState('b', `${index + 331}`, incomingValue => {
+            window.CrComLib.subscribeState(CrSignalType.Boolean, `${index + CrSignalNames.ToggleButtonsStatesBaseIdx}`, incomingValue => {
                 value = incomingValue;
                 setTempToggleState(value)
                
@@ -91,46 +131,46 @@ function Header(){
     const handleShowHelpModal = () => {
         console.log("Showing Help Modal")
         setShowHelpModal(true);
-        window.CrComLib.publishEvent('b', '150', true);
-        window.CrComLib.publishEvent('b', '150', false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ShowHelpModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ShowHelpModal, false);
       }
     const handleCloseHelpModal = () => {
         console.log("Closing Help Modal")
         setShowHelpModal(false);
-        window.CrComLib.publishEvent('b', '151', true);
-        window.CrComLib.publishEvent('b', '151', false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.CloseHelpModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.CloseHelpModal, false);
       }
     const handleShowAdminModal = () => {
-        window.CrComLib.publishEvent('b', '130', true);
-        window.CrComLib.publishEvent('b', '130', false)
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.HandleShowAdminModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.HandleShowAdminModal, false)
      }
     const handleCloseAdminModal = () => {
         
-        window.CrComLib.publishEvent('b', '123', true);
-        window.CrComLib.publishEvent('b', '123', false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.CloseAdminModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.CloseAdminModal, false);
         navigate('/HomePage');
     }
 
     const handleClosePasswordModal = () => {
         setShowPasswordModal(false);
-        window.CrComLib.publishEvent('b', '122', true);
-        window.CrComLib.publishEvent('b', '122', false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ClosePasswordModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ClosePasswordModal, false);
         console.log('Closing Password Modal')
     }
 
     const handleAdminLongPress = () => {
-        window.CrComLib.publishEvent('b', '120', true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.HandleShowPasswordModal, true);
       };
     const handlePwKeyPres = (joinNumber) => {
-        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
         console.log('pw key pressed', joinNumber)
     };
     const handleSaveConfig = () => {
-        window.CrComLib.publishEvent('s', '5', configRoomName);
-        window.CrComLib.publishEvent('s', '6', configIpAdd);
-        window.CrComLib.publishEvent('b', '124', true);
-        window.CrComLib.publishEvent('b', '124', false);
+        window.CrComLib.publishEvent(CrSignalType.String, CrSignalNames.ConfigRoomName, configRoomName);
+        window.CrComLib.publishEvent(CrSignalType.String, CrSignalNames.ConfigIpAdd, configIpAdd);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.SaveConfigFile, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.SaveConfigFile, false);
         setShowSaveAlert(true);
     };
 
@@ -138,8 +178,8 @@ function Header(){
         setShowSaveAlert(!showSaveAlert);
     };
     const handleResetConfig = () => {
-        window.CrComLib.publishEvent('b', '125', true);
-        window.CrComLib.publishEvent('b', '125', false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ResetConfigFile, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ResetConfigFile, false);
         setConfigRoomName(classRoom);
         setConfigIpAdd(ipAdd);
         setShowResetAlert(true);
@@ -150,8 +190,8 @@ function Header(){
     };
     
     const handleIncreaseOrDecrease = (joinNumber, currIdx) => {
-        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
         console.log('join pressed', joinNumber)
         console.log('current index is', currIdx)
     }
@@ -168,8 +208,8 @@ function Header(){
     }
     
     const handleToggleStateChange = (joinNumber) => {
-        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
         console.log('toggle state changed', joinNumber)
     }
 
@@ -182,10 +222,11 @@ function Header(){
                     <div className="col-1 text-center p-0">
                         <div className="text-primary py-3 py-xl-4 font-size-1"
                             onMouseDown={handleAdminLongPress}
-                            onMouseUp={() => window.CrComLib.publishEvent('b', '120', false)}
+                            onMouseUp={() => window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.HandleShowPasswordModal, false)}
                             onTouchStart={handleAdminLongPress}
-                            onTouchEnd={() => window.CrComLib.publishEvent('b', '120', false)}
-                            onMouseLeave={() => window.CrComLib.publishEvent('b', '120', false)}
+                            onTouchEnd={() => window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.HandleShowPasswordModal, false)}
+                            onMouseLeave={() => window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.HandleShowPasswordModal, false)}
+                            onTouchCancel={() => window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.HandleShowPasswordModal, false)}
                         >
                         admin button
                         </div>
@@ -260,50 +301,50 @@ function Header(){
                                 </div>
                                 <div className="col-2 text-center p-0" 
                                     onClick={() => {
-                                        window.CrComLib.publishEvent('b', '129', true);
-                                        window.CrComLib.publishEvent('b', '129', false);
+                                        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.PwBackSpace, true);
+                                        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.PwBackSpace, false);
                                     }}>
                                     <i className="bi bi-backspace-fill"></i>
                                 </div>
                                 </div>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton"
-                                    onClick={() => handlePwKeyPres('131')}>
+                                    onClick={() => handlePwKeyPres(CrSignalNames.PW_1)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">1</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton"
-                                    onClick={() => handlePwKeyPres('132')}>
+                                    onClick={() => handlePwKeyPres(CrSignalNames.PW_2)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">2</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton"
-                                    onClick={() => handlePwKeyPres('133')}>
+                                    onClick={() => handlePwKeyPres(CrSignalNames.PW_3)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">3</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton"
-                                    onClick={() => handlePwKeyPres('134')}>
+                                    onClick={() => handlePwKeyPres(CrSignalNames.PW_4)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">4</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton"
-                                    onClick={() => handlePwKeyPres('135')}>
+                                    onClick={() => handlePwKeyPres(CrSignalNames.PW_5)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">5</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton"
-                                    onClick={() => handlePwKeyPres('136')}>
+                                    onClick={() => handlePwKeyPres(CrSignalNames.PW_6)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">6</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton"
-                                    onClick={() => handlePwKeyPres('137')}>
+                                    onClick={() => handlePwKeyPres(CrSignalNames.PW_7)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">7</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton"
-                                    onClick={() => handlePwKeyPres('138')}>
+                                    onClick={() => handlePwKeyPres(CrSignalNames.PW_8)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">8</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton"
-                                    onClick={() => handlePwKeyPres('139')}>
+                                    onClick={() => handlePwKeyPres(CrSignalNames.PW_9)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">9</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 mb-xl-3 mx-2 dialpadButton"
-                                    onClick={() => handlePwKeyPres('140')}>
+                                    onClick={() => handlePwKeyPres(CrSignalNames.PW_0)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">0</span>
                                 </Button>
                                 <Button className="btn btn-gray col-8 rounded-pill border-0 p-0 mb-2 mb-xl-3">
@@ -393,9 +434,9 @@ function Header(){
                                                 <div className="col-6 text-center">
                                                     <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                                                         <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"
-                                                            onClick={() => handleIncreaseOrDecrease(`${index * 2 + 361 + 1}`, index)}><i className="bi bi-dash-circle-fill"></i></button>
+                                                            onClick={() => handleIncreaseOrDecrease(`${index * 2 + CrSignalNames.TextFieldsValuesIncDecBaseIdx + 1}`, index)}><i className="bi bi-dash-circle-fill"></i></button>
                                                         <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"
-                                                            onClick={() => handleIncreaseOrDecrease(`${index * 2 + 361}`, index)}><i className="bi bi-plus-circle-fill"></i></button>
+                                                            onClick={() => handleIncreaseOrDecrease(`${index * 2 + CrSignalNames.TextFieldsValuesIncDecBaseIdx}`, index)}><i className="bi bi-plus-circle-fill"></i></button>
                                                         
                                                     </div>
                                                 </div>
@@ -408,7 +449,7 @@ function Header(){
                                     {Array.from({ length: toggleButtonsNum }, (_, index) => (
                                         <button key={index} className={`btn col-5 rounded-pill border-0 p-2 me-2 mb-3 font-size-2 font-size-3-xl adminPresetButton
                                             ${(toggleButtonsStates[index]) ? 'btn-info' : 'btn-gray'}`}
-                                            onClick={() => handleToggleStateChange(`${index + 331}`)}>
+                                            onClick={() => handleToggleStateChange(`${index + CrSignalNames.ToggleButtonsStatesBaseIdx}`)}>
                                             {toggleButtons[index]}
                                         </button>
                                     ))}

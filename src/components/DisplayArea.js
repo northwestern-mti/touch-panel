@@ -37,71 +37,131 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [isProjector, setIsProjector] =  useState(false);
     const [dialString, setDialString] = useState('');
     const [confCallVolume, setConfCallVolume] = useState(0);
-    const [showIncomingCall, setShowIncomingCall] = useState(false)
+    const [showIncomingCall, setShowIncomingCall] = useState(false);
+
+    const CrSignalNames = {
+        'IpAddress' : '2',
+        'ShowConfCallModal': '117',
+        'CloseConfCallModal': '118',
+        'ConfCall_DialString': '16',
+        'ConfCall_Volume': '3',
+        'ConfCall_Mute': '100',
+        'ShowConfCallIncomingCall': '109',
+        'ConfCall_EndCall': '105',
+        'ConfCall_CallActive': '106',
+        'Config_PrivacyMode': '79',
+        'EnablePrivacyMode': '103',
+        'ShowBlurayModal': '55',
+        'CloseBlurayModal': '56',
+        'DocCam_LampOn': '85',
+        'DocCam_LampOff': '86',
+        'DocCam_AutoFocus': '80',
+        'ConfCall_DialPad_1': '281',
+        'ConfCall_DialPad_2': '282',
+        'ConfCall_DialPad_3': '283',
+        'ConfCall_DialPad_4': '284',
+        'ConfCall_DialPad_5': '285',
+        'ConfCall_DialPad_6': '286',
+        'ConfCall_DialPad_7': '287',
+        'ConfCall_DialPad_8': '288',
+        'ConfCall_DialPad_9': '289',
+        'ConfCall_DialPad_0': '290',
+        'ConfCall_DialPad_Star': '291',
+        'ConfCall_DialPad_Pound': '292',
+        'ConfCall_DialString_Clear': '104',
+        'ConfCall_DialString_Backspace': '107',
+        'ConfCall_CallIgnore': '108',
+        'ConfCall_VolumeUp': '102',
+        'ConfCall_VolumeDown': '102',
+        'DocCam_ZoomOut': '83',
+        'DocCam_ZoomIn': '84',
+        'Bluray_Up': '271',
+        'Bluray_Right':'272',
+        'Bluray_Down': '273',
+        'Bluray_Left': '274',
+        'Bluray_Ok': '275',
+        'Bluray_Previous': '57',
+        'Bluray_Next': '58',
+        'Bluray_Eject': '59',
+        'Bluray_Home': '60',
+        'Bluray_Info': '61',
+        'Bluray_Menu': '62',
+        'Bluray_Return': '63',
+        'Bluray_Play': '64',
+        'Bluray_Pause': '65',
+        'Bluray_Stop': '66',
+        'Bluray_Rewind': '67',
+        'Bluray_Fast_Forward': '68'
+    }
+    const CrSignalType = {
+        'Boolean' : 'b',
+        'Number' : 'n',
+        'String': 's'
+    }
     useEffect(() => {
-        window.CrComLib.subscribeState('s', '2', value=> setIpAdd(value));
-        window.CrComLib.subscribeState('b', `${showAnnotationJoin}`, value=> setShowAnnotation(value));
-        window.CrComLib.subscribeState('b', `${showFullScreenJoin}`, value=> setShowFullScreen(value)); 
-        window.CrComLib.subscribeState('b', `${displayJoin}`, value=> setIsMuted(value));
-        window.CrComLib.subscribeState('b', `${powerOn}`, value=> setPowerSwitch(value));
-        window.CrComLib.subscribeState('b', `${annotationJoin}`, value=> setAnnotationPressed(value));
-        window.CrComLib.subscribeState('b', `${fullscreenJoin}`, value=> setFullscreenPressed(value));
-        window.CrComLib.subscribeState('b', `${showDisplayModalJoin}`, value => setIsClicked(value));
-        window.CrComLib.subscribeState('b', '55', value => setBluRayClicked(value));
-        window.CrComLib.subscribeState('b', '117', value => setConfCallClicked(value));
-        window.CrComLib.subscribeState('b', `${electricScreenJoin}`, value=> setIsElectricScreen(value));
-        window.CrComLib.subscribeState('b', `${displayIsProjectorJoin}`, value=> setIsProjector(value));
-        window.CrComLib.subscribeState('s', '16', value=> setDialString(value));
-        window.CrComLib.subscribeState('n', '3', value=> setConfCallVolume(value));
-        window.CrComLib.subscribeState('b', '100', value=> setIsConfCallMuted(value));
-        window.CrComLib.subscribeState('b', '109', value=> setShowIncomingCall(value));
-        window.CrComLib.subscribeState('b', '106', value=> setIsCallActive(value));
-        window.CrComLib.subscribeState('b', '79', value=> setConfigPrivacyMode(value));
-        window.CrComLib.subscribeState('b', '103', value=> setIsPrivacyModeEnabled(value));
+        window.CrComLib.subscribeState(CrSignalType.String, CrSignalNames.IpAddress, value=> setIpAdd(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${showAnnotationJoin}`, value=> setShowAnnotation(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${showFullScreenJoin}`, value=> setShowFullScreen(value)); 
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${displayJoin}`, value=> setIsMuted(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${powerOn}`, value=> setPowerSwitch(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${annotationJoin}`, value=> setAnnotationPressed(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${fullscreenJoin}`, value=> setFullscreenPressed(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${showDisplayModalJoin}`, value => setIsClicked(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ShowBlurayModal, value => setBluRayClicked(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ShowConfCallModal, value => setConfCallClicked(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${electricScreenJoin}`, value=> setIsElectricScreen(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, `${displayIsProjectorJoin}`, value=> setIsProjector(value));
+        window.CrComLib.subscribeState(CrSignalType.String, CrSignalNames.ConfCall_DialString, value=> setDialString(value));
+        window.CrComLib.subscribeState(CrSignalType.Number, CrSignalNames.ConfCall_Volume, value=> setConfCallVolume(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ConfCall_Mute, value=> setIsConfCallMuted(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ShowConfCallIncomingCall, value=> setShowIncomingCall(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ConfCall_CallActive, value=> setIsCallActive(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.Config_PrivacyMode, value=> setConfigPrivacyMode(value));
+        window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.EnablePrivacyMode, value=> setIsPrivacyModeEnabled(value));
 
         
         
     }, [dialString]);
     const toggleMute = (joinNumber) => {
         setIsMuted((prevIsMuted) => !(prevIsMuted));
-        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
        
     }
     const handleShowDisplayModal = () => {
         console.log("Showing Display Modal")
         setIsClicked(true);
-        window.CrComLib.publishEvent('b', `${showDisplayModalJoin}`, true);
-        window.CrComLib.publishEvent('b', `${showDisplayModalJoin}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${showDisplayModalJoin}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${showDisplayModalJoin}`, false);
       }
     const handleCloseDisplayModal = () => {
         setIsClicked(false);
-        window.CrComLib.publishEvent('b', `${closeDisplayModalJoin}`, true);
-        window.CrComLib.publishEvent('b', `${closeDisplayModalJoin}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${closeDisplayModalJoin}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${closeDisplayModalJoin}`, false);
     }
     const handleShowBluRayModal = () => {
         console.log("Showing BluRay Modal")
         setBluRayClicked(true);
-        window.CrComLib.publishEvent('b', '55', true);
-        window.CrComLib.publishEvent('b', '55', false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ShowBlurayModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ShowBlurayModal, false);
     }
     const handleCloseBluRayModal = () => {
         console.log("Closing BluRay Modal")
         setBluRayClicked(false);
-        window.CrComLib.publishEvent('b', '56', true);
-        window.CrComLib.publishEvent('b', '56', false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.CloseBlurayModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.CloseBlurayModal, false);
     }
     const handleShowConfCallModal = () => {
         console.log("Showing ConfCall Modal")
         setConfCallClicked(true);
-        window.CrComLib.publishEvent('b', '117', true);
-        window.CrComLib.publishEvent('b', '117', false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ShowConfCallModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ShowConfCallModal, false);
     }
     const handleCloseConfCallModal = () => {
         console.log("Closing ConfCall Modal")
         setConfCallClicked(false);
-        window.CrComLib.publishEvent('b', '118', true);
-        window.CrComLib.publishEvent('b', '118', false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.CloseConfCallModal, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.CloseConfCallModal, false);
     }
     const handleShowConfCallVolumeModal = () => {
         setShowConfCallVolume(true);
@@ -111,8 +171,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     }
     const toggleConfCallVolumeMute = () => { 
         setIsConfCallMuted(!isConfCallMuted);
-        window.CrComLib.publishEvent('b', '100', true);
-        window.CrComLib.publishEvent('b', '100', false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_Mute, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_Mute, false);
     }
     const handleCloseIncomingCallModal = () => {
         setShowIncomingCall(false);
@@ -120,80 +180,78 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const toggleCallActive = () => { 
         setIsCallActive(!isCallActive);
         if (isCallActive) {
-            window.CrComLib.publishEvent('b', '105', true);
-            window.CrComLib.publishEvent('b', '105', false);
-            console.log('On_hook 105')
+            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_EndCall, true);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_EndCall, false);
+            console.log('On_hook: End Call')
         } else {
-            window.CrComLib.publishEvent('b', '106', true);
-            window.CrComLib.publishEvent('b', '106', false);
-            console.log('On_hook 106')
+            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_CallActive, true);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_CallActive, false);
+            console.log('On_hook: Call Active')
         }
     }
 
     const togglePrivacyMode = () => {
         setIsPrivacyModeEnabled(!isPrivacyModeEnabled);
-        window.CrComLib.publishEvent('b', '103', true);
-        window.CrComLib.publishEvent('b', '103', false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.EnablePrivacyMode, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.EnablePrivacyMode, false);
       }
 
     const togglePowerSwitch = () => {
         setPowerSwitch(!powerSwitch)
         if (!powerSwitch) {
-            window.CrComLib.publishEvent('b', `${powerOn}`, true);
-            window.CrComLib.publishEvent('b', `${powerOn}`, false);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, `${powerOn}`, true);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, `${powerOn}`, false);
             console.log('Power On')
         } else {
-            window.CrComLib.publishEvent('b', `${powerOff}`, true);
-            window.CrComLib.publishEvent('b', `${powerOff}`, false);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, `${powerOff}`, true);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, `${powerOff}`, false);
             console.log('Power Off')
         }
     }
     const toggleLampSwitch = () => {
         setLampSwitch(!lampSwitch)
         if (!lampSwitch) {
-            window.CrComLib.publishEvent('b', '85', true);
-            window.CrComLib.publishEvent('b', '85', false);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_LampOn, true);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_LampOn, false);
             console.log('Lamp On')
         } else {
-            window.CrComLib.publishEvent('b', '86', true);
-            window.CrComLib.publishEvent('b', '86', false);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_LampOff, true);
+            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_LampOff, false);
             console.log('Lamp Off')
         }
     }
     const toggleAutoFocusSwitch = () => {
-        setAutoFocusSwitch(!autoFocusSwitch)
-        if (!autoFocusSwitch) {
-            window.CrComLib.publishEvent('b', '81', true);
-            window.CrComLib.publishEvent('b', '81', false);
-            console.log('AutoFocus On')
-        } else {
-            window.CrComLib.publishEvent('b', '82', true);
-            window.CrComLib.publishEvent('b', '82', false);
-            console.log('AutoFocus Off')
-        }
+        setAutoFocusSwitch(!autoFocusSwitch);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_AutoFocus, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_AutoFocus, false);
+        console.log('Status of AutoFocus is: ', autoFocusSwitch)
     }
 
     const handleAnnotationPressed = () => {
         setAnnotationPressed(!annotationPressed)
-        window.CrComLib.publishEvent('b', `${annotationJoin}`, true);
-        window.CrComLib.publishEvent('b', `${annotationJoin}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${annotationJoin}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${annotationJoin}`, false);
+        console.log('state of annotation button', showAnnotation);
+        console.log('state of fullscreen button', showFullScreen);
     }
     const handleFullscreenPressed = () => {
         setFullscreenPressed(!fullscreenPressed);
-        window.CrComLib.publishEvent('b', `${fullscreenJoin}`, true);
-        window.CrComLib.publishEvent('b', `${fullscreenJoin}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${fullscreenJoin}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${fullscreenJoin}`, false);
+        console.log('state of annotation button', showAnnotation);
+        console.log('state of fullscreen button', showFullScreen);
     } 
     const blurayControl = (joinNumber, press) => {
         setBluRayButton(press)
-        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
         console.log(`${press} pressed`)
         console.log(blurayButton)
     };
 ;
     const handleDialKeyPres = (joinNumber) => {
-        window.CrComLib.publishEvent('b', `${joinNumber}`, true);
-        window.CrComLib.publishEvent('b', `${joinNumber}`, false);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
         console.log('pw key pressed', joinNumber)
     };
     // Privacy Mode Popover
@@ -216,6 +274,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         case 'right':
             displayNum = "Two"
             break;
+        default:
+            displayNum =""
     } 
     switch(sourceSelected) {
         case 1:
@@ -265,68 +325,68 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     
                                 </div>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres('281')}>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_1)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">1</span>
                                     <span className="d-block font-size-1" style={{ height: 'var(--font-size-2' }}></span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres('282')}>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_2)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">2</span>
                                     <span className="d-block font-size-1 font-size-2-xl">ABC</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres('283')}>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_3)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">3</span>
                                     <span className="d-block font-size-1 font-size-2-xl">DEF</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres('284')}>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_4)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">4</span>
                                     <span className="d-block font-size-1 font-size-2-xl">GHI</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres('285')}>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_5)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">5</span>
                                     <span className="d-block font-size-1 font-size-2-xl">JKL</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres('286')}>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_6)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">6</span>
                                     <span className="d-block font-size-1 font-size-2-xl">MNO</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres('287')}>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_7)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">7</span>
                                     <span className="d-block font-size-1 font-size-2-xl">PQRS</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres('288')}>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_8)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">8</span>
                                     <span className="d-block font-size-1 font-size-2-xl">TUV</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres('289')}>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_9)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">9</span>
                                     <span className="d-block font-size-1 font-size-2-xl">WXYZ</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres('291')}>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_Star)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">*</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres('290')}>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_0)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">0</span>
                                     <span className="d-block font-size-1 font-size-2-xl">+</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres('292')}>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_Pound)}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">#</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
                                     onClick={() => {
-                                        window.CrComLib.publishEvent('b', '104', true);
-                                        window.CrComLib.publishEvent('b', '104', false);
-                                        console.log('backspace pressed')
+                                        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_DialString_Clear, true);
+                                        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_DialString_Clear, false);
+                                        console.log('Clear pressed')
                                 }}>
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">
                                         <i className="bi bi-x"></i>
@@ -345,8 +405,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 {/* Clear button */}
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
                                     onClick={() => {
-                                        window.CrComLib.publishEvent('b', '107', true);
-                                        window.CrComLib.publishEvent('b', '107', false);
+                                        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_DialString_Backspace, true);
+                                        window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_DialString_Backspace, false);
                                         console.log('backspace pressed')
                                 }}>
                                     <span className="d-block fw-bold font-size-3 font-size-4-xl">
@@ -380,7 +440,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
                         <div className='container-fluid text-center pt-5'>
                             <div className="mt-4 mb-5 mt-xl-5">
-                                <VolumeControl className="mx-auto" initialVolume={confCallVolume} plusJoin='102' minusJoin='101' isMuted={isConfCallMuted}/>
+                                <VolumeControl className="mx-auto" initialVolume={confCallVolume} plusJoin={CrSignalNames.ConfCall_VolumeUp} minusJoin={CrSignalNames.ConfCall_VolumeDown} isMuted={isConfCallMuted}/>
                             </div>
                             <div className="row m-0 my-xl-5"></div>
                             <div className="col-12 d-flex flex-wrap justify-content-evenly py-3">
@@ -450,16 +510,16 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         <div className='d-flex justify-content-center mt-5'>
                             <button className='btn btn-danger col-4 rounded-pill px-5 text-white mx-3'
                                 onClick={() => {
-                                    window.CrComLib.publishEvent('b', '108', true);
-                                    window.CrComLib.publishEvent('b', '108', false);
+                                    window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_CallIgnore, true);
+                                    window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_CallIgnore, false);
                                     console.log('Call ignored')
                                 }}>
                                 Ignore
                             </button>
                             <button className='btn btn-success col-4 rounded-pill px-5 mx-3 text-white' 
                                 onClick={() => {
-                                    window.CrComLib.publishEvent('b', '109', true);
-                                    window.CrComLib.publishEvent('b', '109', false);
+                                    window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ShowConfCallIncomingCall, true);
+                                    window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ShowConfCallIncomingCall, false);
                                     console.log('Call picked up')
                                 }}>
                                 Answer
@@ -507,13 +567,13 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     <div className="col-12 mb-2">
                         <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
                             <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-4-xl" onClick={() => {
-                            window.CrComLib.publishEvent('b', '83', true);
-                            window.CrComLib.publishEvent('b', '83', false);
+                            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_ZoomOut, true);
+                            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_ZoomOut, false);
                             console.log('DocCam Zooming Out') 
                         }}><i className="bi bi-dash-circle-fill"></i></button>
                             <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-4-xl" onClick={() => {
-                            window.CrComLib.publishEvent('b', '84', true);
-                            window.CrComLib.publishEvent('b', '84', false);
+                            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_ZoomIn, true);
+                            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_ZoomIn, false);
                             console.log('DocCam Zooming In') 
                         }}><i className="bi bi-plus-circle-fill"></i></button>
                         </div>
@@ -546,57 +606,57 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         <div className='container-fluid text-center'>
                             {/* Opad Control */}
                             <div className='col-3 mx-auto pt-2 mb-3 mb-xl-5'>
-                                <Opad centerButton={true} upJoin='271' downJoin='273'
-                                    leftJoin='274' rightJoin='272' centerJoin='275' />
+                                <Opad centerButton={true} upJoin={CrSignalNames.Bluray_Up} downJoin={CrSignalNames.Bluray_Down}
+                                    leftJoin={CrSignalNames.Bluray_Left} rightJoin={CrSignalNames.Bluray_Right} centerJoin={CrSignalNames.Bluray_Ok}/>
                             </div>
                             {/* Media Buttons Row */}
                             <div className='d-flex flex-row mx-auto my-2 mb-2 mb-xl-5'>
                                 <button className='btn btn-white border border-1 position-relative rounded-circle mx-auto pt-2 blurayControls'
-                                    onClick={() => { blurayControl('59', 'Eject') }}>
+                                    onClick={() => { blurayControl(CrSignalNames.Bluray_Eject, 'Eject') }}>
                                         <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-eject-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>
                                 <button className='position-relative btn btn-white border border-1 rounded-circle  mx-auto pt-2 blurayControls'
-                                    onClick={() => blurayControl('57', 'Previous')}>
+                                    onClick={() => blurayControl(CrSignalNames.Bluray_Previous, 'Previous')}>
                                      <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-skip-backward-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>
                                 <button className='position-relative btn btn-white border border-1 rounded-circle mx-auto pt-2 blurayControls'
-                                    onClick={() => blurayControl('67', 'Rewind')}>
+                                    onClick={() => blurayControl(CrSignalNames.Bluray_Rewind, 'Rewind')}>
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-rewind-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>
                                 <button className='position-relative btn btn-white border border-1 rounded-circle mx-auto pt-2 blurayControls'
-                                    onClick={() => blurayControl('65', 'Pause')}>
+                                    onClick={() => blurayControl(CrSignalNames.Bluray_Pause, 'Pause')}>
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-pause-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>
                                 <button className='position-relative btn btn-white border border-1 rounded-circle  mx-auto pt-2 blurayControls'
-                                    onClick={() => blurayControl('64', 'Play')}>
+                                    onClick={() => blurayControl(CrSignalNames.Bluray_Play, 'Play')}>
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-play-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>
                                 <button className='position-relative btn btn-white border border-1 rounded-circle  mx-auto pt-2 blurayControls'
-                                    onClick={() => blurayControl('66', 'Stop')}>
+                                    onClick={() => blurayControl(CrSignalNames.Bluray_Stop, 'Stop')}>
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-stop-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>
                                 <button className='position-relative btn btn-white border border-1 rounded-circle  mx-auto pt-2 blurayControls'
-                                    onClick={() => blurayControl('68', 'Fast Forward')}>
+                                    onClick={() => blurayControl(CrSignalNames.Bluray_Fast_Forward, 'Fast Forward')}>
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-fast-forward-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>
                                 <button className='position-relative btn btn-white border border-1 rounded-circle  mx-auto pt-2 blurayControls'
-                                    onClick={() => blurayControl('58', 'Next')}>
+                                    onClick={() => blurayControl(CrSignalNames.Bluray_Next, 'Next')}>
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-skip-forward-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>
                             </div>
                             {/* /Media Buttons Row */}
                             {/* Menu Buttons Group */}
                             <div className='d-flex flex-row flex-wrap justify-content-center'>
-                                <button className='btn btn-info col-4 rounded-pill border-0 my-3 mx-3 font-size-3 font-size-4-xl' onClick={() => blurayControl('60', 'Home')}>
+                                <button className='btn btn-info col-4 rounded-pill border-0 my-3 mx-3 font-size-3 font-size-4-xl' onClick={() => blurayControl(CrSignalNames.Bluray_Home, 'Home')}>
                                     <i className="d-inline-block bi bi-house-fill me-1"></i>
                                     Home</button>
-                                <button className='btn btn-info col-4 rounded-pill border-0 my-3 mx-3 font-size-3 font-size-4-xl' onClick={() => blurayControl('62', 'Menu')}>
+                                <button className='btn btn-info col-4 rounded-pill border-0 my-3 mx-3 font-size-3 font-size-4-xl' onClick={() => blurayControl(CrSignalNames.Bluray_Menu, 'Menu')}>
                                     <i className="d-inline-block bi bi-list me-1"></i>
                                     Menu</button>
-                                <button className='btn btn-info col-4 rounded-pill border-0 my-3 mx-3 font-size-3 font-size-4-xl' onClick={() => blurayControl('61', 'Info')}>
+                                <button className='btn btn-info col-4 rounded-pill border-0 my-3 mx-3 font-size-3 font-size-4-xl' onClick={() => blurayControl(CrSignalNames.Bluray_Info, 'Info')}>
                                     <i className="d-inline-block bi bi-info-circle-fill me-1"></i>
                                     Info</button>
-                                <button className='btn btn-info col-4 rounded-pill border-0 my-3 mx-3 font-size-3 font-size-4-xl' onClick={() => blurayControl('63', 'Return')}>
+                                <button className='btn btn-info col-4 rounded-pill border-0 my-3 mx-3 font-size-3 font-size-4-xl' onClick={() => blurayControl(CrSignalNames.Bluray_Return, 'Return')}>
                                     <i className="d-inline-block bi bi-arrow-left me-1"></i>
                                     Return</button>
                             </div>
@@ -729,8 +789,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     {/* Down Button */}
                                     <button type="button"
                                         className="btn btn-info col-4 border-0 rounded-pill py-2 me-3 text-white fw-bold font-size-3" onClick={() => {
-                                            window.CrComLib.publishEvent('b', `${downJoin}`, true);
-                                            window.CrComLib.publishEvent('b', `${downJoin}`, false);
+                                            window.CrComLib.publishEvent(CrSignalType.Boolean, `${downJoin}`, true);
+                                            window.CrComLib.publishEvent(CrSignalType.Boolean, `${downJoin}`, false);
                                             console.log('Screen downed')
                                         }}><i
                                             className="d-inline-block bi bi-chevron-down font-size-4 font-size-5-xl mx-auto"></i></button>
@@ -738,8 +798,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     <button type="button"
                                         className="btn btn-info col-4 border-0 rounded-pill py-2 text-white fw-bold font-size-3"><i
                                             className="d-inline-block bi bi-chevron-up font-size-4 font-size-5-xl mx-auto" onClick={() => {
-                                                window.CrComLib.publishEvent('b', `${upJoin}`, true);
-                                                window.CrComLib.publishEvent('b', `${upJoin}`, false);
+                                                window.CrComLib.publishEvent(CrSignalType.Boolean, `${upJoin}`, true);
+                                                window.CrComLib.publishEvent(CrSignalType.Boolean, `${upJoin}`, false);
                                                 console.log('Screen upped')
                                             }}></i></button>
                                 </div>
