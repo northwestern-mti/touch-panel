@@ -122,7 +122,8 @@ const handleDecreaseOnTouchMove = (e) => {
           onMouseLeave={handleDecreaseOnMouseUp}
           onTouchStart={handleDecreaseOnMouseDown}
           onTouchEnd={handleDecreaseOnMouseUp}
-          onTouchCancel={handleDecreaseOnMouseUp}>
+          onTouchCancel={handleDecreaseOnMouseUp}
+          onTouchMove={handleDecreaseOnTouchMove}>
             <i className="bi bi-dash-lg text-white fw-bold font-size-5 font-size-6-xl"></i>
         </button>
         <div className="squaresContainer me-2">{renderSquares()}</div>
@@ -133,7 +134,8 @@ const handleDecreaseOnTouchMove = (e) => {
           onMouseLeave={handleIncreaseOnMouseUp}
           onTouchStart={handleIncreaseOnMouseDown}
           onTouchEnd={handleIncreaseOnMouseUp}
-          onTouchCancel={handleIncreaseOnMouseUp}>
+          onTouchCancel={handleIncreaseOnMouseUp}
+          onTouchMove={handleIncreaseOnTouchMove}>
             <i className="bi bi-plus-lg text-white fw-bold font-size-5 font-size-6-xl"></i>
         </button>
     </div>
