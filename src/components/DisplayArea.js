@@ -320,7 +320,9 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     <div className="col">
                                         <input readOnly className="form-control border-0 rounded-pill bg-gray-300 text-dark text-center font-size-2 font-size-3-xl p-2 p-xl-3 mb-3"
                                             placeholder='' 
-                                            value={dialString}/>
+                                            value={dialString}
+                                            aria-label="phone number"
+                                            />
                                     </div>
                                     
                                 </div>

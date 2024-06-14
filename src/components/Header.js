@@ -431,7 +431,7 @@ function Header(){
                                     </div>
                                 </div>
                                 {/* Switcher row */}
-                                <h3 className="text-center fw-bold mb-4 font-size-2 font-size-4-xl">Enter input # of HDMI switcher or 0 for none</h3>
+                                <h2 className="h3 text-center fw-bold mb-4 font-size-2 font-size-4-xl">Enter input # of HDMI switcher or 0 for none</h2>
                                 <div className="row flex-wrap justify-content-between ps-3 ps-xl-5 mx-0 mt-1 mb-4 font-size-2 font-size-4-xl">
                                     {/* Switchers */}
                                     {Array.from({ length: textFieldsNum }, (_, index) => (
