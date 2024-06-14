@@ -239,12 +239,16 @@ function Header(){
                                 <span className="d-block mb-1">
                                     <ch5-datetime 
                                         displaytype="date" 
-                                        styleForDate="MMMM d, yyyy">
+                                        styleForDate="MMMM d, yyyy"
+                                        role="presentation"
+                                        >
                                     </ch5-datetime>
                                 </span>    
                                 <span className='d-inline-block'>
                                     <ch5-datetime 
-                                        displaytype="time">
+                                        displaytype="time"
+                                        role="presentation"
+                                        >
                                     </ch5-datetime>
                                 </span>
                     </div>
