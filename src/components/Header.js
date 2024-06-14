@@ -269,9 +269,9 @@ function Header(){
                             <Modal.Title className="col-12 d-flex flex-row justify-content-between">
                                 <h1 className="font-size-5 font-size-6-xl">
                                     <button type="button" className="border-0 text-dark"
-                                        onClick={handleCloseHelpModal}><i class="bi bi-arrow-left"></i></button>Help</h1>
+                                        onClick={handleCloseHelpModal} aria-label="close"><i class="bi bi-arrow-left"></i></button>Help</h1>
                                 <button type="button" className="border-0 text-muted"
-                                    onClick={handleCloseHelpModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
+                                    onClick={handleCloseHelpModal} aria-label="close"><i className="bi bi-x-lg"></i></button>
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body className="font-size-4 font-size-5-xl p-4 p-xl-5">
@@ -293,9 +293,9 @@ function Header(){
                             <Modal.Title className="col-12 d-flex flex-row justify-content-between">
                                 <h1 className="font-size-5 font-size-6-xl">
                                     <button type="button" className="border-0 text-dark"
-                                        onClick={handleClosePasswordModal}><i class="bi bi-arrow-left"></i></button>Password Required</h1>
+                                        onClick={handleClosePasswordModal} aria-label="close"><i className="bi bi-arrow-left"></i></button>Password Required</h1>
                                 <button type="button" className="border-0 text-muted font-size-3 font-size-5-xl"
-                                    onClick={handleClosePasswordModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
+                                    onClick={handleClosePasswordModal} aria-label="close"><i className="bi bi-x-lg"></i></button>
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body className="font-size-4 font-size-5-xl p-0 pt-1">
@@ -369,9 +369,9 @@ function Header(){
                             <Modal.Title className="col-12 d-flex flex-row justify-content-between">
                                 <h1 className="font-size-4 font-size-5-xl">
                                     <button type="button" className="border-0 text-dark"
-                                        onClick={handleCloseAdminModal}><i class="bi bi-arrow-left"></i></button>Admin</h1>
+                                        onClick={handleCloseAdminModal} aria-label="close"><i className="bi bi-arrow-left"></i></button>Admin</h1>
                                 <button type="button" className="border-0 text-muted font-size-3 font-size-5-xl"
-                                    onClick={handleCloseAdminModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
+                                    onClick={handleCloseAdminModal} aria-label="close"><i className="bi bi-x-lg"></i></button>
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body className="font-size-4 font-size-5-xl p-0 pt-1">

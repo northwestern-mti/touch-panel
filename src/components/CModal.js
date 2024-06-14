@@ -26,12 +26,12 @@ const CModal = ({ show, onHide, title, children }) => {
           <div className="modal-header pb-0">
             <div className="modal-title col-12 d-flex flex-row justify-content-between">
             <h1 className="font-size-5 font-size-6-xl">
-              <button variant="link" onClick={onHide} className="border-0 text-dark">
+              <button variant="link" onClick={onHide} className="border-0 text-dark" aria-label="close">
               <i className="bi bi-arrow-left"></i>
               </button>{title}
             </h1>
-            <button variant="link" onClick={onHide} className="border-0 text-muted h4">
-              <i className="bi bi-x-lg" aria-hidden="true"></i>
+            <button variant="link" onClick={onHide} className="border-0 text-muted h4" aria-label="close">
+              <i className="bi bi-x-lg"></i>
               </button>
             </div>
           </div>

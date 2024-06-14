@@ -306,9 +306,9 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         <Modal.Title className="col-12 d-flex flex-row justify-content-between">
                             <h1 className="font-size-5 font-size-6-xl">
                                 <button type="button" className="border-0 text-dark"
-                                    onClick={handleCloseConfCallModal}><i class="bi bi-arrow-left"></i></button>Conference Call</h1>
+                                    onClick={handleCloseConfCallModal} aria-label="close"><i className="bi bi-arrow-left"></i></button>Conference Call</h1>
                             <button type="button" className="border-0 text-muted"
-                                onClick={handleCloseConfCallModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
+                                onClick={handleCloseConfCallModal} aria-label="close"><i className="bi bi-x-lg"></i></button>
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
@@ -451,9 +451,9 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         <Modal.Title className="col-12 d-flex flex-row justify-content-between">
                             <h1 className="font-size-5 font-size-6-xl">
                                 <button type="button" className="border-0 text-dark"
-                                    onClick={handleCloseConfCallVolumeModal}><i class="bi bi-arrow-left"></i></button>Conference Call Volume</h1>
+                                    onClick={handleCloseConfCallVolumeModal} aria-label="close"><i className="bi bi-arrow-left"></i></button>Conference Call Volume</h1>
                             <button type="button" className="border-0 text-muted"
-                                onClick={handleCloseConfCallVolumeModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
+                                onClick={handleCloseConfCallVolumeModal} aria-label="close"><i className="bi bi-x-lg"></i></button>
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
@@ -518,9 +518,9 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         <Modal.Title className="col-12 d-flex flex-row justify-content-between">
                         <h1 className="font-size-5 font-size-6-xl">
                             <button type="button" className="border-0 text-dark"
-                            onClick={handleCloseIncomingCallModal}><i class="bi bi-arrow-left"></i></button>Incoming Telephone Call</h1>
+                            onClick={handleCloseIncomingCallModal} aria-label="close"><i className="bi bi-arrow-left"></i></button>Incoming Telephone Call</h1>
                         <button type="button" className="border-0 text-muted"
-                            onClick={handleCloseIncomingCallModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
+                            onClick={handleCloseIncomingCallModal} aria-label="close"><i className="bi bi-x-lg"></i></button>
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body className="font-size-4 font-size-5-xl p-0">
@@ -616,9 +616,9 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                         <Modal.Title className="col-12 d-flex flex-row justify-content-between">
                             <h1 className="font-size-5 font-size-6-xl">
                                 <button type="button" className="border-0 text-dark"
-                                    onClick={handleCloseBluRayModal}><i class="bi bi-arrow-left"></i></button>Blu-Ray Controls</h1>
+                                    onClick={handleCloseBluRayModal} aria-label="close"><i className="bi bi-arrow-left"></i></button>Blu-Ray Controls</h1>
                             <button type="button" className="border-0 text-muted"
-                                onClick={handleCloseBluRayModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
+                                onClick={handleCloseBluRayModal}><i className="bi bi-x-lg" aria-label="close"></i></button>
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
@@ -745,9 +745,9 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     <Modal.Title className="col-12 d-flex flex-row justify-content-between">
                         <h1 className="font-size-5 font-size-6-xl">
                             <button type="button" className="border-0 text-dark"
-                                onClick={handleCloseDisplayModal}><i class="bi bi-arrow-left"></i></button>Display Settings</h1>
+                                onClick={handleCloseDisplayModal} aria-label="close"><i className="bi bi-arrow-left"></i></button>Display Settings</h1>
                         <button type="button" className="border-0 text-muted"
-                            onClick={handleCloseDisplayModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
+                            onClick={handleCloseDisplayModal}><i className="bi bi-x-lg"></i></button>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="font-size-2 font-size-3-xl p-0 pt-xl-3"> 
