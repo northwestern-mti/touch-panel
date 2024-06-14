@@ -233,7 +233,7 @@ function Header(){
                         </div>
                     </div>
                     <div className="col-2 text-center text-white">
-                        <span role="heading">{(classRoom == "") ? 'Room' : classRoom}</span>
+                        <span role="heading" aria-level="1">{(classRoom == "") ? 'Room' : classRoom}</span>
                     </div>
                     <div className="col-3 text-center text-white font-size-2 font-size-3-xl">
                                 <span className="d-block mb-1">
@@ -311,7 +311,7 @@ function Header(){
                                     onClick={() => {
                                         window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.PwBackSpace, true);
                                         window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.PwBackSpace, false);
-                                    }}>
+                                    }} aria-label="backspace/delete">
                                     <i className="bi bi-backspace-fill"></i>
                                 </div>
                                 </div>
@@ -444,9 +444,9 @@ function Header(){
                                                 </div>
                                                 <div className="col-6 text-center">
                                                     <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
-                                                        <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl"
+                                                        <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-3-xl" aria-label="decrease"
                                                             onClick={() => handleIncreaseOrDecrease(`${index * 2 + CrSignalNames.TextFieldsValuesIncDecBaseIdx + 1}`, index)}><i className="bi bi-dash-circle-fill"></i></button>
-                                                        <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl"
+                                                        <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-3-xl" aria-label="increase"
                                                             onClick={() => handleIncreaseOrDecrease(`${index * 2 + CrSignalNames.TextFieldsValuesIncDecBaseIdx}`, index)}><i className="bi bi-plus-circle-fill"></i></button>
                                                         
                                                     </div>

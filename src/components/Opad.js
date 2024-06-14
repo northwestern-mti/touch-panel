@@ -13,23 +13,28 @@ const OPad = ({centerButton, upJoin, downJoin, leftJoin, rightJoin, centerJoin})
   };
 
   return (
-    <div class="o-pad mx-auto">
-      <div class="up" onClick={() => sendSignal(upJoin, "Up")} aria-label="up">
-        <i class="d-inline-block bi bi-caret-up-fill font-size-4 font-size-5-xl "></i>
+    <div className="o-pad mx-auto">
+      <div className="up" onClick={() => sendSignal(upJoin, "Up")}>
+        <i className="d-inline-block bi bi-caret-up-fill font-size-4 font-size-5-xl "></i>
+        <span className="visually-hidden">up</span>
       </div>
-      <div class="right" onClick={() => sendSignal(rightJoin, "Right")} aria-label="right">
-        <i class="d-inline-block bi bi-caret-right-fill font-size-4 font-size-5-xl "></i>
+      <div className="right" onClick={() => sendSignal(rightJoin, "Right")}>
+        <i className="d-inline-block bi bi-caret-right-fill font-size-4 font-size-5-xl "></i>
+        <span className="visually-hidden">right</span>
       </div>
-      <div class="left" onClick={() => sendSignal(leftJoin, "Left")} aria-label='left'>
-        <i class="d-inline-block bi bi-caret-left-fill font-size-4 font-size-5-xl "></i>
+      <div className="left" onClick={() => sendSignal(leftJoin, "Left")}>
+        <i className="d-inline-block bi bi-caret-left-fill font-size-4 font-size-5-xl "></i>
+        <span className="visually-hidden">left</span>
       </div>
-      <div class="down" onClick={() => sendSignal(downJoin, "Down")} aria-label="down">
-        <i class="d-inline-block bi bi-caret-down-fill font-size-4 font-size-5-xl "></i>
+      <div className="down" onClick={() => sendSignal(downJoin, "Down")}>
+        <i className="d-inline-block bi bi-caret-down-fill font-size-4 font-size-5-xl "></i>
+        <span className="visually-hidden">down</span>
       </div>
       
       {centerButton &&
-        <div class="position-absolute center-button border-0" onClick={() => sendSignal(centerJoin, "Center")} aria-label="select/enter">
-          <i class="d-inline-block bi bi-circle-fill font-size-4 font-size-5-xl mx-auto"></i>
+        <div className="position-absolute center-button border-0" onClick={() => sendSignal(centerJoin, "Center")}>
+          <i className="d-inline-block bi bi-circle-fill font-size-4 font-size-5-xl mx-auto"></i>
+          <span className="visually-hidden">select/enter</span>
         </div>}
     </div>
   );

@@ -423,12 +423,12 @@ const popover = (
             <div class="col-12 text-center mb-4">
               <Button type="button"
                 className={`btn border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isPresentationMuted ? 'btn-info' : 'btn-gray'}`}
-                onClick={togglePresentationMute}>
+                onClick={togglePresentationMute} aria-labelledby='muteUnmute'>
                 <i
                 className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isPresentationMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
                 ></i>
               </Button>
-              <div className='font-size-3 font-size-4-xl'>{isPresentationMuted ? 'Unmute' : 'Mute'}</div>
+              <div className='font-size-3 font-size-4-xl' id="muteUnmute">{isPresentationMuted ? 'Unmute' : 'Mute'}</div>
             </div>
 
             <div className="row">
@@ -603,10 +603,10 @@ const popover = (
                   <label className="d-block mb-2 font-size-3 font-size-4-xl"
                     for="Zoom buttons"><i className="bi bi-zoom-in"></i> Zoom</label>
                   <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
-                    <button type="button" className="btn btn-info border-0 rounded-start-pill p-3 px-4 ps-xl-5 text-white font-size-2 font-size-4-xl" onClick={() => sendSignal('74', 'Zoom Out')}>
+                    <button type="button" className="btn btn-info border-0 rounded-start-pill p-3 px-4 ps-xl-5 text-white font-size-2 font-size-4-xl" onClick={() => sendSignal('74', 'Zoom Out')} aria-label="zoom out">
                       <i className="bi bi-dash-circle-fill"></i>
                     </button>
-                    <button type="button" className="btn bg-info border-0 rounded-end-pill p-3 px-4 pe-xl-5 text-white font-size-2 font-size-4-xl" onClick={() => sendSignal('75', 'Zoom In')}>
+                    <button type="button" className="btn bg-info border-0 rounded-end-pill p-3 px-4 pe-xl-5 text-white font-size-2 font-size-4-xl" onClick={() => sendSignal('75', 'Zoom In')} aria-label="zoom in">
                       <i className="bi bi-plus-circle-fill"></i>
                     </button>
                   </div>

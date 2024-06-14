@@ -434,7 +434,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 </Button>
                                 {/* Clear button */}
                             </div>
-                            <Button className="btn btn-secondary position-absolute top-50 start-100 translate-middle rounded-circle border-0 p-0 mb-2 dialpadButton" onClick={handleShowConfCallVolumeModal}>
+                            <Button className="btn btn-secondary position-absolute top-50 start-100 translate-middle rounded-circle border-0 p-0 mb-2 dialpadButton" onClick={handleShowConfCallVolumeModal} aria-label="conference call volume settings">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">
                                         <i className="bi bi-volume-up-fill"></i>
                                     </span>
@@ -589,12 +589,13 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_ZoomOut, true);
                             window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_ZoomOut, false);
                             console.log('DocCam Zooming Out') 
-                        }}><i className="bi bi-dash-circle-fill"></i></button>
+                        }} aria-label="zoom out document camera"><i className="bi bi-dash-circle-fill"></i></button>
                             <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-4-xl" onClick={() => {
                             window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_ZoomIn, true);
                             window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_ZoomIn, false);
                             console.log('DocCam Zooming In') 
-                        }}><i className="bi bi-plus-circle-fill"></i></button>
+                        }} aria-label="zoom in document camera"
+                        ><i className="bi bi-plus-circle-fill"></i></button>
                         </div>
                         <label className="d-block font-size-2 font-size-4-xl"
                             for="Zoom buttons"><i className="bi bi-zoom-in"></i> Zoom</label>
