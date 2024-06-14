@@ -233,7 +233,7 @@ function Header(){
                         </div>
                     </div>
                     <div className="col-2 text-center text-white">
-                        <span>{(classRoom == "") ? 'Room' : classRoom}</span>
+                        <span role="heading">{(classRoom == "") ? 'Room' : classRoom}</span>
                     </div>
                     <div className="col-3 text-center text-white font-size-2 font-size-3-xl">
                                 <span className="d-block mb-1">
