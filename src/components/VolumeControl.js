@@ -115,7 +115,7 @@ const handleDecreaseOnTouchMove = (e) => {
 
   return (
     <div className="d-flex flex-row justify-content-center align-items-center">
-        <button className="bg-info border-0 rounded-circle me-2 volumeButton" id="decreaseButton"
+        <button className="btn btn-info border-0 rounded-circle me-2 volumeButton" id="decreaseButton"
           onClick={handleDecreaseOnClick}
           onMouseDown={handleDecreaseOnMouseDown}
           onMouseUp={handleDecreaseOnMouseUp}
@@ -127,7 +127,7 @@ const handleDecreaseOnTouchMove = (e) => {
             <i className="bi bi-dash-lg text-white fw-bold font-size-5 font-size-6-xl"></i>
         </button>
         <div className="squaresContainer me-2">{renderSquares()}</div>
-        <button className="bg-info border-0 rounded-circle volumeButton" id="increaseButton"
+        <button className="btn btn-info border-0 rounded-circle volumeButton" id="increaseButton"
           onClick={handleIncreaseOnClick}
           onMouseDown={handleIncreaseOnMouseDown}
           onMouseUp={handleIncreaseOnMouseUp}
