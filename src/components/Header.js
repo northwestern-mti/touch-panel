@@ -254,7 +254,10 @@ function Header(){
                     </div>
                     <div className="col-1 text-white text-center">
                     <button
-                        className="btn btn-info d-flex align-items-center rounded-circle p-0 mx-auto text-white font-size-3 font-size-4-xl circleIcon" onClick={handleShowHelpModal}>
+                        className="btn btn-info d-flex align-items-center rounded-circle p-0 mx-auto text-white font-size-3 font-size-4-xl circleIcon" 
+                        onClick={handleShowHelpModal}
+                        aria-label="help"
+                        >
                         <i className="d-inline-block bi bi-question-lg mx-auto"></i>
                     </button>
                     </div>
