@@ -308,21 +308,21 @@ const popover = (
           <span className="d-block">System Off</span>
         </button>
         <button type="button"
-          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl ps-1 pe-1" onClick={handleShowVolumeModal}>
+          className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl ps-1 pe-1" onClick={handleShowVolumeModal} aria-labelledby='presentationVolume'>
           <i className="d-block bi bi-volume-up-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
-          <span className="d-block">Presentation Volume</span>
+          <span className="d-block" id="presentationVolume">Presentation Volume</span>
         </button>
         {(hasMics|| hasCeilingMics) &&
           <button type="button"
-            className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowMicModal}>
+            className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowMicModal} aria-labelledby='microphones'>
             <i className="d-block bi bi-mic-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
-            <span className="d-block">Microphones</span>
+            <span className="d-block" id="microphones">Microphones</span>
           </button>}
         {(numCameras > 0) &&
           <button type="button"
-            className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowCamModal}>
+            className="col h-100 bg-secondary border-0 border-end border-dark text-center font-size-2 font-size-3-xl" onClick={handleShowCamModal} aria-labelledby='cameraControls'>
             <i className="d-block bi bi-camera-video-fill mb-1 mb-xl-3 font-size-4 font-size-5-xl"></i>
-            <span className="d-block">Camera Controls</span>
+            <span className="d-block" id="cameraControls">Camera Controls</span>
           </button>}
         {/* Audio Statuses */}
         <div className="col h-100 border-0 pt-2 pb-0 px-1">
@@ -472,24 +472,24 @@ const popover = (
                 <div className="col-6">
                   <button type="button"
                     className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isMicMuted ? 'btn-info' : 'btn-gray'}`}
-                    onClick={toggleMicMute}>
+                    onClick={toggleMicMute} aria-labelledby='muteUnmuteWirelessMics'>
                     <i
                       className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
                     ></i>
                   </button>
-                  <div className='font-size-3 font-size-4-xl'>{isMicMuted ? 'Unmute Wireless Mics' : 'Mute Wireless Mics'}</div>
+                  <div className='font-size-3 font-size-4-xl' id="muteUnmuteWirelessMics">{isMicMuted ? 'Unmute Wireless Mics' : 'Mute Wireless Mics'}</div>
                 </div>
               )}
               {hasCeilingMics &&
                 <div className="col-6">
                   <button type="button"
                     className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isCeilingMicMuted ? 'btn-info' : 'btn-gray'}`}
-                    onClick={toggleCeilingMicMute}>
+                    onClick={toggleCeilingMicMute} aria-labelledby='muteUnmuteCeilingMics'>
                     <i
                       className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isCeilingMicMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
                     ></i>
                   </button>
-                  <div className='font-size-3 font-size-4-xl'>{isCeilingMicMuted ? 'Unmute Ceiling Mics' : 'Mute Ceiling Mics'}</div>
+                  <div className='font-size-3 font-size-4-xl' id="muteUnmuteCeilingMics">{isCeilingMicMuted ? 'Unmute Ceiling Mics' : 'Mute Ceiling Mics'}</div>
                 </div>}
               {configPrivacyMode && 
                 <div className="col-3 col-lg-2 position-relative">
@@ -497,20 +497,20 @@ const popover = (
                     ? <div>
                       <button type="button"
                         className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon btn-info`}
-                        onClick={togglePrivacyMode}>
+                        onClick={togglePrivacyMode} aria-labelledby='disablePrivacyMode'>
                         <Icon className="d-inline-block mx-auto" path={mdiBroadcastOff} size={2} />
                       </button>
-                      <div className='font-size-3 font-size-4-xl'>
+                      <div className='font-size-3 font-size-4-xl' id="disablePrivacyMode">
                         Disable Privacy Mode
                       </div>
                     </div>
                     : <div>
                       <button type="button"
                         className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon btn-gray`}
-                        onClick={togglePrivacyMode}>
+                        onClick={togglePrivacyMode} aria-labelledby='enablePrivacyMode'>
                         <Icon className="d-inline-block mx-auto" path={mdiBroadcast} size={2} />
                       </button>
-                      <div className='font-size-3 font-size-4-xl'>
+                      <div className='font-size-3 font-size-4-xl' id="enablePrivacyMode">
                         Enable Privacy Mode
                       </div>
                     </div>

@@ -325,64 +325,83 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     
                                 </div>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_1)}>
-                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">1</span>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_1)} aria-labelledby="1">
+                                    <span className="d-block fw-bold font-size-4 font-size-5-xl" id="1">1</span>
                                     <span className="d-block font-size-1" style={{ height: 'var(--font-size-2' }}></span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_2)}>
-                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">2</span>
-                                    <span className="d-block font-size-1 font-size-2-xl">ABC</span>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_2)} aria-labelledby='2'>
+                                        <div id="2">
+                                            <span className="d-block fw-bold font-size-4 font-size-5-xl">2</span>
+                                            <span className="d-block font-size-1 font-size-2-xl">ABC</span>
+                                        </div>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_3)}>
-                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">3</span>
-                                    <span className="d-block font-size-1 font-size-2-xl">DEF</span>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_3)} aria-labelledby='3'>
+                                        <div id="3">
+                                            <span className="d-block fw-bold font-size-4 font-size-5-xl">3</span>
+                                            <span className="d-block font-size-1 font-size-2-xl">DEF</span>
+                                        </div>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_4)}>
-                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">4</span>
-                                    <span className="d-block font-size-1 font-size-2-xl">GHI</span>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_4)} aria-labelledby='4'>
+                                        <div id="4">
+                                            <span className="d-block fw-bold font-size-4 font-size-5-xl">4</span>
+                                            <span className="d-block font-size-1 font-size-2-xl">GHI</span>
+                                        </div>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_5)}>
-                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">5</span>
-                                    <span className="d-block font-size-1 font-size-2-xl">JKL</span>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_5)} aria-labelledby='5'>
+                                        <div id="5">
+                                            <span className="d-block fw-bold font-size-4 font-size-5-xl">5</span>
+                                            <span className="d-block font-size-1 font-size-2-xl">JKL</span>
+                                        </div>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_6)}>
-                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">6</span>
-                                    <span className="d-block font-size-1 font-size-2-xl">MNO</span>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_6)} aria-labelledby='6'>
+                                        <div id="6">
+                                            <span className="d-block fw-bold font-size-4 font-size-5-xl">6</span>
+                                            <span className="d-block font-size-1 font-size-2-xl">MNO</span>
+                                        </div>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_7)}>
-                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">7</span>
-                                    <span className="d-block font-size-1 font-size-2-xl">PQRS</span>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_7)} aria-labelledby="7">
+                                        <div id="7">
+                                            <span className="d-block fw-bold font-size-4 font-size-5-xl">7</span>
+                                            <span className="d-block font-size-1 font-size-2-xl">PQRS</span>
+                                        </div>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_8)}>
-                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">8</span>
-                                    <span className="d-block font-size-1 font-size-2-xl">TUV</span>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_8)} aria-labelledby="8">
+                                        <div id="8">
+                                            <span className="d-block fw-bold font-size-4 font-size-5-xl">8</span>
+                                            <span className="d-block font-size-1 font-size-2-xl">TUV</span>
+                                        </div>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_9)}>
-                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">9</span>
-                                    <span className="d-block font-size-1 font-size-2-xl">WXYZ</span>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_9)} aria-labelledby="9">
+                                        <div id="9">
+                                            <span className="d-block fw-bold font-size-4 font-size-5-xl">9</span>
+                                            <span className="d-block font-size-1 font-size-2-xl">WXYZ</span>
+                                        </div>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_Star)}>
-                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">*</span>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_Star)} aria-labelledby="starFlash">
+                                    <span className="d-block fw-bold font-size-4 font-size-5-xl" id="starFlash">*</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_0)}>
-                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">0</span>
-                                    <span className="d-block font-size-1 font-size-2-xl">+</span>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_0)} arialabelledby="0">
+                                        <div id="0">
+                                            <span className="d-block fw-bold font-size-4 font-size-5-xl">0</span>
+                                            <span className="d-block font-size-1 font-size-2-xl">+</span>
+                                        </div>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
-                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_Pound)}>
-                                    <span className="d-block fw-bold font-size-4 font-size-5-xl">#</span>
+                                    onClick={() => handleDialKeyPres(CrSignalNames.ConfCall_DialPad_Pound)} aria-labelledby='pound'>
+                                    <span className="d-block fw-bold font-size-4 font-size-5-xl" id="pound">#</span>
                                 </Button>
                                 <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                    aria-labelledby='clear'
                                     onClick={() => {
                                         window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_DialString_Clear, true);
                                         window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_DialString_Clear, false);
@@ -391,11 +410,11 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">
                                         <i className="bi bi-x"></i>
                                     </span>
-                                    <span className="d-block font-size-1 font-size-2-xl">clear</span>
+                                    <span className="d-block font-size-1 font-size-2-xl" id="clear">clear</span>
                                 </Button>
                                 <Button
                                 className={`btn btn-gray bg-success text-white rounded-circle border-0 p-0 mb-2 dialpadButton ${isCallActive ? 'bg-danger' : 'bg-success'}`} 
-                                onClick={toggleCallActive}>
+                                onClick={toggleCallActive} aria-label="start/end call">
                                     <span className="d-block fw-bold font-size-4 font-size-5-xl">
                                         <i 
                                         className={`bi ${isCallActive ? 'bi-telephone-x-fill' : 'bi-telephone-fill'}`}
@@ -403,7 +422,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                     </span>
                                 </Button>
                                 {/* Clear button */}
-                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton"
+                                <Button className="btn btn-gray rounded-circle border-0 p-0 mb-2 dialpadButton" aria-label="backspace/delete"
                                     onClick={() => {
                                         window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_DialString_Backspace, true);
                                         window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.ConfCall_DialString_Backspace, false);
@@ -447,12 +466,12 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 <div class="col-3 text-center">
                                     <button type="button"
                                         className={`btn border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon ${isConfCallMuted ? 'btn-info' : 'btn-gray'}`}
-                                        onClick={toggleConfCallVolumeMute}>
+                                        onClick={toggleConfCallVolumeMute} aria-labelledby='muteUnmuteConferenceCall'>
                                         <i
                                             className={`d-inline-block bi font-size-5 font-size-5-xl mx-auto ${isConfCallMuted ? 'bi-mic-mute-fill text-white' : 'bi-mic-fill'}`}
                                         ></i>
                                     </button>
-                                    <div className='font-size-3 font-size-4-xl'>{isConfCallMuted ? 'Unmute' : 'Mute'}</div>
+                                    <div className='font-size-3 font-size-4-xl' id="muteUnmuteConferenceCall">{isConfCallMuted ? 'Unmute' : 'Mute'}</div>
                                 </div>
                                 {configPrivacyMode &&
                                     <div className="col-3 position-relative">
@@ -460,20 +479,20 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                             ? <div>
                                                 <button type="button"
                                                     className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon btn-info`}
-                                                    onClick={togglePrivacyMode}>
+                                                    onClick={togglePrivacyMode} aria-labelledby='disablePrivacyMode'>
                                                     <Icon className="d-inline-block mx-auto" path={mdiBroadcastOff} size={2} />
                                                 </button>
-                                                <div className='font-size-3 font-size-4-xl'>
+                                                <div className='font-size-3 font-size-4-xl' id="disablePrivacyMode">
                                                     Disable Privacy Mode
                                                 </div>
                                             </div>
                                             : <div>
                                                 <button type="button"
                                                     className={`btn d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-3 mb-xl-4 muteIcon btn-gray`}
-                                                    onClick={togglePrivacyMode}>
+                                                    onClick={togglePrivacyMode} aria-labelledby='enablePrivacyMode'>
                                                     <Icon className="d-inline-block mx-auto" path={mdiBroadcast} size={2} />
                                                 </button>
-                                                <div className='font-size-3 font-size-4-xl'>
+                                                <div className='font-size-3 font-size-4-xl' id="enablePrivacyMode">
                                                     Enable Privacy Mode
                                                 </div>
                                             </div>
@@ -612,35 +631,35 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             {/* Media Buttons Row */}
                             <div className='d-flex flex-row mx-auto my-2 mb-2 mb-xl-5'>
                                 <button className='btn btn-white border border-1 position-relative rounded-circle mx-auto pt-2 blurayControls'
-                                    onClick={() => { blurayControl(CrSignalNames.Bluray_Eject, 'Eject') }}>
+                                    onClick={() => { blurayControl(CrSignalNames.Bluray_Eject, 'Eject') }} aria-label="eject">
                                         <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-eject-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>
                                 <button className='position-relative btn btn-white border border-1 rounded-circle  mx-auto pt-2 blurayControls'
-                                    onClick={() => blurayControl(CrSignalNames.Bluray_Previous, 'Previous')}>
+                                    onClick={() => blurayControl(CrSignalNames.Bluray_Previous, 'Previous')} aria-label="previous">
                                      <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-skip-backward-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>
                                 <button className='position-relative btn btn-white border border-1 rounded-circle mx-auto pt-2 blurayControls'
-                                    onClick={() => blurayControl(CrSignalNames.Bluray_Rewind, 'Rewind')}>
+                                    onClick={() => blurayControl(CrSignalNames.Bluray_Rewind, 'Rewind')} aria-label="rewind">
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-rewind-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>
                                 <button className='position-relative btn btn-white border border-1 rounded-circle mx-auto pt-2 blurayControls'
-                                    onClick={() => blurayControl(CrSignalNames.Bluray_Pause, 'Pause')}>
+                                    onClick={() => blurayControl(CrSignalNames.Bluray_Pause, 'Pause')} aria-label="pause">
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-pause-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>
                                 <button className='position-relative btn btn-white border border-1 rounded-circle  mx-auto pt-2 blurayControls'
-                                    onClick={() => blurayControl(CrSignalNames.Bluray_Play, 'Play')}>
+                                    onClick={() => blurayControl(CrSignalNames.Bluray_Play, 'Play')} aria-label="play">
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-play-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>
                                 <button className='position-relative btn btn-white border border-1 rounded-circle  mx-auto pt-2 blurayControls'
-                                    onClick={() => blurayControl(CrSignalNames.Bluray_Stop, 'Stop')}>
+                                    onClick={() => blurayControl(CrSignalNames.Bluray_Stop, 'Stop')} aria-label="stop">
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-stop-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>
                                 <button className='position-relative btn btn-white border border-1 rounded-circle  mx-auto pt-2 blurayControls'
-                                    onClick={() => blurayControl(CrSignalNames.Bluray_Fast_Forward, 'Fast Forward')}>
+                                    onClick={() => blurayControl(CrSignalNames.Bluray_Fast_Forward, 'Fast Forward')} aria-label="fast forward">
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-fast-forward-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>
                                 <button className='position-relative btn btn-white border border-1 rounded-circle  mx-auto pt-2 blurayControls'
-                                    onClick={() => blurayControl(CrSignalNames.Bluray_Next, 'Next')}>
+                                    onClick={() => blurayControl(CrSignalNames.Bluray_Next, 'Next')} aria-label='next'>
                                     <i className="d-inline-block position-absolute top-50 start-50 translate-middle bi bi-skip-forward-fill font-size-5 font-size-5-xl mx-auto"></i>
                                 </button>
                             </div>
@@ -693,11 +712,13 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                 <div className="col p-0">
                     <button type="button"
                         className={`d-flex align-items-center border-0 rounded-circle text-center  mx-auto mb-2  circleIcon ${isMuted ? 'bg-info text-white' : 'bg-gray-300 text-dark'}`}
-                        data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}>
+                        data-bs-toggle="button" onClick={() => toggleMute(displayJoin)}
+                        aria-labelledby="muteUnmuteDisplay"
+                        >
                         <i
                             className={`d-inline-block  font-size-4 font-size-5-xl mx-auto ${isMuted ? 'bi bi-camera-video-off' : 'bi bi-camera-video-fill'}`}></i>
                     </button>
-                    <div className="font-size-2 font-size-3-xl">{isMuted ? 'Unmute Display' : 'Mute Display'}</div> 
+                    <div className="font-size-2 font-size-3-xl" id="muteUnmuteDisplay">{isMuted ? 'Unmute Display' : 'Mute Display'}</div> 
                 </div>}
                     
                 <div className='col p-0'>
@@ -709,10 +730,12 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                       </button> :
                         <button type="button"
                         className="d-flex align-items-center border-0 rounded-circle text-center text-dark mx-auto mb-2 bg-gray-300 circleIcon"
-                        onClick={handleShowDisplayModal}>
+                        onClick={handleShowDisplayModal}
+                        aria-labelledby="displaySettings"
+                        >
                         <i className="d-inline-block bi bi-gear-fill font-size-4 font-size-5-xl mx-auto"></i>
                     </button>}
-                    <div className='font-size-2 font-size-3-xl'>Display Settings</div> 
+                    <div className='font-size-2 font-size-3-xl' id="displaySettings">Display Settings</div> 
                 </div>
             </div>
 
@@ -736,15 +759,15 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 <div className="form-switch p-0">
                                     <input
                                         className={`form-check-input m-0 mb-4 largeSwitch ${powerSwitch ? 'customSwitchCheck' : ''}`}
-                                        // className="form-check-input m-0 mb-4 border-0 largeSwitch"
                                         type="checkbox"
                                         role="switch"
                                         id="powerSwitch"
                                         checked={powerSwitch}
                                         onChange={togglePowerSwitch}
+                                        aria-labelledby='power'
                                     />
                                     <label className="d-block form-check-label font-size-3 font-size-4-xl"
-                                        htmlfor="powerSwitch">Power</label>
+                                        htmlfor="powerSwitch" id="power">Power</label>
                                 </div>
                             </div>
                         </div>
@@ -755,28 +778,38 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 <div className="col-4">
                                     <button type="button"
                                         className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${annotationPressed ? 'text-white' : 'text-dark'}`}
-                                        style={{backgroundColor:annotationPressed ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={handleAnnotationPressed}>
+                                        style={{backgroundColor:annotationPressed ? 'var(--bs-info' : 'var(--bs-gray-300'}} 
+                                        onClick={handleAnnotationPressed}
+                                        aria-labelledby='annotate'
+                                        >
                                         <i className="d-inline-block bi bi-pencil-fill font-size-4 font-size-5-xl mx-auto"></i>
                                     </button>
-                                    <div className="font-size-3 font-size-4-xl">Annotate</div>
+                                    <div className="font-size-3 font-size-4-xl" id="annotate">Annotate</div>
                                 </div>}
                             {showFullScreen && 
                                 <div className="col-4">
-                                    <button type="button"
-                                        className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${fullscreenPressed ? 'text-white' : 'text-dark'}`}
-                                        style={{backgroundColor:fullscreenPressed ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={handleFullscreenPressed}>
+                                    <button 
+                                    type="button"
+                                    className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${fullscreenPressed ? 'text-white' : 'text-dark'}`}
+                                    style={{backgroundColor:fullscreenPressed ? 'var(--bs-info' : 'var(--bs-gray-300'}} 
+                                    onClick={handleFullscreenPressed}
+                                    aria-labelledby='previewFullscreen'
+                                    >
                                         <i className="d-inline-block bi bi-arrows-fullscreen font-size-4 font-size-5-xl mx-auto"></i>
                                     </button>
-                                    <div className="font-size-3 font-size-4-xl">Preview Fullscreen</div>
+                                    <div className="font-size-3 font-size-4-xl" id="previewFullscreen">Preview Fullscreen</div>
                                 </div>}
                             {(isProjector && powerSwitch) &&
                                 <div className="col-4">
-                                    <button type="button"
-                                        className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${isMuted ? 'text-white' : 'text-dark'}`}
-                                        style={{backgroundColor:isMuted ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={() => toggleMute(displayJoin)}>
+                                    <button 
+                                    type="button"
+                                    className={`d-flex align-items-center border-0 rounded-circle text-center mx-auto mb-2 circleIcon ${isMuted ? 'text-white' : 'text-dark'}`}
+                                    style={{backgroundColor:isMuted ? 'var(--bs-info' : 'var(--bs-gray-300'}} onClick={() => toggleMute(displayJoin)}
+                                    aria-labelledby='muteDisplay'
+                                    >
                                         <i className={`d-inline-block bi ${isMuted ? 'bi-camera-video-off-fill' : 'bi-camera-video-fill'}  font-size-4 font-size-5-xl mx-auto`}></i>
                                     </button>
-                                    <div className="font-size-3 font-size-4-xl">Mute Display</div>
+                                    <div className="font-size-3 font-size-4-xl" id="muteDisplay">Mute Display</div>
                                 </div>}
 
                         </div>
@@ -787,17 +820,23 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             <div className="col text-center">
                                 <div className="my-2 my-xl-3">
                                     {/* Down Button */}
-                                    <button type="button"
-                                        className="btn btn-info col-4 border-0 rounded-pill py-2 me-3 text-white fw-bold font-size-3" onClick={() => {
+                                    <button 
+                                    type="button"
+                                    className="btn btn-info col-4 border-0 rounded-pill py-2 me-3 text-white fw-bold font-size-3" 
+                                    onClick={() => {
                                             window.CrComLib.publishEvent(CrSignalType.Boolean, `${downJoin}`, true);
                                             window.CrComLib.publishEvent(CrSignalType.Boolean, `${downJoin}`, false);
                                             console.log('Screen downed')
-                                        }}><i
+                                        }}
+                                        aria-label='Move screen down'
+                                        ><i
                                             className="d-inline-block bi bi-chevron-down font-size-4 font-size-5-xl mx-auto"></i></button>
                                     {/* Up Button */}
-                                    <button type="button"
-                                        className="btn btn-info col-4 border-0 rounded-pill py-2 text-white fw-bold font-size-3"><i
-                                            className="d-inline-block bi bi-chevron-up font-size-4 font-size-5-xl mx-auto" onClick={() => {
+                                    <button 
+                                    type="button"
+                                    className="btn btn-info col-4 border-0 rounded-pill py-2 text-white fw-bold font-size-3"
+                                    aria-label="Move screen up">
+                                        <i className="d-inline-block bi bi-chevron-up font-size-4 font-size-5-xl mx-auto" onClick={() => {
                                                 window.CrComLib.publishEvent(CrSignalType.Boolean, `${upJoin}`, true);
                                                 window.CrComLib.publishEvent(CrSignalType.Boolean, `${upJoin}`, false);
                                                 console.log('Screen upped')
