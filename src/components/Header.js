@@ -403,7 +403,7 @@ function Header(){
                                         The settings have been reset.
                                     </p>
                                 </Alert>
-                                <div className="row flex-wrap align-items-start justify-content-around pt-1">
+                                <div className="row flex-wrap align-items-start justify-content-around pt-1 mx-0">
                                     <div className="col-5 d-flex flex-row align-items-start p-0 mb-2 mb-xl-2">
                                             <Form.Group className="col mb-3" controlId="roomName">
                                                 <Form.Label className="font-size-2 font-size-3-xl">Room Name</Form.Label>
@@ -419,13 +419,12 @@ function Header(){
                                             </Form.Group>
                                     </div>
                                 </div>
-                                {/* HDMI Switcher row */}
-                                <div className="row flex-wrap justify-content-around mt-1 mb-4 font-size-2 font-size-4-xl">
-                                    <h3 className="text-center fw-bold mb-4 font-size-2 font-size-4-xl">Enter input # of HDMI switcher or 0 for none</h3>
-                                    {/* HDMI Switcher */}
-                                    
+                                {/* Switcher row */}
+                                <h3 className="text-center fw-bold mb-4 font-size-2 font-size-4-xl">Enter input # of HDMI switcher or 0 for none</h3>
+                                <div className="row flex-wrap justify-content-between ps-3 ps-xl-5 mx-0 mt-1 mb-4 font-size-2 font-size-4-xl">
+                                    {/* Switchers */}
                                     {Array.from({ length: textFieldsNum }, (_, index) => (
-                                        <div className="col-5 h-100">
+                                        <div className="col-6 col-xl-5 h-100 p-0">
                                             <div key={index} className="d-flex flex-row align-items-center mb-2 mb-xl-3">
                                                 <div className="col-6 font-size-2 font-size-3-xl">
                                                     <span>{textFields[index]}</span>
@@ -445,8 +444,8 @@ function Header(){
                                         </div>
                                     ))}
                                 </div>
-                                {/* /HDMI button row */}
-                                <div className="row flex-wrap justify-content-around px-3 my-5">
+                                {/* /Switcher row */}
+                                <div className="row flex-wrap justify-content-around px-3 mx-0 my-5">
                                     {Array.from({ length: toggleButtonsNum }, (_, index) => (
                                         <button key={index} className={`btn col-5 rounded-pill border-0 p-2 me-2 mb-3 font-size-2 font-size-3-xl adminPresetButton
                                             ${(toggleButtonsStates[index]) ? 'btn-info' : 'btn-gray'}`}
