@@ -308,7 +308,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 <button type="button" className="border-0 text-dark"
                                     onClick={handleCloseConfCallModal}><i class="bi bi-arrow-left"></i></button>Conference Call</h1>
                             <button type="button" className="border-0 text-muted"
-                                onClick={handleCloseConfCallModal}><i class="bi bi-x-lg"></i></button>
+                                onClick={handleCloseConfCallModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
@@ -453,7 +453,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 <button type="button" className="border-0 text-dark"
                                     onClick={handleCloseConfCallVolumeModal}><i class="bi bi-arrow-left"></i></button>Conference Call Volume</h1>
                             <button type="button" className="border-0 text-muted"
-                                onClick={handleCloseConfCallVolumeModal}><i class="bi bi-x-lg"></i></button>
+                                onClick={handleCloseConfCallVolumeModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
@@ -520,7 +520,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             <button type="button" className="border-0 text-dark"
                             onClick={handleCloseIncomingCallModal}><i class="bi bi-arrow-left"></i></button>Incoming Telephone Call</h1>
                         <button type="button" className="border-0 text-muted"
-                            onClick={handleCloseIncomingCallModal}><i class="bi bi-x-lg"></i></button>
+                            onClick={handleCloseIncomingCallModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body className="font-size-4 font-size-5-xl p-0">
@@ -618,7 +618,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                                 <button type="button" className="border-0 text-dark"
                                     onClick={handleCloseBluRayModal}><i class="bi bi-arrow-left"></i></button>Blu-Ray Controls</h1>
                             <button type="button" className="border-0 text-muted"
-                                onClick={handleCloseBluRayModal}><i class="bi bi-x-lg"></i></button>
+                                onClick={handleCloseBluRayModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body className="font-size-2 font-size-3-xl p-0">
@@ -747,7 +747,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                             <button type="button" className="border-0 text-dark"
                                 onClick={handleCloseDisplayModal}><i class="bi bi-arrow-left"></i></button>Display Settings</h1>
                         <button type="button" className="border-0 text-muted"
-                            onClick={handleCloseDisplayModal}><i class="bi bi-x-lg"></i></button>
+                            onClick={handleCloseDisplayModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="font-size-2 font-size-3-xl p-0 pt-xl-3"> 

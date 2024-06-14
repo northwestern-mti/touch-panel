@@ -271,7 +271,7 @@ function Header(){
                                     <button type="button" className="border-0 text-dark"
                                         onClick={handleCloseHelpModal}><i class="bi bi-arrow-left"></i></button>Help</h1>
                                 <button type="button" className="border-0 text-muted"
-                                    onClick={handleCloseHelpModal}><i class="bi bi-x-lg"></i></button>
+                                    onClick={handleCloseHelpModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body className="font-size-4 font-size-5-xl p-4 p-xl-5">
@@ -295,7 +295,7 @@ function Header(){
                                     <button type="button" className="border-0 text-dark"
                                         onClick={handleClosePasswordModal}><i class="bi bi-arrow-left"></i></button>Password Required</h1>
                                 <button type="button" className="border-0 text-muted font-size-3 font-size-5-xl"
-                                    onClick={handleClosePasswordModal}><i class="bi bi-x-lg"></i></button>
+                                    onClick={handleClosePasswordModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body className="font-size-4 font-size-5-xl p-0 pt-1">
@@ -371,7 +371,7 @@ function Header(){
                                     <button type="button" className="border-0 text-dark"
                                         onClick={handleCloseAdminModal}><i class="bi bi-arrow-left"></i></button>Admin</h1>
                                 <button type="button" className="border-0 text-muted font-size-3 font-size-5-xl"
-                                    onClick={handleCloseAdminModal}><i class="bi bi-x-lg"></i></button>
+                                    onClick={handleCloseAdminModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body className="font-size-4 font-size-5-xl p-0 pt-1">
@@ -386,8 +386,10 @@ function Header(){
                                         <button
                                             type="button"
                                             className="btn alert-success shadow-none border-0 text-muted p-0 font-size-3 font-size-4-xl"
-                                            onClick={() => setShowSaveAlert(false)}>
-                                            <i class="bi bi-x-lg"></i></button>
+                                            onClick={() => setShowSaveAlert(false)}
+                                            aria-label="close"
+                                            >
+                                            <i className="bi bi-x-lg" aria-hidden="true"></i></button>
                                     </Alert.Heading>
                                     <p>
                                         Your changes have been saved.
@@ -403,8 +405,10 @@ function Header(){
                                     <button
                                             type="button"
                                             className="btn alert-success shadow-none border-0 text-muted p-0 font-size-3 font-size-4-xl"
-                                            onClick={() => setShowResetAlert(false)}>
-                                            <i class="bi bi-x-lg"></i></button>
+                                            onClick={() => setShowResetAlert(false)}
+                                            aria-label="close"
+                                            >
+                                            <i className="bi bi-x-lg" aria-hidden="true"></i></button>
                                     </Alert.Heading>
                                     <p>
                                         The settings have been reset.

@@ -386,7 +386,7 @@ const popover = (
                 <button type="button" className="border-0 text-dark"
                   onClick={handleClosePowerModal}><i class="bi bi-arrow-left"></i></button>System Off?</h1>
               <button type="button" className="border-0 text-muted"
-                onClick={handleClosePowerModal}><i class="bi bi-x-lg"></i></button>
+                onClick={handleClosePowerModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className="font-size-4 font-size-5-xl p-0">
@@ -412,7 +412,7 @@ const popover = (
               <button type="button" className="border-0 text-dark"
               onClick={handleCloseVolumeModal}><i class="bi bi-arrow-left"></i></button>Presentation Volume</h1>
             <button type="button" className="border-0 text-muted"
-              onClick={handleCloseVolumeModal}><i class="bi bi-x-lg"></i></button>
+              onClick={handleCloseVolumeModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="font-size-4 font-size-3-xl p-0">
@@ -455,7 +455,7 @@ const popover = (
               <button type="button" className="border-0 text-dark"
               onClick={handleCloseMicModal}><i class="bi bi-arrow-left"></i></button>Microphones</h1>
             <button type="button" className="border-0 text-muted"
-              onClick={handleCloseMicModal}><i class="bi bi-x-lg"></i></button>
+              onClick={handleCloseMicModal}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="font-size-4 font-size-3-xl p-0 pt-2">
@@ -565,7 +565,7 @@ const popover = (
                 <button type="button" className="border-0 text-dark"
                   onClick={handleCancelCamRename}><i class="bi bi-arrow-left"></i></button>Rename Camera</h1>
               <button type="button" className="border-0 text-muted"
-                onClick={handleCancelCamRename}><i class="bi bi-x-lg"></i></button>
+                onClick={handleCancelCamRename}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -651,7 +651,7 @@ const popover = (
                       <button type="button" className="border-0 text-dark"
                         onClick={handleCancelPresetRename}><i class="bi bi-arrow-left"></i></button>Rename Preset</h1>
                     <button type="button" className="border-0 text-muted"
-                      onClick={handleCancelPresetRename}><i class="bi bi-x-lg"></i></button>
+                      onClick={handleCancelPresetRename}><i className="bi bi-x-lg" aria-hidden="true"></i></button>
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

@@ -31,7 +31,7 @@ const CModal = ({ show, onHide, title, children }) => {
               </button>{title}
             </h1>
             <button variant="link" onClick={onHide} className="border-0 text-muted h4">
-              <i className="bi bi-x-lg"></i>
+              <i className="bi bi-x-lg" aria-hidden="true"></i>
               </button>
             </div>
           </div>
