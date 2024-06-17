@@ -6,6 +6,7 @@ import Alert from 'react-bootstrap/Alert';
 import './Header.css'
 import logo from "./Icons/Northwestern_WHITE.svg"
 import { useNavigate } from 'react-router-dom';
+import { CrSignalNames, CrSignalType } from './CrSignals';
 
 
 function Header(){
@@ -30,48 +31,8 @@ function Header(){
     const [tempToggleState, setTempToggleState] = useState(false);
     const [showSaveAlert, setShowSaveAlert] = useState(false);
     const [showResetAlert, setShowResetAlert] = useState(false);
-
     const navigate = useNavigate();
-    const CrSignalNames = {
-        'RoomName': '1',
-        'IpAdd' : '2',
-        'ConfigRoomName': '5',
-        'ConfigIpAdd': '6',
-        'ShowPasswordModal': '121',
-        'ShowAdminModal' : '93',
-        'PwInputValue': '25',
-        'NumberOfTextFields' : '22',
-        'NumberOfToggleButtons': '21',
-        'TextFieldsBaseIdx' : 71,
-        'TextFieldsValuesBaseIdx' : 23,
-        'ToggleButtonsStatesBaseIdx' : 331,
-        'ToggleButtonsBaseIdx' : 51,
-        'ShowHelpModal' : '150',
-        'CloseHelpModal' : '151',
-        'HandleShowAdminModal' : '130',
-        'CloseAdminModal' : '123',
-        'ClosePasswordModal' : '122',
-        'HandleShowPasswordModal' : '120',
-        'PW_1' : '131',
-        'PW_2' : '132',
-        'PW_3' : '133',
-        'PW_4' : '134',
-        'PW_5' : '135',
-        'PW_6' : '136',
-        'PW_7' : '137',
-        'PW_8' : '138',
-        'PW_9' : '139',
-        'PW_0' : '140',
-        'SaveConfigFile' : '124',
-        'ResetConfigFile' : '125',
-        'PwBackSpace' : '129',
-        'TextFieldsValuesIncDecBaseIdx' : 361
-    }
-    const CrSignalType = {
-        'Boolean' : 'b',
-        'Number' : 'n',
-        'String': 's'
-    }
+
     useEffect(() =>{
         window.CrComLib.subscribeState(CrSignalType.String, CrSignalNames.RoomName, value=> setClassRoom(value));
         window.CrComLib.subscribeState(CrSignalType.String, CrSignalNames.IpAdd, value=> setIpAdd(value));

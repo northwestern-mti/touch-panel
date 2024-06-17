@@ -4,6 +4,7 @@ import './App.css';
 import HomePage from './components/HomePage'
 import WelcomePage from './components/WelcomePage';
 import CrComLib from "@crestron/ch5-crcomlib";
+import { CrSignalNames, CrSignalType } from './components/CrSignals';
 import { getWebXPanel, runsInContainerApp } from '@crestron/ch5-webxpanel';
 
 
@@ -23,12 +24,12 @@ if (isActive) {
 function App() {
   const [programStarted, setProgramStarted] = useState(false);
   const navigate = useNavigate();
-  const CrSignalName = {
-    'programStart' : '29'
-  }
-  const CrSignalType = {
-    'Boolean' : 'b',
-  }
+  // const CrSignalName = {
+  //   'programStart' : '29'
+  // }
+  // const CrSignalType = {
+  //   'Boolean' : 'b',
+  // }
 
   useEffect(() => {
     window.addEventListener(WebXPanelEvents.CONNECT_WS, (detail) => {
@@ -55,7 +56,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalName.programStart, value=> {
+    window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.programStart, value=> {
       setProgramStarted(value)
       if (value) {
         navigate('/HomePage')

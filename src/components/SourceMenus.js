@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import WirelessIcon from './Icons/Wireless with Solstice Icon.svg';
 import DisplayArea from './DisplayArea';
+import { CrSignalNames, CrSignalType } from './CrSignals';
 import './SourceMenus.css';
 
 
@@ -19,59 +20,6 @@ const SourceMenus = () => {
     const [showConfCall, setShowConfCall] = useState(false);
     const [hasDisplay2, setHasDisplay2] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const CrSignalNames = {
-        'ShowDesktop' : '211',
-        'ShowLaptop' : '212',
-        'ShowWireless': '213',
-        'ShowBluray': '214',
-        'ShowDocCam': '215',
-        'ShowConfCall': '217',
-        'Source_Display1': '51',
-        'Source_Display2': '52',
-        'HasDisplay2': '36',
-        'Source_Desktop_Display1': '200',
-        'Source_Laptop_Display1': '201',
-        'Source_Wireless_Display1': '202',
-        'Source_ConfCall_Display1': '205',
-        'Source_DocCam_Display1': '204',
-        'Source_Bluray_Display1': '203',
-        'Source_Desktop_Display2': '430',
-        'Source_Laptop_Display2': '431',
-        'Source_Wireless_Display2': '432',
-        'Source_ConfCall_Display2': '435',
-        'Source_DocCam_Display2': '434',
-        'Source_Bluray_Display2': '433',
-        'Mute_Display1': '253',
-        'ShowAnnotation_Display1': '42',
-        'ShowFullScreen_Display1': '44',
-        'HandleAnnotation_Display1': '41',
-        'HandleFullScreen_Display1': '43',
-        'PowerOff_Display1': '251',
-        'PowerOn_Display1': '252',
-        'Screen_Up_Display1': '256',
-        'Screen_Down_Display1': '255',
-        'ShowDisplayModal_Display1': '8',
-        'CloseDisplayModal_Display1': '39',
-        'IsElectricScreen_Display1': '257',
-        'Is_Projector_Display1': '32',
-        'Mute_Display2': '260',
-        'ShowAnnotation_Display2': '46',
-        'ShowFullScreen_Display2': '48',
-        'HandleAnnotation_Display2': '45',
-        'HandleFullScreen_Display2': '47',
-        'PowerOff_Display2': '258',
-        'PowerOn_Display2': '259',
-        'Screen_Up_Display2': '263',
-        'Screen_Down_Display2': '262',
-        'ShowDisplayModal_Display2': '37',
-        'CloseDisplayModal_Display2': '38',
-        'IsElectricScreen_Display2': '264',
-        'Is_Projector_Display2': '33'
-      }
-    const CrSignalType = {
-    'Boolean' : 'b',
-    'Number' : 'n'
-    }
 
     useEffect(() => {
         window.CrComLib.subscribeState(CrSignalType.Boolean, CrSignalNames.ShowDesktop, value=> setShowDesktop(value));

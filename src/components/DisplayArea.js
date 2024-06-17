@@ -9,6 +9,7 @@ import { mdiBroadcastOff } from '@mdi/js';
 import { mdiBroadcast } from '@mdi/js';
 import Opad from './Opad';
 import VolumeControl from './VolumeControl';
+import { CrSignalNames, CrSignalType } from './CrSignals';
 
 
 function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, showFullScreenJoin,
@@ -39,65 +40,6 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [confCallVolume, setConfCallVolume] = useState(0);
     const [showIncomingCall, setShowIncomingCall] = useState(false);
 
-    const CrSignalNames = {
-        'IpAddress' : '2',
-        'ShowConfCallModal': '117',
-        'CloseConfCallModal': '118',
-        'ConfCall_DialString': '16',
-        'ConfCall_Volume': '3',
-        'ConfCall_Mute': '100',
-        'ShowConfCallIncomingCall': '109',
-        'ConfCall_EndCall': '105',
-        'ConfCall_CallActive': '106',
-        'Config_PrivacyMode': '79',
-        'EnablePrivacyMode': '103',
-        'ShowBlurayModal': '55',
-        'CloseBlurayModal': '56',
-        'DocCam_LampOn': '85',
-        'DocCam_LampOff': '86',
-        'DocCam_AutoFocus': '80',
-        'ConfCall_DialPad_1': '281',
-        'ConfCall_DialPad_2': '282',
-        'ConfCall_DialPad_3': '283',
-        'ConfCall_DialPad_4': '284',
-        'ConfCall_DialPad_5': '285',
-        'ConfCall_DialPad_6': '286',
-        'ConfCall_DialPad_7': '287',
-        'ConfCall_DialPad_8': '288',
-        'ConfCall_DialPad_9': '289',
-        'ConfCall_DialPad_0': '290',
-        'ConfCall_DialPad_Star': '291',
-        'ConfCall_DialPad_Pound': '292',
-        'ConfCall_DialString_Clear': '104',
-        'ConfCall_DialString_Backspace': '107',
-        'ConfCall_CallIgnore': '108',
-        'ConfCall_VolumeUp': '102',
-        'ConfCall_VolumeDown': '102',
-        'DocCam_ZoomOut': '83',
-        'DocCam_ZoomIn': '84',
-        'Bluray_Up': '271',
-        'Bluray_Right':'272',
-        'Bluray_Down': '273',
-        'Bluray_Left': '274',
-        'Bluray_Ok': '275',
-        'Bluray_Previous': '57',
-        'Bluray_Next': '58',
-        'Bluray_Eject': '59',
-        'Bluray_Home': '60',
-        'Bluray_Info': '61',
-        'Bluray_Menu': '62',
-        'Bluray_Return': '63',
-        'Bluray_Play': '64',
-        'Bluray_Pause': '65',
-        'Bluray_Stop': '66',
-        'Bluray_Rewind': '67',
-        'Bluray_Fast_Forward': '68'
-    }
-    const CrSignalType = {
-        'Boolean' : 'b',
-        'Number' : 'n',
-        'String': 's'
-    }
     useEffect(() => {
         window.CrComLib.subscribeState(CrSignalType.String, CrSignalNames.IpAddress, value=> setIpAdd(value));
         window.CrComLib.subscribeState(CrSignalType.Boolean, `${showAnnotationJoin}`, value=> setShowAnnotation(value));

@@ -2,21 +2,22 @@ import logo from "./Icons/Northwestern_purple.svg"
 import Header from './Header';
 import React, {useMemo, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { CrSignalNames, CrSignalType } from './CrSignals';
 
 function WelcomePage({programStarted, setProgramStarted}) {
   const navigate = useNavigate();
-  const CrSignalName ={
-    'startJoin' : '1'
-  }
+  // const CrSignalName ={
+  //   'startJoin' : '1'
+  // }
   
-  const CrSignalType = {
-    'Boolean' : 'b',
-  }
+  // const CrSignalType = {
+  //   'Boolean' : 'b',
+  // }
   
   const handleClick = () => {
     setProgramStarted(!programStarted);
-    window.CrComLib.publishEvent(CrSignalType.Boolean,CrSignalName.startJoin, true);
-    window.CrComLib.publishEvent(CrSignalType.Boolean,CrSignalName.startJoin, false);
+    window.CrComLib.publishEvent(CrSignalType.Boolean,CrSignalNames.startJoin, true);
+    window.CrComLib.publishEvent(CrSignalType.Boolean,CrSignalNames.startJoin, false);
     console.log("Signal sent to processor");
     navigate('/HomePage')
 };
