@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
@@ -38,6 +38,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const [dialString, setDialString] = useState('');
     const [confCallVolume, setConfCallVolume] = useState(0);
     const [showIncomingCall, setShowIncomingCall] = useState(false);
+    const pressIntervalRef = useRef(null);
+
 
     const CrSignalNames = {
         'IpAddress' : '2',
@@ -96,7 +98,8 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
     const CrSignalType = {
         'Boolean' : 'b',
         'Number' : 'n',
-        'String': 's'
+        'String': 's',
+        'Object': 'o'
     }
     useEffect(() => {
         window.CrComLib.subscribeState(CrSignalType.String, CrSignalNames.IpAddress, value=> setIpAdd(value));
@@ -254,6 +257,33 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         window.CrComLib.publishEvent(CrSignalType.Boolean, `${joinNumber}`, false);
         console.log('pw key pressed', joinNumber)
     };
+
+    const docCamZoom = (action) => {
+        window.CrComLib.publishEvent(CrSignalType.Boolean, action === 'in' ? CrSignalNames.DocCam_ZoomIn : CrSignalNames.DocCam_ZoomOut, true);
+        window.CrComLib.publishEvent(CrSignalType.Boolean, action === 'in' ? CrSignalNames.DocCam_ZoomIn : CrSignalNames.DocCam_ZoomOut, false);
+        console.log('zooming', action)
+    }
+
+    const docCamZoomOnMouseDown = (action) => {
+        if (pressIntervalRef.current !== null) {
+            return;
+          }
+
+        window.CrComLib.publishEvent(CrSignalType.Object, action === 'in' ? CrSignalNames.DocCam_ZoomIn : CrSignalNames.DocCam_ZoomOut, {repeatdigital: true});
+        pressIntervalRef.current = setInterval(() => {
+            window.CrComLib.publishEvent(CrSignalType.Object, action === 'in' ? CrSignalNames.DocCam_ZoomIn : CrSignalNames.DocCam_ZoomOut, {repeatdigital: true});
+            console.log('zooming', action)
+        }, 500)
+    }
+
+    const docCamZoomOnMouseUp = (action) => {
+        if (pressIntervalRef.current) {
+            clearInterval(pressIntervalRef.current);
+            pressIntervalRef.current = null;
+        }
+        window.CrComLib.publishEvent(CrSignalType.Object, action === 'in' ? CrSignalNames.DocCam_ZoomIn : CrSignalNames.DocCam_ZoomOut, {repeatdigital: false});
+        console.log('zooming stopped')
+    }
     // Privacy Mode Popover
     const popover = (
         <Popover id="popover-basic">
@@ -566,16 +596,26 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
                     {/* Zoom buttons */}
                     <div className="col-12 mb-2">
                         <div className="btn-group mb-1" role="group" aria-label="Zoom buttons">
-                            <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-4-xl" onClick={() => {
-                            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_ZoomOut, true);
-                            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_ZoomOut, false);
-                            console.log('DocCam Zooming Out') 
-                        }}><i className="bi bi-dash-circle-fill"></i></button>
-                            <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-4-xl" onClick={() => {
-                            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_ZoomIn, true);
-                            window.CrComLib.publishEvent(CrSignalType.Boolean, CrSignalNames.DocCam_ZoomIn, false);
-                            console.log('DocCam Zooming In') 
-                        }}><i className="bi bi-plus-circle-fill"></i></button>
+                            <button type="button" className="btn btn-info border-0 rounded-start-pill text-white px-3 px-xl-4 py-1 font-size-2 font-size-4-xl" 
+                              onClick={() => docCamZoom('out')}
+                              onMouseDown={() => docCamZoomOnMouseDown('out')}
+                              onMouseUp={() => docCamZoomOnMouseUp('out')}
+                              onMouseLeave={() => docCamZoomOnMouseUp('out')}
+                              onTouchStart={() => docCamZoomOnMouseDown('out')}
+                              onTouchEnd={() => docCamZoomOnMouseUp('out')}
+                              onTouchCancel={() => docCamZoomOnMouseUp('out')}>
+                                <i className="bi bi-dash-circle-fill"></i>
+                            </button>
+                            <button type="button" className="btn btn-info border-0 rounded-end-pill text-white px-3 px-xl-4 py-1  font-size-2 font-size-4-xl" 
+                              onClick={() => docCamZoom('in')}
+                              onMouseDown={() => docCamZoomOnMouseDown('in')}
+                              onMouseUp={() => docCamZoomOnMouseUp('in')}
+                              onMouseLeave={() => docCamZoomOnMouseUp('in')}
+                              onTouchStart={() => docCamZoomOnMouseDown('in')}
+                              onTouchEnd={() => docCamZoomOnMouseUp('in')}
+                              onTouchCancel={() => docCamZoomOnMouseUp('in')}>
+                                <i className="bi bi-plus-circle-fill"></i>
+                            </button>
                         </div>
                         <label className="d-block font-size-2 font-size-4-xl"
                             for="Zoom buttons"><i className="bi bi-zoom-in"></i> Zoom</label>

@@ -86,7 +86,8 @@ function BottomBar ({programStarted, setProgramStarted}) {
   const CrSignalType = {
     'Boolean' : 'b',
     'Number' : 'n',
-    'String': 's'
+    'String': 's',
+    'Object': 'o'
 }
 
   useEffect(() => {
@@ -418,7 +419,7 @@ const popover = (
         <Modal.Body className="font-size-4 font-size-3-xl p-0">
           <div className='container-fluid text-center pt-3'>
             <div className="my-2 my-xl-5">
-            <VolumeControl classNam="mx-auto" initialVolume={presentationVolume} plusJoin={CrSignalName.PresentationVolumeUp} minusJoin={CrSignalName.PresentationVolumeDown}  isMuted={isPresentationMuted} volumeJoin='1' />
+            <VolumeControl className="mx-auto" initialVolume={presentationVolume} plusJoin={CrSignalName.PresentationVolumeUp} minusJoin={CrSignalName.PresentationVolumeDown}  isMuted={isPresentationMuted} volumeJoin='1' />
             </div>
             <div class="col-12 text-center mb-4">
               <Button type="button"

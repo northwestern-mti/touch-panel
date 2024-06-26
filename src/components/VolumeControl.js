@@ -5,100 +5,82 @@ import './VolumeControl.css'
 
 const VolumeControl = ({initialVolume, plusJoin, minusJoin, isMuted, volumeJoin}) => {
   const [volume, setVolume] = useState(0);
-  const [pressInterval, setPressInterval] = useState(null);
-  const holdTimeoutRef = useRef(null);
+  const pressIntervalRef = useRef(null);
+  const prevVolumeRef = useRef(null);
 
   const CrSignalType = {
     'Boolean' : 'b',
   }
 
   useEffect(() => {
-    // Map decibels to the volume range (0 to 20)
-    // const mappedVolume = Math.round((initialVolume * 20) / 65535);
-
-    setVolume(initialVolume);
-    console.log('initial volume:', initialVolume);
-  }, []);
+    if (!isMuted) {
+      setVolume(initialVolume);
+      console.log('initial volume', initialVolume)
+    }
+  }, [initialVolume]);
 
   const handleIncreaseVolume = () => {
     if (volume < 20) {
       setVolume((prevVolume) => prevVolume + 1);
-      // const volumeLevel = Math.round((volume * 65535) / 20);
       window.CrComLib.publishEvent(CrSignalType.Boolean, `${plusJoin}`, true);
       window.CrComLib.publishEvent(CrSignalType.Boolean, `${plusJoin}`, false);
-      // window.CrComLib.publishEvent('n', `${volumeJoin}`, volume);
-      console.log('volume increased', volume, 'initial volume:', initialVolume);
-
+      console.log('volume increased:', volume)
     }
   };
 
   const handleDecreaseVolume = () => {
     if (volume > 0) {
       setVolume((prevVolume) => prevVolume - 1);
-      // const volumeLevel = Math.round((volume * 65535) / 20);
       window.CrComLib.publishEvent(CrSignalType.Boolean, `${minusJoin}`, true);
       window.CrComLib.publishEvent(CrSignalType.Boolean, `${minusJoin}`, false);
-      // window.CrComLib.publishEvent('n', `${volumeJoin}`, volume);
-      console.log('volume decreased', volume, 'initial volume:', initialVolume)
     }
+    console.log('volume decreased', volume)
   };
-  const handleDecreaseOnClick = () => {
-    handleDecreaseVolume();
-    window.CrComLib.publishEvent(CrSignalType.Boolean, `${minusJoin}`, false);
-  }
-  const handleDecreaseOnMouseDown = () => {
-    clearInterval(pressInterval);
-    setPressInterval(setInterval(handleDecreaseVolume, 200));
-  } 
-  const handleDecreaseOnMouseUp = () => {
-    if (pressInterval !== null) {
-      clearInterval(pressInterval);
-      setPressInterval(null);
-      window.CrComLib.publishEvent(CrSignalType.Boolean, `${minusJoin}`, false);
-    }
-  }
-  const handleIncreaseOnClick = () => {
-    handleIncreaseVolume();
-    window.CrComLib.publishEvent(CrSignalType.Boolean, `${plusJoin}`, false);
-  }
-  const handleIncreaseOnMouseDown = () => {
-    clearInterval(pressInterval)
-    setPressInterval(setInterval(handleIncreaseVolume, 200));
-  } 
-  const handleIncreaseOnMouseUp = () => {
-    if (pressInterval !== null) {
-      clearInterval(pressInterval);
-      setPressInterval(null);
-      window.CrComLib.publishEvent(CrSignalType.Boolean, `${plusJoin}`, false);
-    }
-    
-  }
-const handleIncreaseOnTouchMove = (e) => {
-  const incBtn = document.getElementById('increaseButton');
-  const touch = e.touches[0];
-  const targetEl = document.elementFromPoint(touch.clientX, touch.clientY);
-  if (!incBtn.contains(targetEl)) {
-    handleIncreaseOnMouseUp();
-  }
-}
-const handleDecreaseOnTouchMove = (e) => {
-  const decBtn = document.getElementById('decreaseButton');
-  const touch = e.touches[0];
-  const targetEl = document.elementFromPoint(touch.clientX, touch.clientY);
-  if (!decBtn.contains(targetEl)) {
-    handleDecreaseOnMouseUp();
-  }
-}
-  
-  useEffect(() => {
-    // Map decibels to the volume range (0 to 20)
-    if (!isMuted){
-        // const mappedVolume = Math.round((initialVolume * 20) / 65535);
-        setVolume(initialVolume);
-    }
-    
-  }, []);
 
+  const handleOnMouseDown = (change) => {
+    if (pressIntervalRef.current !== null) {
+      return;
+    }
+    pressIntervalRef.current = setInterval(() => {
+      setVolume((prevVolume) => {
+        const newVolume = prevVolume + change;
+        if (newVolume >= 0 && newVolume <= 20) {
+          console.log('volume changed', newVolume)
+          window.CrComLib.publishEvent(CrSignalType.Boolean, change > 0 ? `${plusJoin}` :`${minusJoin}`, true);
+          window.CrComLib.publishEvent(CrSignalType.Boolean, change > 0 ? `${plusJoin}` :`${minusJoin}`, false);
+          return newVolume;
+        }
+        return prevVolume;
+      })
+    }, 200);
+  }
+
+  const handleOnMouseUp = (change) => {
+    console.log('stop volume change');
+    if (pressIntervalRef.current) {
+      clearInterval(pressIntervalRef.current);
+      pressIntervalRef.current = null;
+    }
+    window.CrComLib.publishEvent(CrSignalType.Boolean, change > 0 ? `${plusJoin}` :`${minusJoin}`, false);
+  }
+
+  const handleIncreaseOnTouchMove = (e) => {
+    const incBtn = document.getElementById('increaseButton');
+    const touch = e.touches[0];
+    const targetEl = document.elementFromPoint(touch.clientX, touch.clientY);
+    if (!incBtn.contains(targetEl)) {
+      handleOnMouseUp(1);
+    }
+  }
+
+  const handleDecreaseOnTouchMove = (e) => {
+    const decBtn = document.getElementById('decreaseButton');
+    const touch = e.touches[0];
+    const targetEl = document.elementFromPoint(touch.clientX, touch.clientY);
+    if (!decBtn.contains(targetEl)) {
+      handleOnMouseUp(-1);
+    }
+  }
 
   const renderSquares = () => {
     const squares = [];
@@ -116,25 +98,25 @@ const handleDecreaseOnTouchMove = (e) => {
   return (
     <div className="d-flex flex-row justify-content-center align-items-center">
         <button className="bg-info border-0 rounded-circle me-2 volumeButton" id="decreaseButton"
-          onClick={handleDecreaseOnClick}
-          onMouseDown={handleDecreaseOnMouseDown}
-          onMouseUp={handleDecreaseOnMouseUp}
-          onMouseLeave={handleDecreaseOnMouseUp}
-          onTouchStart={handleDecreaseOnMouseDown}
-          onTouchEnd={handleDecreaseOnMouseUp}
-          onTouchCancel={handleDecreaseOnMouseUp}
+          onClick={handleDecreaseVolume}
+          onMouseDown={() => handleOnMouseDown(-1)}
+          onMouseUp={() => handleOnMouseUp(-1)}
+          onMouseLeave={() => handleOnMouseUp(-1)}
+          onTouchStart={() => handleOnMouseDown(-1)}
+          onTouchEnd={() => handleOnMouseUp(-1)}
+          onTouchCancel={() => handleOnMouseUp(-1)}
           onTouchMove={handleDecreaseOnTouchMove}>
             <i className="bi bi-dash-lg text-white fw-bold font-size-5 font-size-6-xl"></i>
         </button>
         <div className="squaresContainer me-2">{renderSquares()}</div>
         <button className="bg-info border-0 rounded-circle volumeButton" id="increaseButton"
-          onClick={handleIncreaseOnClick}
-          onMouseDown={handleIncreaseOnMouseDown}
-          onMouseUp={handleIncreaseOnMouseUp}
-          onMouseLeave={handleIncreaseOnMouseUp}
-          onTouchStart={handleIncreaseOnMouseDown}
-          onTouchEnd={handleIncreaseOnMouseUp}
-          onTouchCancel={handleIncreaseOnMouseUp}
+          onClick={handleIncreaseVolume}
+          onMouseDown={() => handleOnMouseDown(1)}
+          onMouseUp={() => handleOnMouseUp(1)}
+          onMouseLeave={() => handleOnMouseUp(1)}
+          onTouchStart={() => handleOnMouseDown(1)}
+          onTouchEnd={() => handleOnMouseUp(1)}
+          onTouchCancel={() => handleOnMouseUp(1)}
           onTouchMove={handleIncreaseOnTouchMove}>
             <i className="bi bi-plus-lg text-white fw-bold font-size-5 font-size-6-xl"></i>
         </button>
