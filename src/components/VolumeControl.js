@@ -14,17 +14,17 @@ const VolumeControl = ({plusJoin, minusJoin, isMuted, volumeJoin}) => {
 
   useEffect(() => {
     if (!isMuted) {
-      // window.CrComLib.subscribeState('o', volumeJoin, value => {
-      //   if (value.hasOwnProperty('rcb')) {
-      //     console.log('subscribe volume:', value['rcb']['value'])
-      //     setVolume(value['rcb']['value'])
-      //   }
-      // })
+      window.CrComLib.subscribeState('o', volumeJoin, value => {
+        if (value.hasOwnProperty('rcb')) {
+          console.log('subscribe volume:', value['rcb']['value'])
+          setVolume(value['rcb']['value'])
+        }
+      })
 
-      window.CrComLib.subscribeState('n', volumeJoin, value => {
-        console.log('subscribe volume', typeof(value), value)
-        setVolume(value)
-      });
+      // window.CrComLib.subscribeState('n', volumeJoin, value => {
+      //   console.log('subscribe volume', typeof(value), value)
+      //   setVolume(value)
+      // });
 
       // setVolume(initialVolume);
       // console.log('initial volume', initialVolume)
@@ -139,24 +139,24 @@ const VolumeControl = ({plusJoin, minusJoin, isMuted, volumeJoin}) => {
     <div className="d-flex flex-row justify-content-center align-items-center">
         <button className="bg-info border-0 rounded-circle me-2 volumeButton" id="decreaseButton"
           onClick={handleDecreaseVolume}
-          onMouseDown={() => handleOnMouseDown(-1)}
-          onMouseUp={() => handleOnMouseUp(-1)}
-          onMouseLeave={() => handleOnMouseUp(-1)}
-          onTouchStart={() => handleOnMouseDown(-1)}
-          onTouchEnd={() => handleOnMouseUp(-1)}
-          onTouchCancel={() => handleOnMouseUp(-1)}
+          onMouseDown={() => handleRamping(-1)}
+          onMouseUp={() => handleRampingStop(-1)}
+          onMouseLeave={() => handleRampingStop(-1)}
+          onTouchStart={() => handleRamping(-1)}
+          onTouchEnd={() => handleRampingStop(-1)}
+          onTouchCancel={() => handleRampingStop(-1)}
           onTouchMove={handleDecreaseOnTouchMove}>
             <i className="bi bi-dash-lg text-white fw-bold font-size-5 font-size-6-xl"></i>
         </button>
         <div className="squaresContainer me-2">{renderSquares()}</div>
         <button className="bg-info border-0 rounded-circle volumeButton" id="increaseButton"
           onClick={handleIncreaseVolume}
-          onMouseDown={() => handleOnMouseDown(1)}
-          onMouseUp={() => handleOnMouseUp(1)}
-          onMouseLeave={() => handleOnMouseUp(1)}
-          onTouchStart={() => handleOnMouseDown(1)}
-          onTouchEnd={() => handleOnMouseUp(1)}
-          onTouchCancel={() => handleOnMouseUp(1)}
+          onMouseDown={() => handleRamping(1)}
+          onMouseUp={() => handleRampingStop(1)}
+          onMouseLeave={() => handleRampingStop(1)}
+          onTouchStart={() => handleRamping(1)}
+          onTouchEnd={() => handleRampingStop(1)}
+          onTouchCancel={() => handleRampingStop(1)}
           onTouchMove={handleIncreaseOnTouchMove}>
             <i className="bi bi-plus-lg text-white fw-bold font-size-5 font-size-6-xl"></i>
         </button>
