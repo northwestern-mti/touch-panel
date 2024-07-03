@@ -91,8 +91,8 @@ function BottomBar ({programStarted, setProgramStarted}) {
 }
 
   useEffect(() => {
-    window.CrComLib.subscribeState(CrSignalType.Number, CrSignalName.PresentationVolume, value=> setPresentationVolume(value));
-    window.CrComLib.subscribeState(CrSignalType.Number, CrSignalName.MicVolume, value=> setMicVolume(value));
+    // window.CrComLib.subscribeState(CrSignalType.Number, CrSignalName.PresentationVolume, value=> setPresentationVolume(value));
+    // window.CrComLib.subscribeState(CrSignalType.Number, CrSignalName.MicVolume, value=> setMicVolume(value));
     window.CrComLib.subscribeState(CrSignalType.Number, CrSignalName.NumberOfCameras, value=> setNumCameras(value));
     window.CrComLib.subscribeState(CrSignalType.Number, CrSignalName.NumberOfPresets, value=> setNumOfPresets(value));
     window.CrComLib.subscribeState(CrSignalType.Number, CrSignalName.CameraSelected, value=> setCameraSelected(value));
@@ -419,7 +419,7 @@ const popover = (
         <Modal.Body className="font-size-4 font-size-3-xl p-0">
           <div className='container-fluid text-center pt-3'>
             <div className="my-2 my-xl-5">
-            <VolumeControl className="mx-auto" initialVolume={presentationVolume} plusJoin={CrSignalName.PresentationVolumeUp} minusJoin={CrSignalName.PresentationVolumeDown}  isMuted={isPresentationMuted} volumeJoin='1' />
+            <VolumeControl className="mx-auto" plusJoin={CrSignalName.PresentationVolumeUp} minusJoin={CrSignalName.PresentationVolumeDown}  isMuted={isPresentationMuted} volumeJoin={CrSignalName.PresentationVolume} />
             </div>
             <div class="col-12 text-center mb-4">
               <Button type="button"
@@ -464,7 +464,7 @@ const popover = (
           {hasMics && (
             <>
               <div className="my-3 my-xl-5">
-              <VolumeControl initialVolume={MicVolume} plusJoin={CrSignalName.MicVolumeUp} minusJoin={CrSignalName.MicVolumeDown} isMuted={isMicMuted} />
+              <VolumeControl plusJoin={CrSignalName.MicVolumeUp} minusJoin={CrSignalName.MicVolumeDown} isMuted={isMicMuted} volumeJoin={CrSignalName.MicVolume} />
               </div>
             </>
             )}
