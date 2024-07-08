@@ -14,17 +14,17 @@ const VolumeControl = ({plusJoin, minusJoin, isMuted, volumeJoin}) => {
 
   useEffect(() => {
     if (!isMuted) {
-      window.CrComLib.subscribeState('o', volumeJoin, value => {
-        if (value.hasOwnProperty('rcb')) {
-          console.log('subscribe volume:', value['rcb']['value'])
-          setVolume(value['rcb']['value'])
-        }
-      })
+      // window.CrComLib.subscribeState('o', volumeJoin, value => {
+      //   if (value.hasOwnProperty('rcb')) {
+      //     console.log('subscribe volume:', value['rcb']['value'])
+      //     setVolume(value['rcb']['value'])
+      //   }
+      // })
 
-      // window.CrComLib.subscribeState('n', volumeJoin, value => {
-      //   console.log('subscribe volume', typeof(value), value)
-      //   setVolume(value)
-      // });
+      window.CrComLib.subscribeState('n', volumeJoin, value => {
+        console.log('subscribe volume', value)
+        setVolume(value)
+      });
 
       // setVolume(initialVolume);
       // console.log('initial volume', initialVolume)
@@ -36,7 +36,6 @@ const VolumeControl = ({plusJoin, minusJoin, isMuted, volumeJoin}) => {
 
   const handleIncreaseVolume = () => {
     if (volume < 20) {
-      setVolume((prevVolume) => prevVolume + 1);
       window.CrComLib.publishEvent(CrSignalType.Boolean, `${plusJoin}`, true);
       window.CrComLib.publishEvent(CrSignalType.Boolean, `${plusJoin}`, false);
       console.log('volume increased:', volume)
@@ -45,7 +44,6 @@ const VolumeControl = ({plusJoin, minusJoin, isMuted, volumeJoin}) => {
 
   const handleDecreaseVolume = () => {
     if (volume > 0) {
-      setVolume((prevVolume) => prevVolume - 1);
       window.CrComLib.publishEvent(CrSignalType.Boolean, `${minusJoin}`, true);
       window.CrComLib.publishEvent(CrSignalType.Boolean, `${minusJoin}`, false);
     }
@@ -57,16 +55,9 @@ const VolumeControl = ({plusJoin, minusJoin, isMuted, volumeJoin}) => {
       return;
     }
     pressIntervalRef.current = setInterval(() => {
-      setVolume((prevVolume) => {
-        const newVolume = prevVolume + change;
-        if (newVolume >= 0 && newVolume <= 20) {
-          console.log('volume changed', newVolume)
-          window.CrComLib.publishEvent(CrSignalType.Boolean, change > 0 ? `${plusJoin}` :`${minusJoin}`, true);
-          window.CrComLib.publishEvent(CrSignalType.Boolean, change > 0 ? `${plusJoin}` :`${minusJoin}`, false);
-          return newVolume;
-        }
-        return prevVolume;
-      })
+      window.CrComLib.publishEvent(CrSignalType.Boolean, change > 0 ? `${plusJoin}` :`${minusJoin}`, true);
+      window.CrComLib.publishEvent(CrSignalType.Boolean, change > 0 ? `${plusJoin}` :`${minusJoin}`, false);
+      console.log('volume changed', volume)
     }, 200);
   }
 
@@ -79,8 +70,9 @@ const VolumeControl = ({plusJoin, minusJoin, isMuted, volumeJoin}) => {
       setVolume((prevVolume) => {
         const newVolume = prevVolume + change;
         if (newVolume >= 0 && newVolume <= 20) {
-          console.log('volume changed', newVolume)
-          window.CrComLib.publishEvent('o', change > 0 ? `${plusJoin}` :`${minusJoin}`, {repeatdigital: true});
+      window.CrComLib.publishEvent('o', change > 0 ? `${plusJoin}` :`${minusJoin}`, {repeatdigital: true});
+      console.log('volume changed', volume)
+
          return newVolume;
         }
         return prevVolume;
@@ -93,7 +85,7 @@ const VolumeControl = ({plusJoin, minusJoin, isMuted, volumeJoin}) => {
       clearInterval(pressIntervalRef.current);
       pressIntervalRef.current = null;
     }
-    window.CrComLib.publishEvent(CrSignalType.Boolean, change > 0 ? `${plusJoin}` :`${minusJoin}`, false);
+    // window.CrComLib.publishEvent(CrSignalType.Boolean, change > 0 ? `${plusJoin}` :`${minusJoin}`, false);
   }
 
   const handleRampingStop = (change) => {
@@ -139,24 +131,24 @@ const VolumeControl = ({plusJoin, minusJoin, isMuted, volumeJoin}) => {
     <div className="d-flex flex-row justify-content-center align-items-center">
         <button className="bg-info border-0 rounded-circle me-2 volumeButton" id="decreaseButton"
           onClick={handleDecreaseVolume}
-          onMouseDown={() => handleRamping(-1)}
-          onMouseUp={() => handleRampingStop(-1)}
-          onMouseLeave={() => handleRampingStop(-1)}
-          onTouchStart={() => handleRamping(-1)}
-          onTouchEnd={() => handleRampingStop(-1)}
-          onTouchCancel={() => handleRampingStop(-1)}
+          onMouseDown={() => handleOnMouseDown(-1)}
+          onMouseUp={() => handleOnMouseUp(-1)}
+          onMouseLeave={() => handleOnMouseUp(-1)}
+          onTouchStart={() => handleOnMouseDown(-1)}
+          onTouchEnd={() => handleOnMouseUp(-1)}
+          onTouchCancel={() => handleOnMouseUp(-1)}
           onTouchMove={handleDecreaseOnTouchMove}>
             <i className="bi bi-dash-lg text-white fw-bold font-size-5 font-size-6-xl"></i>
         </button>
         <div className="squaresContainer me-2">{renderSquares()}</div>
         <button className="bg-info border-0 rounded-circle volumeButton" id="increaseButton"
           onClick={handleIncreaseVolume}
-          onMouseDown={() => handleRamping(1)}
-          onMouseUp={() => handleRampingStop(1)}
-          onMouseLeave={() => handleRampingStop(1)}
-          onTouchStart={() => handleRamping(1)}
-          onTouchEnd={() => handleRampingStop(1)}
-          onTouchCancel={() => handleRampingStop(1)}
+          onMouseDown={() => handleOnMouseDown(1)}
+          onMouseUp={() => handleOnMouseUp(1)}
+          onMouseLeave={() => handleOnMouseUp(1)}
+          onTouchStart={() => handleOnMouseDown(1)}
+          onTouchEnd={() => handleOnMouseUp(1)}
+          onTouchCancel={() => handleOnMouseUp(1)}
           onTouchMove={handleIncreaseOnTouchMove}>
             <i className="bi bi-plus-lg text-white fw-bold font-size-5 font-size-6-xl"></i>
         </button>
