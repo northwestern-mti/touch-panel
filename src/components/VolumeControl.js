@@ -25,9 +25,6 @@ const VolumeControl = ({plusJoin, minusJoin, isMuted, volumeJoin}) => {
         console.log('subscribe volume', value)
         setVolume(value)
       });
-
-      // setVolume(initialVolume);
-      // console.log('initial volume', initialVolume)
     }
     return () => {
       window.CrComLib.unsubscribeState('n', volumeJoin, volume);
@@ -56,9 +53,9 @@ const VolumeControl = ({plusJoin, minusJoin, isMuted, volumeJoin}) => {
     }
     pressIntervalRef.current = setInterval(() => {
       window.CrComLib.publishEvent(CrSignalType.Boolean, change > 0 ? `${plusJoin}` :`${minusJoin}`, true);
-      window.CrComLib.publishEvent(CrSignalType.Boolean, change > 0 ? `${plusJoin}` :`${minusJoin}`, false);
+      // window.CrComLib.publishEvent(CrSignalType.Boolean, change > 0 ? `${plusJoin}` :`${minusJoin}`, false);
       console.log('volume changed', volume)
-    }, 200);
+    }, 20);
   }
 
   const handleRamping = (change) => {
@@ -85,7 +82,7 @@ const VolumeControl = ({plusJoin, minusJoin, isMuted, volumeJoin}) => {
       clearInterval(pressIntervalRef.current);
       pressIntervalRef.current = null;
     }
-    // window.CrComLib.publishEvent(CrSignalType.Boolean, change > 0 ? `${plusJoin}` :`${minusJoin}`, false);
+    window.CrComLib.publishEvent(CrSignalType.Boolean, change > 0 ? `${plusJoin}` :`${minusJoin}`, false);
   }
 
   const handleRampingStop = (change) => {
