@@ -99,7 +99,6 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         'Boolean' : 'b',
         'Number' : 'n',
         'String': 's',
-        'Object': 'o'
     }
     useEffect(() => {
         window.CrComLib.subscribeState(CrSignalType.String, CrSignalNames.IpAddress, value=> setIpAdd(value));
