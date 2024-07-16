@@ -6,28 +6,21 @@ import './VolumeControl.css'
 const VolumeControl = ({plusJoin, minusJoin, isMuted, volumeJoin}) => {
   const [volume, setVolume] = useState(0);
   const pressIntervalRef = useRef(null);
-  const prevVolumeRef = useRef(null);
 
   const CrSignalType = {
     'Boolean' : 'b',
+    'Number' : 'n',
   }
 
   useEffect(() => {
     if (!isMuted) {
-      // window.CrComLib.subscribeState('o', volumeJoin, value => {
-      //   if (value.hasOwnProperty('rcb')) {
-      //     console.log('subscribe volume:', value['rcb']['value'])
-      //     setVolume(value['rcb']['value'])
-      //   }
-      // })
-
-      window.CrComLib.subscribeState('n', volumeJoin, value => {
+      window.CrComLib.subscribeState(CrSignalType.Number, volumeJoin, value => {
         console.log('subscribe volume', value)
         setVolume(value)
       });
     }
     return () => {
-      window.CrComLib.unsubscribeState('n', volumeJoin, volume);
+      window.CrComLib.unsubscribeState(CrSignalType.Number, volumeJoin, volume);
     }
   }, []);
 
@@ -53,29 +46,10 @@ const VolumeControl = ({plusJoin, minusJoin, isMuted, volumeJoin}) => {
     }
     pressIntervalRef.current = setInterval(() => {
       window.CrComLib.publishEvent(CrSignalType.Boolean, change > 0 ? `${plusJoin}` :`${minusJoin}`, true);
-      // window.CrComLib.publishEvent(CrSignalType.Boolean, change > 0 ? `${plusJoin}` :`${minusJoin}`, false);
       console.log('volume changed', volume)
     }, 20);
   }
 
-  const handleRamping = (change) => {
-    if (pressIntervalRef.current !== null) {
-      return;
-    }
-    window.CrComLib.publishEvent('o', change > 0 ? `${plusJoin}` :`${minusJoin}`, {repeatdigital: true});
-    pressIntervalRef.current = setInterval(() => {
-      setVolume((prevVolume) => {
-        const newVolume = prevVolume + change;
-        if (newVolume >= 0 && newVolume <= 20) {
-      window.CrComLib.publishEvent('o', change > 0 ? `${plusJoin}` :`${minusJoin}`, {repeatdigital: true});
-      console.log('volume changed', volume)
-
-         return newVolume;
-        }
-        return prevVolume;
-      })
-    }, 200);
-  }
 
   const handleOnMouseUp = (change) => {
     if (pressIntervalRef.current) {
@@ -85,13 +59,6 @@ const VolumeControl = ({plusJoin, minusJoin, isMuted, volumeJoin}) => {
     window.CrComLib.publishEvent(CrSignalType.Boolean, change > 0 ? `${plusJoin}` :`${minusJoin}`, false);
   }
 
-  const handleRampingStop = (change) => {
-    if (pressIntervalRef.current) {
-      clearInterval(pressIntervalRef.current);
-      pressIntervalRef.current = null;
-    }
-    window.CrComLib.publishEvent('o', change > 0 ? `${plusJoin}` :`${minusJoin}`, {repeatdigital: false});
-  }
 
   const handleIncreaseOnTouchMove = (e) => {
     const incBtn = document.getElementById('increaseButton');
