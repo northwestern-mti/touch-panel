@@ -268,12 +268,11 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
         if (pressIntervalRef.current !== null) {
             return;
           }
-
-        window.CrComLib.publishEvent(CrSignalType.Object, action === 'in' ? CrSignalNames.DocCam_ZoomIn : CrSignalNames.DocCam_ZoomOut, {repeatdigital: true});
+        
         pressIntervalRef.current = setInterval(() => {
-            window.CrComLib.publishEvent(CrSignalType.Object, action === 'in' ? CrSignalNames.DocCam_ZoomIn : CrSignalNames.DocCam_ZoomOut, {repeatdigital: true});
+            window.CrComLib.publishEvent(CrSignalType.Boolean, action === 'in' ? CrSignalNames.DocCam_ZoomIn : CrSignalNames.DocCam_ZoomOut, true);
             console.log('zooming', action)
-        }, 500)
+        }, 200)
     }
 
     const docCamZoomOnMouseUp = (action) => {
@@ -281,8 +280,7 @@ function DisplayArea({sourceSelected, displayJoin, side, showAnnotationJoin, sho
             clearInterval(pressIntervalRef.current);
             pressIntervalRef.current = null;
         }
-        window.CrComLib.publishEvent(CrSignalType.Object, action === 'in' ? CrSignalNames.DocCam_ZoomIn : CrSignalNames.DocCam_ZoomOut, {repeatdigital: false});
-        console.log('zooming stopped')
+        window.CrComLib.publishEvent(CrSignalType.Boolean, action === 'in' ? CrSignalNames.DocCam_ZoomIn : CrSignalNames.DocCam_ZoomOut, false);
     }
     // Privacy Mode Popover
     const popover = (
